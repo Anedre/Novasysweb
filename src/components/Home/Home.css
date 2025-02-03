@@ -1,0 +1,147 @@
+/* src/Home.css */
+.Home {
+  width: 100%;
+  margin: 0;
+}
+
+.Home .intro {
+  position: relative;
+  height: 100vh; /* Ocupa toda la pantalla */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro img {
+  width: 700px; /* Tamaño inicial para pantallas grandes */
+  height: 200px;
+}
+
+
+.cuadrado {
+  height: 350px; /* Cada cuadrado ocupa el 100% de la altura del contenedor */
+  
+  display: flex;
+  flex-direction: column; /* Permite apilar contenido dentro */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.5rem;
+
+}
+
+
+.section__paragraph1 {
+  text-align: center;
+  height: 100vh;
+}
+
+.section__paragraph2 {
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1%;
+  padding-left: 200px;
+
+}
+
+.section__paragraph3 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  background: linear-gradient(to right, white, #f0f0f0, #d0d0d0, hsl(0, 0%, 71%));
+
+}
+
+
+
+.success-grid {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  max-width: 100%;
+  margin: 100px;
+  padding-left: 2rem;
+
+}
+
+.success-item {
+  flex: 1 1 250px; /* Ajusta el ancho dinámicamente sin forzar salto de línea */
+  max-width: 250px;
+}
+.success-item img {
+  height: 90px;
+  width: 250px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.success-item img:hover {
+  transform: scale(1.5); /* Efecto de agrandado al pasar el mouse */
+}
+
+.success-item p {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #333;
+  font-weight: 500;
+}
+
+
+.solutions-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  padding: 100px;
+  margin:5%;
+  max-width: 980px;
+}
+
+.solution-item {
+  width: 300px;
+  height: 300px;
+  max-width: 300px;
+  border: 2px solid #ccc;
+
+
+}
+
+.solution-item img{
+  width: 250px;
+  padding-top: 75px;
+  padding-left: 50px;
+
+
+}
+
+@media (max-width: 768px) {
+  .intro img {
+    width: 90%; /* Ajusta el tamaño de la imagen para dispositivos más pequeños */
+    height: auto;
+  }
+
+  .solution-item {
+    flex: 1 1 100%; /* Cada ítem toma el ancho completo de la pantalla en dispositivos móviles */
+    height: 50vw; /* Altura se ajusta para mantener la proporción cuadrada */
+  }
+
+  .solutions-grid {
+    padding: 50px;
+  }
+
+  .section {
+    padding-left: 1rem; /* Reduce el padding en dispositivos móviles */
+  }
+
+  .success-grid {
+    margin: 50px 0; /* Reduce el margen en dispositivos móviles */
+    gap: 30px; /* Reduce el espacio entre los ítems */
+  }
+
+  .success-item {
+    flex: 1 1 100%; /* Cada ítem toma el ancho completo de la pantalla en dispositivos móviles */
+  }
+}

@@ -1,0 +1,96 @@
+/* src/components/Header/Header.css */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 70px;
+  background: rgb(31, 31, 31); /* Fondo transparente */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  position: fixed; /* Asegura que el header se mantenga fijo */
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-size: 200% 200%;
+  animation: shine 10s infinite linear;
+  pointer-events: none; /* Evita que el header bloquee clics */
+}
+
+  
+ 
+
+  @keyframes shine {
+    0% {
+      background-position: 200% 200%;
+    }
+    50% {
+      background-position: -200% -200%;
+    }
+    100% {
+      background-position: 200% 200%;
+    }
+  }
+  
+  .logo img {
+    width: 200px;
+    height: 80px;
+  }
+  
+  .title h1 {
+    font-size: 24px;
+    color: white;
+  }
+  
+  .nav {
+    display: flex;
+    gap: 50px;
+    pointer-events: auto; /* Permite clics dentro del nav */
+  }
+  
+  .navItem {
+    color: white; /* Asegura que el texto sea visible */
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease; /* Transición suave */
+    position: relative; /* Permite efectos en el hover */
+    z-index: 10; /* Asegura que el texto esté por encima */
+  }
+  
+  .navItem:hover {
+    color: #000000;  /* Amarillo suave */
+    transform: scale(1.1);  /* Efecto de ampliación */
+  }
+  
+  .menuButton {
+    display: none;
+  }
+  
+  .mobileNav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    display: none;  /* Se ocultará por defecto en pantallas grandes */
+  }
+  
+  .mobileNav.open {
+    display: flex;  /* Mostrar el menú cuando está abierto */
+  }
+  
+  @media (max-width: 768px) {
+    .nav {
+      display: none;  /* Ocultar las secciones del menú en móviles */
+    }
+  
+    .menuButton {
+      display: block;  /* Mostrar el botón de menú */
+      background-color: transparent;
+      border: none;
+      color: white;
+      font-size: 30px;
+    }
+  }
+  

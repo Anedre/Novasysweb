@@ -1,0 +1,21 @@
+/* src/App.css */
+.App {
+  display: flex;
+  flex-direction: column;
+  /* Asegura que el contenido ocupe al menos toda la altura de la pantalla */
+}
+
+main {
+    /* Esto permite que el contenido principal ocupe el espacio restante */
+  padding: 20px;
+}
+
+@media (max-width: 20000px) {
+  .App {
+    padding: 10px;  /* Reducimos el padding en pantallas pequeñas */
+  }
+
+  main {
+    padding: 10px;
+  }
+}
