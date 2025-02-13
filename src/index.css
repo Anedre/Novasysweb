@@ -12,6 +12,9 @@ html, body, #root {
   height: 100%;
   margin: 0;
   display: flex;
+  overflow-x: hidden;
+  padding: 0;
+
   flex-direction: column;
 }
 
@@ -47,6 +50,12 @@ main {
   --color-interactive: 83, 82, 82;
   --circle-size: 20%;
   --blending: hardlight;
+    /* Si bien quitaste variables, es recomendable mantenerlas en el :root, 
+     pero si prefieres no usarlas, puedes reemplazar var(--primary-color) y var(--secondary-color) por valores fijos */
+     --primary-color: #e21010;
+     --secondary-color: #555;
+     --input-border: #000;
+     --input-focus: #f80000;
 }
 
 @keyframes moveInCircle {
@@ -88,7 +97,8 @@ main {
 
 .gradient-bg {
   width: 100vw;
-  height: 100vh;
+  /* Usamos calc() para obtener la altura real */
+  height: calc(var(--vh, 1vh) * 100);
   position: fixed;
   z-index: -1;
   overflow: hidden;
@@ -191,4 +201,68 @@ main {
     opacity: 1;
   }
 
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+header {
+  font-family: 'Outfit', sans-serif;
+  color: white;
+  padding: 15px;
+  font-size: 1.5em;
+}
+nav {
+  font-family: 'Outfit', sans-serif;
+  padding: 10px;
+  font-weight: 100;
+  font-size: 0.5em;
+}
+nav a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: 300;
+}
+h1 {
+  font-family: 'Raleway', sans-serif;
+  margin: 3rem 0;
+  font-weight: 200;
+  font-size: 2em;
+}
+h2, h3 {
+  font-family: 'Manrope', sans-serif;
+  color: #444;
+  font-weight: 100;
+  font-size: 0.8em;
+
+}
+p {
+  font-family: 'DM Sans', sans-serif;
+  margin: 10px 0;
+  line-height: 1.6;
+  font-weight: 300;
+}
+small {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 0.85em;
+  color: #777;
+  display: block;
+  font-weight: 300;
+}
+
+footer h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+}
+footer p {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+}
+button{
+  font-family: 'Lexend', sans-serif;  
+  font-weight: 100;
 }

@@ -1,0 +1,110 @@
+/* Contenedor principal de la sección */
+.SolucionesHP {
+    padding: 40px;
+  }
+  
+  /* Contenedor que agrupa el contenido en dos columnas y centra el grupo */
+  .SHPcontent {
+    display: flex;
+    flex-direction: row;           /* Organiza en fila */
+    justify-content: center;         /* Centra horizontalmente el grupo completo */
+    align-items: center;             /* Centra verticalmente los elementos */
+    max-width: 1200px;               /* Limita el ancho total del bloque */
+    margin: 0 auto;                  /* Centra el contenedor en la página */
+    gap: 20px;                      /* Espacio uniforme entre columnas */
+  }
+  
+  /* Columna izquierda: Título y texto descriptivo */
+  .SHPtexto {
+    flex: 1;
+    max-width: 50%;                /* Ocupa hasta la mitad del ancho del contenedor */
+    text-align: left;
+  }
+  
+  .SHPtexto h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  .SHPtexto p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  /* Columna derecha: Cuadro de contacto */
+  .SHPcontact {
+    flex: 0 0 300px;               /* Ancho fijo para el cuadro de contacto */
+    background-color: #f5e0e028;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    text-align: left;
+  }
+  
+  .SHPcontact h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #e21010;
+  }
+  
+  .SHPcontact p {
+    margin-bottom: 20px;
+    font-size: 1rem;
+  }
+  
+  /* Botón 3D con animación y centrado horizontal */
+  .info-btn {
+    background-color: #e21010;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 0 #b00;
+    display: block;                /* Se comporta como bloque para usar margin auto */
+    margin: 20px auto 0;            /* Centrado horizontal dentro del cuadro */
+  }
+  
+  .info-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #b00;
+  }
+  
+  .info-btn:active {
+    transform: translateY(4px);
+    box-shadow: none;
+  }
+  
+  /* La flecha se mueve ligeramente al hacer hover */
+  .arrow {
+    margin-left: 8px;
+    transition: transform 0.2s;
+  }
+  
+  .info-btn:hover .arrow {
+    transform: translateX(5px);
+  }
+  
+  /* Adaptación responsiva para móviles */
+  @media (max-width: 768px) {
+    .SHPcontent {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .SHPtexto,
+    .SHPcontact {
+      max-width: 100%;
+      width: 100%;
+      margin: 0 0 20px 0;
+    }
+    
+    /* Opcional: en móviles se puede centrar el texto del cuadro de contacto */
+    .SHPcontact {
+      text-align: center;
+    }
+  }
+  

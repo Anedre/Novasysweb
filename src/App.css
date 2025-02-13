@@ -1,21 +1,21 @@
-/* src/App.css */
 .App {
   display: flex;
   flex-direction: column;
-  /* Asegura que el contenido ocupe al menos toda la altura de la pantalla */
+  min-height: 100vh; /* La app ocupará al menos el 100% del viewport */
+  /* Ajusta o elimina el padding si es necesario */
+  padding: 0;
+}
+
+.content {
+  flex: 1;  /* El área de contenido se expande para ocupar el espacio restante */
 }
 
 main {
-    /* Esto permite que el contenido principal ocupe el espacio restante */
   padding: 20px;
+  width: 100%;  /* Asegura que el contenido principal ocupe todo el ancho */
 }
 
-@media (max-width: 20000px) {
-  .App {
-    padding: 10px;  /* Reducimos el padding en pantallas pequeñas */
-  }
-
-  main {
-    padding: 10px;
-  }
+/* Ejemplo de media query para móviles (ajusta según necesites) */
+@media (max-width: 768px) {
+ 
 }

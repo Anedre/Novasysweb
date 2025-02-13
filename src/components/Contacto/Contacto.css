@@ -1,0 +1,307 @@
+/* Estilos generales de la sección de contacto */
+.Contacto {
+    padding: 3rem 1rem;
+}
+  
+/* ------------------------- */
+/* Títulos y subtítulos      */
+/* ------------------------- */
+.Ctitulo {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .Ctitulo h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .Ctitulo p {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+  }
+  
+  /* ------------------------- */
+  /* Contenedor principal      */
+  /* ------------------------- */
+  .contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto 2rem;
+  }
+  
+  /* ------------------------- */
+  /* Estilos de "cards" comunes*/
+  /* (Para info y formulario) */
+  /* ------------------------- */
+  .card {
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Columna Izquierda: Información de contacto */
+  .contact-info {
+    /* Hereda los estilos de .card */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  
+  /* Cada ítem de contacto */
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .contact-item .icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+  }
+  
+  /* Columna Derecha: Formulario de contacto */
+  .contact-form {
+    /* Hereda los estilos de .card */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  .contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start; /* En lugar de center, para que los inputs queden a la izquierda */
+  }
+
+
+
+  .form-row {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+
+
+  }
+  .form-group {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+  }
+  .form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  
+  /* ------------------------- */
+  /* Inputs y Textarea         */
+  /* ------------------------- */
+  .form-group input,
+  .form-group textarea {
+    padding: 0.75rem;
+    font-size: 1rem;
+    /* Quita todos los bordes y añade solo el borde inferior en negro */
+    border: none;
+    border-bottom: 1px solid var(--input-border);
+    background-color: transparent;
+    transition: border-color 0.3s ease;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-bottom-color: var(--input-focus);
+    outline: none;
+  }
+
+  .form-group textarea{
+    font-family: 'DM Sans', sans-serif;
+    resize: none;
+    min-width: 470px;
+
+  }
+  
+  /* ------------------------- */
+  /* Botón de envío            */
+  /* ------------------------- */
+/* Estilo base del botón (más pequeño) */
+/* Botón más pequeño y sin transición base para que al quitar el hover vuelva inmediatamente */
+.btn-submit {
+  position: relative;
+  padding: 10px 15px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 1rem;
+  border: none;
+  background: transparent;
+  overflow: hidden;
+  cursor: pointer;
+  color: #ff0000;
+  transition: none; /* Sin transición en estado base */
+  max-width: 150px;
+  align-self: center;
+}
+
+/* ---------- */
+/* Esquinas estáticas */
+/* ---------- */
+
+/* Esquina superior izquierda: un pequeño segmento */
+.static-tl {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  /* Sólo se pintan los bordes superior e izquierdo */
+  border-top: 2px solid #f40317;
+  border-left: 2px solid #f40317;
+}
+
+/* Esquina inferior derecha: un pequeño segmento */
+.static-br {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  /* Sólo se pintan los bordes inferior y derecho */
+  border-bottom: 2px solid #f40317;
+  border-right: 2px solid #f40317;
+}
+
+/* ---------- */
+/* Bordes animados (inicialmente “incompletos”) */
+/* ---------- */
+
+/* Borde inferior: se muestra un segmento corto en la esquina inferior derecha */
+.anim-bottom {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 2px;
+  width: 10px; /* igual que la medida de la esquina */
+  background: #f40317;
+}
+
+/* Borde izquierdo: inicia sin altura (oculto) en el lado izquierdo, se ubicará en la parte inferior */
+.anim-left {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  height: 0;
+  background: #f40317;
+}
+
+/* Borde superior: inicia sin ancho en la parte superior, desde la esquina izquierda */
+.anim-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: #f40317;
+}
+
+/* Borde derecho: inicia sin altura en la parte superior derecha */
+.anim-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 0;
+  background: #f40317;
+}
+
+/* ---------- */
+/* Animación al hacer hover (sentido antihorario, partiendo de la esquina inferior derecha) */
+/* ---------- */
+
+.btn-submit:hover .anim-bottom {
+  width: 100%;
+  transition: width 0.3s ease 0s;
+}
+
+.btn-submit:hover .anim-left {
+  height: 100%;
+  transition: height 0.3s ease 0.3s;
+}
+
+.btn-submit:hover .anim-top {
+  width: 100%;
+  transition: width 0.3s ease 0.6s;
+}
+
+.btn-submit:hover .anim-right {
+  height: 100%;
+  transition: height 0.3s ease 0.9s;
+}
+
+/* Cambios en el botón (fondo, color y sombra) después de 2s de retardo */
+.btn-submit:hover {
+  transition: background-color 0.3s 1s, color 0.3s 1s, box-shadow 0.3s 1s;
+  background-color: #ff3502;
+  color: #050801;
+  box-shadow: 0 0 5px #ff3502,
+              0 0 25px #ff3502,
+              0 0 50px #ff3502,
+              0 0 300px #ff3502;
+}
+
+
+
+
+
+  
+
+  /* ------------------------- */
+  /* Mapa                      */
+  /* ------------------------- */
+  .map-container {
+    max-width: 1200px;
+    margin: 2rem auto 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  
+  /* ------------------------- */
+  /* Adaptaciones responsivas  */
+  /* ------------------------- */
+  @media (max-width: 768px) {
+    /* Convertir el grid a una sola columna */
+    .contact-container {
+      grid-template-columns: 1fr;
+    }
+    
+    /* Reducir tamaños de fuente de títulos para pantallas pequeñas */
+    .Ctitulo h1 {
+      font-size: 2rem;
+    }
+    .Ctitulo p {
+      font-size: 1rem;
+    }
+    
+    /* Hacer que cada grupo de formulario se extienda al 100% */
+    .form-group {
+      min-width: 100%;
+    }
+    
+    /* Los inputs y textarea ocuparán todo el ancho disponible */
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      box-sizing: border-box; /* Asegura que el padding se sume al ancho total */
+    }
+    
+    /* Para el textarea, eliminar el min-width fijo para que se ajuste */
+    .form-group textarea {
+      min-width: auto;
+    }
+    
+    /* Opcional: si deseas que los rows de inputs se apilen (en vez de seguir en fila) */
+    .form-row {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }

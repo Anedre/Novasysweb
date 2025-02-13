@@ -1,0 +1,105 @@
+/* Estilos generales para la sección */
+.ELO {
+    padding: 20px;   
+}
+  
+.Etitulo {
+    text-align: center;
+    padding-bottom: 40px;
+}
+.Etitulo h1 {
+    padding-bottom: 40px;
+}
+
+  
+/* Cuadro adicional para Ventas */
+.ELO-box {
+    width: auto;
+}
+  
+.ELO-title {
+    text-align: center;
+    position: relative;
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+}
+  
+.ELO-title h2 {
+    font-size: 1rem;
+}
+  
+/* Subrayado animado */
+.Eunderline {
+    width: 80px;
+    height: 2px;
+    background-color: rgb(255, 0, 98);
+    margin: 0 auto;
+    animation: underline-animation 2s infinite alternate;
+}
+  
+@keyframes underline-animation {
+    0% {
+      transform: scaleX(1);
+    }
+    50% {
+      transform: scaleX(0.1);
+    }
+    100% {
+      transform: scaleX(1);
+    }
+}
+  
+/* Grid de imágenes y títulos */
+.ELO-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    max-width: 800px;    /* Ancho máximo de 800px */
+    margin: 0 auto;      /* Centra el grid */
+}
+
+/* Cada item: convertimos en flex para controlar el alineamiento */
+.ELO-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Contenedor con alto fijo para las imágenes */
+.image-container {
+    width: 200px;        /* O el ancho que desees */
+    height: 200px;       /* Altura fija para uniformidad */
+    display: flex;
+    align-items: center; /* Centra verticalmente la imagen */
+    justify-content: center; /* Centra horizontalmente la imagen */
+    overflow: hidden;    /* Oculta lo que sobresalga */
+}
+  
+.image-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;  /* Se ajusta sin recortar, centrando la imagen */
+}
+  
+.caption {
+    margin-top: 8px;
+    font-size: 1rem;
+    color: #333;
+    text-align: center;
+}
+  
+/* Responsividad */
+/* En tablets: 2 columnas */
+@media (max-width: 768px) {
+    .ventas-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+}
+  
+/* En móviles: 1 columna */
+@media (max-width: 480px) {
+    .ventas-grid {
+      grid-template-columns: 1fr;
+    }
+}

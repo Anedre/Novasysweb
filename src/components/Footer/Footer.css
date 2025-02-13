@@ -1,46 +1,83 @@
+/* El footer ocupa el 100% del ancho y su fondo se extiende a lo largo de la pantalla */
 .footer {
-    background-color: #333;
-    color: #fff;
-    display: flex;
-    justify-content: space-around;
-    padding-left: 300px;
-    padding-right: 300px;
-    flex-wrap: wrap;    
+  width: 100%;
+  height: auto;
+  background-color: #000000;
+  color: #fff;
+  padding: 2rem 15rem;    /* Padding vertical general */
+  margin-top: 5rem;
+}
+
+/* Contenedor interno que centra el contenido y limita su ancho */
+.footer-container {
+  width: 100%;
+  margin: 0 auto;         /* Centrado horizontal */
+  padding: 0 2rem;        /* Padding horizontal adaptable */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+/* Estilos para cada sección del footer */
+.footer-section {
+  flex: 1;
+  margin: 1rem 4rem;
+
+}
+
+/* Estilo de los encabezados de cada sección */
+.footer-section h3 {
+  border-bottom: 2px solid #fff;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: #e21010;
+  text-align: left;
+}
+
+/* Estilos para la lista de enlaces */
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+  color: #ffffff83;
+  text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Footer inferior que ocupa el ancho completo */
+.footer-bottom {
+  text-align: center;  /* Se mantiene centrado */
+  width: 100%;
+  margin-top: 4rem;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: flex-start; /* Alinea las secciones a la izquierda */
+    padding: 0 3rem;
   }
-  
   .footer-section {
-    flex: 1;
-    margin: 1rem;
-    min-width: 200px;
+    width: 100%;        /* Cada sección ocupa todo el ancho */
+    margin: 1rem 0;     /* Ajusta los márgenes para dispositivos pequeños */
+    text-align: left;   /* Alinea el contenido a la izquierda */
   }
-  
-  .footer-section h3 {
-    border-bottom: 2px solid #fff;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .footer-section ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .footer-section ul li {
-    margin-bottom: 0.5rem;
-  }
-  
-  .footer-section ul li a {
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  .footer-section ul li a:hover {
-    text-decoration: underline;
-  }
-  
   .footer-bottom {
-    text-align: center;
-    margin-top: 2rem;
+    text-align: center;   /* Se mantiene centrado en mobile */
     width: 100%;
   }
-  
+  .footer{
+    padding: 0 0;
+  }
+}

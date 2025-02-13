@@ -41,17 +41,16 @@ function Nosotros() {
          </section>
   
          <section className="mision-vision">
-             <div className="mision">
+             <div className="MVF">
                  <h2>MISIÓN</h2>
                  <p>Hacer de nuestras soluciones una fuente de ventajas competitiva y continua para nuestros Clientes.</p>
                </div>
-              <div className="vision">
+              <div className="MVF">
                   <h2>VISIÓN</h2>
                  <p>Ser la mejor compañía experta en el uso de tecnología abierta de la información.</p>
                </div>
-         </section>
   
-         <section className="filosofia">
+         <section className="MVF">
              <h2>FILOSOFÍA</h2>
               <ul>
                  <li>Clientes satisfechos</li>
@@ -62,6 +61,7 @@ function Nosotros() {
                  <li>Renovación continua</li>
                 <li>Socios y alianzas</li>
               </ul>
+         </section>
          </section>
       </div>
     );

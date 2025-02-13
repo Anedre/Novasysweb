@@ -13,7 +13,7 @@
 
 }
 .figura{
-    height: 350px; /* Cada cuadrado ocupa el 100% de la altura del contenedor */
+    height: 250px; /* Cada cuadrado ocupa el 100% de la altura del contenedor */
     display: flex;
     flex-direction: column; /* Permite apilar contenido dentro */
     align-items: center;
@@ -26,9 +26,7 @@
 
   
   h1, h2 {
-    text-align: center;
     color: #333;
-    padding-top: 20px;
   }
   .quienes-somos{
     margin: 5%;
@@ -44,17 +42,21 @@
   }
   
   .mision-vision {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    gap: 80px;
+    margin:10%;
+  }
+
+  .MVF{
     display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
   
-  .mision, .vision {
-    width: 45%;
-  }
+ 
   
-  .filosofia ul {
-    list-style-type: disc;
-    margin-left: 20px;
-  }
+
   

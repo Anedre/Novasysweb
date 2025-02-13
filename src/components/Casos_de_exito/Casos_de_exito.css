@@ -1,0 +1,76 @@
+/* Estilos generales para la sección */
+.Casos_de_exito {
+    padding: 40px;
+  }
+  
+  /* Título y subtítulo centrados */
+  .CEtitulo {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Contenedor del carousel: oculta el overflow */
+  .carousel {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+    /* Agrega estas propiedades para centrar verticalmente */
+    display: flex;
+    align-items: center;
+    height:200px;
+
+  }
+  
+  /* La pista del carousel: se muestra en fila y con gap entre items */
+  .carousel-track {
+    display: flex;
+    gap: 150px; /* Ajusta el espacio entre items según lo necesites */
+    /* Calcula el ancho total para el loop continuo (ajusta según tu cantidad de items) */
+    width: calc((200px * 6 + 150px * 5) * 2);
+    animation: scroll 40s linear infinite;
+
+  }
+  
+  /* Cada item del carousel */
+  .carousel-item {
+    flex: 0 0 auto;
+    width: 200px; /* Ancho fijo para cada item */
+    text-align: center;
+  }
+  
+  /* Las imágenes se muestran de forma uniforme */
+  .carousel-item img {
+    width: 100%;
+    height: 120px;       /* Altura fija para uniformidad */
+    object-fit: contain; /* Mantiene la proporción sin distorsionar */
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Efecto de zoom al pasar el mouse (ajusta el scale si es necesario) */
+  .carousel-item:hover img {
+    transform: scale(1.5); /* Si es muy grande, prueba con 1.05 */
+  }
+  
+  /* Animación: desplaza la pista de 0 a -50% de su ancho */
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  /* Responsividad para dispositivos móviles */
+  @media (max-width: 768px) {
+    .carousel-item {
+      width: 150px;
+    }
+    
+    .carousel-item img {
+      height: 100px;
+    }
+  }
+  
