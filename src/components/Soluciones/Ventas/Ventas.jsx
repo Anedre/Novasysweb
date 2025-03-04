@@ -3,7 +3,7 @@ import "./Ventas.css";
 import Oservicecloud from "../../../img/oservicecloud.png";
 import OSales from "../../../img/OSales.png";
 import Osiebel from "../../../img/Osiebel.png";
-import Oconfigure from "../../../img/oconfigure.png";
+import Oconfigure from "../../../img/Oconfigure.png";
 
 function Ventas() { 
     return (
