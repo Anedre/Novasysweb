@@ -2,7 +2,7 @@ import React from "react";
 import "./Ventas.css";
 import Oservicecloud from "../../../img/oservicecloud.png";
 import OSales from "../../../img/OSales.png";
-import Osiebel from "../../../img/osiebel.png";
+import Osiebel from "../../../img/Osiebel.png";
 import Oconfigure from "../../../img/oconfigure.png";
 
 function Ventas() { 
