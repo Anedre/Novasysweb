@@ -9,28 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&family=Manrope:wght@300;400&family=DM+Sans:wght@300;400&family=Urbanist:wght@300&family=Outfit:wght@300;400&family=Space+Grotesk:wght@400&family=Lexend:wght@300;400&display=swap" rel="stylesheet">
   </head>
-  <body>
-    <div class="gradient-bg">
-      <svg xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id="goo">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
-            <feBlend in="SourceGraphic" in2="goo" />
-          </filter>
-        </defs>
-      </svg>
-      <div class="gradients-container">
-        <div class="g1"></div>
-        <div class="g2"></div>
-        <div class="g3"></div>
-        <div class="g4"></div>
-        <div class="g5"></div>
-      </div>
-    </div>
-    
+  <body>   
     <div id="root"></div> <!-- Aquí es donde React se montará -->
-
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

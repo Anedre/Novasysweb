@@ -1,0 +1,291 @@
+/* === Grid y animación de entrada de los bloques === */
+.statistics-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 100px;
+  justify-items: center;
+}
+
+.statistics-container .stats-block {
+  position: relative;
+  width: 250px;
+  height: 300px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.658);
+  overflow: hidden;
+  /* Estado inicial para la animación de entrada */
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+.statistics-container.active .stats-block {
+  animation: fadeInRight 0.5s ease-out forwards;
+}
+
+.statistics-container.active .stats-block:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.statistics-container.active .stats-block:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.statistics-container.active .stats-block:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.statistics-container.active .stats-block:nth-child(4) {
+  animation-delay: 0.8s;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* === Animación del borde con ::before === */
+.stats-block::before {
+  content: "";
+  position: absolute;
+  top: -100px;
+  left: -100px;
+  width: calc(100% + 200px);
+  height: calc(100% + 200px);
+  background-image: conic-gradient(transparent, rgba(0, 71, 133, 0.466), rgba(255, 0, 0, 0.397));
+  opacity: 0;
+  animation: rotar 4s linear infinite;
+  transition: opacity 0.5s ease-out 0.5s, background 1s ease;
+  z-index: 0;
+}
+
+.statistics-container.active .stats-block::before {
+  opacity: 1;
+}
+
+@keyframes rotar {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* === Borde rojo que se "llena" gradualmente === */
+.border-fill {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border: 5px solid red;
+  border-radius: inherit;
+  z-index: 1;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1s ease;
+}
+
+.stats-block:hover::before {
+  background-color: red;
+}
+
+.stats-block:hover .border-fill {
+  clip-path: inset(0 0 0 0);
+}
+
+/* === Pseudo-elemento ::after para cubrir el centro === */
+.stats-block::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border-radius: inherit;
+  background-color: #F4F5F7;
+  z-index: 1;
+}
+
+/* === Información principal (.contentH) === */
+.contentH {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 1rem;
+  opacity: 1;
+  transform: scale(1);
+  /* Se quita el transition para usar animaciones keyframe */
+}
+
+/* Al hacer hover, la info principal "explota" */
+.stats-block:hover .contentH {
+  animation: explodeOut 0.5s forwards;
+}
+
+/* Cuando el mouse se retira, la info principal vuelve (implosión inversa) */
+.stats-block:not(:hover) .contentH {
+  animation: implodeIn 0.5s forwards;
+}
+
+/* === Información extra (.extra-info) === */
+/* Inicialmente oculta y sin escala */
+.extra-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  opacity: 0;
+  transform: scale(0);
+  z-index: 4;
+  font-size: 0.8rem;
+}
+
+/* Al hacer hover, aparece con animación de entrada (explosión inversa) */
+.stats-block:hover .extra-info {
+  animation: explodeIn 0.5s forwards 0.3s;
+}
+
+/* Al quitar el hover, la info extra se oculta con animación inversa */
+.stats-block:not(:hover) .extra-info {
+  animation: implodeOut 0.5s forwards;
+}
+
+/* === Keyframes para la información principal === */
+@keyframes explodeOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+@keyframes implodeIn {
+  0% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* === Keyframes para la información extra === */
+@keyframes explodeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes implodeOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+/* === Detalle extra interno === */
+.extra-info .detail {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.extra-info .detail p {
+  font-size: 0.8rem;
+}
+
+/* === Estilos para el icono (usando react-icons) === */
+.extra-info .detail .icon {
+  font-size: 4rem;
+  margin: 0;
+  padding: 0;
+}
+
+/* === Botón de llamada a la acción === */
+.extra-info .btn {
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background-color: #0071a5;
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: background-color 0.3s ease;
+}
+
+.extra-info .btn:hover {
+  background-color: #005f8d;
+}
+
+/* Otros estilos */
+.dividerST {
+  width: 20%;
+  border: none;
+  border-top: 2px solid #000;
+  margin: 20px 0;
+}
+
+/* === Zoom del bloque completo al hacer hover con suavidad === */
+/* Contenedor externo para el zoom */
+.stats-block-wrapper {
+  display: inline-block; /* O block, según tu layout */
+  transition: transform 0.6s ease-in-out;
+  /* Opcional: "will-change" puede ayudar al renderizado */
+  will-change: transform;
+}
+
+.stats-block-wrapper:hover {
+  transform: scale(1.05);
+}
+
+/* === Información principal (.contentH) con easing más fluido === */
+.stats-block:hover .contentH {
+  animation: explodeOut 0.5s ease-in-out forwards;
+}
+
+.stats-block:not(:hover) .contentH {
+  animation: implodeIn 0.5s ease-in-out forwards;
+}
+
+/* === Información extra (.extra-info) con easing más fluido === */
+.stats-block:hover .extra-info {
+  animation: explodeIn 0.5s ease-in-out forwards 0.3s;
+}
+
+.stats-block:not(:hover) .extra-info {
+  animation: implodeOut 0.5s ease-in-out forwards;
+}

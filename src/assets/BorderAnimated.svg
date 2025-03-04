@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    <![CDATA[
+      .animated-border {
+        fill: none;
+        stroke: #FF073A;
+        stroke-width: 4;
+        stroke-dasharray: 20 364; /* Línea de 20 unidades, espacio de 364 */
+      }
+    ]]>
+  </style>
+  <rect x="2" y="2" width="96" height="96" rx="30" ry="30" class="animated-border">
+    <animate
+      attributeName="stroke-dashoffset"
+      from="0"
+      to="-384"
+      dur="5s"
+      repeatCount="indefinite" />
+  </rect>
+</svg>

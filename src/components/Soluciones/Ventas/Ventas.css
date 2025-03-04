@@ -88,13 +88,16 @@
     color: #333;
     text-align: center;
 }
-  
+
+
+
 /* Responsividad */
 /* En tablets: 2 columnas */
 @media (max-width: 768px) {
     .ventas-grid {
       grid-template-columns: repeat(2, 1fr);
     }
+    
 }
   
 /* En móviles: 1 columna */
@@ -102,4 +105,5 @@
     .ventas-grid {
       grid-template-columns: 1fr;
     }
+   
 }

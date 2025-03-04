@@ -1,56 +1,74 @@
-/* ===== General Header ===== */
+/* Header general */
 .header {
-  background: rgb(31, 31, 31);
-  color: white;
   font-family: 'Poppins', sans-serif;
-  position: relative;
+  position: fixed;
   z-index: 1000;
-  height: 70px;             /* Altura fija para centrar verticalmente */
-  display: flex;
-  align-items: center;      /* Centrado vertical */
-  padding: 0 20px;
+  padding: 10px 20px;
+  width: 100%;
+
+  
 }
 
-/* ===== Desktop Header ===== */
+
+
+/* Desktop Header */
 .desktopHeader {
   display: flex;
-  align-items: center;      /* Centrado vertical */
+  align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 70px;             /* Igual que el header general */
+  height: 70px;
 }
 
+/* Contenedor del logo */
 .logo img {
   width: 200px;
-  height: auto;             /* Se mantiene la proporción */
+  height: auto;
 }
 
-/* Menú de navegación de escritorio */
+/* Menú de navegación */
 .nav {
   display: flex;
-  gap: 15px;
   align-items: center;
+  gap: 25px;
+  position: relative;
 }
 
-/* Aplica una transición suave para el cambio de color */
+.navMarker {
+  position: absolute;
+  bottom: 0;
+  height: 2px; /* Grosor de la línea */
+  background-color: red; /* Color de la línea (puedes cambiarlo) */
+  transition: left 0.5s ease, width 0.3s ease; /* Animación suave para la transición */
+}
+/* Ítems del menú */
 .navItem {
-  color: white;
   text-decoration: none;
   font-size: 1rem;
   position: relative;
-  transition: color 0.3s ease;
-  /* Opcional: cursor pointer para indicar que es interactivo */
   cursor: pointer;
+  transition: transform 0.5s ease, color 0.5s ease;
+  color: inherit; /* o el color que uses por defecto */
 }
 
+
+
+
 /* Al pasar el mouse, se cambia el color a rojo y se dispara la animación */
-.navItem:hover {
-  color: red;
-  animation: bounceZoom 0.5s ease;
-}
-.navItem:hover .dropdown-title {
+.nav > a.navItem:hover {
+  transform: scale(1.5);
   color: red;
 }
+.dropdown-title.hovered {
+  display: inline-block; /* Agrega esto para que funcione el transform */
+  transform: scale(1.5);
+  color: red;
+  transition: transform 0.5s ease, color 0.5s ease;
+}
+
+
+
+
 
 /* Dropdown de escritorio */
 .dropdown {
@@ -58,23 +76,22 @@
 }
 
 .dropdown-title {
-  color: white;
   text-decoration: none;
 }
 .dropdown-menu {
   position: absolute;
   top: 38px;
   left: 0;
-  background: rgb(87, 68, 68);
+  background: rgb(221, 221, 221);
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  width: 150px;
+  width: 200px;
   display: flex;
   flex-direction: column;
   overflow: hidden;           /* Oculta el contenido mientras se contrae */
   transform-origin: top;      /* La animación se inicia desde la parte superior */
   transform: scaleY(0);       /* Estado cerrado */
   opacity: 0;                 /* Invisible cuando está cerrado */
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.5s ease;
   pointer-events: none;       /* Evita interacción cuando está cerrado */
 }
 
@@ -93,13 +110,40 @@
 
 .dropdown-item {
   padding: 10px;
-  color: white;
+  color: rgb(0, 0, 0);
   text-decoration: none;
+  position: relative; /* Para posicionar el pseudo-elemento */
+  padding-right: 40px; /* Espacio para la flecha */
+  transition: color 0.3s ease, font-weight 0.3s ease;
+
+}
+.dropdown-item::after {
+  content: "➜"; /* Cambié la flecha por otra */
+  font-size: 1.2em;      /* Ajusta el tamaño */
+  color: #007bff;        /* Un azul armonioso */
+  position: absolute;
+  right: 10px;           /* Ajusta el espacio a la derecha */
+  top: 50%;
+  transform: translateY(-50%) translateX(0px);
+  opacity: 0;
+
 }
 
+
 .dropdown-item:hover {
-  background: #803f3f;
+  color: #00356d;  /* Un tono de azul */
+  font-weight: 500;
+  /* Puedes quitar el background si no lo deseas, o ajustarlo */
+  transform: scale(1.02);
+
+  background: transparent;
 }
+
+.dropdown-item:hover::after {
+  transform: translateY(-50%) scale(1.2); /* Aparece con efecto zoom */
+  opacity: 1;
+}
+
 
 
 
@@ -144,7 +188,6 @@
   top: 20px;
   left: 20px;
 
-  flex: 1; /* Ocupa el espacio restante */
 
 }
 
@@ -327,8 +370,27 @@
 
 
 /* ===== Responsive ===== */
+@media (max-width: 480px) {
+  .nav {
+    display: none;
+  }
+  .dropdown {
+    display: none;
+  }
+  .mobileHeader {
+    display: block;
+  }
+  .header{
+    right: 4px;
+  }
+}
+
+
+
 /* Media query para pantallas menores a 768px */
 @media (max-width: 768px) {
+
+
   .desktopHeader {
     display: none;
   }
@@ -360,7 +422,7 @@
     transform: scale(1);
   }
   50% {
-    transform: scale(1.2);
+    transform: scale(1.5);
   }
   70% {
     transform: scale(0.9);
@@ -368,4 +430,15 @@
   100% {
     transform: scale(1);
   }
+}
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+  margin-left: 15px; /* Espacio entre "Contacto" y el toggle */
+}
+
+/* Asegúrate de que el header tenga suficiente altura y que todos los ítems estén centrados verticalmente */
+.desktopHeader, .nav {
+  align-items: center;
 }

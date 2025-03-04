@@ -1,85 +1,164 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useLocation,Link } from 'react-router-dom';
+
 import './Home.css';
-import {addfadeout} from '../../scripts/fadeout.js';
-import introImage from '../../img/Logo_Mejores_Blanco.png';
+import { addfadeout } from '../../scripts/fadeout.js';
 import entel from '../../img/entel.png';
 import pacifico from '../../img/pacifico.svg';
 import renzocosta from '../../img/renzocosta.png';
 import americatel from '../../img/americatel.png';
+import IntroAnimation from '../Background/IntroAnimation.jsx';
+
+import SolucionesCarousel from "../../scripts/CustomCarousel/CustomCarousel.jsx"; // Asegúrate de ajustar la ruta
+import StatsSection from '../../scripts/StatsSection/StatsSection.jsx';
+
 
 function Home() {
+  const { pathname } = useLocation();
 
-  useEffect(() => { 
-    const removeFadeOut = addfadeout();
-    return () => removeFadeOut();
-  }, []);
+  useEffect(() => {
+    if (pathname !== "/") return; 
   
+    const removeFadeOut = addfadeout();
+  
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          // Aplica la animación a elementos con animate-left o animate-up
+          if (entry.target.classList.contains("animate-left") || entry.target.classList.contains("animate-up")) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("active");
+              entry.target.classList.remove("exit");
+            } else {
+              entry.target.classList.remove("active");
+              entry.target.classList.add("exit");
+            }
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    const animatedElements = document.querySelectorAll('.animate-left, .animate-up');
+    animatedElements.forEach(el => observer.observe(el));
+        // Script de scroll manual entre secciones
+    const sections = document.querySelectorAll('.section-scroll');
+    let currentSectionIndex = 0;
+    let isScrolling = false;
+    const scrollDelay = 1000; // Tiempo en milisegundos para evitar scrolls consecutivos
 
- 
+    const handleWheel = (e) => {
+      // Evita el scroll por defecto
+      e.preventDefault();
+      if (isScrolling) return;
+      isScrolling = true;
+
+      if (e.deltaY > 0) {
+        // Si se desplaza hacia abajo
+        if (currentSectionIndex < sections.length - 1) {
+          currentSectionIndex++;
+        } else {
+          // Permitir scroll libre cuando llegamos a la última sección
+          window.removeEventListener('wheel', handleWheel);
+        }
+        
+      } else {
+        // Si se desplaza hacia arriba
+        if (currentSectionIndex > 0) {
+          currentSectionIndex--;
+        }
+      }
+
+      // Desplaza a la sección correspondiente
+      sections[currentSectionIndex].scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+
+      // Permite volver a hacer scroll tras un tiempo
+      setTimeout(() => {
+        isScrolling = false;
+      }, scrollDelay);
+    };
+
+    // Escucha el evento de rueda
+    window.addEventListener('wheel', handleWheel, { passive: false });
+
+    return () => {
+      removeFadeOut();
+      observer.disconnect();
+      window.removeEventListener('wheel', handleWheel);
+    }
+  }, [pathname]);
+
   return (
     <div className="Home">
-      <div className="intro">
-        <img src={introImage} alt="Intro"/>  
-      </div>
-      <section className="section">
-      <div className="section__paragraph1">
-        <h2>Casos de éxito</h2>
-        <p>Nuestros casos de éxito más recientes y destacados en Perú</p>
-        <div className="success-grid">
-          <div className="success-item">
-           <img src={entel} alt="Proyecto 1" />
-           <p>Descripción del proyecto 1</p>
+      {/* Sección 1: Intro */}
+      <div className="intro section-scroll">
+      <IntroAnimation />     
+       </div>
+
+      {/* Sección 2: Casos de éxito */}
+      <div className="section__paragraph1 section-scroll">
+        <div className="animate-left animate-text">
+          <h2>Casos de éxito</h2>
+          <p>Nuestros casos de éxito más recientes y destacados en Perú</p>
+        </div>
+        <div className="animate-left animate-grid">
+          <div className="success-grid">
+            <div className="success-item">
+              <img src={entel} alt="Proyecto 1" />
+              <h3>CRM Entel Empresas</h3>
+              <p>Entel optimiza su Contact Center implementando Oracle Service Cloud</p>
+              
+            </div>
+            <div className="success-item">
+              <img src={pacifico} alt="Proyecto 2" />
+              <h3>Proyecto Pacífico</h3>
+              <p>Pacífico mejora la gestión y seguimiento de sus oportunidades</p>
+            </div>
+            <div className="success-item">
+              <img src={renzocosta} alt="Proyecto 3" />
+              <h3>Proyecto Renzo Costa</h3>
+              <p>Falta informacion!</p>
+            </div>
+            <div className="success-item">
+              <img src={americatel} alt="Proyecto 4" /> 
+              <h3>Proyecto Americatel</h3>
+              <p>Americatel mejora la gestión y seguimiento de sus oportunidades</p>
+            </div>
           </div>
-         <div className="success-item">
-           <img src={pacifico} alt="Proyecto 2" />
-           <p>Descripción del proyecto 2</p>
-         </div>
-         <div className="success-item">
-           <img src={renzocosta} alt="Proyecto 3" />
-           <p>Descripción del proyecto 3</p>
-         </div>
-         <div className="success-item">
-            <img src={americatel} alt="Proyecto 4" /> 
-           <p>Descripción del proyecto 4</p>
-         </div>
-       </div>
+          {/* Botón para redirigir a "Casos_de_exito" */}
+          <Link to="/Casos_de_exito" className="btn-casos">
+            Ver Casos de Éxito
+          </Link>
+        </div>
       </div>
-      <div className="section__paragraph2">
-        <div className="solutions-text">
+
+      {/* Sección 3: Nuestras soluciones */}
+      <div className="section__paragraph2 section-scroll">
+        <div className="solutions-text animate-up">
           <h2>Nuestras soluciones</h2>
-          <p>Ofrecemos una gran variedad de servicios e implementaciones en asociación con las empresas tecnológicas más importantes</p>
-       </div>
-       <div className="solutions-grid">
-          <div className="solution-item"><img src={entel} alt="Solución 1" /></div>
-          <div className="solution-item"><img src={pacifico} alt="Solución 2" /></div>
-          <div className="solution-item"><img src={renzocosta} alt="Solución 3" /></div>
-         <div className="solution-item"><img src={americatel} alt="Solución 4" /></div>
+          <p>
+            Ofrecemos una gran variedad de servicios e implementaciones en asociación con las empresas tecnológicas más importantes
+          </p>
+        </div>
+        <div className="solutions-carousel animate-up">
+          <SolucionesCarousel />
+        </div>
+        {/* Nuevo botón debajo del carousel */}
+        <div className="solutions-btn" >
+          <Link to="/Soluciones_novasys" className="btn-casos">
+            Ver nuestra soluciones
+          </Link>
         </div>
       </div>
-      <div className="section__paragraph3">
-        <div className="cuadrado"> 
-         <h2>99%</h2>
-         <p>__</p>
-         <p>Satisfaccion</p>
-        </div>
-        <div className="cuadrado">  
-         <h2>+30</h2>
-         <p>__</p>
-         <p>Casos de éxito</p>
-        </div>
-        <div className="cuadrado">
-         <h2>+3000</h2>
-         <p>__</p>
-         <p>Usuarios activos</p>
-       </div>
-       <div className="cuadrado">
-        <h2>+200</h2>
-         <p>__</p>
-         <p>Certificaciones</p>
-       </div>
+
+      {/* Sección 4: Estadísticas */}
+      <div className="section__paragraph3 section-scroll">
+        <StatsSection />
       </div>
-    </section>
-  </div>
+    </div>
+
   );
 }
 

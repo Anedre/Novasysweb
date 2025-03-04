@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from 'react';
 import "./Casos_de_exito.css";
 import entel from "../../img/entel.png";
 import pacifico from "../../img/pacifico.svg";
@@ -9,6 +9,9 @@ import renzocosta from "../../img/renzocosta.png";
 
 
 function Casos_de_exito() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <section className="Casos_de_exito">
       <div className="CEtitulo">

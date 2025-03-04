@@ -4,9 +4,16 @@
   margin: 0;
 }
 
+/* Estilos para la sección Intro */
 .Home .intro {
   position: relative;
-  height: 100vh; /* Ocupa toda la pantalla */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,130 +25,312 @@
   height: 200px;
 }
 
-
-.cuadrado {
-  height: 350px; /* Cada cuadrado ocupa el 100% de la altura del contenedor */
-  
+.solutions-btn {
+  grid-area: solutions-btn;
   display: flex;
-  flex-direction: column; /* Permite apilar contenido dentro */
-  align-items: center;
   justify-content: center;
-  text-align: center;
-  font-size: 1.5rem;
-
+  margin-top: 20px;
 }
 
 
+.btn-casos {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #007BFF;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+  margin-top: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif  ;
+}
+
+.btn-casos:hover {
+  transform: scale(1.05);
+  background-color: #0056b3;
+}
+
+
+
+/* Sección: Casos de éxito */
 .section__paragraph1 {
-  text-align: center;
   height: 100vh;
+  display: flex;
+  flex-direction: column;  /* Organiza el contenido en columna */
+  justify-content: center; /* Centra verticalmente */
+  align-items: center;     /* Centra horizontalmente */
+  scroll-snap-align: center; /* Si se utiliza scroll snapping nativo */
+  text-align: center;
+  margin:5%;
 }
 
+/* Sección: Nuestras soluciones */
 .section__paragraph2 {
   height: 100vh;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1%;
-  padding-left: 200px;
-
-}
-
-.section__paragraph3 {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(1, 1fr);
-  background: linear-gradient(to right, white, #f0f0f0, #d0d0d0, hsl(0, 0%, 71%));
-
+  grid-template-columns: 1fr 1fr;           /* Dos columnas en la primera fila */
+  grid-template-rows: auto auto;            /* Dos filas */
+  grid-template-areas:
+    "solutions-text solutions-carousel"     /* Primera fila: dos columnas */
+    "solutions-btn  solutions-btn";           /* Segunda fila: el botón abarca ambas columnas */
+  align-items: center;
+  padding: 7%;
+  box-sizing: border-box;
+}
+/* Sección: Estadísticas - Contenedor completo */
+.section__paragraph3 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 
 
+/* Grid de casos de éxito */
 .success-grid {
-  flex-wrap: wrap;
-  display: flex;
-  justify-content: center;
-  gap: 60px;
-  max-width: 100%;
-  margin: 100px;
-  padding-left: 2rem;
-
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 3 columnas */
+  gap: 100px;  /* Ajusta el espacio entre ítems según lo necesites */
+  max-width: 1200px;
+  width: 100%;
+  margin: auto auto;
+  margin-bottom: 5%;
 }
 
 .success-item {
-  flex: 1 1 250px; /* Ajusta el ancho dinámicamente sin forzar salto de línea */
   max-width: 250px;
+
 }
+
 .success-item img {
-  height: 90px;
-  width: 250px;
+  max-height: 100px;
+  width: auto;
   transition: transform 0.3s ease-in-out;
+  margin-bottom:10%;
+  
+}
+img[alt="Proyecto 1"] {
+ 
+  width: 160px;       /* Cambia el ancho */
+  /* O cualquier otra propiedad CSS */
 }
 
 .success-item img:hover {
-  transform: scale(1.5); /* Efecto de agrandado al pasar el mouse */
+  transform: scale(1.5); /* Efecto al pasar el mouse */
 }
 
 .success-item p {
-  margin-top: 10px;
-  font-size: 16px;
-  color: #333;
   font-weight: 500;
+  font-size: 0.8em;
 }
 
+.success-item h3{
+  padding-bottom: 0;
+  font-size:1.1em;
+}
 
-.solutions-grid {
+/* Grid de soluciones */
+
+
+.solutions-text{
+  padding-right: 50px;
+  grid-area: solutions-text;
+
+}
+
+/* Estilo base para cada slide */
+.solution-slide {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
   justify-content: center;
-  padding: 100px;
-  margin:5%;
-  max-width: 980px;
+  align-items: center;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.solution-item {
-  width: 300px;
-  height: 300px;
-  max-width: 300px;
-  border: 2px solid #ccc;
-
-
+/* Por defecto, todos se muestran con un tamaño reducido y menor opacidad */
+.keen-slider__slide {
+  transform: scale(0.8);
+  opacity: 0.6;
 }
 
-.solution-item img{
-  width: 250px;
-  padding-top: 75px;
-  padding-left: 50px;
-
-
+/* El slide activo se mostrará a tamaño completo y con opacidad 1 */
+.keen-slider__slide.keen-slider__slide--active {
+  transform: scale(1);
+  opacity: 1;
+}
+/* Clase para las secciones que se desplazarán manualmente */
+/* Se descuenta la altura del header (70px) */
+.section-scroll {
+  height: calc(100vh - 200px);
+  scroll-snap-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
-@media (max-width: 768px) {
+/* Estado base: elemento oculto y desplazado a la izquierda */
+.animate-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Animación de entrada: el elemento se posiciona correctamente y se vuelve opaco */
+.animate-left.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Animación de salida: por ejemplo, el elemento se desplaza hacia la derecha y se desvanece */
+.animate-left.exit {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+
+.animate-text{
+  padding-bottom: 100px;
+}
+
+
+
+/* Animación para elementos de la sección 3 (entrada desde abajo) */
+.animate-up {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.animate-up.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animación de salida para sección 3: el elemento se desplaza hacia arriba al salir */
+.animate-up.exit {
+  opacity: 0;
+  transform: translateY(-50px);
+}
+
+/* Responsive para móviles (hasta 480px) */
+@media (max-width: 780px) {
+  /* Ajuste en la sección Intro */
   .intro img {
-    width: 90%; /* Ajusta el tamaño de la imagen para dispositivos más pequeños */
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    padding-left: 10%;
+
+  }
+  
+  /* Sección Casos de éxito */
+  .section__paragraph1 {
+    padding: 1rem;
+    height: auto; /* Permite que el contenido se adapte sin forzar 100vh */
+  }
+  .section__paragraph1 h2 {
+    font-size: 1.2rem;
+  }
+  .section__paragraph1 p {
+    font-size: 0.9rem;
+  }
+  .success-grid {
+    margin: 20px 0;
+    gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+
+
+  }
+  .success-item {
+    max-width: 90%;
+  }
+  .success-item img {
+    max-height: 40px;
+    width: auto;
+  }
+  
+  /* Sección Nuestras soluciones */
+  .section__paragraph2 {
+    text-align: center;
+    padding: 2%;
     height: auto;
   }
+  .solutions-text {
+    text-align: center;
+    padding-right: 0;
+    margin-bottom: 1rem;
+  }
+  .solutions-text h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  .solutions-text p {
+    font-size: 0.9rem;
+  }
+  .solutions-carousel {
+    padding: 0 10px;
+    grid-area: solutions-carousel;
 
-  .solution-item {
-    flex: 1 1 100%; /* Cada ítem toma el ancho completo de la pantalla en dispositivos móviles */
-    height: 50vw; /* Altura se ajusta para mantener la proporción cuadrada */
+    justify-content: center;
+  }
+  
+  
+  
+  /* Ajuste en el scroll snapping (si lo requieres) */
+ 
+  .section-scroll {
+    height: 100vh;
+    padding: 2rem 0;
+    grid-template-columns: 1fr; /* Una sola columna */
+
+  }
+  .success-item h3{
+    font-size: 0.5em;
   }
 
-  .solutions-grid {
-    padding: 50px;
+  .success-item p{
+    font-size: 0.2em;
   }
 
+  .success-item img {
+    max-height: 20px;
+    width: auto;
+  }
+  
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .success-item img {
+    max-height: 60px;
+    width: auto;
+  }
+  .intro img {
+    max-width: 90%; /* Ajusta el tamaño de la imagen para dispositivos pequeños */
+    height: auto;
+  }
+  
+  
+  
+  
+
+  
   .section {
     padding-left: 1rem; /* Reduce el padding en dispositivos móviles */
   }
-
-  .success-grid {
-    margin: 50px 0; /* Reduce el margen en dispositivos móviles */
-    gap: 30px; /* Reduce el espacio entre los ítems */
+  
+  .success-grid{
+    gap: 20px;
   }
 
-  .success-item {
-    flex: 1 1 100%; /* Cada ítem toma el ancho completo de la pantalla en dispositivos móviles */
+  .success-item h3{
+    font-size: 1em;
+  }
+
+  .success-item p{
+    font-size: 0.5em;
   }
 }

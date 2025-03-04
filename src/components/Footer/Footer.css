@@ -1,33 +1,35 @@
 /* El footer ocupa el 100% del ancho y su fondo se extiende a lo largo de la pantalla */
 .footer {
   width: 100%;
-  height: auto;
-  background-color: #000000;
   color: #fff;
-  padding: 2rem 15rem;    /* Padding vertical general */
+  padding: 2rem 15rem;
   margin-top: 5rem;
+  position: relative;
+  background: #222;  /* Puedes ajustar el fondo a tu gusto */
+}
+
+.footer-section img {
+  width: 100px;
+  height: auto;
 }
 
 /* Contenedor interno que centra el contenido y limita su ancho */
 .footer-container {
   width: 100%;
-  margin: 0 auto;         /* Centrado horizontal */
-  padding: 0 2rem;        /* Padding horizontal adaptable */
+  margin: 0 auto;
+  padding: 0 2rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
-/* Estilos para cada sección del footer */
 .footer-section {
   flex: 1;
-  margin: 1rem 4rem;
-
+  margin: 1rem 3rem;
 }
 
-/* Estilo de los encabezados de cada sección */
 .footer-section h3 {
-  border-bottom: 2px solid #fff;
+  border-bottom: 1px solid #0026ff;
   padding-bottom: 0.5rem;
   margin-bottom: 1rem;
   font-size: 1.2rem;
@@ -35,7 +37,22 @@
   text-align: left;
 }
 
-/* Estilos para la lista de enlaces */
+.footer-section p,
+.footer-section ul li a {
+  font-size: 1rem;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+
+}
+
+.footer-section p a {
+  text-decoration: none;
+}
+
+.footer-section p a:hover {
+  text-decoration: underline;
+}
+
 .footer-section ul {
   list-style: none;
   padding: 0;
@@ -46,38 +63,73 @@
 }
 
 .footer-section ul li a {
-  color: #ffffff83;
   text-decoration: none;
+  color: inherit;
 }
 
 .footer-section ul li a:hover {
   text-decoration: underline;
 }
 
-/* Footer inferior que ocupa el ancho completo */
-.footer-bottom {
-  text-align: center;  /* Se mantiene centrado */
-  width: 100%;
-  margin-top: 4rem;
+/* Íconos en contáctanos */
+.contact-icon {
+  margin-right: 0.5rem;
+  color: #020069; /* Color de los íconos, se puede ajustar */
 }
 
+/* Sección Social Media */
+.footer-social {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.footer-social a {
+  color: #5f5f5f;
+  margin: 0 0.5rem;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+  color: #1410e2;
+}
+
+/* Footer inferior */
+.footer-bottom {
+  text-align: center;
+  margin-top: 2rem;
+  border-top: 1px solid #444;
+  padding-top: 1rem;
+  
+}
+.footer-bottom p{
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  font-size: 1rem;
+}
 /* Ajustes para pantallas pequeñas */
 @media (max-width: 768px) {
   .footer-container {
     flex-direction: column;
-    align-items: flex-start; /* Alinea las secciones a la izquierda */
+    align-items: flex-start;
     padding: 0 3rem;
   }
   .footer-section {
-    width: 100%;        /* Cada sección ocupa todo el ancho */
-    margin: 1rem 0;     /* Ajusta los márgenes para dispositivos pequeños */
-    text-align: left;   /* Alinea el contenido a la izquierda */
+    width: 100%;
+    margin: 1rem 0;
+    text-align: left;
   }
   .footer-bottom {
-    text-align: center;   /* Se mantiene centrado en mobile */
+    text-align: center;
     width: 100%;
   }
-  .footer{
-    padding: 0 0;
+  .footer {
+    padding: 2rem 2rem;
   }
+}
+.quick-link-icon {
+  margin-right: 0.5rem;
+  font-size: 0.2rem; /* Un tamaño pequeño para un punto sutil */
+  vertical-align: middle;
+  color: #000000; /* Ajusta el color según tu paleta */
 }

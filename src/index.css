@@ -8,13 +8,16 @@
 
 }
 /* src/index.css */
+
+html, body {
+  scroll-behavior: smooth;
+}
+
 html, body, #root {
   height: 100%;
   margin: 0;
-  display: flex;
-  overflow-x: hidden;
+  width: 100%;
   padding: 0;
-
   flex-direction: column;
 }
 
@@ -39,169 +42,97 @@ main {
   text-shadow: 1px 1px rgba(0,0,0,0.1);
 }
 
+/* Variables para modo día (por defecto) */
 :root {
-  --color-bg1: rgb(255, 255, 255);
-  --color-bg2: rgba(187, 187, 187, 0.918);
-  --color1: 83, 82, 82;
-  --color2: 83, 82, 82;
-  --color3: 83, 82, 82;
-  --color4: 83, 82, 82;
-  --color5: 83, 82, 82;
-  --color-interactive: 83, 82, 82;
-  --circle-size: 20%;
-  --blending: hardlight;
-    /* Si bien quitaste variables, es recomendable mantenerlas en el :root, 
-     pero si prefieres no usarlas, puedes reemplazar var(--primary-color) y var(--secondary-color) por valores fijos */
-     --primary-color: #e21010;
-     --secondary-color: #555;
-     --input-border: #000;
-     --input-focus: #f80000;
+  --bg-color: #727272;
+  --text-color: #000000;
+  --header-footer-bg: rgba(255, 255, 255, 0.9); /* Fondo claro, casi blanco */
+  --accent-color: #e40913;
 }
 
-@keyframes moveInCircle {
-  0% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(180deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+/* Forzamos modo noche si la clase .night está en el body */
+body.night {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --header-footer-bg: rgba(20, 20, 20, 0.9); /* Fondo oscuro, casi negro */
+  --accent-color: #e40913;
+}
+/* Modo Noche: Fondo Cosmic Nebula */
+body.night {
+  background: linear-gradient(135deg, #1d1d1d, #0f0f0f, #0c0c0c);
+  background-size: 200% 200%;
+  animation: oceanoMinimal 20s ease infinite;
 }
 
-@keyframes moveVertical {
-  0% {
-    transform: translateY(-50%);
-  }
-  50% {
-    transform: translateY(50%);
-  }
-  100% {
-    transform: translateY(-50%);
-  }
-}
-
-@keyframes moveHorizontal {
-  0% {
-    transform: translateX(-50%) translateY(-10%);
-  }
-  50% {
-    transform: translateX(50%) translateY(10%);
-  }
-  100% {
-    transform: translateX(-50%) translateY(-10%);
-  }
+@keyframes oceanoMinimal {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 
-.gradient-bg {
-  width: 100vw;
-  /* Usamos calc() para obtener la altura real */
-  height: calc(var(--vh, 1vh) * 100);
-  position: fixed;
-  z-index: -1;
-  overflow: hidden;
-  background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
-  top: 0;
-  left: 0;
-
-  svg {
-    position: fixed;
-    top:0;
-    left:0;
-    width: 0;
-    height: 0;
-  }
-
-
-  .gradients-container {
-    filter: url(#goo) blur(40px) ;
-    width: 100%;
-    height: 100%;
-  }
-
-  .g1 {
-    position: absolute;
-    background: radial-gradient(circle at center, rgba(var(--color1), 0.2) 0, rgba(var(--color1), 0) 50%) no-repeat;
-    mix-blend-mode: var(--blending);
-
-    width: var(--circle-size);
-    height: var(--circle-size);
-    top: calc(50% - var(--circle-size) / 2);
-    left: calc(50% - var(--circle-size) / 2);
-
-    transform-origin: center center;
-    animation: moveVertical 30s ease infinite;
-
-    opacity: 1;
-  }
-
-  .g2 {
-    position: absolute;
-    background: radial-gradient(circle at center, rgba(var(--color2), 0.2) 0, rgba(var(--color2), 0) 50%) no-repeat;
-    mix-blend-mode: var(--blending);
-
-    width: var(--circle-size);
-    height: var(--circle-size);
-    top: calc(50% - var(--circle-size) / 2);
-    left: calc(50% - var(--circle-size) / 2);
-
-    transform-origin: calc(50% - 400px);
-    animation: moveInCircle 20s reverse infinite;
-
-    opacity: 1;
-  }
-
-  .g3 {
-    position: absolute;
-    background: radial-gradient(circle at center, rgba(var(--color3), 0.2) 0, rgba(var(--color3), 0) 50%) no-repeat;
-    mix-blend-mode: var(--blending);
-
-    width: var(--circle-size);
-    height: var(--circle-size);
-    top: calc(50% - var(--circle-size) / 2 + 200px);
-    left: calc(50% - var(--circle-size) / 2 - 500px);
-
-    transform-origin: calc(50% + 400px);
-    animation: moveInCircle 40s linear infinite;
-
-    opacity: 1;
-  }
-
-  .g4 {
-    position: absolute;
-    background: radial-gradient(circle at center, rgba(var(--color4), 0.2) 0, rgba(var(--color4), 0) 50%) no-repeat;
-    mix-blend-mode: var(--blending);
-
-    width: var(--circle-size);
-    height: var(--circle-size);
-    top: calc(50% - var(--circle-size) / 2);
-    left: calc(50% - var(--circle-size) / 2);
-
-    transform-origin: calc(50% - 200px);
-    animation: moveHorizontal 40s ease infinite;
-
-    opacity: 0.7;
-  }
-
-  .g5 {
-    position: absolute;
-    background: radial-gradient(circle at center, rgba(var(--color5), 0.2) 0, rgba(var(--color5), 0) 50%) no-repeat;
-    mix-blend-mode: var(--blending);
-
-    width: calc(var(--circle-size) * 2);
-    height: calc(var(--circle-size) * 2);
-    top: calc(50% - var(--circle-size));
-    left: calc(50% - var(--circle-size));
-
-    transform-origin: calc(50% - 800px) calc(50% + 200px);
-    animation: moveInCircle 20s ease infinite;
-
-    opacity: 1;
-  }
-
+body.night header,
+body.night footer {
+  background-color: rgba(0, 0, 0, 0.95);
+  color: #e9ecef;
+  transition: background-color 0.3s, color 0.3s;
+  
+  
 }
+
+body.day h2, h3,p a, p, ul li a{
+  color: var(--text-color)
+}
+
+
+/* Forzamos modo día si la clase .day está en el body */
+body.day {
+  --bg-color: #727272;
+  --text-color: #000000;
+  --header-footer-bg: rgba(255, 255, 255, 0.9); /* Fondo claro, casi blanco */
+  --accent-color: #000000;
+}
+/* Modo Día: Fondo Tech Grid */
+body.day {
+  background: #F4F5F7
+}
+
+
+body.day header,
+body.day footer {
+  background-color: #F4F5F7;
+  color: #343a40;
+  transition: background-color 0.3s, color 0.3s;
+ 
+}
+body.day h2, h3,p a, p, ul li a{
+  color: var(--text-color)
+}
+
+
+/* Ejemplo de uso de las variables */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+header, footer {
+  background-color: var(--header-footer-bg);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+a, button {
+  color: var(--accent-color);
+}
+
+
+
+/* Puedes usar var(--accent-color) en botones, enlaces, etc. */
+
+
+
 
 body {
   font-family: 'DM Sans', sans-serif;
@@ -222,29 +153,31 @@ nav {
   font-size: 0.5em;
 }
 nav a {
-  color: white;
   margin: 0 15px;
   text-decoration: none;
-  font-weight: 300;
+  font-weight: 200;
 }
 h1 {
   font-family: 'Raleway', sans-serif;
   margin: 3rem 0;
   font-weight: 200;
-  font-size: 2em;
+  font-size: 2rem;
 }
 h2, h3 {
   font-family: 'Manrope', sans-serif;
-  color: #444;
-  font-weight: 100;
-  font-size: 0.8em;
-
+  font-weight: bold;
+  font-size: 3rem;
+  padding-bottom: 20px;
 }
 p {
   font-family: 'DM Sans', sans-serif;
   margin: 10px 0;
   line-height: 1.6;
   font-weight: 300;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+
+
 }
 small {
   font-family: 'Urbanist', sans-serif;
@@ -265,4 +198,48 @@ footer p {
 button{
   font-family: 'Lexend', sans-serif;  
   font-weight: 100;
+}
+
+@media (max-width: 768px) {
+  nav {
+    font-size: 0.8em;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  h2 {
+    font-size: 1rem;
+  }
+  h3 {
+    font-size: 2rem;
+  }
+  p {
+    font-size: 1rem;
+  }
+  small {
+    font-size: 0.7em;
+  }
+  footer h3 {
+    font-size: 1.5rem;
+  }
+  footer p {
+    font-size: 1rem;
+  }
+  button {
+    font-size: 1rem;
+  }
+  a{
+    color: var(--text-color);
+  }
+  html{
+  
+    overflow-x: hidden;
+
+
+}
+
+  body{
+    overflow-x: hidden;
+  }
+  
 }
