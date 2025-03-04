@@ -1,5 +1,5 @@
 import React from 'react';
-import './footer.css';
+import './Footer.css';
 import logoimage from "../../img/logo_novasys_transparent.png";
 import { 
   FaMapMarkerAlt, 
