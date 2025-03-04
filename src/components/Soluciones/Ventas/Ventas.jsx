@@ -1,7 +1,7 @@
 import React from "react";
 import "./Ventas.css";
 import Oservicecloud from "../../../img/oservicecloud.png";
-import OSales from "../../../img/Osales.png";
+import OSales from "../../../img/OSales.png";
 import Osiebel from "../../../img/osiebel.png";
 import Oconfigure from "../../../img/oconfigure.png";
 
