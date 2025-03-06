@@ -1,0 +1,22 @@
+.whatsapp-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 100px; /* Ajusta este valor para separar los widgets */
+    z-index: 9999;
+    background-color: #25D366;
+    color: #fff;
+    border-radius: 50%;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    -webkit-box-reflect: below 0px linear-gradient(transparent, transparent, rgba(0, 0, 0, 0.2));
+  }
+  
+  .whatsapp-widget:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+  }
+  
