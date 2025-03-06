@@ -4,6 +4,8 @@ import { Outlet } from 'react-router-dom';
 import Header from './components/Header/Header.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import ScrollToTop from './scripts/ScrollToTop.jsx'; // Ajusta la ruta según corresponda
+import AmazonConnectChat from './components/AmazonConnectChat/AmazonConnectChat.jsx'; // Ajusta la ruta si es necesario
+
 import "./App.css";
 
 function AppLayout() {
@@ -15,6 +17,8 @@ function AppLayout() {
         <Outlet />
       </main>
       <Footer />
+       {/* Agrega el widget para que aparezca siempre */}
+       <AmazonConnectChat />
     </div>
   );
 }
