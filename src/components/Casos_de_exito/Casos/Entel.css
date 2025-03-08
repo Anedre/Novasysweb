@@ -322,21 +322,66 @@
   }
   
   /* Testimonios y Slider */
+/* Efecto 3D base para el slide */
+.testimonial.custom-testimonial.slide-up.visible {
+  border-radius: 15px !important;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  transform: perspective(1000px) rotateY(0deg) !important;
+}
+.slick-track > .testimonial.custom-testimonial.slide-up.visible:nth-child(4n+1) {
+  background-color: #f8f9fa !important;
+}
+
+.slick-track > .testimonial.custom-testimonial.slide-up.visible:nth-child(4n+2) {
+  background-color: #e9f7ef !important;
+}
+
+.slick-track > .testimonial.custom-testimonial.slide-up.visible:nth-child(4n+3) {
+  background-color: #fce4ec !important;
+}
+
+.slick-track > .testimonial.custom-testimonial.slide-up.visible:nth-child(4n+4) {
+  background-color: #e8f8ff !important;
+}
+
+
+/* Efecto hover para 3D */
+.testimonial.custom-testimonial.slide-up.visible:hover {
+  transform: perspective(1000px) rotateY(5deg) translateY(-5px) !important;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3) !important;
+}
+
+  .testimonial-slider {
+    cursor: grab;
+  }
+  
+  .testimonial-slider:active {
+    cursor: grabbing;
+  }
+  
   .testimonials h2.fade-in.visible {
     font-size:2rem;
     text-align: left;
-    padding-left:75px;
+    padding-left:400px;
+    margin-bottom: 2%;
   }
   
   .testimonial-slider {
     position: relative;
-    margin: 3rem auto;
-    max-width: 1000px;
+    margin: 0 auto;
+    max-width: 800px;
     background: none !important;
     overflow: hidden; /* Para que los pseudo-elementos queden "sobre" el slider */
-    padding-right: 200px;
+    align-items: center;
+    justify-content: center;
 
 
+  }
+
+  .slick-list{
+    width: 1000px;
+    margin:2%;
   }
 
   .testimonial-slider::before,
@@ -345,26 +390,13 @@
     position: absolute;
     left: 0;
     right: 0;
-    height: 80px; /* Aumenta la altura para un fade más extendido */
     pointer-events: none;
     z-index: 2;
     /* Agregamos un filtro de desenfoque para suavizar la transición */
     filter: blur(2px);
   }
-  .testimonial-slider::before {
-    top: 0;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.5), rgba(255,255,255,0));
-    max-width: 800px;
 
-  }
 
-  
-  .testimonial-slider::after {
-    bottom: 0;
-    background: linear-gradient(to top, rgba(255,255,255,0.5), rgba(255,255,255,0));
-    max-width: 800px;
-
-  }
 .slick-vertical .slick-slide {
   margin-bottom: 1rem; /* Espaciado entre slides */
 }
@@ -384,85 +416,20 @@
   .slick-vertical .slick-slide {
     border-radius: 10px;
   }
-  
-  /* Slide 1 */
-  .slick-vertical .slick-slide:nth-child(1) {
-    background-color: #f8f9fa !important;
-  }
-  
-  /* Slide 2 */
-  .slick-vertical .slick-slide:nth-child(2) {
-    background-color: #e9f7ef !important;
-  }
-  
-  /* Slide 3 */
-  .slick-vertical .slick-slide:nth-child(3) {
-    background-color: #fce4ec !important;
-  }
-  
-  /* Slide 4 */
-  .slick-vertical .slick-slide:nth-child(4) {
-    background-color: #e8f8ff !important;
-  }
-  
-  /* Slide 5 */
-  .slick-vertical .slick-slide:nth-child(5) {
-    background-color: #fffaf0 !important;
-  }
-  
-  /* Slide 6 */
-  .slick-vertical .slick-slide:nth-child(6) {
-    background-color: #f0f8ff !important;
-  }
-  
-  /* Slide 7 */
-  .slick-vertical .slick-slide:nth-child(7) {
-    background-color: #f5f5dc !important;
-  }
-  
-  /* Slide 8 */
-  .slick-vertical .slick-slide:nth-child(8) {
-    background-color: #fdf5e6 !important;
-  }
-  
-  /* Slide 9 */
-  .slick-vertical .slick-slide:nth-child(9) {
-    background-color: #faf0e6 !important;
-  }
-  
+
+
+
+
+
   .testimonial {
     padding: 20px;
     border-radius: 10px;
-    margin: 0 1rem;
+    max-width: 700px;
+    
+    margin-left: 5%;    
   }
   
-  /* Dots del slider en posición vertical */
-  .slick-dots {
-    position: absolute;
-    top: 60%;
-    right: -450px;
-    transform: translateY(-50%);
-    display: flex !important;
-    flex-direction: column;
-    align-items: center;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .slick-dots li {
-    margin: 5px 0;
-  }
-  
-  .slick-dots li button:before {
-    font-size: 12px;
-    color: #0073e6;
-    opacity: 1;
-  }
-  
-  .slick-dots li.slick-active button:before {
-    color: #ff6600;
-  }
+
 
 
   .chart-container {

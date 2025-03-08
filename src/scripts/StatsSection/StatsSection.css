@@ -289,3 +289,31 @@
 .stats-block:not(:hover) .extra-info {
   animation: implodeOut 0.5s ease-in-out forwards;
 }
+
+@media (max-width: 768px) {
+  .statistics-container {
+    grid-template-columns: 1fr 1fr;  /* Dos columnas en tablets y móviles grandes */
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .statistics-container {
+    grid-template-columns: 1fr; /* Una sola columna para maximizar el espacio */
+    gap: 20px;
+    padding: 0 10px; /* Espaciado lateral */
+  }
+  
+  .statistics-container .stats-block {
+    width: 150px;   /* Se reduce el ancho */
+    height: 200px;  /* Se reduce la altura */
+  }
+  
+  /* Opcional: Ajustar tamaños de fuente dentro de .contentH para que se vean proporcionados */
+  .statistics-container .stats-block .contentH h2 {
+    font-size: 1.2rem;
+  }
+  .statistics-container .stats-block .contentH p {
+    font-size: 0.8rem;
+  }
+}

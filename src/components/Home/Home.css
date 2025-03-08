@@ -215,7 +215,7 @@ img[alt="Proyecto 1"] {
   transform: translateY(-50px);
 }
 
-/* Responsive para móviles (hasta 480px) */
+/* Responsive para móviles (hasta 780px) */
 @media (max-width: 780px) {
   /* Ajuste en la sección Intro */
   .intro img {
@@ -332,5 +332,32 @@ img[alt="Proyecto 1"] {
 
   .success-item p{
     font-size: 0.5em;
+  }
+}
+
+
+@media (max-width: 480px) {
+  /* Ajuste en la sección Intro */
+  .intro img {
+    max-width: 90%;
+    height: auto;
+    padding: 0;
+  }
+
+  /* Ajuste para los botones */
+  .btn-casos {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  /* Ajuste en la sección Casos de éxito */
+  .success-grid {
+    grid-template-columns: 1fr; /* Una sola columna para mayor legibilidad */
+    gap: 10px;
+  }
+  
+  .success-item {
+    max-width: 100%;
+    text-align: center;
   }
 }

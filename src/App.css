@@ -27,7 +27,6 @@ main {
   height: 100%;
   z-index: -1; /* Para que quede detrás del contenido */
   /* Opcional: Si quieres que el SVG se escale */
-  overflow: hidden;
 }
 
 

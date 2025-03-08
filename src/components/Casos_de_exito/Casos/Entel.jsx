@@ -28,19 +28,40 @@ import "slick-carousel/slick/slick-theme.css";
 function Entel () {
   useAnimation();
 
+  const scrollToDesafio = (e) => {
+    e.preventDefault();
+    const targetElement = document.getElementById('detalles');
+    if (targetElement) {
+      // Si tienes un header fijo, selecciona su altura. Si no, puedes usar un valor predeterminado.
+      const headerHeight = document.querySelector('header')?.offsetHeight || 0;
+      // Obtiene la posición actual del elemento en relación al documento
+      const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+      // Define un offset extra (por ejemplo, 20px) para ajustar el centrado
+      const offsetPosition = elementPosition - headerHeight - 75;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   // Configuración del slider para testimonios
   const testimonialSettings = {
-    dots: true,
+    dots: false, // Quita los puntos
     infinite: true,
-    arrows: false, // Oculta las flechas
+    arrows: false, 
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 1,
     vertical: true,
     autoplay: true,
     autoplaySpeed: 3000,
     pauseOnHover: true,
+    draggable: true,      // Permite arrastrar
+    swipeToSlide: true,   // Permite deslizar
   };
+  
 
   // Arreglo de testimonios (al menos 5)
   const testimonials = [
@@ -92,7 +113,11 @@ function Entel () {
                         </p>
                     </div>
                     <div className="hero-cta slide-up">                        
-                        <a href="#detalles" className="cta-button pulse">Ver Más</a>
+                        <a 
+                          href="#detalles" 
+                          onClick={scrollToDesafio} 
+                          className="cta-button pulse"
+                        >Ver Más</a>
                     </div>
                 </div>
                 <div className="hero-right">
@@ -189,16 +214,13 @@ function Entel () {
         <div className="testimonial-slider">
          <Slider {...testimonialSettings}>
          {testimonials.map((item, index) => {
-  const backgroundColors = ["#f8f9fa", "#e9f7ef", "#fce4ec", "#e8f8ff", "#fffaf0"];
+  const backgroundColors = ["#f8f9fa", "#e9f7ef", "#fce4ec", "#e8f8ff"]; // 4 colores
   return (
     <div
       key={index}
       className="testimonial custom-testimonial slide-up"
       style={{
-        backgroundColor: backgroundColors[index % backgroundColors.length],
-        margin: "1rem",
-        borderRadius: "10px",
-        padding: "20px"
+        backgroundColor: backgroundColors[index % backgroundColors.length]
       }}
     >
       <p>“{item.text}”</p>

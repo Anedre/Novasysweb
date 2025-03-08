@@ -27,3 +27,22 @@
   -webkit-user-drag: none;
   user-drag: none;
 }
+
+
+@media (max-width: 480px) {
+  .carouselS {
+    height: 200px;         /* Reduce la altura del carrusel */
+    margin-top: 50px;       /* Ajusta el margen superior */
+    margin-left: 0;         /* Centra el carrusel horizontalmente */
+  }
+  
+  .slide {
+    width: 150px;           /* Nuevo ancho para cada slide */
+    height: 130px;          /* Nuevo alto para cada slide */
+    margin: -65px 0 0 -75px; /* Recalcula el margen para centrar el slide */
+  }
+  
+  .slide img {
+    width: 145px;           /* Ajusta el tamaño de la imagen para que se adapte al contenedor */
+  }
+}
