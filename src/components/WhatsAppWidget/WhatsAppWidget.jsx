@@ -3,7 +3,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 import './WhatsAppWidget.css';
 
 const WhatsAppWidget = () => {
-  const whatsappNumber = "1234567890"; // Reemplaza con tu número real
+  const whatsappNumber = "+51908825660"; // Reemplaza con tu número real
   const mensaje = encodeURIComponent("Hola, necesito información.");
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${mensaje}`;
 
