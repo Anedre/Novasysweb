@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import './CustomCarousel.css';
-import entel from '../../img/Elo.png';
+import entel from '../../img/elo.png';
 import pacifico from '../../img/Bluekai_logo_color.png';
 import renzocosta from '../../img/Ocloud.png';
 import americatel from '../../img/Amazon_Connect_logo.png';
