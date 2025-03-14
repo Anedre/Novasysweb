@@ -89,17 +89,17 @@ function Entel () {
 
   return (
     <div className="Entel">
-        {/* Sección Hero */}
-        <div className="hero">
+        {/* Sección heroE */}
+        <div className="heroE">
             {/* Fondo abstracto con visx */}
             <AbstractBackground />
-            <div className="hero-grid">
-                <div className="hero-left">
-                    <div className="hero-title">
-                        <FaRocket className="hero-icon fade-in" />
+            <div className="heroE-grid">
+                <div className="heroE-left">
+                    <div className="heroE-title">
+                        <FaRocket className="heroEE-icon fade-in" />
                         <h1 className="fade-in">Caso de Éxito: CRM para Entel Empresas</h1>
                     </div>
-                    <div className="hero-description slide-up">
+                    <div className="heroE-description slide-up">
                         <p>
                         Entel es una empresa del Grupo Entel Chile que inició sus operaciones en Perú en el año 2014, es
                         una de las empresas líderes en telecomunicaciones, actualmente cuenta con más de 2000 trabajadores y
@@ -112,7 +112,7 @@ function Entel () {
                         Descubre cómo transformamos la gestión de clientes con tecnología avanzada.
                         </p>
                     </div>
-                    <div className="hero-cta slide-up">                        
+                    <div className="heroE-cta slide-up">                        
                         <a 
                           href="#detalles" 
                           onClick={scrollToDesafio} 
@@ -120,9 +120,9 @@ function Entel () {
                         >Ver Más</a>
                     </div>
                 </div>
-                <div className="hero-right">
-                    <div className="hero-image-container zoom-in">
-                     <img src={entelCA} alt="Ilustración de Entel" className="hero-smartphone fade-in" />
+                <div className="heroE-right">
+                    <div className="heroE-image-container zoom-in">
+                     <img src={entelCA} alt="Ilustración de Entel" className="heroE-smartphone fade-in" />
                     </div>
                 </div>
             </div>

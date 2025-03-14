@@ -106,7 +106,9 @@ function Home() {
         <div className="animate-left animate-grid">
           <div className="success-grid">
             <div className="success-item">
-              <img src={entel} alt="Proyecto 1" />
+              <Link to="/Entel">
+                <img src={entel} alt="Proyecto 1" />
+              </Link>      
               <h3>CRM Entel Empresas</h3>
               <p>Entel optimiza su Contact Center implementando Oracle Service Cloud</p>
               

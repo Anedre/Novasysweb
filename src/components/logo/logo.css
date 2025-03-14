@@ -1,0 +1,42 @@
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  perspective: 800px; /* Permite apreciar el efecto 3D */
+}
+
+.spinner {
+  width: 100px;
+  height: 100px;
+  /* Animación que combina rotación y desplazamiento en Z */
+  animation: rotateMultiple3DZ 3s ease-out forwards;
+}
+
+.spinner-arc {
+  /* Con un radio de 45, la circunferencia es aproximadamente 283.
+     Con stroke-dasharray definimos un arco de 60 unidades visible. */
+  stroke-dasharray: 60 223;
+  stroke-dashoffset: 0;
+}
+
+/* Keyframes que incorporan un translateZ para mover el arco en profundidad */
+@keyframes rotateMultiple3DZ {
+  0% {
+    transform: rotateX(20deg) rotate(0deg) translateZ(0px);
+  }
+  25% {
+    transform: rotateX(20deg) rotate(270deg) translateZ(30px);
+  }
+  50% {
+    transform: rotateX(20deg) rotate(540deg) translateZ(50px);
+  }
+  75% {
+    transform: rotateX(20deg) rotate(810deg) translateZ(30px);
+  }
+  100% {
+    transform: rotateX(20deg) rotate(1080deg) translateZ(0px);
+  }
+}
+ 

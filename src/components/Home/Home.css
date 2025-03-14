@@ -54,7 +54,6 @@
 }
 
 
-
 /* Sección: Casos de éxito */
 .section__paragraph1 {
   height: 100vh;
@@ -101,6 +100,7 @@
   margin: auto auto;
   margin-bottom: 5%;
 }
+
 
 .success-item {
   max-width: 250px;
@@ -169,6 +169,13 @@ img[alt="Proyecto 1"] {
   scroll-snap-align: center;
   align-items: center;
   justify-content: center;
+}
+
+
+.animate-left.animate-grid.active a , .solutions-btn .btn-casos{
+  color:#fff;
+  font-weight: 500;
+  font-size: 1.1rem;
 }
 
 /* Estado base: elemento oculto y desplazado a la izquierda */

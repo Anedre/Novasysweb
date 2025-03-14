@@ -1,0 +1,12 @@
+.triangleN {
+  transition: fill-opacity 0.3s ease, filter 0.3s ease;
+  /* Define el fill y la opacidad por defecto aquí, en lugar de en el atributo inline */
+  fill: url(#triangleGradient);
+  fill-opacity: 0.2;
+}
+
+.triangleN:hover {
+  fill: url(#triangleGradientHover) !important;
+  fill-opacity: 1 !important;
+  filter: brightness(1.8) drop-shadow(0px 0px 12px rgba(255, 0, 0, 0.9));
+}

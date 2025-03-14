@@ -14,9 +14,25 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     -webkit-box-reflect: below 0px linear-gradient(transparent, transparent, rgba(0, 0, 0, 0.2));
   }
+
+
   
   .whatsapp-widget:hover {
     transform: translateY(-10px);
     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
   }
   
+  @media only screen and (max-width: 900px) {
+    .whatsapp-widget {
+      right: 90px; /* Ajusta este valor para evitar que quede muy pegado al borde */
+      bottom:16px ;
+    }
+  }
+  @media only screen and (max-width: 480px) {
+    .whatsapp-widget {
+      right: 75px; /* Ajusta este valor para evitar que quede muy pegado al borde */
+      bottom: 7px;
+
+      /* Puedes ajustar otros estilos como tamaño o padding si es necesario */
+    }
+  }

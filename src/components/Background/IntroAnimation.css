@@ -1,39 +1,175 @@
-.glitch-container {
-    position: relative;
-    width: auto;
-    overflow: hidden;
+/* Contenedor principal */
+.intro-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 800px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s ease;
+}
+
+
+/* Ajusta el estilo de los cuadrados que actúan como gotas */
+.raindrop {
+  position: absolute;
+  width: 50px; 
+  height: 50px;
+  background: rgba(255, 255, 255, 0.8);
+  /* Elimina el border-radius para que sean cuadrados */
+  z-index: 0;
+}
+
+
+
+/* Modo Día */
+.intro-container.day {
+  background: radial-gradient(circle at center, #F4F5F7, #D6D7DA);
+}
+
+/* Modo Noche */
+.intro-container.night {
+  background: radial-gradient(circle at center, #121212, #1e1e1e);
+}
+
+/* Tamaño del logo */
+.intro-logo {
+  width: 300px;
+  height: auto;
+  z-index: 2;
+}
+
+/* Formas abstractas animadas */
+.shape {
+  position: absolute;
+  opacity: 0.9; /* Mayor contraste */
+  z-index: 1;
+  filter: drop-shadow(2px 2px 8px rgba(0, 0, 0, 0.3)); /* Sombra para mejor visibilidad */
+}
+
+.square, .circle, .triangle, .hexagon, .rhombus, .star {
+  width: 35px;
+  height: 35px;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-bottom: 50px solid;
+}
+
+.hexagon {
+  background-color: inherit;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.rhombus {
+  background-color: inherit;
+  transform: rotate(45deg);
+}
+
+.star {
+  background-color: inherit;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+/* Modo Día - Colores de formas */
+.day .square {
+  background-color: rgba(100, 100, 100, 0.6);
+}
+.day .circle {
+  background-color: rgba(200, 50, 50, 0.7);
+}
+.day .triangle {
+  border-bottom-color: rgba(80, 80, 80, 0.6);
+}
+.day .hexagon {
+  background-color: rgba(50, 150, 200, 0.7);
+}
+.day .rhombus {
+  background-color: rgba(180, 100, 50, 0.7);
+}
+.day .star {
+  background-color: rgba(255, 200, 50, 0.8);
+}
+
+/* Modo Noche - Colores de formas con más contraste */
+.night .square {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.night .circle {
+  background-color: rgba(255, 165, 0, 0.9);
+}
+.night .triangle {
+  border-bottom-color: rgba(255, 255, 255, 0.8);
+}
+.night .hexagon {
+  background-color: rgba(0, 255, 255, 0.7);
+}
+.night .rhombus {
+  background-color: rgba(255, 50, 150, 0.7);
+}
+.night .star {
+  background-color: rgba(255, 255, 100, 0.9);
+}
+
+/* Flecha de scroll */
+.intro-arrow {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  transition: color 0.3s ease;
+  z-index: 2;
+}
+
+.day .intro-arrow {
+  color: #333;
+}
+.night .intro-arrow {
+  color: #fff;
+}
+
+/* Responsividad */
+@media (max-width: 760px) {
+  .intro-container {
+    height: 600px;
   }
-  
-  .glitch-logo {
-    max-width: 100%;
-    height: 100%;
-    object-fit: contain;
+
+  .intro-logo {
+    width: 200px;
   }
-  
-  .main {
-    position: relative;
-    z-index: 2;
+
+  .shape {
+    width: 40px;
+    height: 40px;
   }
-  
-  .layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 3;
-    /* Valor base para la opacidad */
-    opacity: 0.8;
+}
+
+@media (max-width: 480px) {
+  .intro-container {
+    height: 500px;
   }
-  
-  /* Filtros para diferenciar capas */
-  .layer.layer1 {
-    filter: drop-shadow(3px 0 red);
+
+  .intro-logo {
+    width: 150px;
   }
-  
-  .layer.layer2 {
-    filter: drop-shadow(-3px 0 blue);
+
+  .shape {
+    width: 30px;
+    height: 30px;
   }
-  
-  .layer.layer3 {
-    filter: drop-shadow(0 3px lime);
+
+  .intro-arrow {
+    bottom: 15px;
   }
-  
+}

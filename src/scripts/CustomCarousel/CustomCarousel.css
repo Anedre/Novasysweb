@@ -1,6 +1,6 @@
 .carouselS {
   width: 100%;
-  height: 300px;  /* Aumenta la altura para que se vean mejor los slides */
+  height: 300px;
   position: relative;
   overflow: hidden;
   perspective: 3000px;
@@ -8,18 +8,26 @@
   margin-left: 25px;
 }
 
-/* Asegura que todas las transformaciones se hagan desde el centro */
+/* Slide base */
 .slide {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 225px;  
+  width: 225px;
   height: 200px;
-  margin: -100px 0 0 -100px; /* Centrado perfecto */
+  margin: -100px 0 0 -100px;
   transform-origin: center center;
   cursor: pointer;
 }
 
+/* Contenedor del slide y overlay */
+.slide-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Estilo de la imagen */
 .slide img {
   width: 220px;
   height: auto;
@@ -28,21 +36,69 @@
   user-drag: none;
 }
 
+/* Overlay animado con degradado fijo de gris a negro */
+.slide-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* El background se establece inline en el componente */
+  color: #fff;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 10px;
+  opacity: 0; /* controlado por Framer Motion */
+  /* Se eliminó pointer-events para asegurar que el hover se detecte */
+  border-radius: 8px;
+}
 
+.slide-overlay p {
+  margin: 0;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #000;
+}
+
+/* Dots de navegación */
+.carousel-dots {
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.dot.active {
+  background: #007BFF;
+}
+
+/* Responsive para móviles */
 @media (max-width: 480px) {
   .carouselS {
-    height: 200px;         /* Reduce la altura del carrusel */
-    margin-top: 50px;       /* Ajusta el margen superior */
-    margin-left: 0;         /* Centra el carrusel horizontalmente */
+    height: 200px;
+    margin-top: 50px;
+    margin-left: 0;
   }
   
   .slide {
-    width: 150px;           /* Nuevo ancho para cada slide */
-    height: 130px;          /* Nuevo alto para cada slide */
-    margin: -65px 0 0 -75px; /* Recalcula el margen para centrar el slide */
+    width: 150px;
+    height: 130px;
+    margin: -65px 0 0 -75px;
   }
   
   .slide img {
-    width: 145px;           /* Ajusta el tamaño de la imagen para que se adapte al contenedor */
+    width: 145px;
   }
 }

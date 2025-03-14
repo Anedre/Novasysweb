@@ -12,7 +12,7 @@
 
 
 main {
-  padding: 20px;
+  padding: 20px 0;
   width: 100%;  /* Asegura que el contenido principal ocupe todo el ancho */
 }
 
