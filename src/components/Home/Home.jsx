@@ -119,7 +119,9 @@ function Home() {
               <p>Pacífico mejora la gestión y seguimiento de sus oportunidades</p>
             </div>
             <div className="success-item">
+              <Link to="/Renzo">
               <img src={renzocosta} alt="Proyecto 3" />
+              </Link>
               <h3>Proyecto Renzo Costa</h3>
               <p>Falta informacion!</p>
             </div>

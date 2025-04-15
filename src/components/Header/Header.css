@@ -1,17 +1,17 @@
-/* Header general */
+/* =========================
+   HEADER GENERAL
+========================= */
 .header {
   font-family: 'Poppins', sans-serif;
   position: fixed;
   z-index: 1000;
   padding: 10px 20px;
   width: 100%;
-
-  
 }
 
-
-
-/* Desktop Header */
+/* =========================
+   DESKTOP HEADER
+========================= */
 .desktopHeader {
   display: flex;
   align-items: center;
@@ -34,13 +34,15 @@
   position: relative;
 }
 
+/* Marcador animado */
 .navMarker {
   position: absolute;
   bottom: 0;
   height: 2px; /* Grosor de la línea */
   background-color: red; /* Color de la línea (puedes cambiarlo) */
-  transition: left 0.5s ease, width 0.3s ease; /* Animación suave para la transición */
+  transition: left 0.5s ease, width 0.3s ease;
 }
+
 /* Ítems del menú */
 .navItem {
   text-decoration: none;
@@ -48,29 +50,26 @@
   position: relative;
   cursor: pointer;
   transition: transform 0.5s ease, color 0.5s ease;
-  color: inherit; /* o el color que uses por defecto */
+  color: inherit;
 }
 
-
-
-
-/* Al pasar el mouse, se cambia el color a rojo y se dispara la animación */
+/* Hover sobre ítems */
 .nav > a.navItem:hover {
   transform: scale(1.5);
   color: red;
 }
+
+/* Estado hovered en dropdown (para forzar el transform) */
 .dropdown-title.hovered {
-  display: inline-block; /* Agrega esto para que funcione el transform */
+  display: inline-block;
   transform: scale(1.5);
   color: red;
   transition: transform 0.5s ease, color 0.5s ease;
 }
 
-
-
-
-
-/* Dropdown de escritorio */
+/* =========================
+   DROPDOWN DESKTOP
+========================= */
 .dropdown {
   position: relative;
 }
@@ -78,6 +77,9 @@
 .dropdown-title {
   text-decoration: none;
 }
+
+/* Estilos para el dropdown-menu:
+   Se utilizan dos estados: "open" para desplegado, y "closing" para el estado en cierre */
 .dropdown-menu {
   position: absolute;
   top: 38px;
@@ -88,66 +90,61 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;           /* Oculta el contenido mientras se contrae */
-  transform-origin: top;      /* La animación se inicia desde la parte superior */
+  transform-origin: top;
   transform: scaleY(0);       /* Estado cerrado */
   opacity: 0;                 /* Invisible cuando está cerrado */
   transition: transform 0.3s ease, opacity 0.5s ease;
   pointer-events: none;       /* Evita interacción cuando está cerrado */
 }
 
-/* Estado abierto: el dropdown se expande de arriba a abajo */
 .dropdown-menu.open {
-  transform: scaleY(1);       /* Estado abierto */
+  transform: scaleY(1);
   opacity: 1;
-  pointer-events: auto;       /* Permite interacción */
+  pointer-events: auto;
 }
 
-/* Estado de cierre: vuelve a contraerse (opcional, ya que al remover el elemento se podría evitar) */
 .dropdown-menu.closing {
   transform: scaleY(0);
   opacity: 0;
 }
 
+/* Ítems del dropdown */
 .dropdown-item {
   padding: 10px;
   color: rgb(0, 0, 0);
   text-decoration: none;
-  position: relative; /* Para posicionar el pseudo-elemento */
+  position: relative;
   padding-right: 40px; /* Espacio para la flecha */
   transition: color 0.3s ease, font-weight 0.3s ease;
-
 }
+
+/* Pseudo-elemento para la flecha */
 .dropdown-item::after {
-  content: "➜"; /* Cambié la flecha por otra */
-  font-size: 1.2em;      /* Ajusta el tamaño */
-  color: #007bff;        /* Un azul armonioso */
+  content: "➜";
+  font-size: 1.2em;      
+  color: #007bff;        
   position: absolute;
-  right: 10px;           /* Ajusta el espacio a la derecha */
+  right: 10px;
   top: 50%;
   transform: translateY(-50%) translateX(0px);
   opacity: 0;
-
 }
 
-
 .dropdown-item:hover {
-  color: #00356d;  /* Un tono de azul */
+  color: #00356d;
   font-weight: 500;
-  /* Puedes quitar el background si no lo deseas, o ajustarlo */
   transform: scale(1.02);
-
   background: transparent;
 }
 
 .dropdown-item:hover::after {
-  transform: translateY(-50%) scale(1.2); /* Aparece con efecto zoom */
+  transform: translateY(-50%) scale(1.2);
   opacity: 1;
 }
 
-
-
-
-/* ===== Mobile Header ===== */
+/* =========================
+   MOBILE HEADER
+========================= */
 .mobileHeader {
   display: none;
 }
@@ -155,10 +152,10 @@
 /* Encabezado móvil (logo y botón hamburguesa) */
 .mobileHeaderTop {
   display: flex;
-  justify-content: space-between; /* Esto coloca el primer elemento a la izquierda y el último a la derecha */
+  justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 10px 20px;  /* Ajusta el padding según necesites */
+  padding: 10px 20px;
 }
 
 .menuButton {
@@ -183,71 +180,69 @@
   gap: 20px;
   z-index: 2000;
 }
-/* Estilo para el logo dentro del overlay de navegación móvil */
+
+/* Logo dentro del overlay móvil */
 .mobileNavLogo {
   top: 20px;
   left: 20px;
-
-
 }
 
 .mobileNavLogo img {
-  max-width: 150px; /* O el ancho que necesites */
+  max-width: 150px;
   height: auto;
 }
+
+/* Items de navegación móvil */
 .mobileNavItems {
-  width: 100%;                /* Ocupa todo el ancho */
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;    /* Alinea los items a la izquierda */
-  margin-top: 50px;           /* Ajusta el margen para separarlos del header */
+  align-items: flex-start;
+  margin-top: 50px;
 }
 
-/* Cada item del menú móvil */
 .mobileNavItem {
-  text-align: left;           /* Alinea el texto a la izquierda */
-  padding: 20px 20px;         /* Espaciado interno */
-  font-size: 1rem;          /* Tamaño del texto */
+  text-align: left;
+  padding: 20px 20px;
+  font-size: 1rem;
   color: white;
   text-decoration: none;
 }
 
-.TTmobileNavItem{
-  color:white;
+/* Asegura la consistencia para el título en ítems móviles con submenú */
+.TTmobileNavItem {
+  color: white;
   text-decoration: none;
-
 }
 
-/* Contenedor del header en el overlay móvil */
+/* Header del overlay móvil */
 .mobileNavHeader {
   display: flex;
-  align-items: flex-start; /* Alinea los elementos al inicio verticalmente */
+  align-items: flex-start;
   justify-content: space-between;
   flex-wrap: nowrap;
   width: 100%;
   padding: 10px 20px;
 }
 
-
-
-/* Nuevo elemento divisor entre cada encabezado */
+/* Divisor entre items */
 .mobileNavDivider {
-  width: calc(100% - 40px);   /* Resta 20px a cada lado */
-  margin: 0 20px;             /* 20px de margen a la izquierda y derecha */
+  width: calc(100% - 40px);
+  margin: 0 20px;
   height: 1px;
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Botón de cierre (X) */
+/* Botón de cierre en overlay móvil */
 .mobileNavClose {
   background: transparent;
   border: none;
   color: white;
-  font-size: 2rem; /* O el tamaño que prefieras */
+  font-size: 2rem;
   cursor: pointer;
 }
 
-/* Para ítems móviles con submenú */
+/* Items móviles con submenú */
 .mobileNavItem.withSubmenu {
   display: flex;
   justify-content: space-between;
@@ -263,7 +258,9 @@
   cursor: pointer;
 }
 
-/* ===== Overlay de Submenú Móvil Actualizado ===== */
+/* =========================
+   OVERLAY DE SUBMENÚ MÓVIL
+========================= */
 .mobileSubmenuOverlay {
   position: fixed;
   top: 0;
@@ -276,11 +273,11 @@
   z-index: 3000;
 }
 
-/* Header del submenú: incluye la flecha para volver, el título y la X para cerrar */
+/* Header del submenú (flecha para volver, título y botón para cerrar) */
 .mobileSubmenuHeader {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Alinea verticalmente los elementos */
+  align-items: center;
   width: 100%;
   padding: 10px 20px;
 }
@@ -306,7 +303,7 @@
   background: transparent;
   border: none;
   color: white;
-  font-size: 2rem; /* Ajusta el tamaño de la "X" según necesites */
+  font-size: 2rem;
   cursor: pointer;
   width: 40px;
   height: 40px;
@@ -316,7 +313,7 @@
   transition: transform 0.3s ease;
 }
 
-/* Pseudo-elemento para el borde cuadrado */
+/* Pseudo-elemento para el borde cuadrado del botón de cierre */
 .mobileSubmenuClose::before {
   content: "";
   position: absolute;
@@ -329,28 +326,26 @@
   transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-/* Animación al pasar el mouse */
 .mobileSubmenuClose:hover {
   transform: scale(1.1);
 }
 
 .mobileSubmenuClose:hover::before {
   transform: rotate(45deg) scale(1.1);
-  border-color: red; /* O el color que prefieras para resaltar */
+  border-color: red;
 }
 
-
-/* Contenedor de los items del submenú */
+/* Contenedor de items del submenú */
 .mobileSubmenuItems {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Alinea los items a la izquierda */
+  align-items: flex-start;
   margin-top: 30px;
   padding: 0 20px;
 }
 
-/* Estilo para cada item del submenú */
+/* Cada item del submenú */
 .mobileSubmenuItem {
   width: 100%;
   text-align: left;
@@ -362,14 +357,14 @@
 
 /* Divisor entre items del submenú */
 .mobileSubmenuDivider {
-  width: 100%; /* Resta 20px a cada lado */
+  width: 100%;
   height: 1px;
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-
-
-/* ===== Responsive ===== */
+/* =========================
+   RESPONSIVE
+========================= */
 @media (max-width: 480px) {
   .nav {
     display: none;
@@ -380,43 +375,39 @@
   .mobileHeader {
     display: block;
   }
-  .header{
+  .header {
     right: 4px;
   }
 }
 
-
-
-/* Media query para pantallas menores a 768px */
 @media (max-width: 768px) {
-
-
   .desktopHeader {
     display: none;
   }
   .mobileHeader {
     display: block;
   }
-  /* Contenedor superior del header móvil: logo y botón hamburguesa */
   .mobileHeaderTop {
     display: flex;
     justify-content: space-between;
-    align-items: center;  /* Centra verticalmente el logo y el botón */
+    align-items: center;
     padding: 10px 20px;
   }
-  /* Ajustamos el tamaño del logo en móvil */
   .mobileHeader .logo img {
     width: 150px;
     height: auto;
   }
   .header {
-    height: auto;         /* Permite que se ajuste según el contenido */
-    display: block;       /* O bien, definir una estructura específica para móviles */
-    padding: 0;           /* Ajusta el padding si es necesario */
+    height: auto;
+    display: block;
+    padding: 0;
   }
 }
 
-/* Definición de la animación de zoom y rebote */
+/* =========================
+   EXTRAS
+========================= */
+/* Animación de zoom y rebote (si en algún futuro se utiliza, de lo contrario se puede eliminar) */
 @keyframes bounceZoom {
   0% {
     transform: scale(1);
@@ -432,13 +423,15 @@
   }
 }
 
+/* Contenedor para el toggle del modo (día/noche) */
 .toggle-container {
   display: flex;
   align-items: center;
   margin-left: 15px; /* Espacio entre "Contacto" y el toggle */
 }
 
-/* Asegúrate de que el header tenga suficiente altura y que todos los ítems estén centrados verticalmente */
-.desktopHeader, .nav {
+/* Asegurar que el header y la navegación tengan todos los ítems centrados */
+.desktopHeader,
+.nav {
   align-items: center;
 }

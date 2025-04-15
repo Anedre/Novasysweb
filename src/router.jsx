@@ -14,6 +14,7 @@ import SolucionesHP from "./components/Soluciones-HP/SolucionesHP/SolucionesHP.j
 import SolucionesHP_Enterprise from "./components/Soluciones-HP/SolucionesHP_Enterprise/SolucionesHP_Enterprise.jsx";
 import Casos_de_exito from "./components/Casos_de_exito/Casos_de_exito.jsx";
 import Entel from "./components/Casos_de_exito/Casos/Entel.jsx";
+import Renzo from "./components/Casos_de_exito/Casos/Renzo.jsx";
 
 
 import Contacto from "./components/Contacto/Contacto.jsx";
@@ -35,6 +36,7 @@ export const router = createBrowserRouter([
       { path: "/SolucionesHPEnterprise", element: <SolucionesHP_Enterprise /> },
       { path: "/Casos_de_exito", element: <Casos_de_exito /> },
       { path: "/Entel", element: <Entel />},
+      {path: "/Renzo", element: <Renzo />},
       { path: "/Contacto", element: <Contacto /> },
     ],
   },

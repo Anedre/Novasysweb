@@ -1,199 +1,400 @@
-.Soluciones{
-    margin-top: 150px;
+.Soluciones {
+  margin-top: 150px;
 }
 
+/* ------------------------- TITULOS Y DIVISORES ------------------------- */
 
-.Stitulo{
-    text-align: center;
-}
-.Stitulo2{
-    text-align: center;
+.Stitulo,
+.Stitulo2 {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.7s ease forwards;
 }
 
+.Stitulo {
+  animation-delay: 0.1s;
+}
+
+.Stitulo2 {
+  animation-delay: 0.5s;
+}
+
+.Stitulo p,
+.Stitulo2 p {
+  font-size: 1.1rem;
+  margin: 20px auto;
+  color: #222;
+}
+
+.Stitulo h1,
+.Stitulo2 h1 {
+  font-size: 2.5rem;
+  margin: 20px auto 50px auto;
+  font-weight: 500;
+}
 
 .divider {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin: 70px auto;
-    max-width: 1400px;
-    
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 70px auto;
+  max-width: 1400px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.7s ease forwards;
+  animation-delay: 0.3s;
 }
 
 .divider::before,
 .divider::after {
-    content: "";
-    flex: 1;
-    border-bottom: 0.1px solid #16161659;
-    margin: 5px;
-
+  content: "";
+  flex: 1;
+  border-bottom: 0.1px solid #16161659;
+  margin: 5px;
 }
 
 .icon {
-    color: #888;
-    font-size: 16px;
-    padding: 0 10px;
+  color: #888;
+  font-size: 16px;
+  padding: 0 10px;
 }
 
+/* ------------------------- CUADRO DE 4 COLUMNAS PRINCIPALES ------------------------- */
 
-.Cuadro1S {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(1, 1fr);
-    gap: 50px;
-    margin: 25px auto;
-    text-align: center;
-    max-width: 1200px;
+.SolucionesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 50px;
+  margin: 40px auto;
+  max-width: 1800px;
+  text-align: center;
+  align-items: stretch;
 }
 
-.Cuadro1S h2{
-  font-size: 1rem;;
+.Sitem1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  border-radius: 8px;
+  height: 100%;
+  text-align: center;
+  align-items: center;
 }
 
+.Sitem1 h1 {
+  font-size: 1.8rem;
+  margin: 20px 0;
+  flex-grow: 1;
+  font-weight: 500;
+}
 
-.Cuadro2S {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(1, 1fr);
-    gap: 250px;
-    align-items: center;
-    margin: 25px auto;
-    max-width: 1000px;
+.Sitem1 h2 {
+  font-size: 0.9rem;
+  margin: 20px 0;
+  flex-grow: 1;
+  font-weight: 100;
+}
+
+.Sitem1 button{
+  font-size: 0.95rem;
+  font-weight: 100;
+  color: #fff;
+}
+
+.lottie-wrapper {
+  width: 180%;
+}
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s ease forwards;
+  animation-delay: 0.6s;
 }
 
 .Sboton1 {
-    box-shadow: 0px 6px 0px #3dc21b, /* Sombra en color del fondo */
-                0px 10px 15px rgba(61, 194, 27, 0.3); /* Sombra difusa */
-    background: linear-gradient(to bottom, #44c767 5%, #5cbf2a 100%);
-    background-color: #44c767;
-    border-radius: 8px;
-    display: inline-block;
-    cursor: pointer;
-    color: #ffffff;
-    font-size: 20px;
-    padding: 13px 20px; /* Agregado un poco de espacio lateral */
-    text-decoration: none;
-    text-shadow: 0px 1px 0px #2f6627;
-    border: none;
-    transition: all 0.3s ease-in-out;
+  box-shadow: 0px 6px 0px #3dc21b,
+              0px 10px 15px rgba(61, 194, 27, 0.3);
+  background: linear-gradient(to bottom, #44c767 5%, #5cbf2a 100%);
+  border-radius: 8px;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 20px;
+  width: 150px;
+  padding: 13px 20px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #2f6627;
+  border: none;
+  transition: all 0.3s ease-in-out;
 }
 
-/* Efecto de elevación al pasar el mouse */
 .Sboton1:hover {
-    background: linear-gradient(to bottom, #5cbf2a 5%, #44c767 100%);
-    background-color: #5cbf2a;
-    transform: translateY(-3px); /* Se eleva un poco */
-    box-shadow: 0px 9px 0px #3dc21b, 
-                0px 14px 20px rgba(61, 194, 27, 0.4);
+  background: linear-gradient(to bottom, #5cbf2a 5%, #44c767 100%);
+  transform: translateY(-3px);
+  box-shadow: 0px 9px 0px #3dc21b,
+              0px 14px 20px rgba(61, 194, 27, 0.4);
 }
 
-/* Efecto de "presionado" al hacer clic */
 .Sboton1:active {
-    transform: translateY(3px); /* Baja un poco */
-    box-shadow: 0px 3px 0px #3dc21b, 
-                0px 5px 10px rgba(61, 194, 27, 0.2);
+  transform: translateY(3px);
+  box-shadow: 0px 3px 0px #3dc21b,
+              0px 5px 10px rgba(61, 194, 27, 0.2);
 }
 
-
-
+/* ------------------------- FILTROS ------------------------- */
 
 .menu {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin: 20px 0;
-    font-size: 18px;
-    font-weight: bold;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.filter-tab {
+  position: relative;
+  cursor: pointer;
+  padding: 5px 10px;
+  color: #333;
+  transition: color 0.3s ease-in-out;
+}
+
+.filter-tab::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  width: 0;
+  height: 3px;
+  background-color: red;
+  transition: width 0.3s ease-out, transform 0.2s ease-in-out;
+  transform: translateX(-50%);
+}
+
+.filter-tab:hover::after {
+  width: 100%;
+}
+
+.filter-tab:hover {
+  color: #0073e6;
+}
+
+.filter-tab.active {
+  color: red;
+}
+
+.filter-tab.active::after {
+  width: 100%;
+  transform: scaleX(1.1) translateX(-50%);
+}
+
+/* ------------------------- GALERÍA DE SOLUCIONES ------------------------- */
+
+.Scontent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px 40px;
+  margin: 60px auto;
+  max-width: 1400px;
+}
+
+.Iitem {
+  flex: 0 0 240px;
+  max-width: 240px;
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 0.6s ease forwards;
+  animation-fill-mode: both;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.Iitem:nth-child(n) {
+  animation-delay: var(--delay, 0s);
+}
+
+.Iitem:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+}
+
+.Iitem img {
+  max-width: 180px;
+  max-height: 150px;
+  object-fit: contain;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.Iitem h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 12px;
+  min-height: 2.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* ------------------------- BOTÓN INTERIOR ------------------------- */
+
+.Iboton {
+  margin-top: auto;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  background-color: #0073e6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0px 3px 0px #005bb5,
+              0px 6px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.Iboton:hover {
+  background-color: #005bb5;
+  transform: translateY(-2px);
+}
+
+.Iboton:active {
+  transform: translateY(2px);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ------------------------- ANIMACIONES ------------------------- */
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .filter-tab {
-    position: relative;
-    cursor: pointer;
-    padding: 5px 10px;
-    color: #333;
-    transition: color 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .filter-tab::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: -5px;
-    width: 0;
-    height: 3px;
-    background-color: red;
-    transition: width 0.3s ease-out, transform 0.2s ease-in-out;
-    transform: translateX(-50%);
+}
+
+/* ------------------------- RESPONSIVE ------------------------- */
+
+@media (max-width: 1024px) {
+  .SolucionesGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
-  
-  .filter-tab:hover::after {
-    width: 100%;
-  }
-  
-  .filter-tab:hover {
-    color: #0073e6;
-  }
-  
-  .filter-tab.active {
-    color: red;
-  }
-  
-  .filter-tab.active::after {
-    width: 100%;
-    transform: scaleX(1.1) translateX(-50%);
-  }
-  
 
   .Scontent {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 0px;
-    justify-items: center;
-    margin: 20px 200px;
+    margin: 40px auto;
+    gap: 30px 30px;
+  }
+}
+
+@media (max-width: 600px) {
+
+
+  .menu {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 5px 10px;
+    gap: 8px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    justify-content: flex-start;
+
+    position: relative;
+
+  }
+
+
+  .menu::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-tab {
+    display: inline-block;
+    white-space: nowrap;
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    min-width: max-content; /* ✅ se adapta al contenido */
+    border-radius: 6px;
+    transition: background 0.2s;
+  }
+
+  .filter-tab.active {
+    background: #ffeaea;
+    border-radius: 6px;
+  }
+
+  .Iitem h3 {
+    word-break: break-word;
+    text-wrap: balance;
+    font-size: 0.85rem;
+    min-height: 2em;
   }
   
-  .item {
-    height: 200px;
-    width: 100%;
-    max-width: 200px;
-    border: 1px solid #ddd;
+  .Sitem1 {
     padding: 15px;
-    border-radius: 5px;
-    text-align: center;
-    background-color: #f9f9f9;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10%;
+    
   }
   
-  .item-img {
-    max-width: 180px;
-    max-height: 150px;
-    border-radius: 5px;
-    margin-bottom: 10px;
+  .Iitem {
+    padding: 15px;
+    flex: 0 0 48%;
+    max-width: 48%;
+    min-width: 48%;
+    min-height: 48%;
+
   }
   
-  .item h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+  .Stitulo h1,
+  .Stitulo2 h1 {
+    font-size: 1.8rem;
   }
   
-  .item p {
+  .Stitulo p,
+  .Stitulo2 p {
     font-size: 1rem;
-    margin-bottom: 15px;
   }
+
   
-  .item button {
-    padding: 8px 12px;
-    border: none;
-    background-color: #0073e6;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: 0.3s;
+  .SolucionesGrid {
+    grid-template-columns: 1fr;
   }
-  
-  .item button:hover {
-    background-color: #005bb5;
+
+  .Scontent {
+    margin: 20px auto;
+    gap: 16px 12px;
+    justify-content: center;
+
+    padding: 0 10px;
   }
-  
+  .Iitem img {
+    max-width: 100px;
+    max-height: 70px;
+    margin-bottom: 8px;
+  }
+  .Iboton {
+    font-size: 0.75rem;
+    padding: 6px 10px;
+  }
+}

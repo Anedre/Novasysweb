@@ -42,7 +42,7 @@ function Nosotros() {
         <div className="heroN-container">
         <div className="heroN-background">
             {/* Componente de fondo interactivo con triángulos */}
-            <TrianglesExample width={dimensions.width} height={dimensions.height} />
+            <TrianglesExample width={window.innerWidth} height={window.innerHeight} />
           </div>
           <div className="heroN-content">
             <h1 className="heroN-title">

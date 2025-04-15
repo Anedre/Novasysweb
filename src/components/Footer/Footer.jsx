@@ -15,7 +15,7 @@ import {
 } from 'react-icons/fa';
 
 function Footer() {
-  const phoneNumber = "+51-1-7024006";
+  const phoneNumber = "+51-1-6433467";
   const whatsappNumber = "51989069217"; // sin el signo +
   
   // Detección sencilla de dispositivos móviles
