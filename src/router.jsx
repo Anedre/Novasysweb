@@ -15,6 +15,7 @@ import SolucionesHP_Enterprise from "./components/Soluciones-HP/SolucionesHP_Ent
 import Casos_de_exito from "./components/Casos_de_exito/Casos_de_exito.jsx";
 import Entel from "./components/Casos_de_exito/Casos/Entel.jsx";
 import Renzo from "./components/Casos_de_exito/Casos/Renzo.jsx";
+import SolucionDetalle from "./components/Soluciones/Detalle/SolucionDetalle.jsx"; // al inicio
 
 
 import Contacto from "./components/Contacto/Contacto.jsx";
@@ -27,6 +28,7 @@ export const router = createBrowserRouter([
       { path: "/Eventos", element: <Eventos /> },
       { path: "/Nosotros", element: <Nosotros /> },
       { path: "/Soluciones_Novasys", element: <Soluciones /> },
+      { path: "/Soluciones_Novasys/:slug", element: <SolucionDetalle /> },
       { path: "/Ventas", element: <Ventas /> },
       { path: "/Marketing", element: <Marketing /> },
       { path: "/Business_Intelligence", element: <Business_Intelligence /> },

@@ -16,19 +16,19 @@ import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 const data = {
   business: [
-    { id: 1, image: Obusiness, title: "Oracle Business Intelligence" },
+    { id: 1, slug: "oracle-business-intelligence", image: Obusiness, title: "Oracle Business Intelligence" },
   ],
   marketing: [
-    { id: 2, image: Ocloud, title: "Oracle PaaS" },
-    { id: 3, image: Bluekai_logo_color, title: "Oracle BlueKai" },
-    { id: 4, image: Eloqua, title: "Oracle Eloqua" },
-    { id: 5, image: Oresponsys, title: "Oracle Responsys" },
+    { id: 2, slug: "oracle-paas", image: Ocloud, title: "Oracle PaaS" },
+    { id: 3, slug: "oracle-bluekai", image: Bluekai_logo_color, title: "Oracle BlueKai" },
+    { id: 4, slug: "oracle-eloqua", image: Eloqua, title: "Oracle Eloqua" },
+    { id: 5, slug: "oracle-responsys", image: Oresponsys, title: "Oracle Responsys" },
   ],
   ventas: [
-    { id: 6, image: Oservicecloud, title: "Oracle Service Cloud" },
-    { id: 7, image: OSales, title: "Oracle Sales Cloud" },
-    { id: 8, image: Osiebel, title: "Oracle Siebel" },
-    { id: 9, image: Oconfigure, title: "Oracle CPQ" },
+    { id: 6, slug: "oracle-service-cloud", image: Oservicecloud, title: "Oracle Service Cloud" },
+    { id: 7, slug: "oracle-sales-cloud", image: OSales, title: "Oracle Sales Cloud" },
+    { id: 8, slug: "oracle-siebel", image: Osiebel, title: "Oracle Siebel" },
+    { id: 9, slug: "oracle-cpq", image: Oconfigure, title: "Oracle CPQ" },
   ],
 };
 
@@ -161,13 +161,18 @@ function Soluciones() {
       >
         {getFilteredItems().map((item, index) => (
           <div
-          key={item.id}
-          className={`Iitem ${scontentVisible ? "fade-in-up" : ""}`}
-          style={{ animationDelay: `${index * 0.5}s` }}
-        >        
+            key={item.id}
+            className={`Iitem ${scontentVisible ? "fade-in-up" : ""}`}
+            style={{ animationDelay: `${index * 0.5}s` }}
+          >        
             <img src={item.image} alt={item.title} className="item-img" />
             <h3>{item.title}</h3>
-            <button className="Iboton">Más Información</button>
+            <button
+              className="Iboton"
+              onClick={() => navigate(`/Soluciones_Novasys/${item.slug}`)}
+              >
+              Más Información
+            </button>  
           </div>
         ))}
       </div>
