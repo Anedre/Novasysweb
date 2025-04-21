@@ -1,5 +1,5 @@
 // SolucionDetalle.jsx
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef  } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useMotionInView } from "../../../hooks/useMotionInView";
@@ -30,6 +30,8 @@ import OSCImage from "../../../img/ORACLESCpng.png";
 import OSAImage from "../../../img/oracle-sales-cloud-Photoroom.png";
 import OSBImage from "../../../img/OSEIpng.png";
 import OEQCImage from "../../../img/OEQCpng.png";
+
+import banner from "../../../img/oracle-s1.jpg";
 
 const soluciones = [
   {
@@ -237,16 +239,19 @@ function SolucionDetalle() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const solucion = soluciones.find((s) => s.slug === slug);
+
   const [modalVisible, setModalVisible] = useState(false);
   const [modalData, setModalData] = useState(null);
 
- 
+  const beneficiosRef = useRef(null);
 
   if (!solucion) {
     return (
       <div className="solucion-detalle not-found">
         <h2>🚫 Solución no encontrada</h2>
-        <button onClick={() => navigate("/Soluciones_Novasys")}>Volver al listado</button>
+        <button onClick={() => navigate("/Soluciones_Novasys")}>
+          Volver al listado
+        </button>
       </div>
     );
   }
@@ -259,157 +264,270 @@ function SolucionDetalle() {
 
   return (
     <>
-
-    <div className="solucion-detalle">
-      <button onClick={() => navigate(-1)} className="solucion-back">
-        ← Volver
-      </button>
-  
-      <section className="introS">
-        <h1>{solucion.title}</h1>
-        <img src={solucion.image} alt={solucion.title} className="solucion-img" />
-        <p>{solucion.description}</p>
+      <section className="banner-top">
+        <motion.img
+          src={solucion.image}
+          alt={solucion.title}
+          className="solucion-img"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.5, duration: 0.6 }}
+        />
       </section>
-  
-      {solucion.imageExtra ? (
-        <section className="solucion-benefit-block">
-          <div className="benefit-img">
-            <img src={solucion.imageExtra} alt={`Visual de ${solucion.title}`} />
+
+      <div className="solucion-detalle">
+       
+
+      
+
+      <section className="introS">
+        
+
+        <div className="intro-content">
+          <motion.h1
+            className="titulo-principal"
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+          >
+            {solucion.title}
+          </motion.h1>
+
+          <motion.p
+            className="intro-descripcion"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+          >
+            {solucion.description}
+          </motion.p>
+
+          <motion.h2
+            className="subtitulo"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.6 }}
+          >
+            Tu aliado para decisiones data‑driven 🚀
+          </motion.h2>
+
+          <div className="botones-intro">
+            <motion.button
+              onClick={() => navigate(-1)}
+              className="btn-fantasma"
+              whileTap={{ scale: 0.95 }}
+            >
+              <motion.span
+                animate={{ x: [0, -6, 0] }}
+                transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+                style={{ display: "inline-block" }}
+              >
+                ←
+              </motion.span>{" "}
+              <motion.span
+                key="volver"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: [0, 1] }}
+                transition={{
+                  delay: 0.3,
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatDelay: 2,
+                }}
+                style={{ display: "inline-block", marginLeft: "6px" }}
+              >
+                Volver
+              </motion.span>
+            </motion.button>
+
+            <motion.button
+              className="btn-fantasma"
+              onClick={() => {
+                const el =
+                  document.querySelector(".solucion-benefit-block") ||
+                  document.querySelector(".solucion-benefits");
+                if (el) {
+                  el.scrollIntoView({ behavior: "smooth", block: "start" });
+                  el.classList.add("highlight-section");
+                  setTimeout(() => el.classList.remove("highlight-section"), 2000);
+                }
+              }}
+              animate={{ scale: [1, 1.05, 1] }} // pulso
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Ver más{" "}
+              <motion.span
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
+              >
+                ↓
+              </motion.span>
+            </motion.button>
           </div>
-          <div className="benefit-text">
+
+
+        </div>
+      </section>
+
+
+
+        {solucion.imageExtra ? (
+          <section className="solucion-benefit-block" ref={beneficiosRef}>
+          <div className="benefit-img">
+              <img
+                src={solucion.imageExtra}
+                alt={`Visual de ${solucion.title}`}
+              />
+            </div>
+            <div className="benefit-text">
+              <h2>¿Qué beneficios tendrá?</h2>
+              <p className="benefit-sub">
+                Con estas funcionalidades, tu equipo podrá tomar decisiones
+                más rápidas, seguras y respaldadas con datos reales.
+              </p>
+              <ul>
+                {solucion.benefits.map((b, i) => {
+                  const { ref, animation } = useMotionInView(i, {
+                    variant: "fade-left",
+                  });
+                  return (
+                    <motion.li key={i} ref={ref} {...animation}>
+                      {b}
+                    </motion.li>
+                  );
+                })}
+              </ul>
+            </div>
+          </section>
+        ) : (
+          <section className="solucion-benefits">
             <h2>¿Qué beneficios tendrá?</h2>
-            <p className="benefit-sub">
-              Con estas funcionalidades, tu equipo podrá tomar decisiones más rápidas, seguras y respaldadas con datos reales.
-            </p>
             <ul>
-              {solucion.benefits.map((b, i) => {
-                const { ref, animation } = useMotionInView(i, { variant: "fade-left" });
+              {solucion.benefits.map((b, i) => (
+                <li key={i}>✅ {b}</li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        <section className="solucion-row">
+          <motion.div
+            className="solucion-video-box"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2>Video explicativo</h2>
+            <div className="video-wrapper">
+              <iframe
+                src={solucion.videoUrl}
+                title={`Video de ${solucion.title}`}
+                frameBorder="0"
+                allowFullScreen
+              />
+            </div>
+          </motion.div>
+
+          <div className="solucion-related-box">
+            <h2>Proyectos relacionados</h2>
+            <div className="related-grid">
+              {solucion.related.slice(0, 4).map((relSlug, idx) => {
+                const rel = soluciones.find((s) => s.slug === relSlug);
+                if (!rel) return null;
+                const { ref, animation } = useMotionInView(idx, {
+                  variant: "fade-up",
+                });
                 return (
-                  <motion.li key={i} ref={ref} {...animation}>
-                    {b}
-                  </motion.li>
+                  <motion.div
+                    key={relSlug}
+                    ref={ref}
+                    className="related-card"
+                    onClick={() => openModal(rel)}
+                    {...animation}
+                  >
+                    <img src={rel.imageExtra || rel.image} alt={rel.title} />
+                    <p>{rel.title}</p>
+                    <div className="related-overlay">
+                      <span>Ver más</span>
+                    </div>
+                  </motion.div>
                 );
               })}
-
-
-
-            </ul>
+            </div>
           </div>
         </section>
-      ) : (
-        <section className="solucion-benefits">
-          <h2>¿Qué beneficios tendrá?</h2>
-          <ul>
-            {solucion.benefits.map((b, i) => (
-              <li key={i}>✅ {b}</li>
-            ))}
-          </ul>
+
+        <section className="solucion-contacto">
+          <div className="contacto-header">
+            <h2>¿Quieres saber más?</h2>
+            <a href="/Contacto" className="contacto-btn">
+              Más información
+            </a>
+          </div>
+          <p>
+            Escríbenos a{" "}
+            <a href="mailto:contacto@novasysperu.com">
+              contacto@novasysperu.com
+            </a>{" "}
+            o chatea con nosotros 👇
+          </p>
         </section>
-      )}
-  
-      <section className="solucion-row">
-        <motion.div
-          className="solucion-video-box"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2>Video explicativo</h2>
-          <div className="video-wrapper">
-            <iframe
-              src={solucion.videoUrl}
-              title={`Video de ${solucion.title}`}
-              frameBorder="0"
-              allowFullScreen
-            />
-          </div>
-        </motion.div>
-  
-        <div className="solucion-related-box">
-          <h2>Proyectos relacionados</h2>
-          <div className="related-grid">
-            {solucion.related.slice(0, 4).map((relSlug, idx) => {
-              const rel = soluciones.find((s) => s.slug === relSlug);
-              if (!rel) return null;
+      </div>
 
-              const { ref, animation } = useMotionInView(idx, { variant: "fade-up" });
-
-              return (
-                <motion.div
-                  key={relSlug}
-                  ref={ref}
-                  className="related-card"
-                  onClick={() => openModal(rel)}
-                  {...animation}
-                >
-                  <img src={rel.imageExtra || rel.image} alt={rel.title} />
-                  <p>{rel.title}</p>
-                  <div className="related-overlay">
-                    <span>Ver más</span>
-                  </div>
-                </motion.div>
-              );
-            })}
-
-
-          </div>
-        </div>
-      </section>
-  
-      <section className="solucion-contacto">
-        <div className="contacto-header">
-          <h2>¿Quieres saber más?</h2>
-          <a href="/Contacto" className="contacto-btn">Más información</a>
-        </div>
-        <p>
-          Escríbenos a{" "}
-          <a href="mailto:contacto@novasysperu.com">contacto@novasysperu.com</a> o chatea con nosotros 👇
-        </p>
-      </section>
-  
-    
-    </div>
-    <AnimatePresence>
-      {modalVisible && modalData && (
-        <motion.div
-          className="modal-overlay"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={closeModal}
-        >
+      <AnimatePresence>
+        {modalVisible && modalData && (
           <motion.div
-            className="modal-content"
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            onClick={(e) => e.stopPropagation()}
+            className="modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeModal}
           >
-            <button className="modal-close" onClick={closeModal}>×</button>
-            <img src={modalData.imageExtra || modalData.image} alt={modalData.title} />
-            <h3>{modalData.title}</h3>
-            <p>{modalData.description}</p>
-            <a href={`/Soluciones_Novasys/${modalData.slug}`} className="modal-link">
-              Ver más detalles →
-            </a>
-            <a
-              href={`https://wa.me/51953730189?text=Hola%2C%20quiero%20más%20información%20sobre%20${encodeURIComponent(modalData.title)}`}
-              className="modal-whatsapp"
-              target="_blank"
-              rel="noopener noreferrer"
+            <motion.div
+              className="modal-content"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              onClick={(e) => e.stopPropagation()}
             >
-              WhatsApp 💬
-            </a>
+              <button className="modal-close" onClick={closeModal}>
+                ×
+              </button>
+              <img
+                src={modalData.imageExtra || modalData.image}
+                alt={modalData.title}
+              />
+              <h3>{modalData.title}</h3>
+              <p>{modalData.description}</p>
+              <a
+                href={`/Soluciones_Novasys/${modalData.slug}`}
+                className="modal-link"
+              >
+                Ver más detalles →
+              </a>
+              <a
+                href={`https://wa.me/51953730189?text=Hola%2C%20quiero%20más%20información%20sobre%20${encodeURIComponent(
+                  modalData.title
+                )}`}
+                className="modal-whatsapp"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                WhatsApp 💬
+              </a>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-
+        )}
+      </AnimatePresence>
     </>
   );
-  
 }
 
 export default SolucionDetalle;
