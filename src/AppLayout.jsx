@@ -6,7 +6,7 @@ import Footer from './components/Footer/Footer.jsx';
 import ScrollToTop from './scripts/ScrollToTop.jsx'; // Ajusta la ruta según corresponda
 import AmazonConnectChat from './components/AmazonConnectChat/AmazonConnectChat.jsx'; // Ajusta la ruta si es necesario
 import WhatsAppWidget from './components/WhatsAppWidget/WhatsAppWidget.jsx';
-import Canonical from './Canonical.jsx'; // Asegúrate que la ruta sea correcta
+import Canonical from './hooks/Canonical.jsx'; // Asegúrate que la ruta sea correcta
 
 
 
