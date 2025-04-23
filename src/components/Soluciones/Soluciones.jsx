@@ -104,7 +104,7 @@ function Soluciones() {
             />
           </div>
           <br />
-          <button className="Sboton1" onClick={() => navigate("/business-intelligence")}>Ver más ➜</button>
+          <button className="Sboton1" onClick={() => navigate("/Business_Intelligence")}>Ver más ➜</button>
         </div>
 
         <div className="Sitem1">
