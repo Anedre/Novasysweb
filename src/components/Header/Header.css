@@ -84,8 +84,8 @@
   position: absolute;
   top: 38px;
   left: 0;
-  background: rgb(221, 221, 221);
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  background: var(--dropdown-bg);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   width: 200px;
   display: flex;
   flex-direction: column;
@@ -111,18 +111,18 @@
 /* Ítems del dropdown */
 .dropdown-item {
   padding: 10px;
-  color: rgb(0, 0, 0);
+  color: var(--dropdown-text);
   text-decoration: none;
   position: relative;
   padding-right: 40px; /* Espacio para la flecha */
-  transition: color 0.3s ease, font-weight 0.3s ease;
+  transition: color 0 ease, font-weight 0 ease;
 }
 
 /* Pseudo-elemento para la flecha */
 .dropdown-item::after {
   content: "➜";
   font-size: 1.2em;      
-  color: #007bff;        
+  color: var(--dropdown-arrow);
   position: absolute;
   right: 10px;
   top: 50%;
@@ -131,10 +131,12 @@
 }
 
 .dropdown-item:hover {
-  color: #00356d;
+  color: var(--dropdown-hover-color);
   font-weight: 500;
-  transform: scale(1.02);
-  background: transparent;
+  margin: 0;
+  padding: 10px 25px;
+  padding-right: 40px; /* Espacio para la flecha */
+  background: var(--dropdown-hover-bg);
 }
 
 .dropdown-item:hover::after {

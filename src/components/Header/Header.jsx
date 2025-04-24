@@ -263,7 +263,7 @@ function Header() {
                 Marketing
               </Link>
               <Link to="/Business_Intelligence" className="dropdown-item">
-                Business Intelligence
+                Business Intelligence  
               </Link>
               <Link to="/Elo" className="dropdown-item">
                 ELO ECM

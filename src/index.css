@@ -25,6 +25,10 @@ body.day {
   background: #F4F5F7;
   color: #000;
   transition: background 0.3s ease, color 0.3s ease;
+  --dropdown-bg: rgb(238, 238, 238);
+  --dropdown-text: #000;
+  --dropdown-hover-bg: rgba(0, 0, 0, 0.05);
+  --dropdown-arrow: #0300ad;
 }
 
 body.day header, body.day footer {
@@ -44,6 +48,11 @@ body.night {
   color: #e0e0e0;
   transition: background 0.3s ease, color 0.3s ease;
   animation: backgroundShift 15s infinite alternate ease-in-out;
+  --dropdown-bg: #2b2b2b;
+  --dropdown-text: #e0e0e0;
+  --dropdown-hover-bg: rgba(255, 255, 255, 0.1);
+  --dropdown-hover-color: #00a6cf;
+  --dropdown-arrow: #dbdbdb;
 }
 
 body.night header, body.night footer {
@@ -53,7 +62,7 @@ body.night header, body.night footer {
 }
 
 body.night a, body.night button {
-  color: #e40913;
+  color: inherit;
 }
 
 @keyframes backgroundShift {
