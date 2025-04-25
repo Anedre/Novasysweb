@@ -12,14 +12,19 @@ function Header() {
   const markerTimeout = useRef(null);
   const hoverNovasysRef = useRef(null);
   const hoverHPRef = useRef(null);
+  const hoverAmazonRef = useRef(null);
 
   // Estados para hover en dropdowns
   const [isNovasysHovered, setIsNovasysHovered] = useState(false);
   const [isHPHovered, setIsHPHovered] = useState(false);
+  const [isAmazonHovered, setIsAmazonHovered] = useState(false);
+
 
   // Estados para abrir/cerrar dropdowns
   const [isNovasysOpen, setIsNovasysOpen] = useState(false);
   const [isHPOpen, setIsHPOpen] = useState(false);
+  const [isAmazonOpen, setIsAmazonOpen] = useState(false);
+
 
   // Estados para la navegación móvil y su submenú
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
@@ -56,6 +61,8 @@ function Header() {
         activeEl = document.getElementById("nav-snovasys");
       } else if (lowerPath.startsWith("/solucioneshp")) {
         activeEl = document.getElementById("nav-shp");
+      } else if (lowerPath.startsWith("/soluciones_amazon")) {
+        activeEl = document.getElementById("nav-samazon");
       } else {
         activeEl = document.querySelector(".navItem.active");
       }
@@ -123,6 +130,8 @@ function Header() {
         activeEl = document.getElementById("nav-snovasys");
       } else if (lowerPath.startsWith("/solucioneshp")) {
         activeEl = document.getElementById("nav-shp");
+      } else if (lowerPath.startsWith("/soluciones_amazon")) {
+        activeEl = document.getElementById("nav-samazon");
       } else {
         activeEl = document.querySelector(".navItem.active");
       }
@@ -160,12 +169,25 @@ function Header() {
     }, 100);
   };
 
+   // Manejadores para el dropdown de Amazon
+   const handleAmazonMouseEnter = () => {
+    if (hoverAmazonRef.current) clearTimeout(hoverAmazonRef.current);
+    setIsAmazonOpen(true);
+  };
+
+  const handleAmazonMouseLeave = () => {
+    hoverAmazonRef.current = setTimeout(() => {
+      setIsAmazonOpen(false);
+    }, 100);
+  };
+
   // Limpieza de timeouts al desmontar el componente
   useEffect(() => {
     return () => {
       clearTimeout(markerTimeout.current);
       clearTimeout(hoverNovasysRef.current);
       clearTimeout(hoverHPRef.current);
+      clearTimeout(hoverAmazonRef.current);
     };
   }, []);
 
@@ -217,6 +239,7 @@ function Header() {
               );
               setIsNovasysHovered(true);
               setIsHPHovered(false);
+              setIsAmazonHovered(false);
             }}
             onMouseLeave={(e) => {
               handleNovasysMouseLeave();
@@ -280,6 +303,7 @@ function Header() {
               );
               setIsHPHovered(true);
               setIsNovasysHovered(false);
+              setIsAmazonHovered(false);
             }}
             onMouseLeave={(e) => {
               handleHPMouseLeave();
@@ -315,6 +339,54 @@ function Header() {
               </Link>
             </div>
           </div>
+          {/* Dropdown: Soluciones Amazon */}
+          <div
+            className="navItem dropdown"
+            onMouseEnter={(e) => {
+              handleAmazonMouseEnter();
+              updateMarkerForElement(
+                e.currentTarget.querySelector(".dropdown-title")
+              );
+              setIsAmazonHovered(true);
+              setIsNovasysHovered(false);
+              setIsHPHovered(false);
+            }}
+            onMouseLeave={(e) => {
+              handleAmazonMouseLeave();
+              setIsAmazonHovered(false);
+            }}
+          >
+            <Link
+              to="/Soluciones_Amazon"
+              id="nav-samazon"
+              className={`dropdown-title solucionesAmazon ${
+                lowerPath.startsWith("/soluciones_amazon") ? "active" : ""
+              } ${isAmazonHovered ? "hovered" : ""}`}
+              onMouseEnter={handleNavItemMouseEnter}
+              onMouseLeave={handleNavItemMouseLeave}
+              style={{
+                transform: lowerPath.startsWith("/soluciones_amazon")
+                  ? "scale(1)"
+                  : isAmazonHovered
+                  ? "scale(1.5)"
+                  : "scale(1)",
+                color: isAmazonHovered ? "red" : "inherit",
+                transition: "transform 0.5s ease, color 0.5s ease"
+              }}
+            >
+              Soluciones Amazon
+            </Link>
+            <div className={`dropdown-menu ${isAmazonOpen ? "open" : "closing"}`}>
+              <Link to="/Soluciones_AmazonConnect" className="dropdown-item">
+                Amazon Connect
+              </Link>
+              <Link to="/Soluciones_AmazonDialer" className="dropdown-item">
+                Connect Dialer
+              </Link>
+            </div>
+          </div>
+
+          {/* Enlaces adicionales */}
           <Link
             to="/Casos_de_exito"
             className={`navItem ${lowerPath === "/casos_de_exito" ? "active" : ""}`}
@@ -392,6 +464,15 @@ function Header() {
                   Soluciones HP
                 </Link>
                 <button className="submenuArrowMobile" onClick={() => openMobileSubmenu("hp")}>
+                  ➔
+                </button>
+              </div>
+              <div className="mobileNavDivider"></div>
+              <div className="mobileNavItem withSubmenu">
+                <Link to="/Soluciones_Amazon" className="TTmobileNavItem" onClick={toggleMobileNav}>
+                  Soluciones Amazon
+                </Link>
+                <button className="submenuArrowMobile" onClick={() => openMobileSubmenu("amazon")}>
                   ➔
                 </button>
               </div>
@@ -498,6 +579,31 @@ function Header() {
                   }}
                 >
                   Soluciones HP
+                </Link>
+              </>
+            )}
+            {activeMobileSubmenu === "amazon" && (
+              <>
+                <Link
+                  to="/AmazonConnect"
+                  className="mobileSubmenuItem"
+                  onClick={() => {
+                    closeMobileSubmenu();
+                    toggleMobileNav();
+                  }}
+                >
+                  Amazon Connect
+                </Link>
+                <div className="mobileSubmenuDivider"></div>
+                <Link
+                  to="/ConnectDialer"
+                  className="mobileSubmenuItem"
+                  onClick={() => {
+                    closeMobileSubmenu();
+                    toggleMobileNav();
+                  }}
+                >
+                  Connect Dialer
                 </Link>
               </>
             )}

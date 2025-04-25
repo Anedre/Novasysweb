@@ -1,175 +1,152 @@
-/* Contenedor principal */
 .intro-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 800px;
+  height: 100vh;
   width: 100%;
   position: relative;
   overflow: hidden;
   transition: background 0.3s ease;
-}
-
-
-/* Ajusta el estilo de los cuadrados que actúan como gotas */
-.raindrop {
-  position: absolute;
-  width: 50px; 
-  height: 50px;
-  background: rgba(255, 255, 255, 0.8);
-  /* Elimina el border-radius para que sean cuadrados */
   z-index: 0;
 }
 
-
-
-/* Modo Día */
-.intro-container.day {
-  background: radial-gradient(circle at center, #F4F5F7, #D6D7DA);
-}
-
-/* Modo Noche */
-.intro-container.night {
-  background: radial-gradient(circle at center, #121212, #1e1e1e);
-}
-
-/* Tamaño del logo */
-.intro-logo {
-  width: 300px;
-  height: auto;
-  z-index: 2;
-}
-
-/* Formas abstractas animadas */
-.shape {
+.intro-container::before {
+  content: '';
   position: absolute;
-  opacity: 0.9; /* Mayor contraste */
-  z-index: 1;
-  filter: drop-shadow(2px 2px 8px rgba(0, 0, 0, 0.3)); /* Sombra para mejor visibilidad */
+  inset: 0;
+  backdrop-filter: blur(8px);
+  background: linear-gradient(120deg, #f8f8f8, #e0e0e0, #f8f8f8); /* modo día por defecto */
+  background-size: 400% 400%;
+  animation: gradientMove 10s ease infinite;
+  opacity: 0.4;
+  z-index: 0;
 }
 
-.square, .circle, .triangle, .hexagon, .rhombus, .star {
-  width: 35px;
-  height: 35px;
+/* Fondo modo noche más oscuro y futurista */
+.night .intro-container::before {
+  background: linear-gradient(135deg, #0d0d0d, #1a1a1a, #0d0d0d);
+  background-size: 400% 400%;
+  animation: gradientMove 20s ease infinite;
+  opacity: 0.25;
 }
 
-.circle {
-  border-radius: 50%;
+
+/* Animación del fondo */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-.triangle {
-  width: 0;
-  height: 0;
-  border-left: 25px solid transparent;
-  border-right: 25px solid transparent;
-  border-bottom: 50px solid;
+.logo-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
-.hexagon {
-  background-color: inherit;
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+.intro-logo {
+  max-width: 700px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  transform: translateY(-50px);
+  transition: filter 0.5s ease, transform 0.5s ease;
 }
 
-.rhombus {
-  background-color: inherit;
-  transform: rotate(45deg);
+.day .intro-logo:hover {
+  filter: drop-shadow(0 2px 8px rgba(87, 61, 62));
+  transform: scale(1.5), translateY(-50px);
 }
-
-.star {
-  background-color: inherit;
-  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-}
-
-/* Modo Día - Colores de formas */
-.day .square {
-  background-color: rgba(100, 100, 100, 0.6);
-}
-.day .circle {
-  background-color: rgba(200, 50, 50, 0.7);
-}
-.day .triangle {
-  border-bottom-color: rgba(80, 80, 80, 0.6);
-}
-.day .hexagon {
-  background-color: rgba(50, 150, 200, 0.7);
-}
-.day .rhombus {
-  background-color: rgba(180, 100, 50, 0.7);
-}
-.day .star {
-  background-color: rgba(255, 200, 50, 0.8);
-}
-
-/* Modo Noche - Colores de formas con más contraste */
-.night .square {
-  background-color: rgba(255, 255, 255, 0.8);
-}
-.night .circle {
-  background-color: rgba(255, 165, 0, 0.9);
-}
-.night .triangle {
-  border-bottom-color: rgba(255, 255, 255, 0.8);
-}
-.night .hexagon {
-  background-color: rgba(0, 255, 255, 0.7);
-}
-.night .rhombus {
-  background-color: rgba(255, 50, 150, 0.7);
-}
-.night .star {
-  background-color: rgba(255, 255, 100, 0.9);
+.night .intro-logo:hover {
+  filter: drop-shadow(4px 4px 8px rgba(255, 28, 36, 0.849));
+  transform: scale(1.5);
+  transform: translateY(-50px);
 }
 
 /* Flecha de scroll */
 .intro-arrow {
   position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 200px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
   cursor: pointer;
-  transition: color 0.3s ease;
-  z-index: 2;
+  z-index: 3;
 }
 
-.day .intro-arrow {
-  color: #333;
-}
-.night .intro-arrow {
-  color: #fff;
+.arrow-icon {
+  font-size: 4.5rem;
+  color: var(--arrowColor); /* negro o blanco según tema */
+  transition: color 0.3s ease, transform 0.2s ease;
 }
 
-/* Responsividad */
-@media (max-width: 760px) {
-  .intro-container {
-    height: 600px;
-  }
 
+.arrow-icon:hover {
+  color: #ff1c22;
+  background: linear-gradient(45deg, #ff1c22, #ff595e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: scale(1.2);
+}
+
+.arrow-reflection-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+
+.day .intro-arrow { color: #333; }
+.night .intro-arrow { color: #fff; }
+
+/* Cubos que caen */
+.raindrop {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  
+  border-radius: 6px;
+  z-index: 1;
+}
+
+
+.square {
+  width: 35px;
+  height: 35px;
+}
+
+/* 🎨 Cubos más claros de día */
+.day .raindrop {
+  background: rgba(200, 200, 200, 0.637);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+}
+
+/* 🌙 Cubos más vivos y con contraste de noche */
+.night .raindrop {
+  background: rgba(255, 255, 255, 0.432);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(1px);
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
   .intro-logo {
-    width: 200px;
-  }
-
-  .shape {
-    width: 40px;
-    height: 40px;
+    width: 300px;
   }
 }
 
 @media (max-width: 480px) {
-  .intro-container {
-    height: 500px;
-  }
-
   .intro-logo {
-    width: 150px;
-  }
-
-  .shape {
-    width: 30px;
-    height: 30px;
+    width: 200px;
   }
 
   .intro-arrow {
-    bottom: 15px;
+    bottom: 30px;
   }
 }

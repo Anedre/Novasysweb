@@ -114,7 +114,7 @@
   color: var(--dropdown-text);
   text-decoration: none;
   position: relative;
-  padding-right: 40px; /* Espacio para la flecha */
+  padding-right: 50px; /* Espacio para la flecha */
   transition: color 0 ease, font-weight 0 ease;
 }
 
@@ -135,7 +135,7 @@
   font-weight: 500;
   margin: 0;
   padding: 10px 25px;
-  padding-right: 40px; /* Espacio para la flecha */
+  padding-right: 60px; /* Espacio para la flecha */
   background: var(--dropdown-hover-bg);
 }
 

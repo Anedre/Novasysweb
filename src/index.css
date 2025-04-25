@@ -29,6 +29,8 @@ body.day {
   --dropdown-text: #000;
   --dropdown-hover-bg: rgba(0, 0, 0, 0.05);
   --dropdown-arrow: #0300ad;
+  --card-background: white;
+
 }
 
 body.day header, body.day footer {
@@ -53,6 +55,8 @@ body.night {
   --dropdown-hover-bg: rgba(255, 255, 255, 0.1);
   --dropdown-hover-color: #00a6cf;
   --dropdown-arrow: #dbdbdb;
+  --card-background: #2c2c2e;
+
 }
 
 body.night header, body.night footer {

@@ -110,7 +110,7 @@ function Home() {
                 <img src={entel} alt="Proyecto 1" />
               </Link>      
               <h3>CRM Entel Empresas</h3>
-              <p>Entel optimiza su Contact Center implementando Oracle Service Cloud</p>
+              <p>Entel optimizó su Contact Center implementando Oracle Service Cloud</p>
               
             </div>
             <div className="success-item">

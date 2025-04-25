@@ -20,10 +20,7 @@
   align-items: center;
 }
 
-.intro img {
-  width: 700px; /* Tamaño inicial para pantallas grandes */
-  height: 200px;
-}
+
 
 .solutions-btn {
   grid-area: solutions-btn;
@@ -94,16 +91,17 @@
 .success-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* 3 columnas */
-  gap: 100px;  /* Ajusta el espacio entre ítems según lo necesites */
-  max-width: 1200px;
+  gap: 50px;  /* Ajusta el espacio entre ítems según lo necesites */
+  max-width: 1500px;
   width: 100%;
   margin: auto auto;
   margin-bottom: 5%;
+  align-items: center;
 }
 
 
 .success-item {
-  max-width: 250px;
+  max-width: 400px;
 
 }
 
@@ -121,7 +119,7 @@ img[alt="Proyecto 1"] {
 }
 
 .success-item img:hover {
-  transform: scale(1.5); /* Efecto al pasar el mouse */
+  transform: scale(1.2); /* Efecto al pasar el mouse */
 }
 
 .success-item p {
@@ -131,7 +129,7 @@ img[alt="Proyecto 1"] {
 
 .success-item h3{
   padding-bottom: 0;
-  font-size:1.1em;
+  font-size:1.5em;
 }
 
 /* Grid de soluciones */
@@ -165,7 +163,7 @@ img[alt="Proyecto 1"] {
 /* Clase para las secciones que se desplazarán manualmente */
 /* Se descuenta la altura del header (70px) */
 .section-scroll {
-  height: calc(100vh - 200px);
+  height: 100vh;
   scroll-snap-align: center;
   align-items: center;
   justify-content: center;
