@@ -13,13 +13,13 @@ const products = [
       title: "Amazon Connect",
       description: "Plataforma de contact center omnicanal basada en la nube.",
       image: amazon_connect,
-      link: "/AmazonConnect",
+      link: "/Soluciones_AmazonConnect",
     },
     {
       title: "Connect Dialer",
       description: "Sistema de marcación automática integrado con Amazon Connect.",
       image: dialer,
-      link: "/ConnectDialer",
+      link: "/Soluciones_AmazonDialer",
     },
     {
       title: "AWS Lambda Services",
