@@ -13,55 +13,157 @@
   align-items: center;
 }
 
+/* Sección: Intro */
 .intro {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-
-
-.solutions-btn {
-  grid-area: solutions-btn;
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-
+/* Botón principal */
 .btn-casos {
   display: inline-block;
   padding: 12px 24px;
-  background-color: #007BFF;
-  color: #fff;
-  text-decoration: none;
+  background: linear-gradient(135deg, #ff9900, #ff6600);
+  color: white;
   font-weight: bold;
-  border-radius: 8px;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  cursor: pointer;
-  margin-top: 20px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif  ;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  margin-top: 40px;
+  box-shadow: 0 5px 15px rgba(255, 102, 0, 0.6);
 }
 
 .btn-casos:hover {
-  transform: scale(1.05);
-  background-color: #0056b3;
+  background: linear-gradient(135deg, #ff6600, #ff3300);
+  transform: translateY(-5px) scale(1.05);
 }
-
 
 /* Sección: Casos de éxito */
 .section__paragraph1 {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;  /* Organiza el contenido en columna */
-  justify-content: center; /* Centra verticalmente */
-  align-items: center;     /* Centra horizontalmente */
-  scroll-snap-align: center; /* Si se utiliza scroll snapping nativo */
+  padding: 100px 20px;
   text-align: center;
-  margin:5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: center;
 }
+
+/* Grid de casos */
+.success-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.success-item {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-card);
+  color: var(--color-text-main);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 25px 20px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.success-item:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 10px 30px rgba(255, 153, 0, 0.3);
+  border-color: rgba(255, 153, 0, 0.5);
+}
+
+.success-logo-wrapper {
+  margin-bottom: 15px;
+}
+
+.success-logo-wrapper img {
+  width: 100%;
+  height: 80px;
+  object-fit: contain;
+  filter: brightness(0.95) contrast(1.1);
+  transition: transform 0.3s ease;
+}
+
+.success-item:hover img {
+  transform: scale(1.05);
+}
+
+.success-content h3 {
+  color: var(--color-text-main);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.success-content p {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+/* BADGES - Etiquetas de tecnología */
+.success-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  margin-bottom: 10px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background-color: var(--color-tag-bg);
+  color: var(--color-tag-text);
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid var(--color-tag-border);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.success-item:hover .tag {
+  background-color: rgba(255, 153, 0, 0.25);
+  border-color: rgba(255, 153, 0, 0.6);
+}
+
+/* Ver más en hover */
+.more-link {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: #ff9900;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.success-item:hover .more-link {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
 
 /* Sección: Nuestras soluciones */
 .section__paragraph2 {
@@ -76,6 +178,30 @@
   padding: 7%;
   box-sizing: border-box;
 }
+
+
+.solutions-btn {
+  animation: fadeInUp 0.8s ease forwards;
+  opacity: 0;
+}
+
+.section__paragraph2 .animate-up.active .solutions-btn {
+  opacity: 1;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
 /* Sección: Estadísticas - Contenedor completo */
 .section__paragraph3 {
   width: 100%;
@@ -85,52 +211,6 @@
   justify-content: center;
 }
 
-
-
-/* Grid de casos de éxito */
-.success-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 3 columnas */
-  gap: 50px;  /* Ajusta el espacio entre ítems según lo necesites */
-  max-width: 1500px;
-  width: 100%;
-  margin: auto auto;
-  margin-bottom: 5%;
-  align-items: center;
-}
-
-
-.success-item {
-  max-width: 400px;
-
-}
-
-.success-item img {
-  max-height: 100px;
-  width: auto;
-  transition: transform 0.3s ease-in-out;
-  margin-bottom:10%;
-  
-}
-img[alt="Proyecto 1"] {
- 
-  width: 160px;       /* Cambia el ancho */
-  /* O cualquier otra propiedad CSS */
-}
-
-.success-item img:hover {
-  transform: scale(1.2); /* Efecto al pasar el mouse */
-}
-
-.success-item p {
-  font-weight: 500;
-  font-size: 0.8em;
-}
-
-.success-item h3{
-  padding-bottom: 0;
-  font-size:1.5em;
-}
 
 /* Grid de soluciones */
 
@@ -200,6 +280,17 @@ img[alt="Proyecto 1"] {
   padding-bottom: 100px;
 }
 
+.animate-text h2 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+}
+
+.animate-text p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto 50px;
+  line-height: 1.6;
+}
 
 
 /* Animación para elementos de la sección 3 (entrada desde abajo) */
@@ -222,6 +313,23 @@ img[alt="Proyecto 1"] {
 
 /* Responsive para móviles (hasta 780px) */
 @media (max-width: 780px) {
+  .section__paragraph2 {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "solutions-text"
+      "solutions-carousel"
+      "solutions-btn";
+    padding: 5% 5%;
+  }
+
+  .solutions-text {
+    padding: 0;
+    text-align: center;
+  }
+
+  .solutions-carousel {
+    justify-content: center;
+  }
   /* Ajuste en la sección Intro */
   .intro img {
     width: 100%;
@@ -243,20 +351,111 @@ img[alt="Proyecto 1"] {
     font-size: 0.9rem;
   }
   .success-grid {
-    margin: 20px 0;
-    gap: 10px;
-    grid-template-columns: repeat(2, 1fr);
-
-
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
   }
   .success-item {
-    max-width: 90%;
+    max-width: 400px;
+  
   }
-  .success-item img {
-    max-height: 40px;
-    width: auto;
+  .success-item:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(255, 153, 0, 0.3);
+    border-color: rgba(255, 153, 0, 0.5);
+  }
+
+  .success-logo-wrapper {
+    margin-bottom: 15px;
   }
   
+  .success-logo-wrapper img {
+    width: 100%;
+    height: 80px;
+    object-fit: contain;
+    filter: brightness(0.95) contrast(1.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .success-item img {
+    width: 100%;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    filter: brightness(0.9) contrast(1.1);
+  }
+
+  .success-item:hover img {
+    transform: scale(1.05);
+  }
+
+  .success-content h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .success-content p {
+    font-size: 0.95rem;
+    color: var(--text-color-secondary, #ccc);
+    margin-bottom: 15px;
+    line-height: 1.5;
+  }
+
+  
+  /* BADGES */
+  .success-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px;
+    margin-bottom: 10px;
+  }
+  
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background-color: rgba(255, 153, 0, 0.12);
+    color: #ff9900;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 153, 0, 0.4);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+  
+  .success-item:hover .tag {
+    background-color: rgba(255, 153, 0, 0.25);
+    border-color: rgba(255, 153, 0, 0.6);
+  }
+  
+  /* Ver más */
+  .more-link {
+    margin-top: 8px;
+    font-size: 0.82rem;
+    color: #ff9900;
+    font-weight: 500;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  
+  .success-item:hover .more-link {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+    
   /* Sección Nuestras soluciones */
   .section__paragraph2 {
     text-align: center;
@@ -265,16 +464,21 @@ img[alt="Proyecto 1"] {
   }
   .solutions-text {
     text-align: center;
-    padding-right: 0;
     margin-bottom: 1rem;
+    grid-area: solutions-text;
+    padding-right: 50px;
+    color: var(--color-text-main);
   }
   .solutions-text h2 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    color: var(--color-text-main);
   }
   .solutions-text p {
-    font-size: 0.9rem;
-  }
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 500px;
+    color: var(--color-text-secondary);  }
   .solutions-carousel {
     padding: 0 10px;
     grid-area: solutions-carousel;
@@ -351,8 +555,22 @@ img[alt="Proyecto 1"] {
 
   /* Ajuste para los botones */
   .btn-casos {
-    padding: 10px 20px;
-    font-size: 0.9rem;
+    background: linear-gradient(135deg, #ff9900, #ff6600);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 40px;
+    display: inline-block;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-casos:hover {
+    background: linear-gradient(135deg, #ff6600, #ff3300);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 102, 0, 0.6);
   }
 
   /* Ajuste en la sección Casos de éxito */

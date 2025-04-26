@@ -30,6 +30,16 @@ body.day {
   --dropdown-hover-bg: rgba(0, 0, 0, 0.05);
   --dropdown-arrow: #0300ad;
   --card-background: white;
+  --color-bg-card: rgba(255, 255, 255, 0.5);
+  --color-border-card: rgba(0, 0, 0, 0.05);
+  --color-text-main: #111;
+  --color-text-secondary: #444;
+  --color-tag-bg: rgba(255, 153, 0, 0.1);
+  --color-tag-border: rgba(255, 153, 0, 0.3);
+  --color-tag-text: #b35500;
+  --color-btn-bg: #ff9900;
+  --dot-color-inactive: #999;
+  --dot-color-active: #ff9900;
 
 }
 
@@ -56,6 +66,18 @@ body.night {
   --dropdown-hover-color: #00a6cf;
   --dropdown-arrow: #dbdbdb;
   --card-background: #2c2c2e;
+  --color-bg-card: rgba(255, 255, 255, 0.06);
+  --color-border-card: rgba(255, 255, 255, 0.1);
+  --color-text-main: #fff;
+  --color-text-secondary: #ccc;
+
+  --color-tag-bg: rgba(255, 153, 0, 0.15);
+  --color-tag-border: rgba(255, 153, 0, 0.4);
+  --color-tag-text: #ffcc80;
+  --color-btn-bg: #ffb74d;
+
+  --dot-color-inactive: #666;
+  --dot-color-active: #ffb74d;
 
 }
 

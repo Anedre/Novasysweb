@@ -8,7 +8,6 @@ import pacifico from '../../img/pacifico.svg';
 import renzocosta from '../../img/renzocosta.png';
 import americatel from '../../img/americatel.png';
 import IntroAnimation from '../Background/IntroAnimation.jsx';
-
 import SolucionesCarousel from "../../scripts/CustomCarousel/CustomCarousel.jsx"; // Asegúrate de ajustar la ruta
 import StatsSection from '../../scripts/StatsSection/StatsSection.jsx';
 
@@ -106,30 +105,72 @@ function Home() {
         <div className="animate-left animate-grid">
           <div className="success-grid">
             <div className="success-item">
-              <Link to="/Entel">
-                <img src={entel} alt="Proyecto 1" />
-              </Link>      
-              <h3>CRM Entel Empresas</h3>
-              <p>Entel optimizó su Contact Center implementando Oracle Service Cloud</p>
-              
+            <div className="success-logo-wrapper">
+                  <img src={entel} alt="Proyecto 1" />
+              </div>     
+              <div className="success-content">
+                <h3>CRM Entel Empresas</h3>
+                <p>Entel optimizó su Contact Center implementando Oracle Service Cloud</p>
+                <div className="success-tags">
+                  <span className="tag">💼 CRM</span>
+                  <span className="tag">☁️ Oracle</span>
+                </div>
+                <Link to="/Entel">
+                <div className="more-link">➡️ Ver más</div>
+                </Link> 
+
+              </div>
             </div>
             <div className="success-item">
-              <img src={pacifico} alt="Proyecto 2" />
-              <h3>Proyecto Pacífico</h3>
-              <p>Pacífico mejora la gestión y seguimiento de sus oportunidades</p>
+              <div className="success-logo-wrapper">
+                <img src={pacifico} alt="Proyecto 2" />
+              </div>
+              <div className="success-content">
+                <h3>Proyecto Pacífico</h3>
+                <p>Pacífico mejora la gestión y seguimiento de sus oportunidades</p>
+                <div className="success-tags">
+                  <span className="tag">🏥 Salud</span>
+                  <span className="tag">💼 CRM</span>
+                </div>
+                <div className="more-link">➡️ Ver más</div>
+
+              </div>
             </div>
+
             <div className="success-item">
-              <Link to="/Renzo">
-              <img src={renzocosta} alt="Proyecto 3" />
-              </Link>
-              <h3>Proyecto Renzo Costa</h3>
-              <p>Falta informacion!</p>
+              <div className="success-logo-wrapper">
+                  <img src={renzocosta} alt="Proyecto 3" />
+              </div>
+              <div className="success-content">
+                <h3>Proyecto Renzo Costa</h3>
+                <p>Implementación pendiente de información</p>
+                <div className="success-tags">
+                  <span className="tag">🛍️ Retail</span>
+                  <span className="tag">🧥 Moda</span>
+                </div>
+                <Link to="/Renzo">
+
+                  <div className="more-link">➡️ Ver más</div>
+                </Link>
+
+              </div>
             </div>
+
             <div className="success-item">
-              <img src={americatel} alt="Proyecto 4" /> 
-              <h3>Proyecto Americatel</h3>
-              <p>Americatel mejora la gestión y seguimiento de sus oportunidades</p>
+              <div className="success-logo-wrapper">
+                <img src={americatel} alt="Proyecto 4" />
+              </div>
+              <div className="success-content">
+                <h3>Proyecto Americatel</h3>
+                <p>Americatel mejora la gestión y seguimiento de sus oportunidades</p>
+                <div className="success-tags">
+                  <span className="tag">📡 Telecom</span>
+                  <span className="tag">💼 CRM</span>
+                </div>
+                <div className="more-link">➡️ Ver más</div>
+              </div>
             </div>
+
           </div>
           {/* Botón para redirigir a "Casos_de_exito" */}
           <Link to="/Casos_de_exito" className="btn-casos">
@@ -145,16 +186,17 @@ function Home() {
           <p>
             Ofrecemos una gran variedad de servicios e implementaciones en asociación con las empresas tecnológicas más importantes
           </p>
+          {/* Nuevo botón debajo del carousel */}
+        <div className="solutions-btn" >
+          <Link to="/Soluciones_novasys" className="btn-casos">
+            Ver nuestra soluciones
+          </Link> 
+        </div>
         </div>
         <div className="solutions-carousel animate-up">
           <SolucionesCarousel />
         </div>
-        {/* Nuevo botón debajo del carousel */}
-        <div className="solutions-btn" >
-          <Link to="/Soluciones_novasys" className="btn-casos">
-            Ver nuestra soluciones
-          </Link>
-        </div>
+        
       </div>
 
       {/* Sección 4: Estadísticas */}

@@ -42,18 +42,25 @@ const CustomCarousel = () => {
 
   // Maneja el click en cada slide
   const handleSlideClick = (position, img) => {
-    // Si es la imagen de entel, redirige a /Entel
-    if (typeof img === 'string' && img.includes('entel')) {
-      navigate('/Entel');
-      return;
-    }
-    if (position === 'left') {
+    if (position === 'center') {
+      if (typeof img === 'string') {
+        if (img.includes('elo')) {
+          navigate('/Elo');
+        } else if (img.includes('Bluekai_logo_color')) {
+          navigate('/Soluciones_Novasys/oracle-bluekai');
+        } else if (img.includes('Ocloud')) {
+          navigate('/Soluciones_Novasys/oracle-paas');
+        } else if (img.includes('Amazon_Connect')) {
+          navigate('/Soluciones_AmazonConnect');
+        }
+      }
+    } else if (position === 'left') {
       setActiveIndex((prev) => (prev - 1 + total) % total);
     } else if (position === 'right') {
       setActiveIndex((prev) => (prev + 1) % total);
     }
-    // Si es la imagen central, no hacemos nada.
   };
+  
 
   // Variantes para animar cada posición del slide
   const slideVariants = {
@@ -89,18 +96,24 @@ const CustomCarousel = () => {
   // Función para devolver un degradado según la imagen
   const getOverlayGradient = (img) => {
     if (typeof img === 'string') {
-      if (img.includes('entel')) {
-        return 'linear-gradient(180deg, rgba(255, 179, 108, 0.44) 40%, rgba(188, 186, 255, 0.8) 100%)';
+      if (img.includes('elo')) {
+        // Entel
+        return 'linear-gradient(180deg, rgba(255,184,108,0.2) 30%, rgba(0,123,255,0.6) 100%)';
       } else if (img.includes('Bluekai_logo_color')) {
-        return 'linear-gradient(180deg, rgba(0,0,255,0) 40%, rgba(0,0,255,0.8) 100%)';
+        // Pacifico
+        return 'linear-gradient(180deg, rgba(0,123,255,0.2) 30%, rgba(0,0,255,0.6) 100%)';
       } else if (img.includes('Ocloud')) {
-        return 'linear-gradient(180deg, rgba(0,255,0,0) 40%, rgba(0,255,0,0.8) 100%)';
+        // Ocloud
+        return 'linear-gradient(180deg, rgba(76,175,80,0.2) 30%, rgba(27,94,32,0.7) 100%)';
       } else if (img.includes('Amazon_Connect')) {
-        return 'linear-gradient(180deg, rgba(255,255,0,0) 40%, rgba(255,255,0,0.8) 100%)';
+        // Amazon
+        return 'linear-gradient(180deg, rgba(255,204,0,0.2) 30%, rgba(255,152,0,0.7) 100%)';
       }
     }
-    return 'linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.8) 100%)';
+    // Default fallback
+    return 'linear-gradient(180deg, rgba(0,0,0,0.2) 30%, rgba(0,0,0,0.7) 100%)';
   };
+  
 
   return (
     <div className="carouselS">

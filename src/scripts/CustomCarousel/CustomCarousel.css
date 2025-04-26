@@ -64,25 +64,30 @@
 /* Dots de navegación */
 .carousel-dots {
   position: absolute;
-  bottom: 0px;
+  bottom: -140px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   gap: 10px;
+  height: 100%;
+  align-items: center;
 }
+
+
 
 .dot {
   width: 10px;
   height: 10px;
-  background: #ccc;
+  background-color: var(--dot-color-inactive);
   border-radius: 50%;
+  transition: all 0.3s ease;
   cursor: pointer;
-  transition: background 0.3s ease;
 }
 
 .dot.active {
-  background: #007BFF;
-}
+  transform: scale(1.2);
+  background-color: var(--dot-color-active);
+  box-shadow: 0 0 2px var(--dot-color-active);}
 
 /* Responsive para móviles */
 @media (max-width: 480px) {
