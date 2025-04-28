@@ -3,6 +3,8 @@
   width: 100%;
   margin: 0;
 }
+/* Activar scroll por secciones */
+
 
 /* Estilos para la sección Intro */
 .Home .intro {
@@ -242,13 +244,13 @@
 }
 /* Clase para las secciones que se desplazarán manualmente */
 /* Se descuenta la altura del header (70px) */
+/* Cada sección ocupa toda la pantalla y se alinea */
 .section-scroll {
   height: 100vh;
   scroll-snap-align: center;
   align-items: center;
   justify-content: center;
 }
-
 
 .animate-left.animate-grid.active a , .solutions-btn .btn-casos{
   color:#fff;
@@ -277,7 +279,7 @@
 
 
 .animate-text{
-  padding-bottom: 100px;
+  padding-bottom: 10px;
 }
 
 .animate-text h2 {
@@ -290,6 +292,23 @@
   max-width: 600px;
   margin: 0 auto 50px;
   line-height: 1.6;
+}
+
+/* Nueva animación para success-item que entra desde la derecha */
+.animate-right {
+  opacity: 1;
+  transform: translateX(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.animate-right.exit {
+  opacity: 0;
+  transform: translateX(-50px);
 }
 
 
@@ -311,276 +330,150 @@
   transform: translateY(-50px);
 }
 
-/* Responsive para móviles (hasta 780px) */
-@media (max-width: 780px) {
-  .section__paragraph2 {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "solutions-text"
-      "solutions-carousel"
-      "solutions-btn";
-    padding: 5% 5%;
+/* Responsive para Tablets (hasta 768px) */
+@media (max-width: 768px) {
+  .intro {
+    min-height: 100vh;
+    padding: 1.5rem 1rem;
   }
 
-  .solutions-text {
-    padding: 0;
-    text-align: center;
-  }
-
-  .solutions-carousel {
-    justify-content: center;
-  }
-  /* Ajuste en la sección Intro */
-  .intro img {
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-    padding-left: 10%;
-
-  }
-  
-  /* Sección Casos de éxito */
   .section__paragraph1 {
-    padding: 1rem;
-    height: auto; /* Permite que el contenido se adapte sin forzar 100vh */
+    padding: 3rem 1rem;
+    margin-top: 0;
+    text-align: center;
+    height: auto;
+    scroll-margin-top: 70px; /* Ajuste para scroll */
   }
+
   .section__paragraph1 h2 {
-    font-size: 1.2rem;
+    font-size: 2rem;
+    margin-bottom: 1rem;
   }
+
   .section__paragraph1 p {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
+    max-width: 500px;
+    margin: 0 auto 2rem;
   }
+
   .success-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 40px;
-    justify-content: center;
-    align-items: center;
-    max-width: 1100px;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    width: 100%;
     margin: 0 auto;
   }
+
   .success-item {
-    max-width: 400px;
-  
-  }
-  .success-item:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 10px 30px rgba(255, 153, 0, 0.3);
-    border-color: rgba(255, 153, 0, 0.5);
-  }
-
-  .success-logo-wrapper {
-    margin-bottom: 15px;
-  }
-  
-  .success-logo-wrapper img {
-    width: 100%;
-    height: 80px;
-    object-fit: contain;
-    filter: brightness(0.95) contrast(1.1);
-    transition: transform 0.3s ease;
-  }
-  
-  .success-item img {
-    width: 100%;
-    height: 80px;
-    object-fit: contain;
-    margin-bottom: 15px;
-    filter: brightness(0.9) contrast(1.1);
-  }
-
-  .success-item:hover img {
-    transform: scale(1.05);
+    max-width: 95%;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
   }
 
   .success-content h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-  
-  .success-content p {
-    font-size: 0.95rem;
-    color: var(--text-color-secondary, #ccc);
-    margin-bottom: 15px;
-    line-height: 1.5;
+    font-size: 1.5rem;
   }
 
-  
-  /* BADGES */
+  .success-content p {
+    font-size: 1rem;
+  }
+
   .success-tags {
+    gap: 6px;
+    margin-top: 10px;
+  }
+
+  .tag {
+    font-size: 0.7rem;
+  }
+
+  .btn-casos {
+    margin-top: 2rem;
+    padding: 12px 28px;
+    font-size: 1rem;
+  }
+}
+
+/* Responsive para Móviles (hasta 480px) */
+@media (max-width: 480px) {
+  .intro {
+    min-height: 100vh;
+    padding: 1.5rem 1rem;
+  }
+
+  .section__paragraph1 {
+    padding: 2rem 1rem;
+    margin-top: 0;
+    text-align: center;
+    height: auto;
+    scroll-margin-top: 70px; /* Ajuste para scroll */
+  }
+
+  .section__paragraph1 h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .section__paragraph1 p {
+    font-size: 1rem;
+    max-width: 90%;
+    margin: 0 auto 1.5rem;
+  }
+
+  .success-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 8px;
-    margin-top: 12px;
-    margin-bottom: 10px;
-  }
-  
-  .tag {
-    display: inline-flex;
-    align-items: center;
     gap: 5px;
-    background-color: rgba(255, 153, 0, 0.12);
-    color: #ff9900;
-    padding: 5px 10px;
-    border-radius: 999px;
-    font-size: 0.75rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border: 1px solid rgba(255, 153, 0, 0.4);
-    transition: all 0.3s ease;
-    white-space: nowrap;
+    margin-top: 20px;
   }
-  
-  .success-item:hover .tag {
-    background-color: rgba(255, 153, 0, 0.25);
-    border-color: rgba(255, 153, 0, 0.6);
-  }
-  
-  /* Ver más */
-  .more-link {
-    margin-top: 8px;
-    font-size: 0.82rem;
-    color: #ff9900;
-    font-weight: 500;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    opacity: 0;
-    transform: translateY(5px);
-  }
-  
-  .success-item:hover .more-link {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-    
-  /* Sección Nuestras soluciones */
-  .section__paragraph2 {
-    text-align: center;
-    padding: 2%;
-    height: auto;
-  }
-  .solutions-text {
-    text-align: center;
-    margin-bottom: 1rem;
-    grid-area: solutions-text;
-    padding-right: 50px;
-    color: var(--color-text-main);
-  }
-  .solutions-text h2 {
-    font-size: 2.2rem;
-    margin-bottom: 20px;
-    color: var(--color-text-main);
-  }
-  .solutions-text p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    max-width: 500px;
-    color: var(--color-text-secondary);  }
-  .solutions-carousel {
-    padding: 0 10px;
-    grid-area: solutions-carousel;
-
-    justify-content: center;
-  }
-  
-  
-  
-  /* Ajuste en el scroll snapping (si lo requieres) */
- 
-  .section-scroll {
-    height: 100vh;
-    padding: 2rem 0;
-    grid-template-columns: 1fr; /* Una sola columna */
-
-  }
-  .success-item h3{
-    font-size: 0.5em;
+  .success-logo-wrapper {
+    margin: 0px;
   }
 
-  .success-item p{
-    font-size: 0.2em;
-  }
-
-  .success-item img {
-    max-height: 20px;
-    width: auto;
-  }
-  
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .success-item img {
-    max-height: 60px;
-    width: auto;
-  }
-  .intro img {
-    max-width: 90%; /* Ajusta el tamaño de la imagen para dispositivos pequeños */
-    height: auto;
-  }
-  
-  
-  
-  
-
-  
-  .section {
-    padding-left: 1rem; /* Reduce el padding en dispositivos móviles */
-  }
-  
-  .success-grid{
-    gap: 20px;
-  }
-
-  .success-item h3{
-    font-size: 1em;
-  }
-
-  .success-item p{
-    font-size: 0.5em;
-  }
-}
-
-
-@media (max-width: 480px) {
-  /* Ajuste en la sección Intro */
-  .intro img {
-    max-width: 90%;
-    height: auto;
-    padding: 0;
-  }
-
-  /* Ajuste para los botones */
-  .btn-casos {
-    background: linear-gradient(135deg, #ff9900, #ff6600);
-    color: white;
-    padding: 15px 30px;
-    border-radius: 50px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    text-decoration: none;
-    margin-top: 40px;
-    display: inline-block;
-    transition: all 0.3s ease;
-  }
-  
-  .btn-casos:hover {
-    background: linear-gradient(135deg, #ff6600, #ff3300);
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 5px 15px rgba(255, 102, 0, 0.6);
-  }
-
-  /* Ajuste en la sección Casos de éxito */
-  .success-grid {
-    grid-template-columns: 1fr; /* Una sola columna para mayor legibilidad */
-    gap: 10px;
-  }
-  
   .success-item {
-    max-width: 100%;
+    flex: 0 1 calc(45% - 10px);
+    max-width: calc(45% - 10px);
+    min-width: 160px;
+    padding: 20px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+    background: var(--card-background, #fff);
+    border-radius: 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+    justify-content: center;  
+  }
+ /* Ajustes internos */
+.success-logo-wrapper img {
+  width: auto;
+  max-height: 40px;
+  margin-bottom: 10px;
+}
+
+.success-content h3 {
+  font-size: 1rem;
+  padding: 0;
+}
+
+.success-content p {
+  font-size: 0.75rem;
+}
+
+  .success-tags {
+    gap: 5px;
+    margin-top: 8px;
+  }
+
+  .tag {
+    font-size: 0.5rem;
+  }
+
+  .btn-casos {
+    margin-top: 1.5rem;
+    padding: 10px 25px;
+    font-size: 1rem;
   }
 }

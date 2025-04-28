@@ -39,7 +39,7 @@ function WhyAmazon() {
             <motion.div
             className="emoji-icon"
             whileHover={{ scale: 1.3, rotate: [0, -5, 5, 0] }}
-            transition={{ type: "spring", stiffness: 300, damping: 10 }}
+            transition={{ type: "tween", duration: 0.5 }}
             >
             {benefit.icon}
             </motion.div>

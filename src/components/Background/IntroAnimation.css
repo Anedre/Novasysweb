@@ -134,19 +134,68 @@
 }
 
 
-/* Responsive */
+/* ======================= */
+/* RESPONSIVE - TABLET Y CELULAR */
+/* ======================= */
+
 @media (max-width: 768px) {
+  /* LOGO */
   .intro-logo {
-    width: 300px;
+    max-width: 80%;
+    height: auto;
+    margin-top: -30px;
+    animation: pulseLogo 3s infinite; /* animación especial */
+  }
+
+  /* FLECHA */
+  .intro-arrow {
+    bottom: 80px;
+  }
+
+  /* CUBITOS */
+  .raindrop {
+    width: 20px;
+    height: 20px;
   }
 }
 
+/* Para celulares aún más pequeños */
 @media (max-width: 480px) {
+  /* LOGO */
   .intro-logo {
-    width: 200px;
+    max-width: 70%;
+    height: auto;
+    margin-top: -20px;
+    animation: pulseLogo 3s infinite; /* animación sigue en móviles */
   }
 
+  /* FLECHA */
   .intro-arrow {
-    bottom: 30px;
+    bottom: 50px;
+  }
+
+  /* CUBITOS */
+  .raindrop {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+/* ======================= */
+/* ANIMACIÓN PULSE DEL LOGO */
+/* ======================= */
+
+@keyframes pulseLogo {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }

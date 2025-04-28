@@ -40,6 +40,21 @@ body.day {
   --color-btn-bg: #ff9900;
   --dot-color-inactive: #999;
   --dot-color-active: #ff9900;
+  --bg-section: #f9f9f9;
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --card-blur-bg: rgba(255, 255, 255, 0.6);
+  --card-border: rgba(0, 0, 0, 0.05);
+  --card-glow: rgba(255, 153, 0, 0.3);
+  --text-main: #111;
+  --text-secondary: #555;
+  --accent-color: #ff9900;
+  --shine-gradient: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 165, 0, 0.4) 50%, /* naranja suave */
+    rgba(255, 255, 255, 0) 100%
+  );
+
 
 }
 
@@ -78,6 +93,21 @@ body.night {
 
   --dot-color-inactive: #666;
   --dot-color-active: #ffb74d;
+
+  --bg-section: #121212;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-blur-bg: rgba(255, 255, 255, 0.15);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --card-glow: rgba(255, 153, 0, 0.4);
+  --text-main: #fff;
+  --text-secondary: #bbb;
+  --accent-color: #ffb74d;
+  --shine-gradient: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%, /* blanco suave */
+    rgba(255, 255, 255, 0) 100%
+  );
 
 }
 
