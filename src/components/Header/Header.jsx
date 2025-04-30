@@ -76,6 +76,7 @@ function Header() {
     // Se usa setTimeout de 0 para esperar al render del DOM
     setTimeout(() => {
       const nav = document.querySelector(".nav");
+      if (!nav) return; // ❗ evita el error si no existe
       const navRect = nav.getBoundingClientRect();
       let activeEl = null;
       
@@ -257,9 +258,14 @@ function Header() {
     <header className="header">
       {/* ===== DESKTOP HEADER ===== */}
       <div className="desktopHeader">
-        <div className="logo">
-          <img src={logoimage} alt="Logo" />
-        </div>
+        <Link to="/" className="logo" onClick={() => {
+            setIsMobileNavOpen(false);
+            setIsCompactMenuOpen(false);
+            setActiveCompactMenu("main");
+          }}>
+            <img src={logoimage} alt="Logo Novasys" />
+        </Link>
+
         {!isCompactMode ? (
         <nav className="nav" onMouseLeave={handleNavItemMouseLeave}>
           <Link
@@ -579,9 +585,19 @@ function Header() {
       {/* ===== MOBILE HEADER ===== */}
       <div className="mobileHeader">
         <div className="mobileHeaderTop">
-          <div className="logo">
-            <img src={logoimage} alt="Logo" />
-          </div>
+         <Link
+            to="/"
+            className="logo"
+            onClick={() => {
+              setIsMobileNavOpen(false);
+              setIsCompactMenuOpen(false);
+              setActiveCompactMenu("main");
+              closeMobileSubmenu();
+            }}
+          >
+            <img src={logoimage} alt="Logo Novasys" />
+          </Link>
+
           <button className="menuButton" onClick={toggleMobileNav}>
             ☰
           </button>
@@ -589,71 +605,80 @@ function Header() {
         {isMobileNavOpen && (
           <>
             <div className="mobileNav">
-                <div className="mobileNavHeader">
-                  <div className="mobileNavLogo">
-                    <img src={logoimage} alt="Logo" />
-                  </div>
-                  <button className="mobileNavClose" onClick={toggleMobileNav}>
-                    X
+              <div className="mobileNavHeader">
+                <div className="mobileNavLogo">
+                  <Link
+                    to="/"
+                    className="logo"
+                    onClick={() => {
+                      setIsMobileNavOpen(false);
+                      setIsCompactMenuOpen(false);
+                      setActiveCompactMenu("main");
+                      closeMobileSubmenu();
+                  }}
+                  >
+                    <img src={logoimage} alt="Logo Novasys" />
+                  </Link>
+                </div>
+                <button className="mobileNavClose" onClick={toggleMobileNav}>
+                   ✕
+                </button>
+              </div>
+              <div className="mobileNavItems">
+                <Link to="/" className="mobileNavItem" onClick={toggleMobileNav}>
+                  Home
+                </Link>
+                <div className="mobileNavDivider"></div>
+                <Link to="/Eventos" className="mobileNavItem" onClick={toggleMobileNav}>
+                  Eventos
+                </Link>
+                <div className="mobileNavDivider"></div>
+                <Link to="/Nosotros" className="mobileNavItem" onClick={toggleMobileNav}>
+                  Nosotros
+                </Link>
+                <div className="mobileNavDivider"></div>
+                <div className="mobileNavItem withSubmenu">
+                  <Link to="/Soluciones_Novasys" className="TTmobileNavItem" onClick={toggleMobileNav}>
+                    Soluciones Novasys
+                  </Link>
+                  <button className="submenuArrowMobile" onClick={() => openMobileSubmenu("novasys")}>
+                    ➔
                   </button>
                 </div>
-                <div className="mobileNavItems">
-                  <Link to="/" className="mobileNavItem" onClick={toggleMobileNav}>
-                    Home
+                <div className="mobileNavDivider"></div>
+                <div className="mobileNavItem withSubmenu">
+                  <Link to="/SolucionesHPmain" className="TTmobileNavItem" onClick={toggleMobileNav}>
+                    Soluciones HP
                   </Link>
-                  <div className="mobileNavDivider"></div>
-                  <Link to="/Eventos" className="mobileNavItem" onClick={toggleMobileNav}>
-                    Eventos
-                  </Link>
-                  <div className="mobileNavDivider"></div>
-                  <Link to="/Nosotros" className="mobileNavItem" onClick={toggleMobileNav}>
-                    Nosotros
-                  </Link>
-                  <div className="mobileNavDivider"></div>
-                  <div className="mobileNavItem withSubmenu">
-                    <Link to="/Soluciones_Novasys" className="TTmobileNavItem" onClick={toggleMobileNav}>
-                      Soluciones Novasys
-                    </Link>
-                    <button className="submenuArrowMobile" onClick={() => openMobileSubmenu("novasys")}>
-                      ➔
-                    </button>
-                  </div>
-                  <div className="mobileNavDivider"></div>
-                  <div className="mobileNavItem withSubmenu">
-                    <Link to="/SolucionesHPmain" className="TTmobileNavItem" onClick={toggleMobileNav}>
-                      Soluciones HP
-                    </Link>
-                    <button className="submenuArrowMobile" onClick={() => openMobileSubmenu("hp")}>
-                      ➔
-                    </button>
-                  </div>
-                  <div className="mobileNavDivider"></div>
-                  <div className="mobileNavItem withSubmenu">
-                    <Link to="/Soluciones_Amazon" className="TTmobileNavItem" onClick={toggleMobileNav}>
-                      Soluciones Amazon
-                    </Link>
-                    <button className="submenuArrowMobile" onClick={() => openMobileSubmenu("amazon")}>
-                      ➔
-                    </button>
-                  </div>
-                  <div className="mobileNavDivider"></div>
-                  <Link to="/Casos_de_exito" className="mobileNavItem" onClick={toggleMobileNav}>
-                    Casos de Éxito
-                  </Link>
-                  <div className="mobileNavDivider"></div>
-                  <Link to="/Contacto" className="mobileNavItem" onClick={toggleMobileNav}>
-                    Contacto
-                  </Link>
+                  <button className="submenuArrowMobile" onClick={() => openMobileSubmenu("hp")}>
+                    ➔
+                  </button>
                 </div>
-            </div>
-            <div className="toggle-container-mobile">
-              <button className="modeToggleButtonMobile" onClick={toggleMode}>
-                {mode === "day" ? "🌙" : "☀️"}
-              </button>
-            </div>
-          </>
-
-          
+                <div className="mobileNavDivider"></div>
+                <div className="mobileNavItem withSubmenu">
+                  <Link to="/Soluciones_Amazon" className="TTmobileNavItem" onClick={toggleMobileNav}>
+                    Soluciones Amazon
+                  </Link>
+                  <button className="submenuArrowMobile" onClick={() => openMobileSubmenu("amazon")}>
+                    ➔
+                  </button>
+                </div>
+                <div className="mobileNavDivider"></div>
+                <Link to="/Casos_de_exito" className="mobileNavItem" onClick={toggleMobileNav}>
+                  Casos de Éxito
+                </Link>
+                <div className="mobileNavDivider"></div>
+                <Link to="/Contacto" className="mobileNavItem" onClick={toggleMobileNav}>
+                  Contacto
+                </Link>
+              </div>
+              <div className="toggle-container-mobile">
+                <button className="modeToggleButtonMobile" onClick={toggleMode}>
+                  {mode === "day" ? "🌙" : "☀️"}
+                </button>
+              </div>              
+            </div>           
+          </>          
         )}
       </div>
 
@@ -667,15 +692,13 @@ function Header() {
             <h2 className="mobileSubmenuTitle">
               {activeMobileSubmenu === "novasys" ? "Soluciones Novasys" : "Soluciones HP"}
             </h2>
-            <button
-              className="mobileSubmenuClose"
-              onClick={() => {
+            <button className="mobileSubmenuClose" onClick={() => {
                 closeMobileSubmenu();
                 toggleMobileNav();
-              }}
-            >
-              X
+              }}>
+                ✕
             </button>
+
           </div>
           <div className="mobileSubmenuItems">
             {activeMobileSubmenu === "novasys" && (
@@ -753,7 +776,7 @@ function Header() {
             {activeMobileSubmenu === "amazon" && (
               <>
                 <Link
-                  to="/AmazonConnect"
+                  to="/Soluciones_AmazonConnect"
                   className="mobileSubmenuItem"
                   onClick={() => {
                     closeMobileSubmenu();
@@ -764,7 +787,7 @@ function Header() {
                 </Link>
                 <div className="mobileSubmenuDivider"></div>
                 <Link
-                  to="/ConnectDialer"
+                  to="/Soluciones_AmazonDialer"
                   className="mobileSubmenuItem"
                   onClick={() => {
                     closeMobileSubmenu();

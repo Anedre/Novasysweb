@@ -16,7 +16,7 @@
   position: absolute;
   inset: 0;
   backdrop-filter: blur(8px);
-  background: linear-gradient(120deg, #f8f8f8, #e0e0e0, #f8f8f8); /* modo día por defecto */
+  background: var(--background-secondary); /* modo día por defecto */
   background-size: 400% 400%;
   animation: gradientMove 10s ease infinite;
   opacity: 0.4;
@@ -57,7 +57,7 @@
 
 .day .intro-logo:hover {
   filter: drop-shadow(0 2px 8px rgba(87, 61, 62));
-  transform: scale(1.5), translateY(-50px);
+  transform: scale(1.5) translateY(-50px);
 }
 .night .intro-logo:hover {
   filter: drop-shadow(4px 4px 8px rgba(255, 28, 36, 0.849));
@@ -133,6 +133,24 @@
   backdrop-filter: blur(1px);
 }
 
+.intro-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px; /* altura del difuminado */
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(#f5f5f5) 100%);
+  z-index: 2; /* justo encima del fondo, pero debajo del logo y la flecha */
+  pointer-events: none;
+}
+
+/* Para modo noche */
+.night .intro-container::after {
+  background: linear-gradient(to bottom, rgba(13,13,13,0) 0%, rgba(13,13,13,1) 100%);
+}
+
+
 
 /* ======================= */
 /* RESPONSIVE - TABLET Y CELULAR */
@@ -172,7 +190,7 @@
   
   /* FLECHA */
   .intro-arrow {
-    bottom: 200px;
+    bottom: 250px;
   }
 
   /* CUBITOS */

@@ -23,7 +23,12 @@
 /* Contenedor del logo */
 .logo img {
   width: 200px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
   height: auto;
+}
+.logo img:hover {
+  transform: scale(1.05);
 }
 
 /* Menú de navegación */
@@ -221,6 +226,8 @@
 .mobileNavHeader {
   display: flex;
   align-items: flex-start;
+  text-align: center;
+  align-items: center;
   justify-content: space-between;
   flex-wrap: nowrap;
   width: 100%;
@@ -232,7 +239,7 @@
   width: calc(100% - 40px);
   margin: 0 20px;
   height: 1px;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: var(--divider-color);
 }
 
 /* Botón de cierre en overlay móvil */
@@ -294,27 +301,28 @@
 
 .mobileSubmenuTitle {
   font-size: 1.5rem;
-  color: white;
+  color: var(--dropdown-text);
   margin: 0;
   flex: 1;
+  padding-bottom: 0;
+
   text-align: center;
 }
 
 .mobileSubmenuClose {
-  position: relative;
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 2rem;
-  cursor: pointer;
   width: 40px;
   height: 40px;
+  border-radius: 50%;
+  background: var(--dropdown-hover-bg);
+  color: var(--dropdown-hover-color);
+  font-size: 1.5rem;
+  border: none;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s ease;
+  transition: background 0.3s, transform 0.3s;
 }
-
 /* Pseudo-elemento para el borde cuadrado del botón de cierre */
 .mobileSubmenuClose::before {
   content: "";
@@ -323,13 +331,15 @@
   left: 0;
   width: 100%;
   height: 100%;
-  border: 2px solid white;
   box-sizing: border-box;
   transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
+
 .mobileSubmenuClose:hover {
-  transform: scale(1.1);
+  background: var(--dropdown-hover-color);
+  color: var(--dropdown-bg);
+  transform: rotate(90deg) scale(1.1);
 }
 
 .mobileSubmenuClose:hover::before {
@@ -361,7 +371,7 @@
 .mobileSubmenuDivider {
   width: 100%;
   height: 1px;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: var(--divider-color);
 }
 
 
