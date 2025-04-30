@@ -175,7 +175,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgb(31, 31, 31);
+  background: var(--dropdown-bg);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -269,7 +269,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgb(31, 31, 31);
+  background: var(--dropdown-bg);
   display: flex;
   flex-direction: column;
   z-index: 3000;
@@ -363,6 +363,251 @@
   height: 1px;
   background-color: rgba(255, 255, 255, 0.2);
 }
+
+
+
+
+/* PANEL LATERAL COMPACTO */
+
+/* Botón hamburguesa en modo compacto */
+.compactMenuButton button {
+  font-size: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--dropdown-text); /* Para que se adapte a tu modo day/night */
+}
+
+.compactOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.4);
+  z-index: 1500;
+}
+
+.compactSidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100vh;
+  background: var(--dropdown-bg);
+  box-shadow: -4px 0 15px rgba(0, 0, 0, 0.3);
+  z-index: 2001;
+  animation: slideInRight 0.3s ease forwards;
+}
+
+.compactSidebarContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px;
+  overflow-y: auto;
+  position: relative;
+}
+
+
+.compactHeaderRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  align-content: center;
+  padding: 5px 0;
+
+}
+
+.compactTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--dropdown-text);
+  margin: 0;
+  line-height: 1; /* 🔥 Esto es la clave */
+  padding-bottom: 5px;
+
+}
+
+.closeSidebar {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--dropdown-text);
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.compactHeaderRow button{
+  font-size: 2rem;
+
+}
+
+
+.compactItem {
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 1rem;
+  padding: 25px 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.compactItem:hover {
+  background: var(--dropdown-hover-bg);
+  color: var(--dropdown-hover-color);
+  transform: translateX(5px);
+}
+
+.compactSidebarContent button{
+  font-weight: 100;
+  font-family: Poppins, sans-serif;
+}
+
+.compactDivider {
+  height: 1px;
+  width: 100%;
+  background: rgba(129, 129, 129, 0.685);
+  margin: 5px 0;
+}
+.arrow {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.compactItem:hover .arrow {
+  transform: translateX(5px);
+}
+
+.backButton {
+  margin-bottom: 15px;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: var(--dropdown-text);
+  cursor: pointer;
+  padding: 10px;
+  text-align: left;
+}
+
+.backButton:hover {
+  color: var(--dropdown-hover-color);
+}
+
+
+/* Animación */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.compactSidebarContent a {
+  color: var(--dropdown-text);
+  text-decoration: none;
+}
+
+.compactSidebarContent a:hover {
+  color: var(--dropdown-hover-color);
+}
+
+
+
+/* Animación de entrada */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.compactSidebar.closing {
+  animation: slideOutRight 0.3s ease forwards;
+}
+
+.modeToggleButton {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--dropdown-hover-bg);
+  color: var(--dropdown-hover-color);
+  font-size: 1.5rem;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.modeToggleButton:hover {
+  background: var(--dropdown-hover-color);
+  color: var(--dropdown-bg);
+  transform: rotate(15deg) scale(1.1);
+}
+
+.toggle-container-mobile {
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modeToggleButtonMobile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--dropdown-hover-bg);
+  color: var(--dropdown-hover-color);
+  font-size: 1.5rem;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.modeToggleButtonMobile:hover {
+  background: var(--dropdown-hover-color);
+  color: var(--dropdown-bg);
+  transform: rotate(15deg) scale(1.1);
+}
+
+
+
 
 /* =========================
    RESPONSIVE

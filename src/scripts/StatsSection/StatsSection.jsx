@@ -20,6 +20,7 @@ const StatsSection = () => {
     {
       icon: "🏆",
       count: 30,
+      suffix: "+",
       title: "Casos de Éxito",
       description: "Hemos implementado soluciones exitosas para más de 30 empresas de diversas industrias.",
       smallText: "Incluyendo telecomunicaciones, retail, banca y más.",
@@ -28,18 +29,20 @@ const StatsSection = () => {
     },
     {
       icon: "🌍",
-      count: 2939,
-      title: "Usuarios Activos",
-      description: "Miles de usuarios confían en nuestras soluciones para sus operaciones diarias.",
-      smallText: "Usuarios a nivel nacional e internacional.",
+      count: 78,
+      suffix: "+",
+      title: "Clientes Activos",
+      description: "Miles de clientes confían en nuestras soluciones para sus operaciones diarias.",
+      smallText: "Clientes a nivel nacional e internacional.",
       buttonText: null,
       buttonLink: null
     },
     {
       icon: "📈",
-      count: 196,
+      count: 20,
+      suffix: "+",
       title: "Certificaciones",
-      description: "Contamos con más de 196 certificaciones en gestión TI y seguridad de la información.",
+      description: "Contamos con más de 20 certificaciones en gestión TI y seguridad de la información.",
       smallText: "Reconocidas a nivel internacional.",
       buttonText: "Ver certificaciones",
       buttonLink: "/Certificaciones"

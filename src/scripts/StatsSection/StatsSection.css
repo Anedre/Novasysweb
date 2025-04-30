@@ -1,31 +1,35 @@
 .statistics-container {
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   background: var(--bg-section, #f0f0f0);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 80px 20px;
 }
-
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 40px;
   width: 100%;
   max-width: 1200px;
-  align-items: start; /* ¡Este es clave para que NO todos se estiren! */
+  align-items: start;
 }
 
+/* Cada contenedor de bloque */
 .stats-block-wrapper {
-  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Aquí igual */
+  align-items: stretch;
+  min-height: 300px; /* <<< Se asegura de reservar altura */
 }
 
+/* Cada bloque */
 .stats-block {
-  position: relative; /* NECESARIO para el efecto */
+  position: relative;
+  width: 100%;
+  max-width: 260px;
+  min-height: 280px;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   backdrop-filter: blur(8px);
@@ -34,14 +38,10 @@
   text-align: center;
   transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  width: 100%;
-  max-width: 260px;
-  min-height: 280px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  overflow: hidden;
-  align-self: flex-start;
 }
 
 /* Shine Effect */
@@ -175,14 +175,75 @@
 }
 
 /* Responsive */
+
+
+/* ===== TABLET (<= 768px) ===== */
+@media (max-width: 768px) {
+  .stats-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .stats-block-wrapper {
+    width: 45%; /* Aproximadamente 2 en una fila */
+    min-height: 320px; /* Más altura para hover */
+    padding: 10px;
+  }
+
+  .stats-block {
+    max-width: 100%;
+    min-height: 280px;
+    padding: 20px 15px;
+  }
+
+  .contentH {
+    font-size: 2rem;
+  }
+
+  .extra-info {
+    font-size: 1.2rem;
+  }
+}
 @media (max-width: 480px) {
+  .statistics-container {
+    height: 20vh;
+  }
+  .stats-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+  }
+
+  .stats-block-wrapper {
+    width: 45%; /* Se mantiene 2x2 también en móvil para que sea compacto */
+    min-height: 100px;
+    padding: 8px;
+  }
+
+  .stats-block {
+    padding: 15px 10px;
+    min-height: 200px;
+  }
+
   .contentH {
     font-size: 1.8rem;
+
   }
   .extra-info {
     font-size: 1rem;
   }
-  .stats-block {
-    min-height: 250px;
+  .stats-bottom small {
+    font-size: 0.7rem;
+  }
+
+  .stats-block:hover .extra-info {
+    font-size: 1rem;
+    margin: 0;
+  }
+  .stats-bottom p{
+    font-size: 0.8rem;
   }
 }

@@ -181,22 +181,23 @@ function Home() {
 
       {/* Sección 3: Nuestras soluciones */}
       <div className="section__paragraph2 section-scroll">
-        <div className="solutions-text animate-up">
-          <h2>Nuestras soluciones</h2>
-          <p>
-            Ofrecemos una gran variedad de servicios e implementaciones en asociación con las empresas tecnológicas más importantes
-          </p>
-          {/* Nuevo botón debajo del carousel */}
-        <div className="solutions-btn" >
-          <Link to="/Soluciones_novasys" className="btn-casos">
-            Ver nuestra soluciones
-          </Link> 
+        <div className="solutions-text-wrapper">
+          <div className="solutions-text animate-up">
+            <h2>Nuestras soluciones</h2>
+            <p>
+              Ofrecemos una gran variedad de servicios e implementaciones en asociación con las empresas tecnológicas más importantes
+            </p>
+            <div className="solutions-btn animate-up">
+              <Link to="/Soluciones_novasys" className="btn-casos">
+                Ver nuestras soluciones
+              </Link> 
+            </div>
+          </div>
         </div>
-        </div>
+
         <div className="solutions-carousel animate-up">
           <SolucionesCarousel />
         </div>
-        
       </div>
 
       {/* Sección 4: Estadísticas */}

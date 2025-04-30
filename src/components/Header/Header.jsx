@@ -8,6 +8,32 @@ function Header() {
   const location = useLocation();
   const lowerPath = location.pathname.toLowerCase();
 
+
+  // NUEVOS 
+  
+  const [isClosingCompactMenu, setIsClosingCompactMenu] = useState(false);
+
+
+  const [activeCompactMenu, setActiveCompactMenu] = useState("main"); // 'main', 'novasys', 'hp', 'amazon'
+
+  const [isCompactMode, setIsCompactMode] = useState(false);
+  const [isCompactMenuOpen, setIsCompactMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const checkCompactMode = () => {
+      setIsCompactMode(window.innerWidth <= 1500);
+    };
+  
+    checkCompactMode(); // Comprobar al cargar
+  
+    window.addEventListener("resize", checkCompactMode);
+    return () => window.removeEventListener("resize", checkCompactMode);
+  }, []);
+
+
+  
+
+
   // Refs para manejar timeouts y evitar efectos inesperados
   const markerTimeout = useRef(null);
   const hoverNovasysRef = useRef(null);
@@ -31,8 +57,11 @@ function Header() {
   const [activeMobileSubmenu, setActiveMobileSubmenu] = useState(null);
 
   // Estado para el modo (día/noche)
-  const [mode, setMode] = useState("day");
-
+  const [mode, setMode] = useState(() => {
+    const savedMode = localStorage.getItem("mode");
+    return savedMode ? savedMode : "day";
+  });
+  
   // Estado para la posición y ancho del marcador
   const [markerStyle, setMarkerStyle] = useState({ left: 0, width: 0 });
 
@@ -181,6 +210,15 @@ function Header() {
     }, 100);
   };
 
+  const closeCompactMenuSmooth = () => {
+    setIsClosingCompactMenu(true);
+    setTimeout(() => {
+      setIsCompactMenuOpen(false);
+      setIsClosingCompactMenu(false);
+      setActiveCompactMenu("main");
+    }, 300); // tiempo igual al CSS
+  };
+  
   // Limpieza de timeouts al desmontar el componente
   useEffect(() => {
     return () => {
@@ -191,11 +229,29 @@ function Header() {
     };
   }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        closeCompactMenuSmooth(); // Llama directamente a la función de cierre
+      }
+    };
+  
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   // Funciones para la navegación móvil y para el toggle de modo
   const toggleMobileNav = () => setIsMobileNavOpen((prev) => !prev);
   const openMobileSubmenu = (submenu) => setActiveMobileSubmenu(submenu);
   const closeMobileSubmenu = () => setActiveMobileSubmenu(null);
-  const toggleMode = () => setMode((prev) => (prev === "day" ? "night" : "day"));
+  const toggleMode = () => {
+    setMode((prevMode) => {
+      const newMode = prevMode === "day" ? "night" : "day";
+      localStorage.setItem("mode", newMode);
+      return newMode;
+    });
+  };
+  
 
   return (
     <header className="header">
@@ -204,6 +260,7 @@ function Header() {
         <div className="logo">
           <img src={logoimage} alt="Logo" />
         </div>
+        {!isCompactMode ? (
         <nav className="nav" onMouseLeave={handleNavItemMouseLeave}>
           <Link
             to="/"
@@ -415,7 +472,109 @@ function Header() {
             }}
           ></div>
         </nav>
+        ) : (
+          <div className="compactMenuButton">
+            <button onClick={() => setIsCompactMenuOpen((prev) => !prev)}>
+              ☰
+            </button>
+          </div>
+        )}
       </div>
+
+      {isCompactMode && isCompactMenuOpen && (
+        <>
+          {/* Fondo oscuro para cerrar al hacer click fuera */}
+          <div className="compactOverlay" onClick={closeCompactMenuSmooth} />
+
+          <div className={`compactSidebar ${isClosingCompactMenu ? "closing" : ""}`} onClick={(e) => e.stopPropagation()}>
+            <div className="compactSidebarContent">
+
+              <div className="compactHeaderRow">
+                <h2 className="compactTitle">
+                  {activeCompactMenu === "main"
+                    ? "Menú"
+                    : activeCompactMenu === "novasys"
+                    ? "Soluciones Novasys"
+                    : activeCompactMenu === "hp"
+                    ? "Soluciones HP"
+                    : activeCompactMenu === "amazon"
+                    ? "Soluciones Amazon"
+                    : ""}
+                </h2>
+                <button className="closeSidebar" onClick={closeCompactMenuSmooth}>×</button>
+              </div>
+              {/* MENÚ PRINCIPAL */}
+              {activeCompactMenu === "main" && (
+                <>
+                  <Link className="compactItem" to="/" onClick={() => onClick={closeCompactMenuSmooth}}>Home</Link>
+                  <div className="compactDivider" />
+                  <Link className="compactItem" to="/Eventos" onClick={() => onClick={closeCompactMenuSmooth}}>Eventos</Link>
+                  <div className="compactDivider" />
+                  <Link className="compactItem" to="/Nosotros" onClick={() => onClick={closeCompactMenuSmooth}}>Nosotros</Link>
+                  <div className="compactDivider" />
+                  <button className="compactItem" onClick={() => setActiveCompactMenu("novasys")}>
+                    Soluciones Novasys <span className="arrow">➔</span>
+                  </button>
+                  <div className="compactDivider" />
+                  <button className="compactItem" onClick={() => setActiveCompactMenu("hp")}>
+                    Soluciones HP <span className="arrow">➔</span>
+                  </button>
+                  <div className="compactDivider" />
+                  <button className="compactItem" onClick={() => setActiveCompactMenu("amazon")}>
+                    Soluciones Amazon <span className="arrow">➔</span>
+                  </button>
+                  <div className="compactDivider" />
+                  <Link className="compactItem" to="/Casos_de_exito" onClick={() => onClick={closeCompactMenuSmooth}}>Casos de Éxito</Link>
+                  <div className="compactDivider" />
+                  <Link className="compactItem" to="/Contacto" onClick={() => onClick={closeCompactMenuSmooth}}>Contacto</Link>
+                </>
+              )}
+
+              {/* SUBMENÚS */}
+              {activeCompactMenu === "novasys" && (
+                <>
+                  <button className="backButton" onClick={() => setActiveCompactMenu("main")}>← Volver</button>
+                  <Link className="compactItem" to="/Ventas" onClick={() => onClick={closeCompactMenuSmooth}}>Ventas</Link>
+                  <div className="compactDivider" />
+                  <Link className="compactItem" to="/Marketing" onClick={() => onClick={closeCompactMenuSmooth}}>Marketing</Link>
+                  <div className="compactDivider" />
+                  <Link className="compactItem" to="/Business_Intelligence" onClick={() => onClick={closeCompactMenuSmooth}}>Business Intelligence</Link>
+                  <div className="compactDivider" />
+                  <Link className="compactItem" to="/Elo" onClick={() => onClick={closeCompactMenuSmooth}}>ELO ECM</Link>
+                </>
+              )}
+
+              {activeCompactMenu === "hp" && (
+                <>
+                  <button className="backButton" onClick={() => setActiveCompactMenu("main")}>← Volver</button>
+                  <Link className="compactItem" to="/SolucionesHPEnterprise" onClick={() => onClick={closeCompactMenuSmooth}}>HP Enterprise</Link>
+                  <div className="compactDivider" />
+                  <Link className="compactItem" to="/SolucionesHP" onClick={() => onClick={closeCompactMenuSmooth}}>Soluciones HP</Link>
+                </>
+              )}
+
+              {activeCompactMenu === "amazon" && (
+                <>
+                  <button className="backButton" onClick={() => setActiveCompactMenu("main")}>← Volver</button>
+                  <Link className="compactItem" to="/Soluciones_AmazonConnect" onClick={() => onClick={closeCompactMenuSmooth}}>Amazon Connect</Link>
+                  <div className="compactDivider" />
+                  <Link className="compactItem" to="/Soluciones_AmazonDialer" onClick={() => onClick={closeCompactMenuSmooth}}>Connect Dialer</Link>
+                </>
+              )}
+                <div className="toggle-container" style={{ marginTop: "auto" }}>
+                  <button className="modeToggleButton" onClick={toggleMode}>
+                    {mode === "day" ? "🌙" : "☀️"}
+                  </button>
+                </div>
+
+            </div>
+           
+
+          </div>
+        </>
+      )}
+
+
 
       {/* ===== MOBILE HEADER ===== */}
       <div className="mobileHeader">
@@ -428,64 +587,73 @@ function Header() {
           </button>
         </div>
         {isMobileNavOpen && (
-          <div className="mobileNav">
-            <div className="mobileNavHeader">
-              <div className="mobileNavLogo">
-                <img src={logoimage} alt="Logo" />
-              </div>
-              <button className="mobileNavClose" onClick={toggleMobileNav}>
-                X
+          <>
+            <div className="mobileNav">
+                <div className="mobileNavHeader">
+                  <div className="mobileNavLogo">
+                    <img src={logoimage} alt="Logo" />
+                  </div>
+                  <button className="mobileNavClose" onClick={toggleMobileNav}>
+                    X
+                  </button>
+                </div>
+                <div className="mobileNavItems">
+                  <Link to="/" className="mobileNavItem" onClick={toggleMobileNav}>
+                    Home
+                  </Link>
+                  <div className="mobileNavDivider"></div>
+                  <Link to="/Eventos" className="mobileNavItem" onClick={toggleMobileNav}>
+                    Eventos
+                  </Link>
+                  <div className="mobileNavDivider"></div>
+                  <Link to="/Nosotros" className="mobileNavItem" onClick={toggleMobileNav}>
+                    Nosotros
+                  </Link>
+                  <div className="mobileNavDivider"></div>
+                  <div className="mobileNavItem withSubmenu">
+                    <Link to="/Soluciones_Novasys" className="TTmobileNavItem" onClick={toggleMobileNav}>
+                      Soluciones Novasys
+                    </Link>
+                    <button className="submenuArrowMobile" onClick={() => openMobileSubmenu("novasys")}>
+                      ➔
+                    </button>
+                  </div>
+                  <div className="mobileNavDivider"></div>
+                  <div className="mobileNavItem withSubmenu">
+                    <Link to="/SolucionesHPmain" className="TTmobileNavItem" onClick={toggleMobileNav}>
+                      Soluciones HP
+                    </Link>
+                    <button className="submenuArrowMobile" onClick={() => openMobileSubmenu("hp")}>
+                      ➔
+                    </button>
+                  </div>
+                  <div className="mobileNavDivider"></div>
+                  <div className="mobileNavItem withSubmenu">
+                    <Link to="/Soluciones_Amazon" className="TTmobileNavItem" onClick={toggleMobileNav}>
+                      Soluciones Amazon
+                    </Link>
+                    <button className="submenuArrowMobile" onClick={() => openMobileSubmenu("amazon")}>
+                      ➔
+                    </button>
+                  </div>
+                  <div className="mobileNavDivider"></div>
+                  <Link to="/Casos_de_exito" className="mobileNavItem" onClick={toggleMobileNav}>
+                    Casos de Éxito
+                  </Link>
+                  <div className="mobileNavDivider"></div>
+                  <Link to="/Contacto" className="mobileNavItem" onClick={toggleMobileNav}>
+                    Contacto
+                  </Link>
+                </div>
+            </div>
+            <div className="toggle-container-mobile">
+              <button className="modeToggleButtonMobile" onClick={toggleMode}>
+                {mode === "day" ? "🌙" : "☀️"}
               </button>
             </div>
-            <div className="mobileNavItems">
-              <Link to="/" className="mobileNavItem" onClick={toggleMobileNav}>
-                Home
-              </Link>
-              <div className="mobileNavDivider"></div>
-              <Link to="/Eventos" className="mobileNavItem" onClick={toggleMobileNav}>
-                Eventos
-              </Link>
-              <div className="mobileNavDivider"></div>
-              <Link to="/Nosotros" className="mobileNavItem" onClick={toggleMobileNav}>
-                Nosotros
-              </Link>
-              <div className="mobileNavDivider"></div>
-              <div className="mobileNavItem withSubmenu">
-                <Link to="/Soluciones_Novasys" className="TTmobileNavItem" onClick={toggleMobileNav}>
-                  Soluciones Novasys
-                </Link>
-                <button className="submenuArrowMobile" onClick={() => openMobileSubmenu("novasys")}>
-                  ➔
-                </button>
-              </div>
-              <div className="mobileNavDivider"></div>
-              <div className="mobileNavItem withSubmenu">
-                <Link to="/SolucionesHPmain" className="TTmobileNavItem" onClick={toggleMobileNav}>
-                  Soluciones HP
-                </Link>
-                <button className="submenuArrowMobile" onClick={() => openMobileSubmenu("hp")}>
-                  ➔
-                </button>
-              </div>
-              <div className="mobileNavDivider"></div>
-              <div className="mobileNavItem withSubmenu">
-                <Link to="/Soluciones_Amazon" className="TTmobileNavItem" onClick={toggleMobileNav}>
-                  Soluciones Amazon
-                </Link>
-                <button className="submenuArrowMobile" onClick={() => openMobileSubmenu("amazon")}>
-                  ➔
-                </button>
-              </div>
-              <div className="mobileNavDivider"></div>
-              <Link to="/Casos_de_exito" className="mobileNavItem" onClick={toggleMobileNav}>
-                Casos de Éxito
-              </Link>
-              <div className="mobileNavDivider"></div>
-              <Link to="/Contacto" className="mobileNavItem" onClick={toggleMobileNav}>
-                Contacto
-              </Link>
-            </div>
-          </div>
+          </>
+
+          
         )}
       </div>
 

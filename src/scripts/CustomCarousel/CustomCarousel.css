@@ -92,18 +92,24 @@
 /* Responsive para móviles */
 @media (max-width: 480px) {
   .carouselS {
+    align-content: center;
+    text-align: center;
+    align-items: center;
     height: 200px;
-    margin-top: 50px;
+    margin-top: 20px;
     margin-left: 0;
   }
   
   .slide {
-    width: 150px;
+    width: auto;
     height: 130px;
     margin: -65px 0 0 -75px;
   }
   
   .slide img {
     width: 145px;
+  }
+  .carousel-dots {
+    bottom: -50px;
   }
 }
