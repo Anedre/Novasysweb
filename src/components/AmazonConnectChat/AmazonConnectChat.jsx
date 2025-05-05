@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import "./AmazonConnectChat.css"; // Asegúrate de tener un archivo CSS para estilos adicionales
+import "./AmazonConnectChat.css"; // Para estilos adicionales como hover o ajustes finos
 
 const AmazonConnectChat = () => {
   useEffect(() => {
-    // Inyectar el script en el head
+    // Inyectar el script del widget
     (function(w, d, x, id){
       const s = d.createElement('script');
       s.src = 'https://novasys.my.connect.aws/connectwidget/static/amazon-connect-chat-interface-client.js';
@@ -13,13 +13,17 @@ const AmazonConnectChat = () => {
       w[x] = w[x] || function() { (w[x].ac = w[x].ac || []).push(arguments) };
     })(window, document, 'amazon_connect', 'ca606727-c7d0-4494-bea6-eb7fcf408f5c');
 
-    // Configurar estilos, snippetId y tipos de contenido soportados
+    // Estilos del botón flotante del widget
     window.amazon_connect('styles', {
       iconType: 'CHAT',
-      openChat: { color: '#ffffff', backgroundColor: '#007dfa' },
-      closeChat: { color: '#ffffff', backgroundColor: '#0080ff' }
+      openChat: { color: '#ffffff', backgroundColor: '#ff2c2c' },
+      closeChat: { color: '#ffffff', backgroundColor: '#ff2c2c' }
     });
+
+    // ID del snippet del widget
     window.amazon_connect('snippetId', 'QVFJREFIZ2ZYaENvQWJCb1ZtYmxRNlFMNVJYMlhab3BKY1p0RnRGQ2pJNGhxdnBvemdHR3VmZkFaVXlvM1ZGUDEyRGdDUzk4QUFBQWJqQnNCZ2txaGtpRzl3MEJCd2FnWHpCZEFnRUFNRmdHQ1NxR1NJYjNEUUVIQVRBZUJnbGdoa2dCWlFNRUFTNHdFUVFNRGpMeVh2Z1Y3K1dvSkRGNEFnRVFnQ3RnNVNQTGpJS3BSbXJsN2RjU2RXeVNRbHJONjZsSlBIZWlFdDA1ZWczeEc2S2ZBTkVibytUY0VQQXc6OmFHVzlVb3lmbXhLVHdyZWxySkhGdFRDS2dVWHJIMWt5UW5RR25jMUdOcTZBODhEWk1UYlcxWG5qVmZtZVdvN29HY01sakt2eUpyaUZ3RUVIUXU2ZksyTVlRRnFkNURCRWg0cFdJdG0veTZBRFBYWThvMnI5ZDh4aUtYOWxEU1FPbEdNRzhIQzBpQjhmN1JlbnFxUXhIYkt6SDcwUXlndz0=');
+
+    // Estilos internos del cuadro de chat
     window.amazon_connect('customStyles', {
       global: {
         frameWidth: '400px',
@@ -50,24 +54,17 @@ const AmazonConnectChat = () => {
         logoMaxWidth: '120px'
       }
     });
-    
-    
+
+    // Tipos de contenido permitidos en el chat
     window.amazon_connect('supportedMessagingContentTypes', [
       'text/plain',
       'text/markdown',
       'application/vnd.amazonaws.connect.message.interactive',
       'application/vnd.amazonaws.connect.message.interactive.response'
     ]);
-  }, []); // se ejecuta sólo al montar el componente
+  }, []);
 
-  return null; // El widget se gestiona vía el script, no se renderiza nada en el DOM aquí
+  return null;
 };
 
 export default AmazonConnectChat;
-
-
-
-
-
-
-
