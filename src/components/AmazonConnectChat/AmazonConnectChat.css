@@ -1,47 +1,75 @@
-/* Botón para abrir el widget */
-#amazon-connect-open-widget-button {
-    background-color: #ff2c2c !important; /* Rojo corporativo */
-    color: #ffffff !important; /* Texto blanco */
-    border-radius: 50% !important; /* Forma circular */
-    width: 60px !important;
-    height: 60px !important;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
-    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
-}
-  
-  #amazon-connect-open-widget-button:hover {
-    transform: translateY(-5px) !important;
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15) !important;
+#launch-widget-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #e2653b;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 26px;
+    cursor: pointer;
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-box-reflect: below 0px linear-gradient(transparent, transparent, rgba(0, 0, 0, 0.2));
   }
   
-  /* Botón para cerrar el widget */
+  #launch-widget-btn:hover {
+    background-color: #b94e2e;
+    transform: translateY(-10px);
+  }
+  
+  
+  /* Amazon Connect native buttons (misma animación también) */
+  #amazon-connect-open-widget-button,
   #amazon-connect-close-widget-button {
-    background-color: #ff2c2c !important;
-    color: #ffffff !important;
+    background-color: #e2653b !important;
+    color: white !important;
     border-radius: 50% !important;
     width: 60px !important;
     height: 60px !important;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
-    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    font-size: 20px !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+    z-index: 10000 !important;
+    transition: transform 0.2s ease, background-color 0.2s ease !important;
   }
-  
-  #amazon-connect-close-widget-button:hover {
-    transform: translateY(-5px) !important;
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15) !important;
-  }
-
-  #amazon-connect-open-widget-button,
+#launch-widget-btn,
+#amazon-connect-open-widget-button,
 #amazon-connect-close-widget-button {
+  width: 60px !important;
+  height: 60px !important;
+  bottom: 20px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
   border-radius: 50% !important;
-  width: 56px !important;
-  height: 56px !important;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
-  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  font-size: 22px !important;
 }
 
-#amazon-connect-open-widget-button:hover,
-#amazon-connect-close-widget-button:hover {
-  transform: scale(1.05) !important;
-}
+  #amazon-connect-open-widget-button:hover,
+  #amazon-connect-close-widget-button:hover {
+    background-color: #b94e2e !important;
+    transform: translateY(-6px) !important;
+  }
+  @media only screen and (max-width: 768px) {
+    #launch-widget-btn,
+    #amazon-connect-open-widget-button,
+    #amazon-connect-close-widget-button {
+      right: 16px !important;
+      bottom: 16px !important;
+    }
 
-  
+  }
+  @media only screen and (max-width: 480px) {
+    #launch-widget-btn,
+    #amazon-connect-open-widget-button,
+    #amazon-connect-close-widget-button {
+      right: 14px !important;
+      bottom: 14px !important;
+    }
+}

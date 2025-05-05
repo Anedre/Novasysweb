@@ -7,6 +7,7 @@ import ScrollToTop from './scripts/ScrollToTop.jsx'; // Ajusta la ruta según co
 import AmazonConnectChat from './components/AmazonConnectChat/AmazonConnectChat.jsx'; // Ajusta la ruta si es necesario
 import WhatsAppWidget from './components/WhatsAppWidget/WhatsAppWidget.jsx';
 import Canonical from './hooks/Canonical.jsx'; // Asegúrate que la ruta sea correcta
+import ContactFloatingMenu from './components/ContactFloatingMenu/ContactFloatingMenu';
 
 
 
@@ -27,6 +28,8 @@ function AppLayout() {
        {/* Agrega el widget para que aparezca siempre */}
        <AmazonConnectChat />
        <WhatsAppWidget />
+       <ContactFloatingMenu />
+
     </div>
   );
 }

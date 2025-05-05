@@ -1,38 +1,41 @@
 .whatsapp-widget {
-    position: fixed;
-    bottom: 20px;
-    right: 100px; /* Ajusta este valor para separar los widgets */
-    z-index: 9999;
-    background-color: #25D366;
-    color: #fff;
-    border-radius: 50%;
-    padding: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    -webkit-box-reflect: below 0px linear-gradient(transparent, transparent, rgba(0, 0, 0, 0.2));
-  }
+  position: fixed;
+  bottom: 20px;
+  right: 90px;
+  background-color: #25D366;
+  color: white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: inline-flex; /* CAMBIO CRÍTICO */
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  font-size: 22px;
+  z-index: 9999;
+  -webkit-box-reflect: below 0px linear-gradient(transparent, transparent, rgba(0, 0, 0, 0.2));
+}
 
 
-  
-  .whatsapp-widget:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
-  }
-  
-  @media only screen and (max-width: 900px) {
-    .whatsapp-widget {
-      right: 90px; /* Ajusta este valor para evitar que quede muy pegado al borde */
-      bottom:16px ;
-    }
-  }
-  @media only screen and (max-width: 480px) {
-    .whatsapp-widget {
-      right: 75px; /* Ajusta este valor para evitar que quede muy pegado al borde */
-      bottom: 7px;
 
-      /* Puedes ajustar otros estilos como tamaño o padding si es necesario */
-    }
+
+
+.whatsapp-widget:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+}
+
+@media only screen and (max-width: 900px) {
+  .whatsapp-widget {
+    right: 86px !important; /* deja espacio entre ambos botones */
+    bottom: 16px !important;
   }
+}
+@media only screen and (max-width: 480px) {
+  .whatsapp-widget {
+    right: 78px !important;
+    bottom: 14px !important;
+  }
+}

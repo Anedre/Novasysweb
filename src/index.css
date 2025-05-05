@@ -208,6 +208,36 @@ button {
   font-weight: 100;
 }
 
+
+/* Oculta widgets si el header está activo */
+/* Oculta ambos widgets cuando el header está activo */
+.header-active #launch-widget-btn,
+.header-active .whatsapp-widget {
+  display: none !important;
+}
+
+/* Mostrar solo en mobile */
+#mobile-contact-widget {
+  display: none;
+  z-index: 1000;
+}
+
+/* Mostrar solo en móviles y tablets */
+@media (max-width: 768px) {
+  #mobile-contact-widget {
+    display: block;
+  }
+
+  /* Ocultar los widgets flotantes individuales en mobile */
+  #launch-widget-btn,
+  #amazon-connect-open-widget-button,
+  #amazon-connect-close-widget-button,
+  .whatsapp-widget {
+    display: none !important;
+  }
+}
+
+
 /* ======== Responsividad ======== */
 @media (max-width: 768px) {
   h1 { font-size: 1.8rem; }
@@ -228,3 +258,5 @@ button {
   p { font-size: 0.9rem; }
   small { font-size: 0.7em; }
 }
+
+

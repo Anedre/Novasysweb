@@ -1,0 +1,84 @@
+.contact-menu-container {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+  }
+  
+  /* Botón principal */
+  #main-contact-btn {
+    background-color: #f28c28; /* Naranja suave */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  
+  #main-contact-btn:hover {
+    background-color: #cc6f1f;
+    transform: translateY(-6px);
+  }
+  
+  /* Botones secundarios */
+  .contact-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    color: white;
+    font-size: 22px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .contact-options {
+    position: relative;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: scaleY(0.6) translateY(10px);
+    transform-origin: bottom right;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    pointer-events: none;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .contact-menu-container.open .contact-options {
+    max-height: 500px;
+    opacity: 1;
+    transform: scaleY(1) translateY(0);
+    pointer-events: auto;
+  }
+  
+  .contact-btn.whatsapp {
+    background-color: #25D366;
+  }
+  .contact-btn.whatsapp:hover {
+    background-color: #1ebe5d;
+  }
+  
+  .contact-btn.amazon {
+    background-color: #e2653b;
+  }
+  .contact-btn.amazon:hover {
+    background-color: #b94e2e;
+  }
+  
+ 
+  
+
+/* Oculta todos los widgets cuando hay un header activo */
+body.header-active #launch-widget-btn,
+body.header-active .whatsapp-floating-button,
+body.header-active #main-contact-btn,
+body.header-active .contact-options {
+  display: none !important;
+}
+

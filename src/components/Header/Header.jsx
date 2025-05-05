@@ -252,6 +252,17 @@ function Header() {
       return newMode;
     });
   };
+
+  useEffect(() => {
+    const shouldHideWidgets = isMobileNavOpen || isCompactMenuOpen;
+    if (shouldHideWidgets) {
+      document.body.classList.add('header-active');
+    } else {
+      document.body.classList.remove('header-active');
+    }
+  }, [isMobileNavOpen, isCompactMenuOpen]);
+  
+  
   
 
   return (
