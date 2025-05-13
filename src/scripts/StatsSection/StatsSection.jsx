@@ -11,7 +11,7 @@ const StatsSection = () => {
       icon: "😄",
       count: 97,
       suffix: "%",
-      title: "Satisfacción",
+      titleST: "Satisfacción",
       description: "Nuestra prioridad es la seguridad y confianza de nuestros clientes. Un 97% de ellos nos recomiendan.",
       smallText: "Promedio de satisfacción basado en encuestas internas.",
       buttonText: null,
@@ -21,7 +21,7 @@ const StatsSection = () => {
       icon: "🏆",
       count: 30,
       suffix: "+",
-      title: "Casos de Éxito",
+      titleST: "Casos de Éxito",
       description: "Hemos implementado soluciones exitosas para más de 30 empresas de diversas industrias.",
       smallText: "Incluyendo telecomunicaciones, retail, banca y más.",
       buttonText: "Ver casos de éxito",
@@ -31,7 +31,7 @@ const StatsSection = () => {
       icon: "🌍",
       count: 78,
       suffix: "+",
-      title: "Clientes Activos",
+      titleST: "Clientes Activos",
       description: "Miles de clientes confían en nuestras soluciones para sus operaciones diarias.",
       smallText: "Clientes a nivel nacional e internacional.",
       buttonText: null,
@@ -41,7 +41,7 @@ const StatsSection = () => {
       icon: "📈",
       count: 20,
       suffix: "+",
-      title: "Certificaciones",
+      titleST: "Certificaciones",
       description: "Contamos con más de 20 certificaciones en gestión TI y seguridad de la información.",
       smallText: "Reconocidas a nivel internacional.",
       buttonText: "Ver certificaciones",
@@ -97,7 +97,7 @@ const StatsSection = () => {
                       </motion.span>
                     )}
                   </h3>
-                  <p className="extra-info">{stat.title}</p>
+                  <p className="extra-infoST">{stat.titleST}</p>
                 </div>
                 <div className="separator-line"></div>
                 <div className="stats-bottom">

@@ -12,14 +12,30 @@
   height: 100vh;
 }
 
+/* Estilo base */
 .heroN-container {
   position: relative;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.95); /* Fondo blanco casi opaco */
   border-radius: 10px;
   overflow: hidden;
+  transition: background 0.3s ease-in-out;
 }
+
+/* Estilo de día */
+body.day .heroN-container {
+  background: rgba(255, 255, 255, 0.95); /* blanco casi opaco */
+    box-shadow: 0 0 10px rgba(255, 100, 255, 0.2); /* brillo suave */
+
+}
+
+/* Estilo de noche */
+body.night .heroN-container {
+  background: linear-gradient(145deg, #1b1129, #0a0714); /* degradado oscuro tecnológico */
+  box-shadow: 0 0 10px rgba(255, 100, 255, 0.2);
+  transition: background 0.6s ease-in-out;
+}
+
 
 /* Contenedor para el background interactivo */
 .interactive-bg {
@@ -91,6 +107,16 @@
   margin: 0 0.3rem;
 }
 
+body.night .heroN-title .word {
+  color: #ff5b5b; /* Color de texto para el modo noche */
+  text-shadow: 3px 3px 8px rgba(255, 255, 255, 0.2);
+
+}
+body.night .timeline-heading {
+  color: #f8510f; /* Color de texto para el modo noche */
+  text-shadow: 3px 3px 8px rgba(173, 173, 173, 0.2);
+}
+
 @keyframes techFadeIn {
   0% {
     opacity: 0;
@@ -113,6 +139,7 @@
 
 .scroll-down {
   display: inline-block;
+  margin-top: 2.5%;
   padding: 0.75rem 1.5rem;
   background-color: #ffafaf;
   color: #fff;
@@ -144,9 +171,9 @@
 
 .player-wrapper {
   position: relative;
-  max-width:500px;
-  left:25%;
-  margin: 0 50px;
+  max-width:350px;
+  margin: 0 auto;
+  border-radius: 10px;
 }
 
 .lottie-wrapperM {
@@ -200,9 +227,7 @@
   padding: 5% 10%;
   background: #f8f8f8; /* Color base para esta sección */
 }
-.qs-background {
-  /* Puedes aplicar un fondo único o animaciones específicas para esta sección */
-}
+
 
 .qs-figure {
   position: absolute;
@@ -232,6 +257,8 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   align-items: center;
+  justify-content: center;
+  align-content: center;
 }
 
 .contenido-quienes-somos {
@@ -266,9 +293,7 @@
   margin: 2rem 10%;
 }
 
-.pr-background {
-  /* Puedes definir estilos únicos para este background */
-}
+
 
 .pr-figure {
   position: absolute;
@@ -346,5 +371,385 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+
+/* ========== TIMELINE - NUESTRA HISTORIA ========== */
+.timeline-section {
+  background-color: #f9f9f9;
+  padding: 80px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 60px;
+  color: #222;
+  font-family: "Poppins", sans-serif;
+}
+
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.timeline-item {
+  background: #ffffff;
+  border-left: 6px solid #e62b1e;
+  border-radius: 12px;
+  padding: 25px 30px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-year {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #e62b1e;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.timeline-heading {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.timeline-description {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+
+/* ========== EQUIPO NOVASYS ========== */
+.equipo-novasys {
+  background: #ffffff;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.equipo-novasys h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #222;
+  font-family: "Poppins", sans-serif;
+}
+
+.equipo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.equipo-card {
+  background: #f9f9f9;
+  border-radius: 16px;
+  padding: 30px 20px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.equipo-card:hover {
+  transform: translateY(-5px);
+}
+
+.emoji-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.equipo-card h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #222;
+}
+
+.equipo-card p {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* ========== PRESENCIA NOVASYS ========== */
+.presencia-novasys {
+  background: #f3f3f3;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.presencia-novasys h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #222;
+  font-family: "Poppins", sans-serif;
+}
+
+.mapa-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+.cta-btnN {
+  background: #f54242;
+  color: #e62b1e;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 12px 30px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.144);
+}
+body.night .cta-btnN {
+  background: #ff8a46  ;
+  transition: background 0.3s ease, transform 0.3s ease;
+
+}
+body.night  .cta-btnN:hover {
+  background: #81818179;
+  transform: translateY(-3px);
+}
+
+
+.cta-btnN:hover {
+  background: #81818179;
+  transform: translateY(-3px);
+}
+.mapa-vectorial {
+  max-width: 100%;
+  margin: 0 auto;
+  overflow-x: auto;
+}
+
+.presencia-novasys {
+  background: #f3f3f3;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.presencia-novasys h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #222;
+}
+
+/* ========== RESPONSIVE ADJUSTMENTS ========== */
+@media (max-width: 768px) {
+  .equipo-card {
+    padding: 25px 15px;
+  }
+
+  .equipo-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .cta-final h2 {
+    font-size: 1.6rem;
+  }
+
+  .cta-btn {
+    font-size: 0.95rem;
+    padding: 10px 24px;
+  }
+}
+
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .timeline-title {
+    font-size: 1.8rem;
+  }
+
+  .timeline-item {
+    padding: 20px;
+  }
+
+  .timeline-heading {
+    font-size: 1.3rem;
+  }
+
+  .timeline-description {
+    font-size: 0.95rem;
+  }
+}
+
+/* === ESTRUCTURA DE SECCIONES === */
+
+
+.quienes-somos,
+.equipo-novasys,
+.presencia-novasys,
+.timeline-section {
+  background-color: var(--card-bg);
+  color: var(--text-main);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  margin: 2rem auto;
+  box-shadow: 0 6px 20px var(--card-border);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  max-width: 1500px;
+}
+
+/* === TÍTULOS === */
+
+.heroN-content h2,
+.quienes-somos h2,
+.equipo-novasys h2,
+.presencia-novasys h2,
+.timeline-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--accent-color);
+  display: inline-block;
+}
+
+/* === DESCRIPCIONES === */
+
+.heroN-description,
+.timeline-description,
+.mapa-descripcion {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+/* === TARJETAS PEQUEÑAS (Principios, Equipo, Timeline) === */
+
+.principio-card,
+.equipo-card,
+.timeline-item {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 12px var(--card-border), 0 0 10px var(--card-glow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.principio-card:hover,
+.equipo-card:hover,
+.timeline-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px var(--accent-color), 0 0 20px var(--card-glow);
+}
+
+.principio-card h3,
+.equipo-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+}
+
+.principio-card p,
+.equipo-card p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* === CTA FINAL === */
+
+.cta-final {
+  background: linear-gradient(135deg, var(--accent-color), #ff0000);
+  color: #fff;
+  text-align: center;
+  padding: 3rem 2rem;
+  margin-top: 3rem;
+  box-shadow: 0 0 16px rgba(255, 204, 0, 0.3);
+}
+
+.cta-final h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color:#0a0714;
+}
+
+body.night .cta-final {
+  background: linear-gradient(135deg, var(--accent-color), #9e0d0d);
+}
+
+
+
+/* === SCROLL ICONO === */
+
+
+.scroll-down:hover {
+  background-color: #b93636;
+}
+
+/* === BANDERA === */
+
+.bandera-icono {
+  width: 32px;
+  height: 20px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px #ccc;
+}
+
+/* === TRANSICIONES SUAVES === */
+
+body.night .principio-card,
+body.night .timeline-item,
+body.night .equipo-card,
+body.night .heroN-container,
+body.night .quienes-somos,
+body.night .presencia-novasys,
+body.night .cta-final {
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Estilo base */
+.heroN-fade-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 150px;
+  z-index: 3;
+  transition: background 0.3s ease-in-out;
+}
+
+/* Estilo para el día */
+body.day .heroN-fade-bottom {
+  background: linear-gradient(to bottom, rgba(255, 223, 223, 0), #f8f8f8); /* tonos cálidos, fondo claro */
+}
+
+/* Estilo para la noche */
+body.night .heroN-fade-bottom {
+  background: linear-gradient(to bottom, rgba(27, 17, 41, 0), #1b1129); /* transición a fondo oscuro */
+}
+
+
 
 

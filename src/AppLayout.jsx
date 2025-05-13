@@ -8,6 +8,7 @@ import AmazonConnectChat from './components/AmazonConnectChat/AmazonConnectChat.
 import WhatsAppWidget from './components/WhatsAppWidget/WhatsAppWidget.jsx';
 import Canonical from './hooks/Canonical.jsx'; // Asegúrate que la ruta sea correcta
 import ContactFloatingMenu from './components/ContactFloatingMenu/ContactFloatingMenu';
+import { AnimatePresence } from "framer-motion";
 
 
 
@@ -22,8 +23,11 @@ function AppLayout() {
       <ScrollToTop />
       <Header />
       <main className="content">
-        <Outlet />
+        <AnimatePresence mode="wait">
+          <Outlet />
+        </AnimatePresence>
       </main>
+
       <Footer />
        {/* Agrega el widget para que aparezca siempre */}
        <AmazonConnectChat />

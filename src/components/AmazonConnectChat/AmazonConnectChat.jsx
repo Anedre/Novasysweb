@@ -39,7 +39,11 @@ const AmazonConnectChat = () => {
       window.amazon_connect('customDisplayNames', {
         customerName: 'Cliente Novasys',
         agentName: 'Asesor Novasys',
-        headerText: '¡Hola! ¿En qué podemos ayudarte hoy?',
+        header:{
+          headerMessage:'¡Hola! ¿En qué podemos ayudarte hoy?',
+
+        },
+
         logoUrl: 'https://novasys.com.pe/logo.svg' // Reemplaza por tu logo real
       });
 

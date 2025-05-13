@@ -24,7 +24,6 @@
 .Stitulo2 p {
   font-size: 1.1rem;
   margin: 20px auto;
-  color: #222;
 }
 
 .Stitulo h1,
@@ -180,11 +179,11 @@
 }
 
 .filter-tab:hover {
-  color: #0073e6;
+  color: #2c72b9;
 }
 
 .filter-tab.active {
-  color: red;
+  color: rgb(194, 26, 26);
 }
 
 .filter-tab.active::after {
@@ -209,20 +208,28 @@
   min-height: 240px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+
   align-items: center;
 
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: #ffffffd0;
   border-radius: 10px;
   border: 1px solid #ddd;
   text-align: center;
+  
 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   animation: fadeIn 0.6s ease forwards;
   animation-fill-mode: both;
   opacity: 0;
   transform: translateY(20px);
+
+}
+
+body.night .Iitem {
+  background-color: #ffffffb9;
+  border: 1px solid #ffffff1a;
 }
 
 .Iitem:nth-child(n) {
