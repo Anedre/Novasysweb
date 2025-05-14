@@ -40,7 +40,7 @@ function Contacto() {
 
  const onSubmit = async (data) => {
   try {
-    const response = await fetch("https://TU_API_REST.amazonaws.com/dev/items", {
+    const response = await fetch("https://hff9kz1iy6.execute-api.us-east-1.amazonaws.com/dev/items", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
