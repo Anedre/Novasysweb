@@ -214,7 +214,7 @@ app.post(path, async function(req, res) {
     };
 
     const putItemParams = {
-      TableName: "Contactos_Novasys", // tabla real
+      TableName: "WebNovasys", // tabla real
       Item: item
     };
 
