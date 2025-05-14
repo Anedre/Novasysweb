@@ -1,0 +1,63 @@
+{
+  "api": {
+    "NVSrestAPI": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "AmplifyNVSWeb"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "function": {
+    "AmplifyNVSWeb": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributeEnvMap": {
+            "Arn": "TABLE_ARN",
+            "Name": "TABLE_NAME"
+          },
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "storage",
+          "resourceName": "provisionalAmplify"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_AmplifyNVSWeb_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "AmplifyNVSWeb"
+        }
+      ]
+    },
+    "AMPLIFY_function_AmplifyNVSWeb_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "AmplifyNVSWeb"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "provisionalAmplify": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
+    }
+  }
+}

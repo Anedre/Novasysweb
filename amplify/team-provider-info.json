@@ -1,0 +1,29 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-novasysapp-dev-aa6b3-authRole",
+      "UnauthRoleArn": "arn:aws:iam::731736972577:role/amplify-novasysapp-dev-aa6b3-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::731736972577:role/amplify-novasysapp-dev-aa6b3-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-novasysapp-dev-aa6b3-deployment",
+      "UnauthRoleName": "amplify-novasysapp-dev-aa6b3-unauthRole",
+      "StackName": "amplify-novasysapp-dev-aa6b3",
+      "StackId": "arn:aws:cloudformation:us-east-1:731736972577:stack/amplify-novasysapp-dev-aa6b3/831ebc10-30ec-11f0-aa38-0afff9e847bf",
+      "AmplifyAppId": "d1s04fmi36kzjw"
+    },
+    "categories": {
+      "function": {
+        "AmplifyNVSWeb": {
+          "deploymentBucketName": "amplify-novasysapp-dev-aa6b3-deployment",
+          "s3Key": "amplify-builds/AmplifyNVSWeb-3164544b76345855706a-build.zip"
+        }
+      },
+      "storage": {
+        "provisionalAmplify": {}
+      },
+      "api": {
+        "NVSrestAPI": {}
+      }
+    }
+  }
+}
