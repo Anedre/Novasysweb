@@ -3,7 +3,6 @@ import "./Contacto.css";
 import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import emailjs from "@emailjs/browser";
 import { FaWhatsapp, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import MapaContacto from "./../../scripts/Mapa/MapaContacto.jsx"
 
@@ -38,6 +37,33 @@ function Contacto() {
 
   const [estado, setEstado] = useState(null);
 
+  const [toastVisible, setToastVisible] = useState(false);
+  const [toastType, setToastType] = useState("success"); // 'success' o 'error'
+  const [toastMessage, setToastMessage] = useState("");
+
+  const audioSuccess = new Audio("/Sounds/success.wav");
+  const audioError = new Audio("/Sounds/error.mp3");
+
+  const mostrarToast = (tipo, mensaje) => {
+    setToastType(tipo);
+    setToastMessage(mensaje);
+    setToastVisible(true);
+
+    // Reproduce sonido según tipo
+    if (tipo === "success") {
+      audioSuccess.play().catch(() => {});
+    } else if (tipo === "error") {
+      audioError.play().catch(() => {});
+    }
+
+    // Oculta el toast luego de 4 segundos
+    setTimeout(() => {
+      setToastVisible(false);
+    }, 4000);
+  };
+
+
+
  const onSubmit = async (data) => {
   try {
     const response = await fetch("https://hff9kz1iy6.execute-api.us-east-1.amazonaws.com/dev/items", {
@@ -51,15 +77,17 @@ function Contacto() {
     const result = await response.json();
 
     if (response.ok) {
-      console.log("✅ Enviado con éxito:", result);
-      setEstado("enviado");
-      reset();
-    } else {
-      console.error("❌ Error al enviar:", result);
-      setEstado("error");
-    }
+  console.log("✅ Enviado con éxito:", result);
+  mostrarToast("success", "Mensaje enviado correctamente ✅");
+  reset();
+} else {
+  console.error("❌ Error al enviar:", result);
+  mostrarToast("error", "Ocurrió un error al enviar 😓");
+}
+
   } catch (error) {
-    console.error("🚨 Error inesperado:", error);
+    mostrarToast("error", "Error de conexión con el servidor 🚨");
+
     setEstado("error");
   }
 };
@@ -67,7 +95,7 @@ function Contacto() {
 
   const lineaSeleccionada = watch("linea");
 
-  
+ 
 
   return (
     <section className="Contacto">
@@ -204,6 +232,12 @@ function Contacto() {
         <MapaContacto />
 
       </div>
+     <div
+      className={`toast ${toastType} ${toastVisible ? "toast-enter" : "toast-leave"}`}
+      style={{ display: toastVisible || toastMessage ? "block" : "none" }}
+    >
+      {toastMessage}
+    </div>
     </section>
   );
 }

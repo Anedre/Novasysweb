@@ -406,7 +406,61 @@ body.night .map-frame.dark-mode {
   background-color: var(--card-light);
 }
 
+@keyframes slideRightIn {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 
+@keyframes slideRightOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+}
+
+
+.toast {
+  position: fixed;
+  bottom: 78%;
+  right: 2rem;
+  background-color: var(--card-light);
+  color: var(--text-light);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  z-index: 999;
+  opacity: 0;
+  font-size: 0.9rem;
+  max-width: 300px;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+
+.toast.success {
+  border-left: 4px solid #27ae60;
+}
+.toast.error {
+  border-left: 4px solid #e74c3c;
+}
+
+.toast-enter {
+  animation-name: slideRightIn;
+}
+
+.toast-leave {
+  animation-name: slideRightOut;
+}
   /* ------------------------- */
   /* Adaptaciones responsivas  */
   /* ------------------------- */
@@ -483,6 +537,17 @@ body.night .map-frame.dark-mode {
   flex: 1 1 48%;
   min-width: 240px;
 }
+.toast {
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
+    bottom: auto; 
+    max-width: 90vw;
+  }
+  .toast.show {
+    transform: translate(-20%, 110%);
+  }
 }
 
     
