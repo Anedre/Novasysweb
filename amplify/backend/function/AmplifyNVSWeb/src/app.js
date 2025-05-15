@@ -60,18 +60,33 @@ app.post("/items", async (req, res) => {
       })
     );
 
-    // Enviar correo de confirmación
-    await sesClient.send(
-      new SendTemplatedEmailCommand({
-        Destination: { ToAddresses: [email] },
-        Source: SES_SOURCE_EMAIL,
-        Template: SES_TEMPLATE_NAME,
-        TemplateData: JSON.stringify({
-          name: item.nombres,
-          mensaje: item.mensaje
-        })
-      })
-    );
+   // Generar extraDetalle dinámico
+let extraDetalle = "";
+
+if (item.lineaContacto === "SOLUCIONES NOVASYS") {
+  extraDetalle = "En Novasys, desarrollamos soluciones únicas para empresas que buscan optimizar sus procesos. Gracias por confiar en la innovación local.";
+} else if (item.lineaContacto === "PRODUCTOS HP EMPRESARIALES") {
+  extraDetalle = "Como partner de HP, te brindamos soporte oficial y asesoría en productos empresariales. ¡Gracias por elegir calidad garantizada!";
+} else if (item.lineaContacto === "SERVICIOS EN LA NUBE") {
+  extraDetalle = "Nuestra experiencia en Amazon Web Services asegura que tu infraestructura estará en buenas manos. Estamos aquí para acompañarte en tu viaje a la nube.";
+}
+
+// Enviar correo de confirmación
+await sesClient.send(
+  new SendTemplatedEmailCommand({
+    Destination: { ToAddresses: [email] },
+    Source: SES_SOURCE_EMAIL,
+    Template: SES_TEMPLATE_NAME,
+    TemplateData: JSON.stringify({
+      name: item.nombres,
+      mensaje: item.mensaje,
+      linea: capitalizarTexto(linea),
+      tipo: item.tipoAtencion,
+      empresa: item.empresa,
+      extraDetalle
+    })
+  })
+);
 
     res.status(200).json({ message: "Formulario recibido y correo enviado con éxito." });
   } catch (err) {
