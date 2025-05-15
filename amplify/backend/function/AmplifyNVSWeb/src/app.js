@@ -1,9 +1,10 @@
-import express from "express";
-import cors from "cors";
-import bodyParser from "body-parser";
-import { SESClient, SendTemplatedEmailCommand } from "@aws-sdk/client-ses";
-import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { DynamoDBDocumentClient, PutCommand } from "@aws-sdk/lib-dynamodb";
+const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const { SESClient, SendTemplatedEmailCommand } = require("@aws-sdk/client-ses");
+const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
+const { DynamoDBDocumentClient, PutCommand } = require("@aws-sdk/lib-dynamodb");
+
 
 const app = express();
 app.use(cors());
@@ -79,4 +80,4 @@ app.post("/items", async (req, res) => {
   }
 });
 
-export default app;
+module.exports = app;
