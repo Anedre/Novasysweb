@@ -15,7 +15,7 @@
       "function": {
         "AmplifyNVSWeb": {
           "deploymentBucketName": "amplify-novasysapp-dev-aa6b3-deployment",
-          "s3Key": "amplify-builds/AmplifyNVSWeb-3946324c723630726b54-build.zip"
+          "s3Key": "amplify-builds/AmplifyNVSWeb-6971746a634231706177-build.zip"
         }
       },
       "storage": {

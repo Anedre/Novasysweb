@@ -3,8 +3,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const { SESClient, SendTemplatedEmailCommand } = require("@aws-sdk/client-ses");
 const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
-const { DynamoDBDocumentClient, PutCommand } = require("@aws-sdk/lib-dynamodb");
-
+const { DynamoDBDocumentClient, PutCommand, UpdateCommand } = require("@aws-sdk/lib-dynamodb");
 
 const app = express();
 app.use(cors());
@@ -45,7 +44,7 @@ app.post("/items", async (req, res) => {
     apellidos: capitalizarTexto(apellidos),
     telefono,
     empresa: capitalizarTexto(empresa),
-    lineaContacto: linea?.toUpperCase() || "", // Formato limpio
+    lineaContacto: linea?.toUpperCase() || "",
     tipoAtencion: capitalizarTexto(tipoAtencion),
     mensaje,
     estadoCaso: "pendiente",
@@ -60,39 +59,57 @@ app.post("/items", async (req, res) => {
       })
     );
 
-   // Generar extraDetalle dinámico
-let extraDetalle = "";
+    // 📩 Generar extraDetalle
+    let extraDetalle = "";
+    switch (item.lineaContacto) {
+      case "SOLUCIONES NOVASYS":
+        extraDetalle = "En Novasys, desarrollamos soluciones únicas para empresas que buscan optimizar sus procesos. Gracias por confiar en la innovación local.";
+        break;
+      case "PRODUCTOS HP EMPRESARIALES":
+        extraDetalle = "Como partner de HP, te brindamos soporte oficial y asesoría en productos empresariales. ¡Gracias por elegir calidad garantizada!";
+        break;
+      case "SERVICIOS EN LA NUBE":
+        extraDetalle = "Nuestra experiencia en Amazon Web Services asegura que tu infraestructura estará en buenas manos. Estamos aquí para acompañarte en tu viaje a la nube.";
+        break;
+    }
 
-if (item.lineaContacto === "SOLUCIONES NOVASYS") {
-  extraDetalle = "En Novasys, desarrollamos soluciones únicas para empresas que buscan optimizar sus procesos. Gracias por confiar en la innovación local.";
-} else if (item.lineaContacto === "PRODUCTOS HP EMPRESARIALES") {
-  extraDetalle = "Como partner de HP, te brindamos soporte oficial y asesoría en productos empresariales. ¡Gracias por elegir calidad garantizada!";
-} else if (item.lineaContacto === "SERVICIOS EN LA NUBE") {
-  extraDetalle = "Nuestra experiencia en Amazon Web Services asegura que tu infraestructura estará en buenas manos. Estamos aquí para acompañarte en tu viaje a la nube.";
-}
+    // ✉️ Enviar correo
+    const emailResponse = await sesClient.send(
+      new SendTemplatedEmailCommand({
+        Destination: { ToAddresses: [email] },
+        Source: SES_SOURCE_EMAIL,
+        Template: SES_TEMPLATE_NAME,
+        TemplateData: JSON.stringify({
+          name: item.nombres,
+          mensaje: item.mensaje,
+          linea: capitalizarTexto(linea),
+          tipo: item.tipoAtencion,
+          empresa: item.empresa,
+          extraDetalle
+        })
+      })
+    );
 
-// Enviar correo de confirmación
-await sesClient.send(
-  new SendTemplatedEmailCommand({
-    Destination: { ToAddresses: [email] },
-    Source: SES_SOURCE_EMAIL,
-    Template: SES_TEMPLATE_NAME,
-    TemplateData: JSON.stringify({
-      name: item.nombres,
-      mensaje: item.mensaje,
-      linea: capitalizarTexto(linea),
-      tipo: item.tipoAtencion,
-      empresa: item.empresa,
-      extraDetalle
-    })
-  })
-);
+    // ✅ Solo actualiza si el correo fue enviado correctamente
+    if (emailResponse.$metadata.httpStatusCode === 200) {
+      await ddbDocClient.send(
+        new UpdateCommand({
+          TableName: TABLE_NAME,
+          Key: { email: item.email }, // asegúrate si usas sortKey también
+          UpdateExpression: "SET estadoCaso = :estado",
+          ExpressionAttributeValues: {
+            ":estado": "correo_enviado"
+          }
+        })
+      );
+    }
 
-    res.status(200).json({ message: "Formulario recibido y correo enviado con éxito." });
-  } catch (err) {
-    console.error("❌ Error:", err);
-    res.status(500).json({ error: "Ocurrió un error al guardar o enviar correo." });
+    res.status(200).json({ message: "Formulario recibido, correo enviado y estado actualizado." });
+  } catch (error) {
+    console.error("❌ Error al procesar:", error);
+    res.status(500).json({ error: "Hubo un problema al procesar tu solicitud." });
   }
 });
 
+// ¡Esto FALTABA!
 module.exports = app;
