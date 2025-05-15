@@ -16,7 +16,7 @@ const ddbDocClient = DynamoDBDocumentClient.from(ddbClient);
 const sesClient = new SESClient({ region: REGION });
 
 const TABLE_NAME = "WebNovasys";
-const SES_TEMPLATE_NAME = "GraciasPorContactar";
+const SES_TEMPLATE_NAME = "GraciasPorContactarV2";
 const SES_SOURCE_EMAIL = "andre.alata@novasysperu.com";
 
 function capitalizarTexto(texto) {
