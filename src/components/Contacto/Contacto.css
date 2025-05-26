@@ -38,7 +38,8 @@
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-  
+
+
   /* ------------------------- */
   /* Estilos de "cards" comunes*/
   /* (Para info y formulario) */
@@ -52,6 +53,7 @@
   /* Columna Izquierda: Información de contacto */
   .contact-info {
     /* Hereda los estilos de .card */
+
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
@@ -350,25 +352,6 @@ body.night .map-frame.dark-mode {
     color: #27ae60;
   }
   
-  /* ------------------------- */
-  /* Footer                   */
-  /* ------------------------- */
-  footer {
-    background-color: var(--bg-light);
-    padding: 2rem 1rem;
-    text-align: center;
-    color: var(--text-light);
-  }
-  
-  footer h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  footer p {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
 
 .form-group select {
   width: 100%;

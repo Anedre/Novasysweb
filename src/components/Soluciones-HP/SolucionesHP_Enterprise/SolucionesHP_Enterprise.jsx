@@ -52,27 +52,36 @@ function SolucionesHP_Enterprise() {
       <h2 className="SEsubtitulo">Áreas donde HP Enterprise potencia tu empresa</h2>
 
       <div className="SEcards">
-        {soluciones.map((item, idx) => (
-          <motion.div
-            key={idx}
-            className="SEcard"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: idx * 0.2, duration: 0.6 }}
-          >
-            <div className="emoji-block">{item.emoji}</div>
-            <h3>{item.title}</h3>
-            <p>{item.desc}</p>
-            <div className="extra-info">
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1, duration: 0.5 }}
-              >{item.detalle}</motion.p>
-            </div>
-          </motion.div>
-        ))}
+        {soluciones.map((item, idx) => {
+          const detalleEmoji = item.detalle.match(/^(\p{Emoji_Presentation}|\p{Extended_Pictographic})/gu)?.[0] || "";
+          const detalleTexto = item.detalle.replace(detalleEmoji, "").trim();
+
+          return (
+            <motion.div
+              key={idx}
+              className="SEcard"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.2, duration: 0.6 }}
+            >
+              <div className="emoji-block">{item.emoji}</div>
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
+              <div className="extra-info">
+                <div className="emoji-overlay">{detalleEmoji}</div>
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1, duration: 0.5 }}
+                >
+                  {detalleTexto}
+                </motion.p>
+              </div>
+            </motion.div>
+          );
+        })}
+
       </div>
     </motion.section>
   );

@@ -1,115 +1,180 @@
-.carouselS {
+.swiper-carousel-container {
   width: 100%;
-  height: 300px;
+  padding: 60px 0 130px;
   position: relative;
-  overflow: hidden;
-  perspective: 3000px;
-  margin-top: 100px;
-  margin-left: 25px;
+  overflow: visible;
+  display: block; /* <- esto es CLAVE */
 }
 
-/* Slide base */
-.slide {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 225px;
-  height: 200px;
-  margin: -100px 0 0 -100px;
-  transform-origin: center center;
-  cursor: pointer;
-}
 
-/* Contenedor del slide y overlay */
-.slide-content {
+
+.swiper {
+  width: 100%;
+  max-width: 900px;
   position: relative;
-  width: 100%;
-  height: 100%;
+  margin-bottom: 50px; /* da espacio abajo */
 }
-
-/* Estilo de la imagen */
-.slide img {
-  width: 220px;
-  height: auto;
-  display: block;
-  -webkit-user-drag: none;
-  user-drag: none;
-}
-
-/* Overlay animado con degradado fijo de gris a negro */
-.slide-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  /* El background se establece inline en el componente */
-  color: #fff;
+.swiper-slide {
   display: flex;
-  align-items: flex-end;
   justify-content: center;
-  padding-bottom: 10px;
-  opacity: 0; /* controlado por Framer Motion */
-  /* Se eliminó pointer-events para asegurar que el hover se detecte */
-  border-radius: 8px;
+  align-items: center;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease;
 }
 
-.slide-overlay p {
-  margin: 0;
-  font-weight: 400;
-  font-size: 1rem;
-  color: #000;
+.carousel-image {
+  height: 150px !important;
+  width: auto !important;
+
+  object-fit: contain;
+  border-radius: 14px;
+  padding: 10px;
+  box-shadow: 0 0px 15px rgba(80, 80, 80, 0.08);
+  transition: all 0.5s ease;
+  user-select: none;
+  transform: scale(1);
 }
 
-/* Dots de navegación */
-.carousel-dots {
-  position: absolute;
-  bottom: -140px;
-  left: 50%;
-  transform: translateX(-50%);
+.body.night .carousel-image {
+  box-shadow: 0 0px 15px rgb(255, 255, 255);
+}
+
+
+
+.slide-wrapper {
+  position: relative;
   display: flex;
-  gap: 10px;
-  height: 100%;
+  
+  justify-content: center;
   align-items: center;
 }
 
+.slide-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.4s ease-in-out, background 0.4s ease-in-out;
+}
+
+body.dark .slide-overlay {
+  background: rgba(255, 255, 255, 0.1);
+}
 
 
-.dot {
+
+.slide-wrapper:hover .slide-overlay {
+  opacity: 1;
+}
+
+.overlay-button {
+  padding: 10px 18px;
+  background: linear-gradient(to right, #ff6600, #ff9900);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 5px 20px rgba(255, 102, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.overlay-button:hover {
+  background: linear-gradient(to right, #ff8800, #ffaa00);
+}
+
+.active-slide {
+  transform: scale(1.1) !important;
+  opacity: 1 !important;
+  z-index: 2;
+}
+
+.faded-slide {
+  transform: scale(0.8) !important;
+  opacity: 0.3 !important;
+  z-index: 1;
+}
+
+/* Swiper nav arrows */
+.swiper-button-prev,
+.swiper-button-next {
+  color: #ff6600;
+  top: 45%;
+  transition: transform 0.2s ease;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 767px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
+  }
+}
+
+.swiper-pagination {
+  margin-top: 24px;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  pointer-events: auto;
+  position: relative;
+  z-index: 20;
+}
+
+
+
+
+.swiper-pagination-bullet {
+  background: #bbb;
+  opacity: 1;
   width: 10px;
   height: 10px;
-  background-color: var(--dot-color-inactive);
   border-radius: 50%;
+  margin: 0 4px;
   transition: all 0.3s ease;
-  cursor: pointer;
+}
+.swiper-pagination-bullet-active {
+  background: #ff6600;
+  transform: scale(1.3);
 }
 
-.dot.active {
-  transform: scale(1.2);
-  background-color: var(--dot-color-active);
-  box-shadow: 0 0 2px var(--dot-color-active);}
+@media (min-width: 768px) {
+  .carousel-image {
+    width: 200px;
+    height: 120px;
+  }
+}
 
-/* Responsive para móviles */
 @media (max-width: 480px) {
-  .carouselS {
-    align-content: center;
-    text-align: center;
-    align-items: center;
-    height: 200px;
-    margin-top: 20px;
-    margin-left: 0;
-  }
   
-  .slide {
-    width: auto;
-    height: 130px;
-    margin: -65px 0 0 -75px;
+
+  .swiper-carousel-container {
+    padding: 40px 0 110px; /* más espacio aún abajo */
+    overflow: visible !important; /* evita que se oculten los dots */
   }
-  
-  .slide img {
-    width: 145px;
+
+  .overlay-button {
+    padding: 8px 14px;
+    font-size: 14px;
   }
-  .carousel-dots {
-    bottom: -50px;
+
+  .swiper-pagination {
+    bottom: -10px !important;
+  }
+   .slide-wrapper {
+    width: 160px;
+    height: 100px;
+  }
+
+  .carousel-image {
+    max-height: 90px;
   }
 }
+

@@ -521,6 +521,101 @@
   }
 }
 
+/* Modo noche para SolucionDetalle */
+body.night {
+  background-color: #121212;
+  color: #eee;
+}
+
+body.night .intro-descripcion,
+body.night .subtitulo,
+body.night .benefit-sub,
+body.night .caption-desc,
+body.night .contacto-item p,
+body.night .modal-content p {
+  color: #ccc;
+}
+
+body.night .benefit-text h2,
+body.night .solucion-video-box h2,
+body.night .solucion-related-box h2,
+body.night .contacto-header h2,
+body.night .modal-content h3 {
+  color: #ccc;
+}
+
+body.night .solucion-benefit-block,
+body.night .solucion-video-box,
+body.night .solucion-related-box,
+body.night .solucion-contacto,
+body.night .modal-content {
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+  box-shadow: 0 0 10px rgba(0, 255, 204, 0.05);
+}
+
+body.night .related-card {
+  background: #232323;
+  color: #eee;
+}
+
+body.night .related-card p {
+  color: #ddd;
+}
+
+body.night .related-overlay {
+  background: rgba(0, 255, 204, 0.1);
+}
+
+body.night .related-overlay span {
+  background: #00cc99;
+  color: #000;
+}
+
+body.night .contacto-btn,
+body.night .modal-link,
+body.night .modal-whatsapp {
+  color: white;
+  box-shadow: 0 0 8px rgba(0, 255, 204, 0.2);
+}
+
+body.night .contacto-btn {
+  background: #00cc99;
+}
+
+body.night .contacto-btn:hover {
+  background: #00a97a;
+}
+
+body.night .modal-link {
+  background: #007bff;
+}
+
+body.night .modal-whatsapp {
+  background: #25d366;
+}
+
+body.night .btn-fantasma {
+  color: #ccc;
+}
+
+body.night .btn-fantasma::before {
+  background: #00ffc3;
+}
+
+body.night .btn-fantasma:hover {
+  color: #00cc99;
+}
+
+body.night .solucion-back.upgraded-back {
+  background: #1a1a1a;
+  color: #ccc;
+  border: 1px solid #00ffc3;
+}
+
+body.night .solucion-back.upgraded-back:hover {
+  background: #000;
+}
 
 
 @media (max-width: 768px) {

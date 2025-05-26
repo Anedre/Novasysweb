@@ -274,6 +274,53 @@
     font-size: 0.95rem;
     line-height: 1.5;
   }
+
+  body.night .bi-sub,
+body.night .caption-desc,
+body.night .explora-sub {
+  color: #ccc;
+}
+
+body.night .bi-card {
+  background: #1c1c1c;
+  border: 1px solid #333;
+  box-shadow: 0 4px 12px rgba(0, 255, 204, 0.05);
+}
+
+body.night .bi-card h3 {
+  color: #f0f0f0;
+}
+
+body.night .caption-desc {
+  color: #bbb;
+}
+
+body.night .bi-item-link:hover .bi-card {
+  background: #222;
+  box-shadow: 0 6px 20px rgba(0, 255, 204, 0.15);
+}
+
+body.night .explora-card {
+  background: #222;
+  border: 1px solid #333;
+  color: #eee;
+}
+
+body.night .explora-card:hover {
+  background: linear-gradient(135deg, #00ffc3, #00aaff);
+  color: #000;
+}
+
+body.night .explora-card p {
+}
+
+body.night .bi-overlay {
+  background: rgba(0, 255, 204, 0.1);
+  color: #00ffc3;
+  text-shadow: 0 0 5px #00ffc3;
+}
+
+
   
   @keyframes textFloat {
     0% {

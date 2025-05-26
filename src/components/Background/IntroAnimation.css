@@ -57,12 +57,11 @@
 
 .day .intro-logo:hover {
   filter: drop-shadow(0 2px 8px rgba(87, 61, 62));
-  transform: scale(1.5) translateY(-50px);
+  transform: scale(1.1) translateY(-50px);
 }
 .night .intro-logo:hover {
   filter: drop-shadow(4px 4px 8px rgba(255, 28, 36, 0.849));
-  transform: scale(1.5);
-  transform: translateY(-50px);
+  transform: scale(1.1) translateY(-50px);;
 }
 
 /* Flecha de scroll */

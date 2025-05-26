@@ -1,5 +1,6 @@
 .Soluciones {
-  margin-top: 150px;
+  padding-top: 8%;
+  padding-bottom: 5%;
 }
 
 /* ------------------------- TITULOS Y DIVISORES ------------------------- */
@@ -53,6 +54,21 @@
   margin: 5px;
 }
 
+body.day .divider::before,
+body.day .divider::after {
+  border-bottom: 1px solid #ff4b2b; /* por ejemplo, naranja cálido */
+}
+
+body.night .divider::before,
+body.night .divider::after {
+  border-bottom: 1px solid #00c8ff; /* celeste brillante */
+}
+.divider::before,
+.divider::after {
+  transition: border-color 0.5s ease;
+}
+
+
 .icon {
   color: #888;
   font-size: 16px;
@@ -75,11 +91,30 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 20px;
-  border-radius: 8px;
+  padding: 25px;
+  border-radius: 16px;
   height: 100%;
   text-align: center;
   align-items: center;
+  background: linear-gradient(145deg, #ffffff, #e6e6e6); /* día */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease-in-out;
+}
+
+body.night .Sitem1 {
+  background: linear-gradient(145deg, #1a1a1a, #222); /* tono más rico */
+  box-shadow:
+    inset 2px 2px 4px rgba(255, 255, 255, 0.05),   /* brillos internos */
+    inset -2px -2px 4px rgba(0, 0, 0, 0.4),         /* sombras internas */
+    0 6px 18px rgba(0, 0, 0, 0.6);                 /* sombra exterior */
+  color: #f5f5f5;
+  transition: all 0.3s ease-in-out;
+}
+
+
+.Sitem1:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
 }
 
 .Sitem1 h1 {
@@ -153,33 +188,45 @@
   font-size: 18px;
   font-weight: bold;
 }
-
 .filter-tab {
   position: relative;
   cursor: pointer;
   padding: 5px 10px;
   color: #333;
   transition: color 0.3s ease-in-out;
+  
+  font-family:  'Trebuchet MS', sans-serif;
+
 }
+
+
 
 .filter-tab::after {
   content: "";
   position: absolute;
   left: 50%;
-  bottom: -5px;
-  width: 0;
+  bottom: -4px;
   height: 3px;
-  background-color: red;
-  transition: width 0.3s ease-out, transform 0.2s ease-in-out;
+  width: 0%;
+  background-color: rgb(184, 0, 0);
+  transition: width 0.3s ease, transform 0.3s ease;
   transform: translateX(-50%);
 }
 
+.filter-tab.active::after {
+  width: 100%;
+}
 .filter-tab:hover::after {
   width: 100%;
 }
 
+/* Desactiva la línea del tab activo mientras otro está en hover */
+.menu:hover .filter-tab.active::after {
+  width: 0;
+}
+
 .filter-tab:hover {
-  color: #2c72b9;
+  color: #0074e7;
 }
 
 .filter-tab.active {
@@ -209,37 +256,65 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   align-items: center;
-
   padding: 20px;
-  background-color: #ffffffd0;
+  background: linear-gradient(145deg, #fdfdfd, #eaeaea);
   border-radius: 10px;
-  border: 1px solid #ddd;
   text-align: center;
-  
-
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: fadeIn 0.6s ease forwards;
+  border: 1px solid #ddd;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1),
+              -2px -2px 6px rgba(255, 255, 255, 0.6);
+  transform: translateY(0); /* esto está bien */
+  transition: transform 0.35s ease-in-out, box-shadow 0.35s ease-in-out;  animation: fadeIn 0.6s ease forwards;
   animation-fill-mode: both;
   opacity: 0;
-  transform: translateY(20px);
-
 }
 
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+
 body.night .Iitem {
-  background-color: #ffffffb9;
-  border: 1px solid #ffffff1a;
+  background: linear-gradient(145deg, #2a2f3a, #323844);
+  border: 1px solid rgba(0, 217, 255, 0.12);
+  box-shadow:
+    6px 6px 12px rgba(0, 0, 0, 0.6),
+    -4px -4px 8px rgba(255, 255, 255, 0.03),
+    inset 0 0 6px rgba(0, 0, 0, 0.3);
+  color: #e5f6ff;
+  transition: all 0.3s ease-in-out;
+}
+
+
+body.night .Iitem * {
+  color: #d6eaff;
 }
 
 .Iitem:nth-child(n) {
   animation-delay: var(--delay, 0s);
 }
 
+
+
 .Iitem:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-12px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15),
+              0 0 10px rgb(0, 92, 173);
 }
+
+body.night .Iitem:hover {
+  transform: translateY(-10px);
+  box-shadow:
+    0 18px 28px rgba(0, 0, 0, 0.6),
+    0 0 30px rgb(0, 217, 255),
+    inset 0 0 4px rgba(255, 255, 255, 0.05);
+}
+
+
 
 .Iitem img {
   max-width: 180px;
@@ -248,6 +323,8 @@ body.night .Iitem {
   border-radius: 5px;
   margin-bottom: 10px;
 }
+
+
 
 .Iitem h3 {
   font-size: 1rem;
@@ -290,11 +367,14 @@ body.night .Iitem {
 /* ------------------------- ANIMACIONES ------------------------- */
 
 @keyframes fadeUp {
-  to {
+  0% {
+    opacity: 0;
+  }
+  100% {
     opacity: 1;
-    transform: translateY(0);
   }
 }
+
 
 @keyframes fadeIn {
   to {
@@ -337,20 +417,43 @@ body.night .Iitem {
     display: none;
   }
 
-  .filter-tab {
-    display: inline-block;
-    white-space: nowrap;
-    padding: 6px 10px;
-    font-size: 0.85rem;
-    min-width: max-content; /* ✅ se adapta al contenido */
-    border-radius: 6px;
-    transition: background 0.2s;
-  }
+.filter-tab {
+  position: relative;
+  cursor: pointer;
+  padding: 6px 14px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border-radius: 6px;
+  transition: all 0.3s ease-in-out;
+  color: #222;
+  background-color: #f0f0f0;
+}
 
-  .filter-tab.active {
-    background: #ffeaea;
-    border-radius: 6px;
-  }
+
+body.night .filter-tab {
+  color: #ddd;
+  background-color: #1d1d1d;
+}
+
+.filter-tab:hover {
+  background-color: #eaeaea;
+  transform: translateY(-2px);
+}
+
+body.night .filter-tab:hover {
+  background-color: #292929;
+}
+
+.filter-tab.active {
+  background-color: #ffe0e0;
+  color: #c21a1a;
+}
+
+body.night .filter-tab.active {
+  background-color: #3a1f1f;
+  color: #ff5050;
+}
+
 
   .Iitem h3 {
     word-break: break-word;
@@ -364,14 +467,8 @@ body.night .Iitem {
     
   }
   
-  .Iitem {
-    padding: 15px;
-    flex: 0 0 48%;
-    max-width: 48%;
-    min-width: 48%;
-    min-height: 48%;
+ 
 
-  }
   
   .Stitulo h1,
   .Stitulo2 h1 {

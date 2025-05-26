@@ -95,7 +95,10 @@ app.post("/items", async (req, res) => {
       await ddbDocClient.send(
         new UpdateCommand({
           TableName: TABLE_NAME,
-          Key: { email: item.email }, // asegúrate si usas sortKey también
+          Key: {
+          email: item.email,
+            fechaEnvio: item.fechaEnvio
+          }, 
           UpdateExpression: "SET estadoCaso = :estado",
           ExpressionAttributeValues: {
             ":estado": "correo_enviado"

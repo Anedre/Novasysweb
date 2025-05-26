@@ -1,10 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Header.css";
-import logoimage from "../../img/logo_novasys_transparent.png";
+import logoimageN from "../../img/logo_novasys_transparent.png";
+import logoimage from "../../img/Nueva carpeta/1x/Recurso 3.png";
 import ToggleSwitch from "../../assets/ToggleSwitch.jsx";
+import { useNightMode } from "../../hooks/useNightMode";
 
 function Header() {
+  const isNight = useNightMode();
+  
   const location = useLocation();
   const lowerPath = location.pathname.toLowerCase();
 
@@ -274,7 +278,7 @@ function Header() {
             setIsCompactMenuOpen(false);
             setActiveCompactMenu("main");
           }}>
-            <img src={logoimage} alt="Logo Novasys" />
+              <img src={isNight ? logoimage : logoimageN} alt="Logo Novasys" />
         </Link>
 
         {!isCompactMode ? (

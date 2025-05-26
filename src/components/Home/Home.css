@@ -168,17 +168,17 @@
 
 /* Sección: Nuestras soluciones */
 .section__paragraph2 {
-  height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;           /* Dos columnas en la primera fila */
-  grid-template-rows: auto auto;            /* Dos filas */
-  grid-template-areas:
-    "solutions-text solutions-carousel"     /* Primera fila: dos columnas */
-    "solutions-btn  solutions-btn";           /* Segunda fila: el botón abarca ambas columnas */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  padding: 7%;
+  padding: 7% 5%;
+  flex-wrap: wrap;
+  gap: 40px;
+  min-height: 100vh;
   box-sizing: border-box;
 }
+
 
 
 
@@ -187,6 +187,40 @@
   opacity: 0;
   animation: fadeInUp 0.8s ease forwards;
 }
+.solutions-grid-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  width: 100%;
+}
+
+.solutions-content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.solutions-text-wrapper {
+  flex: 1;
+  min-width: 500px;
+}
+
+.solutions-content-wrapper .carousel-wrapper {
+  flex: 1;
+  min-width: 30px;
+  max-width: 50px;
+}
+
+.solutions-carousel {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
 
 .solutions-text-wrapper {
   grid-area: solutions-text;
@@ -202,8 +236,14 @@
 }
 
 .solutions-carousel {
-  grid-area: solutions-carousel;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 20px; /* iguala el padding con el texto */
+  max-width: 50%;
+  overflow: visible;
 }
+
 
 
 .section__paragraph2 .animate-up.active .solutions-btn {
@@ -347,6 +387,37 @@
   opacity: 0;
   transform: translateY(-50px);
 }
+
+
+
+
+
+.solutions-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.solutions-right {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .solutions-grid-layout {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 3rem 1rem;
+  }
+
+  .solutions-left,
+  .solutions-right {
+    width: 100%;
+  }
+}
+
 
 /* Responsive para Tablets (hasta 768px) */
 @media (max-width: 768px) {
@@ -493,14 +564,7 @@
     font-size: 1rem;
   }
 
-  .section__paragraph2 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 90vh;
-    padding: 2rem 1rem;
-  }
-
+ 
   .solutions-text-wrapper {
     order: 1;
     width: 100%;
@@ -531,4 +595,20 @@
     order: 3;
     margin-top: 1.5rem;
   }
+
+  .solutions-text-wrapper {
+  align-items: center;
+}
+.solutions-text {
+  text-align: center;
+  align-items: center;
+}
+.solutions-carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 2rem 0;
+}
+
 }

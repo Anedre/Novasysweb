@@ -2,8 +2,13 @@ import React from "react";
 import "./ELO.css";
 import { motion } from "framer-motion";
 import elo from "../../../img/elo.png";
+import eloN from "../../../img/Nueva carpeta/1x/Elonoche.png";
+import { useNightMode } from "../../../hooks/useNightMode";
+
 
 function ELO() {
+  const isNight = useNightMode();
+
   return (
     <motion.section
       className="ELO"
@@ -35,7 +40,7 @@ function ELO() {
         >
           <div className="elo-card">
             <div className="image-container">
-              <img src={elo} alt="ELO ECM" />
+              <img src={isNight ? eloN : elo} alt="ELO ECM" />
             </div>
             <h3>ELO ECM</h3>
             <p className="caption-desc">

@@ -61,12 +61,13 @@ const SolucionesHP = () => {
             <div className="emoji-block">{item.emoji}</div>
             <h3>{item.title}</h3>
             <p>{item.desc}</p>
-            <div className="extra-info">
-              <motion.p
+           <div className="extra-info">
+             <div className="extra-emoji">{item.detalle.slice(0, 2)}</div>
+             <motion.p className="extra-text"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1, duration: 0.5 }}
-              >{item.detalle}</motion.p>
+              >{item.detalle.slice(3)}</motion.p>
             </div>
           </motion.div>
         ))}

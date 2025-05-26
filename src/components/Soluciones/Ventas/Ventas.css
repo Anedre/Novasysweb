@@ -246,7 +246,7 @@
   }
   
   .ventas-explora.mejorada {
-    margin-top: 100px;
+    margin-top: 50px;
     text-align: center;
   }
   
@@ -254,6 +254,10 @@
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 10px;
+  }
+
+  body.night .ventas-explora h2 {
+    color: #fff;
   }
   
   .explora-sub {
@@ -336,6 +340,54 @@
     }
   }
   
+
+
+body.night .ventas-sub,
+body.night .caption-desc,
+body.night .explora-sub {
+  color: #ccc;
+}
+
+body.night .ventas-card {
+  background: #1c1c1c;
+  border: 1px solid #333;
+  box-shadow: 0 4px 12px rgba(0, 255, 204, 0.05);
+}
+
+body.night .ventas-card h3 {
+  color: #f0f0f0;
+}
+
+body.night .caption-desc {
+  color: #bbb;
+}
+
+body.night .ventas-item-link:hover .ventas-card {
+  background: #222;
+  box-shadow: 0 6px 20px rgba(0, 255, 204, 0.15);
+}
+
+body.night .explora-card {
+  background: #222;
+  border: 1px solid #333;
+  color: #eee;
+}
+
+body.night .explora-card:hover {
+  background: linear-gradient(135deg, #00ffc3, #00aaff);
+  color: #000 ;
+}
+
+
+
+body.night .ventas-overlay {
+  background: rgba(0, 255, 204, 0.1);
+  color: #00ffc3;
+  text-shadow: 0 0 5px #00ffc3;
+}
+
+
+
 
 /* Responsividad */
 /* En tablets: 2 columnas */

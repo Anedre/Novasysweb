@@ -43,6 +43,11 @@
   text-align: center;
 }
 
+.SEcontact a{
+  color: #ffffff !important;
+  font-family: 'Poppins', sans-serif;
+}
+
 .SEcontact h2 {
   font-size: 1.4rem;
   margin-bottom: 12px;
@@ -121,27 +126,41 @@
   left: 0;
   width: 100%;
   height: 100%;
-  padding: 30px;
-  background: rgba(255, 255, 255, 0.75);
+  padding: 30px 20px;
+  background: rgba(50, 50, 50, 0.8);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   text-align: center;
-  font-size: 0.95rem;
-  color: #1a1a1a;
   border-radius: 16px;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.4s ease, box-shadow 0.4s ease;
   z-index: 2;
 }
 
 .SEcard:hover .extra-info {
   opacity: 1;
   pointer-events: auto;
+  box-shadow: 0 0 24px 6px rgba(0, 122, 255, 0.35);
 }
+
+.extra-info .emoji-overlay {
+  font-size: 4rem;
+  margin-bottom: 18px;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+}
+
+
+.extra-info p {
+  font-size: 1rem;
+  color: #eaeaea;
+  line-height: 1.5;
+}
+
 
 /* ========= BOTÓN ========= */
 .info-btn {
@@ -174,6 +193,46 @@
   transform: translateX(5px);
 }
 
+
+
+body.night .SEtexto h1,
+body.night .SEsubtitulo,
+body.night .SEcontact h2,
+body.night .SEcard h3 {
+  color: #f1f1f1;
+}
+
+body.night .SEtexto p,
+body.night .SEcontact p,
+body.night .SEcard p,
+body.night .extra-info {
+  color: #cfcfcf;
+}
+
+body.night .SEcontact {
+  background: linear-gradient(135deg, #1e1e2f, #2d2d44);
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.05);
+}
+
+body.night .SEcard {
+  background-color: #1e1e1e;
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.05);
+}
+
+body.night .extra-info {
+  background: rgba(50, 50, 50, 0.7);
+  backdrop-filter: blur(10px);
+  color: #e0e0e0;
+}
+
+body.night .info-btn {
+  background: linear-gradient(135deg, #004aad, #005fff);
+  box-shadow: 0 4px 8px rgba(0, 122, 255, 0.4);
+}
+
+body.night .info-btn:hover {
+  background: #003bb5;
+}
 /* ========= RESPONSIVO ========= */
 @media (max-width: 768px) {
   .SEcontent {

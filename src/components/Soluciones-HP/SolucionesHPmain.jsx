@@ -24,7 +24,8 @@ function SolucionesHPmain() {
         </p>
         <Link to="/Contacto">
           <button className="cta-btn"> 
-            <span className="emoji">📩</span> Contáctanos
+            <span className="emoji">📩</span>
+            Contáctanos
           </button> 
         </Link>
       </motion.div>
@@ -54,7 +55,7 @@ function SolucionesHPmain() {
                   <img src={HP} alt="HP" />
                 </div>
               </Link>
-              <p className="caption">Soluciones HP</p>
+              <p className="captionHP">Soluciones HP</p>
             </motion.div>
 
             <motion.div
@@ -67,7 +68,7 @@ function SolucionesHPmain() {
                   <img src={HP_enterprise} alt="HP Enterprise" />
                 </div>
               </Link>
-              <p className="caption">Soluciones HP Enterprise</p>
+              <p className="captionHP">Soluciones HP Enterprise</p>
             </motion.div>
 
           </div>

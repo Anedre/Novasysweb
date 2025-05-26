@@ -106,7 +106,7 @@ function Contacto() {
 
       <div className="contact-container">
         <div className="contact-info">
-          <div className="contact-item"><FaWhatsapp className="icon" /><span>+51 989 069 217</span></div>
+          <div className="contact-item"><FaWhatsapp className="icon" /><span>+51 908 825 660</span></div>
           <div className="contact-item"><FaPhoneAlt className="icon" /><span>+51-1-7024006</span></div>
           <div className="contact-item"><FaEnvelope className="icon" /><span>contacto@novasysperu.com</span></div>
           <div className="contact-item"><FaMapMarkerAlt className="icon" /><span>Calle Narciso de la Colina, 421 - Of. 903, Miraflores, Lima</span></div>

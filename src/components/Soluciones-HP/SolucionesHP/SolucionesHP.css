@@ -7,6 +7,10 @@
   margin: 0 auto;
 }
 
+body.night .SolucionesHP {
+  color: #e4e4e4;
+}
+
 /* ========= INTRO ========== */
 .SHPcontent {
   display: flex;
@@ -34,6 +38,11 @@
   line-height: 1.6;
 }
 
+body.night .SHPtexto p {
+  color: #bbbbbb;
+}
+
+
 .SHPcontact {
   flex: 1;
   min-width: 280px;
@@ -47,6 +56,20 @@
 .SHPcontact:hover {
   transform: translateY(-4px);
 }
+body.night .SHPcontact {
+  background: linear-gradient(135deg, #3b1e1e, #502727);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  color: #f0eaea;
+}
+
+body.night .SHPcontact h2 {
+  color: #ff7070;
+}
+
+body.night .SHPcontact p {
+  color: #dddddd;
+}
+
 
 .SHPcontact h2 {
   font-size: 1.4rem;
@@ -74,7 +97,9 @@
   color: #1a1a1a;
   font-family: 'Poppins', sans-serif;
 }
-
+body.night .SHPsubtitulo {
+  color: #f1f1f1;
+}
 /* ========= CARDS ========= */
 .SHPcards {
   display: grid;
@@ -94,9 +119,37 @@
   transition: transform 0.3s ease;
 }
 
+body.night .SHPcard {
+  background: linear-gradient(145deg, #2c2f37, #363a45);
+  box-shadow:
+    6px 6px 12px rgba(0, 0, 0, 0.6),
+    -4px -4px 8px rgba(255, 255, 255, 0.03),
+    inset 0 0 6px rgba(255, 255, 255, 0.02);
+  color: #eaeaea;
+}
+
+body.night .SHPcard h3 {
+  color: #ffb3b3;
+}
+
+body.night .SHPcard p {
+  color: #dddddd;
+}
+
+
 .SHPcard:hover {
   transform: translateY(-8px);
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.2),
+    0 0 40px rgba(255, 80, 80, 0.2);
 }
+
+body.night .SHPcard:hover {
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(255, 90, 90, 0.3);
+}
+
 
 .emoji-block {
   font-size: 3rem;
@@ -147,9 +200,59 @@
   z-index: 2;
 }
 
+body.night .SHPcard .extra-info {
+  background: rgba(60, 60, 60, 0.6);
+  color: #f1f1f1;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+
 .SHPcard:hover .extra-info {
   opacity: 1;
   pointer-events: auto;
+}
+
+
+.extra-info {
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  font-family: 'Inter', sans-serif;
+}
+
+.extra-emoji {
+  font-size: 2.5rem;
+  animation: pulseGlow 2s infinite ease-in-out;
+  text-shadow: 0 0 8px rgba(255, 100, 100, 0.4);
+}
+
+.extra-text {
+  font-size: 0.95rem;
+  max-width: 90%;
+  line-height: 1.5;
+}
+
+/* Night mode adjustments */
+body.night .extra-emoji {
+  text-shadow: 0 0 10px rgba(255, 80, 80, 0.6);
+}
+
+body.night .extra-text {
+  color: #e8e8e8;
+}
+
+/* Pulse animation */
+@keyframes pulseGlow {
+  0% {
+    text-shadow: 0 0 8px rgba(255, 100, 100, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 16px rgba(255, 100, 100, 0.6);
+  }
+  100% {
+    text-shadow: 0 0 8px rgba(255, 100, 100, 0.3);
+  }
 }
 
 /* ========= BOTÓN CTA INFO ========= */
@@ -169,6 +272,16 @@
   gap: 8px;
   text-decoration: none;
   font-family: 'Poppins', sans-serif;
+}
+
+body.night .info-btnHP {
+  background: linear-gradient(135deg, #ff5151, #d10000);
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(255, 90, 90, 0.3);
+}
+
+body.night .info-btnHP:hover {
+  background: #c70000;
 }
 
 .info-btn:hover {

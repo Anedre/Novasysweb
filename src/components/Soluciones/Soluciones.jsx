@@ -162,8 +162,10 @@ function Soluciones() {
         {getFilteredItems().map((item, index) => (
           <div
             key={item.id}
-            className={`Iitem ${scontentVisible ? "fade-in-up" : ""}`}
-            style={{ animationDelay: `${index * 0.5}s` }}
+            className="Iitem"
+            style={{
+              animation: scontentVisible ? `fadeUp 0.6s ease forwards ${index * 0.4}s` : "none"
+            }}
           >        
             <img src={item.image} alt={item.title} className="item-img" />
             <h3>{item.title}</h3>

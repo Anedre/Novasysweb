@@ -4,20 +4,25 @@
   align-items: center;
   align-content: center;
   justify-content: center;
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
 
 /* BANNER PRINCIPAL */
 .HPbanner {
   background: linear-gradient(135deg, #ff2d2d, #8c0000);
   color: #fff;
-  padding: 80px 20px;
+  padding: 60px 20px;
   text-align: center;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
 }
 
 .HPbanner h1 {
   font-size: 2.8rem;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
   font-weight: 700;
 }
 
@@ -36,24 +41,27 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background-color: #aaaaaa;
-  color: #d10000;
+  background: linear-gradient(135deg, #ffffff, #dddddd);
+  color: #c00000 !important;
   font-size: 1.05rem;
   font-weight: 700;
   padding: 14px 32px;
   border-radius: 12px;
   text-decoration: none;
-  border: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease;
+  border: 1px solid #c00000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: all 0.3s ease-in-out;
   cursor: pointer;
+
 }
 
+
 .cta-btn:hover {
-  background-color: #f8f8f8;
+  background-color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
 }
+
 
 .emoji {
   display: inline-block;
@@ -89,14 +97,32 @@
 }
 
 .HPsection-card {
-  background-color: #ffffff;
+  background: linear-gradient(145deg, #fefefe, #e8e8e8);
+  border: 1px solid #ccc;
   border-radius: 20px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  box-shadow:
+    6px 6px 12px rgba(0, 0, 0, 0.1),
+    -3px -3px 8px rgba(255, 255, 255, 0.6);
   padding: 40px;
   width: 100%;
   max-width: 800px;
   box-sizing: border-box;
+  transition: all 0.4s ease;
 }
+body.night .HPsection-card {
+  background: linear-gradient(145deg, #2f3543, #383e4d);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    inset 1px 1px 2px rgba(255, 255, 255, 0.04),
+    6px 6px 16px rgba(0, 0, 0, 0.5);
+  color: #e5e5e5;
+}
+.HPsection-card:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2),
+              0 0 10px rgba(0, 0, 0, 0.08);
+  transform: translateY(-5px);
+}
+
 
 .HPsection-card h2 {
   text-align: center;
@@ -152,9 +178,15 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
-.caption {
+.captionHP {
   margin-top: 10px;
-  font-weight: 500;
+  font-weight: 300;
+  text-align: center;
+  font-size: 1rem;
+}
+
+body.night .caption {
+  color: #d0d8f0;
 }
 
 /* BENEFICIOS */
@@ -170,12 +202,25 @@
 
 .beneficios-grid li {
   font-size: 1.1rem;
-  background-color: #fff;
+  background: linear-gradient(145deg, #ffffff, #f2f2f2);
+    border: 1px solid #ddd;
+
   border-radius: 12px;
   padding: 20px;
   min-width: 200px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
+  box-shadow:
+    4px 4px 8px rgba(0, 0, 0, 0.05),
+    -2px -2px 6px rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease-in-out; 
+}
+
+body.night .beneficios-grid li {
+  background: linear-gradient(145deg, #2b2f38, #373d48);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: #d8e6f6;
+  box-shadow:
+    inset 0 0 4px rgba(255, 255, 255, 0.02),
+    4px 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .beneficios-grid li:hover {
@@ -245,6 +290,22 @@
   background-color: #f9f9f9;
 }
 
+body.night .HPcta {
+  background: linear-gradient(145deg, #222831, #2e3541);
+  color: #f5f5f5;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+body.night .HPcta h2 {
+  color: #ffffff;
+}
+
+body.night .info-btn {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: #fff;
+}
+
+
 /* BOTÓN INFO */
 .info-btn {
   background: linear-gradient(135deg, #e21010, #ff1c22);
@@ -266,7 +327,6 @@
 
 .info-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(226, 16, 16, 0.4);
 }
 
 .arrow {
@@ -276,6 +336,14 @@
 .info-btn:hover .arrow {
   transform: translateX(5px);
 }
+
+
+body.night .HPmain-image-container img {
+  background-color: #2b2f38;
+  border-radius: 10px;
+  padding: 4px;
+}
+
 
 /* ============================= */
 /* 📱 CELULARES (MENORES A 600PX) */
@@ -317,6 +385,7 @@
   .HPmain-image-container img {
     max-height: 120px;
   }
+  
 }
 
 /* ============================ */
