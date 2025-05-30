@@ -36,7 +36,8 @@
   }
   
   .mapa-card {
-    background: var(--color-bg-alt);
+    background: rgb(252, 250, 255);
+
     border-radius: 12px;
     padding: 1rem 1.2rem;
     width: 330px;
@@ -48,10 +49,17 @@
     transition: all 0.3s ease;
     cursor: pointer;
   }
+  body.night .mapa-card {
+    background: #1a1a1a;
+    color: var(--color-text-primary);
+  }
   
   .mapa-card:hover {
-    background: var(--color-primary-light);
+    background: #25252569;
     transform: translateY(-3px);
+  }
+  body.night .mapa-card:hover {
+    background: #252525;
   }
   
   .mapa-emoji {

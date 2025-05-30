@@ -9,6 +9,8 @@ import WhatsAppWidget from './components/WhatsAppWidget/WhatsAppWidget.jsx';
 import Canonical from './hooks/Canonical.jsx'; // Asegúrate que la ruta sea correcta
 import ContactFloatingMenu from './components/ContactFloatingMenu/ContactFloatingMenu';
 import { AnimatePresence } from "framer-motion";
+import RouteReload from './hooks/RouteReload.jsx'; // Ajusta la ruta si está en otra carpeta
+
 
 
 
@@ -19,6 +21,8 @@ import "./App.css";
 function AppLayout() {
   return (
     <div className="App">
+      <RouteReload />
+      {/* Asegúrate de que Canonical esté antes de Outlet para que se procese correctamente */}
       <Canonical />
       <ScrollToTop />
       <Header />

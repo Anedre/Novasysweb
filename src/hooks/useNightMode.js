@@ -1,12 +1,20 @@
-// useNightMode.js
 import { useEffect, useState } from "react";
 
 export function useNightMode() {
-  const [isNight, setIsNight] = useState(
-    document.body.classList.contains("night")
-  );
+  const getNight = () => {
+    if (typeof window !== 'undefined') {
+      const ls = localStorage.getItem('nightMode');
+      if (ls !== null) return ls === "true";
+      return document.body.classList.contains("night");
+    }
+    return false;
+  };
+
+  const [isNight, setIsNight] = useState(null); // Arranca como null
 
   useEffect(() => {
+    setIsNight(getNight()); // Solo aquí seteas el valor real
+
     const observer = new MutationObserver(() => {
       setIsNight(document.body.classList.contains("night"));
     });
@@ -16,7 +24,13 @@ export function useNightMode() {
       attributeFilter: ["class"],
     });
 
-    return () => observer.disconnect();
+    const onStorage = () => setIsNight(getNight());
+    window.addEventListener('storage', onStorage);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('storage', onStorage);
+    };
   }, []);
 
   return isNight;

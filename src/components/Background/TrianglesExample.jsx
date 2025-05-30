@@ -1,133 +1,283 @@
-import React, { useState, useMemo, useRef, useEffect } from "react";
-import { Group } from "@visx/group";
-import { Delaunay } from "d3-delaunay";
-import { localPoint } from "@visx/event";
-import "./TrianglesExample.css";
+import React, { useRef, useEffect, useState } from "react";
+import * as THREE from "three";
 
-// Generador de puntos aleatorios
-function getSeededRandom(seed) {
-  let m = 0x80000000, a = 1103515245, c = 12345, state = seed;
-  return () => (state = (a * state + c) % m) / (m - 1);
+// SHADER CON ESCALA DINÁMICA SEGÚN PANTALLA
+const shader = `
+uniform float u_time;
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+uniform bool u_night;
+uniform float u_scale;
+
+#define PI 3.14159265359
+const float s3 = 1.7320508075688772;
+const float i3 = 0.5773502691896258;
+const mat2 tri2cart = mat2(1.0, 0.0, -0.5, 0.5*s3);
+const mat2 cart2tri = mat2(1.0, 0.0, i3, 2.0*i3);
+
+vec3 pal( in float t, in bool night ) {
+    vec3 a; vec3 b; vec3 c; vec3 d;
+    if (!night) {
+        a = vec3(0.93,0.52,0.62);
+        b = vec3(0.4,0.33,0.21);
+        c = vec3(1.0,0.86,0.73);
+        d = vec3(0.05,0.10,0.36);
+    } else {
+        a = vec3(0.21,0.12,0.36);
+        b = vec3(0.55,0.10,0.55);
+        c = vec3(0.70,0.22,0.80);
+        d = vec3(0.12,0.30,0.65);
+    }
+    return clamp(a + b*cos( 6.28318*(c*t+d) ), 0.0, 1.0);
 }
 
-const seededRandom = getSeededRandom(88);
-const randomPoints = new Array(150).fill(null).map(() => ({
-  x: seededRandom(),
-  y: seededRandom(),
-  id: Math.random().toString(36).slice(2),
-}));
-const boundaryPoints = [
-  { x: 0, y: 0, id: "tl" },
-  { x: 1, y: 0, id: "tr" },
-  { x: 0, y: 1, id: "bl" },
-  { x: 1, y: 1, id: "br" },
-];
-const data = [...randomPoints, ...boundaryPoints];
+// ... (hash, randCircle, bary, dseg, tri_color igual que antes) ...
 
-export default function TrianglesExample({ width, height }) {
-  const innerWidth = width;
-  const innerHeight = height;
-  const svgRef = useRef(null);
+float hash12(vec2 p) { /* ... igual ... */ 
+    vec3 p3  = fract(vec3(p.xyx) * .1031);
+    p3 += dot(p3, p3.yzx + 19.19);
+    return fract((p3.x + p3.y) * p3.z);
+}
+vec2 hash23(vec3 p3) { /* ... igual ... */ 
+    p3 = fract(p3 * vec3(443.897, 441.423, 437.195));
+    p3 += dot(p3, p3.yzx+19.19);
+    return fract((p3.xx+p3.yz)*p3.zy);
+}
+vec2 randCircle(vec3 p) { /* ... igual ... */ 
+    vec2 rt = hash23(p);
+    float r = sqrt(rt.x);
+    float theta = 6.283185307179586 * rt.y;
+    return r*vec2(cos(theta), sin(theta));
+}
+vec2 randCircleSpline(vec2 p, float t) { /* ... igual ... */
+    float t1 = floor(t);
+    t -= t1;
+    vec2 pa = randCircle(vec3(p, t1-1.0));
+    vec2 p0 = randCircle(vec3(p, t1));
+    vec2 p1 = randCircle(vec3(p, t1+1.0));
+    vec2 pb = randCircle(vec3(p, t1+2.0));
+    vec2 m0 = 0.5*(p1 - pa);
+    vec2 m1 = 0.5*(pb - p0);
+    vec2 c3 = 2.0*p0 - 2.0*p1 + m0 + m1;
+    vec2 c2 = -3.0*p0 + 3.0*p1 - 2.0*m0 - m1;
+    vec2 c1 = m0;
+    vec2 c0 = p0;
+    return (((c3*t + c2)*t + c1)*t + c0) * 0.8;
+}
+vec2 triPoint(vec2 p) {
+    float t0 = hash12(p);
+    return tri2cart*p + 0.45*randCircleSpline(p, 0.15*u_time + t0);
+}
+vec3 bary(vec2 v0, vec2 v1, vec2 v2) {
+    float inv_denom = 1.0 / (v0.x * v1.y - v1.x * v0.y);
+    float v = (v2.x * v1.y - v1.x * v2.y) * inv_denom;
+    float w = (v0.x * v2.y - v2.x * v0.y) * inv_denom;
+    float u = 1.0 - v - w;
+    return vec3(u,v,w);
+}
+float dseg(vec2 xa, vec2 ba) {
+    return length(xa - ba*clamp(dot(xa, ba)/dot(ba, ba), 0.0, 1.0));
+}
+void tri_color(
+    in vec2 p, in vec4 t0, in vec4 t1, in vec4 t2,
+    in float scl, inout vec4 cw
+) {
+    vec2 p0 = p - t0.xy;
+    vec2 p10 = t1.xy - t0.xy;
+    vec2 p20 = t2.xy - t0.xy;
+    vec3 b = bary(p10, p20, p0);
+    float d10 = dseg(p0, p10);
+    float d20 = dseg(p0, p20);
+    float d21 = dseg(p - t1.xy, t2.xy - t1.xy);
+    float d = min(min(d10, d20), d21);
+    d *= -sign(min(b.x, min(b.y, b.z)));
+    if (d < 0.5*scl) {
+        vec2 tsum = t0.zw + t1.zw + t2.zw;
+        vec3 h_tri = vec3(
+            hash12(tsum + t0.zw),
+            hash12(tsum + t1.zw),
+            hash12(tsum + t2.zw)
+        );
+        vec2 pctr = (t0.xy + t1.xy + t2.xy) / 3.0;
+        float theta = 1.0 + 0.01*u_time;
+        vec2 dir = vec2(cos(theta), sin(theta));
+        float grad_input = dot(pctr, dir) - sin(0.05*u_time);
+        float h0 = sin(0.7*grad_input)*0.5 + 0.5;
+        h_tri = mix(vec3(h0), h_tri, 0.4);
+        float h = dot(h_tri, b);
+        vec3 baseColor = pal(h, u_night);
 
-  const [hoveredTriangle, setHoveredTriangle] = useState(null);
-  const [neighborTriangles, setNeighborTriangles] = useState(new Set());
-  const [isNight, setIsNight] = useState(document.body.classList.contains("night")); // estado local
+        // ---- ONDA PULSANTE ANIMADA ----
+        vec2 m = (u_mouse / u_resolution.xy - 0.5) * 2.45;
+        float dist = length(pctr - m);
+        float highlight = exp(-pow(dist*2.6, 2.2));
+        float wave = 0.21 * sin(u_time * 3.5 - dist * 8.0);
+        vec3 c = mix(baseColor, vec3(1.0), highlight * (0.17 + wave));
 
-  // Observer para detectar cambios en el body
-  useEffect(() => {
-    const observer = new MutationObserver(() => {
-      setIsNight(document.body.classList.contains("night"));
-    });
-    observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+        float w = smoothstep(0.5*scl, -0.5*scl, d);
+        cw += vec4(w*c, w);
+    }
+}
+
+void main() {
+       float scl;
+    if(u_resolution.x <= 900.0){
+    scl = 0.012; // Mobile (igual)
+    }else{
+        scl = 0.01; // Desktop: ¡Más grande!
+    }
+
+
+    vec2 p = (gl_FragCoord.xy - 0.5 - 0.5*u_resolution.xy) * scl;
+
+    // Mouse spotlight, SIN deformar
+    vec2 m = (u_mouse / u_resolution.xy - 0.5) * 2.45;
+    float distMouse = length(p - m);
+
+    // get triangular base coords
+    vec2 tfloor = floor(cart2tri * p + 0.5);
+
+    // precompute 9 neighboring points
+    vec2 pts[9];
+    for (int i=0; i<3; ++i) {
+        for (int j=0; j<3; ++j) {
+            pts[3*i+j] = triPoint(tfloor + vec2(i-1, j-1));
+        }
+    }
+
+    vec4 cw = vec4(0);
+    for (int i=0; i<2; ++i)
+      for (int j=0; j<2; ++j) {
+        vec4 t00 = vec4(pts[3*i+j  ], tfloor + vec2(i-1, j-1));
+        vec4 t10 = vec4(pts[3*i+j+3], tfloor + vec2(i,   j-1));
+        vec4 t01 = vec4(pts[3*i+j+1], tfloor + vec2(i-1, j));
+        vec4 t11 = vec4(pts[3*i+j+4], tfloor + vec2(i,   j));
+        tri_color(p, t00, t10, t11, scl, cw);
+        tri_color(p, t00, t11, t01, scl, cw);
+    }
+
+    gl_FragColor = cw / cw.w;
+    gl_FragColor.a = 0.72;
+}
+`;
+
+const TrianglesExample = ({ night }) => {
+
+  const mountRef = useRef();
+  const [inView, setInView] = useState(true); // Para pausar animación si NO está en viewport
+
+  const uniforms = useRef({
+    u_time: { value: 0 },
+    u_resolution: { value: new THREE.Vector2() },
+    u_mouse: { value: new THREE.Vector2() },
+    u_night: { value: night },
+    u_scale: { value: 1 }
+  });
+
+  // Helper para decidir escala
+  const getScale = () => window.innerWidth <= 800 ? 2.0 : 1.0; // ENTRE MÁS GRANDE ESTE VALOR, MÁS PEQUEÑOS LOS TRIÁNGULOS EN MOBILE
+
+    useEffect(() => {
+    const node = mountRef.current;
+    if (!node) return;
+    const observer = new window.IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.01 }
+    );
+    observer.observe(node);
     return () => observer.disconnect();
   }, []);
+  useEffect(() => {
+    let renderer, scene, camera, mesh, frame;
+    let w = window.innerWidth, h = window.innerHeight;
+    renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setClearColor(0x000000, 0);
+    renderer.setSize(w, h);
+    mountRef.current.appendChild(renderer.domElement);
 
-  const delaunay = useMemo(
-    () => Delaunay.from(data, (d) => d.x * innerWidth, (d) => d.y * innerHeight),
-    [innerWidth, innerHeight]
-  );
+    scene = new THREE.Scene();
+    camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
 
-  const triangleIndices = useMemo(() => {
-    const indices = [];
-    for (let i = 0; i < delaunay.triangles.length; i += 3) {
-      indices.push([
-        delaunay.triangles[i],
-        delaunay.triangles[i + 1],
-        delaunay.triangles[i + 2],
-      ]);
-    }
-    return indices;
-  }, [delaunay]);
+    // Geometry
+    const geometry = new THREE.PlaneGeometry(2, 2);
 
-  const triangleNeighbors = useMemo(() => {
-    const neighbors = triangleIndices.map(() => new Set());
-    for (let i = 0; i < triangleIndices.length; i++) {
-      for (let j = i + 1; j < triangleIndices.length; j++) {
-        const common = triangleIndices[i].filter(x => triangleIndices[j].includes(x));
-        if (common.length === 2) {
-          neighbors[i].add(j);
-          neighbors[j].add(i);
-        }
+    // Uniforms
+    uniforms.current.u_resolution.value.set(w, h);
+    uniforms.current.u_night.value = night;
+    uniforms.current.u_scale.value = getScale();
+
+    // Material
+    const material = new THREE.ShaderMaterial({
+      uniforms: uniforms.current,
+      fragmentShader: shader,
+      transparent: true,
+    });
+
+    mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
+
+    // Mouse
+    const handleMouseMove = e => {
+      uniforms.current.u_mouse.value.x = e.clientX;
+      uniforms.current.u_mouse.value.y = h - e.clientY;
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+
+    // Resize
+    const handleResize = () => {
+      w = window.innerWidth;
+      h = window.innerHeight;
+      renderer.setSize(w, h);
+      uniforms.current.u_resolution.value.set(w, h);
+      uniforms.current.u_scale.value = getScale();
+    };
+    window.addEventListener("resize", handleResize);
+
+    // === 2. Freeze si no está visible o si la pestaña está oculta ===
+    let running = true;
+    const onVisibilityChange = () => {
+      running = !document.hidden;
+    };
+    document.addEventListener("visibilitychange", onVisibilityChange);
+
+
+     // === 3. Animar solo si está visible y corriendo ===
+    const animate = () => {
+      if (inView && running) {
+        uniforms.current.u_time.value = performance.now() / 1000;
+        uniforms.current.u_night.value = night;
+        renderer.render(scene, camera);
       }
-    }
-    return neighbors;
-  }, [triangleIndices]);
+      frame = requestAnimationFrame(animate);
+    };
+    animate();
 
-  const trianglePolygons = useMemo(() => {
-    const polygons = [];
-    for (let i = 0; i < delaunay.triangles.length; i += 3) {
-      const index1 = delaunay.triangles[i];
-      const index2 = delaunay.triangles[i + 1];
-      const index3 = delaunay.triangles[i + 2];
-      const p1 = [data[index1].x * innerWidth, data[index1].y * innerHeight];
-      const p2 = [data[index2].x * innerWidth, data[index2].y * innerHeight];
-      const p3 = [data[index3].x * innerWidth, data[index3].y * innerHeight];
-      polygons.push([p1, p2, p3]);
-    }
-    return polygons;
-  }, [delaunay, innerWidth, innerHeight]);
+    // Limpieza completa
+    return () => {
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", handleResize);
+      cancelAnimationFrame(frame);
+      if (renderer.forceContextLoss) renderer.forceContextLoss();
+      if (renderer.dispose) renderer.dispose();
+      if (material && material.dispose) material.dispose();
+      if (geometry && geometry.dispose) geometry.dispose();
+      if (mountRef.current) mountRef.current.innerHTML = "";
+    };
 
-  const fill = isNight ? "url(#triangleGradientNight)" : "url(#triangleGradientDay)";
-  const stroke = isNight ? "rgba(132, 97, 219, 0.93)" : "rgba(224, 107, 107, 0.8)";
-  const fillOpacity = 0.2;
+    // eslint-disable-next-line
+  }, [night, inView]);
 
-  return width < 10 ? null : (
-    <svg
-      ref={svgRef}
-      width="100%"
-      height="100%"
-      preserveAspectRatio="none"
-      style={{ position: "absolute", top: 0, left: 0 }}
-    >
-      <defs>
-        <linearGradient id="triangleGradientDay" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#ffa8a8" />
-          <stop offset="100%" stopColor="#ff4f4f" />
-        </linearGradient>
-        <linearGradient id="triangleGradientNight" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#1b1129" />
-          <stop offset="100%" stopColor="#1b1129" />
-        </linearGradient>
-      </defs>
-
-      <rect width={width} height={height} fill="transparent" />
-      <Group>
-        {trianglePolygons.map((triangle, i) => (
-          <polygon
-            key={`triangle-${i}`}
-            points={triangle.map((p) => p.join(",")).join(" ")}
-            fill={fill}
-            stroke={stroke}
-            strokeWidth={0.5}
-            fillOpacity={fillOpacity}
-            className="triangleN triangleN-floating"
-            style={{
-              animationDelay: `${i * 0.05}s`,
-              transition: "stroke 0.5s ease, fill 0.5s ease"
-            }}
-          />
-        ))}
-      </Group>
-    </svg>
+  return (
+    <div
+      ref={mountRef}
+      style={{
+        position: "absolute",
+        top: 0, left: 0, width: "100vw", height: "100vh",
+        zIndex: 0, pointerEvents: "none"
+      }}
+    />
   );
-}
+};
+
+export default TrianglesExample;

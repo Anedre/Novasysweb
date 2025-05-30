@@ -1,7 +1,5 @@
 .statistics-container {
   width: 100%;
-  height: 100vh;
-  background: var(--bg-section, #f0f0f0);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -44,26 +42,7 @@
   justify-content: flex-start;
 }
 
-/* Shine Effect */
-.stats-block::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -75%;
-  width: 50%;
-  height: 200%;
-  background: var(--shine-gradient);
-  transform: rotate(25deg);
-  opacity: 0;
-  transition: all 0.7s ease;
-  pointer-events: none;
-}
 
-.stats-block:hover::after {
-  left: 125%;
-  opacity: 1;
-  transition: all 0.7s ease;
-}
 .stats-block:hover {
   min-height: auto; /* Ya no obligamos altura grande */
   padding-bottom: 40px; /* Para dar espacio natural al botón */
@@ -176,6 +155,148 @@
 
 /* Responsive */
 
+/* Mobile: Simplifica interacción y diseño */
+@media (max-width: 480px) {
+   /* Esta clase SOLO aplica a la parte trasera mobile, así nunca la apaga el display:none global */
+  .stats-bottom-mobile-content {
+    opacity: 1 !important;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 0 10px;
+    font-size: 0.92rem;
+    color: var(--text-main);
+    z-index: 10;
+  }
+
+  .stats-bottom-mobile-content p {
+    font-size: 0.93rem;
+    text-align: center;
+    margin-bottom: 7px;
+  }
+  .stats-bottom-mobile-content small {
+    font-size: 0.76rem;
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+  }
+  .stats-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    justify-items: center;
+    align-items: stretch;
+  }
+  .stats-block-wrapper {
+    width: 100% !important;
+    height: auto;
+    padding: 0;
+    margin-bottom: 0;
+    perspective: 700px;
+    cursor: pointer;
+    aspect-ratio: 1/1; /* Hace el wrapper cuadrado */
+    max-width: 180px;
+  }
+  .stats-block {
+    min-height: unset;
+    max-width: 100%;
+    border-radius: 15px;
+    font-size: 0.93rem;
+    position: relative;
+    transition: transform 0.7s cubic-bezier(.24,1.39,.23,.73);
+    transform-style: preserve-3d;
+    height: 100%;
+    aspect-ratio: 1/1; /* Hace el bloque cuadrado */
+    box-sizing: border-box;
+    padding: 13px 8px;
+  }
+  .stats-card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0; top: 0;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s, z-index 0.3s;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+  .stats-card-front {
+    z-index: 2;
+    opacity: 1;
+    pointer-events: auto;
+    background: var(--card-bg, #fff);
+    transform: rotateY(0deg);
+    transition: opacity 0.3s, z-index 0.3s;
+  }
+ .stats-block.flip-anim .stats-card-front {
+    opacity: 0 !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+  }
+  .stats-block.flip-anim .stats-card-back {
+    opacity: 1 !important;
+    z-index: 2 !important;
+    pointer-events: auto !important;
+  }
+  .stats-card-back {
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity 0.3s, z-index 0.3s;
+  }
+  .stats-card-back .stats-bottom-mobile-content {
+    opacity: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 100% !important;
+    width: 100% !important;
+    padding: 0 10px !important;
+    font-size: 0.92rem !important;
+    color: var(--text-main) !important;
+    z-index: 10 !important;
+    background: var(--card-bg, #fff) !important;
+    pointer-events: auto !important;
+  }
+
+
+  .stats-bottom-mobile {
+    opacity: 1 !important;
+    max-height: 1000px !important;
+    transform: none !important;
+    margin-top: 0;
+    transition: none !important;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
+  /* Quita la info extra del escritorio para que no se vea nunca */
+    .stats-block .separator-line,
+  .stats-block:not(.flip-anim) .stats-bottom:not(.stats-bottom-mobile) {
+    display: none !important;
+  }
+
+  /* Ajusta tamaños para mobile */
+  .stats-icon { font-size: 2.1rem; margin-bottom: 0; }
+  .contentH { font-size: 1.12rem; margin: 0; }
+  .extra-infoST { font-size: 0.99rem; }
+  .stats-bottom-mobile p { font-size: 0.85rem; }
+  .stats-bottom-mobile small { font-size: 0.72rem; }
+}
+
+
+
 
 /* ===== TABLET (<= 768px) ===== */
 @media (max-width: 768px) {
@@ -206,44 +327,4 @@
     font-size: 1.2rem;
   }
 }
-@media (max-width: 480px) {
-  .statistics-container {
-    height: 20vh;
-  }
-  .stats-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
-  }
 
-  .stats-block-wrapper {
-    width: 45%; /* Se mantiene 2x2 también en móvil para que sea compacto */
-    min-height: 100px;
-    padding: 8px;
-  }
-
-  .stats-block {
-    padding: 15px 10px;
-    min-height: 200px;
-  }
-
-  .contentH {
-    font-size: 1.8rem;
-
-  }
-  .extra-info {
-    font-size: 1rem;
-  }
-  .stats-bottom small {
-    font-size: 0.7rem;
-  }
-
-  .stats-block:hover .extra-info {
-    font-size: 1rem;
-    margin: 0;
-  }
-  .stats-bottom p{
-    font-size: 0.8rem;
-  }
-}

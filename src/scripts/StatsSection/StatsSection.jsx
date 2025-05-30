@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 import { Link } from "react-router-dom";
 import "./StatsSection.css";
+
+// Helper hook para detectar mobile en tiempo real
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth <= 480);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+  return isMobile;
+}
 
 const StatsSection = () => {
   const statsData = [
@@ -49,68 +60,83 @@ const StatsSection = () => {
     }
   ];
 
+  const isMobile = useIsMobile();
+  const [ref, inView] = useInView({ triggerOnce: true });
+  const [flippedIndex, setFlippedIndex] = useState(null);
+
+  // Al cambiar el tamaño de pantalla, resetea los flips para evitar glitches
+  useEffect(() => { setFlippedIndex(null); }, [isMobile]);
+
+  const handleFlip = (idx) => {
+    if (!isMobile) return;
+    setFlippedIndex(flippedIndex === idx ? null : idx);
+  };
+
   return (
-    <div className="statistics-container">
+    <div className="statistics-container" ref={ref}>
       <motion.div
         className="stats-grid"
         initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8 }}
-        viewport={{ once: false }}
       >
         {statsData.map((stat, index) => {
-          const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.5 });
-
+          const [cardRef, cardInView] = useInView({ triggerOnce: false, threshold: 0.5 });
+          const isFlipped = isMobile && flippedIndex === index;
           return (
-            <motion.div
+            <div
               key={index}
-              ref={ref}
-              className="stats-block-wrapper"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                type: "spring",
-                stiffness: 60,
-                damping: 10,
-                mass: 0.5,
-                delay: index * 0.2
-              }}
-              viewport={{ once: false }}
-             >
-          
-              <div className="stats-block">
-                <div className="stats-top">
-                  <div className="stats-icon">{stat.icon}</div>
-                  <h3 className="contentH">
-                    {inView && (
-                      <motion.span
-                        initial={{ scale: 1 }}
-                        animate={{ scale: [1, 1.2, 1] }}
-                        transition={{
-                          duration: 0.6,
-                          times: [0, 0.5, 1],
-                          repeat: 0,
-                          delay: 2
-                        }}
-                      >
-                        <CountUp end={stat.count} suffix={stat.suffix} duration={2} key={inView ? "start" : "reset"} />
-                      </motion.span>
-                    )}
-                  </h3>
-                  <p className="extra-infoST">{stat.titleST}</p>
+              ref={cardRef}
+              className={`stats-block-wrapper${isFlipped ? " flipped" : ""}`}
+              onClick={() => handleFlip(index)}
+            >
+              <div className={`stats-block${isFlipped ? " flip-anim" : ""}`}>
+                {/* Cara frontal: SIEMPRE */}
+                <div className="stats-card-face stats-card-front">
+                  <div className="stats-top">
+                    <div className="stats-icon">{stat.icon}</div>
+                    <h3 className="contentH">
+                      <CountUp
+                        end={cardInView ? stat.count : 0}
+                        suffix={stat.suffix}
+                        duration={2}
+                        redraw={true}
+                      />
+                    </h3>
+                    <p className="extra-infoST">{stat.titleST}</p>
+                  </div>
                 </div>
-                <div className="separator-line"></div>
-                <div className="stats-bottom">
-                  <p>{stat.description}</p>
-                  <small>{stat.smallText}</small>
-                  {stat.buttonText && stat.buttonLink && (
-                    <Link to={stat.buttonLink} className="hover-button">
-                      {stat.buttonText}
-                    </Link>
-                  )}
-                </div>
-              </div>
-            </motion.div>
+                {/* Cara trasera: SOLO MOBILE */}
+                {isMobile && (
+                  <div className="stats-card-face stats-card-back">
+                    <div className="stats-bottom-mobile-content">
+                      <p>{stat.description}</p>
+                      <small>{stat.smallText}</small>
+                      {stat.buttonText && stat.buttonLink && (
+                        <Link to={stat.buttonLink} className="hover-button">
+                          {stat.buttonText}
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                )}
+                {/* Escritorio: info extra SOLO DESKTOP */}
+                {!isMobile && (
+                  <>
+                    <div className="separator-line"></div>
+                    <div className="stats-bottom">
+                      <p>{stat.description}</p>
+                      <small>{stat.smallText}</small>
+                      {stat.buttonText && stat.buttonLink && (
+                        <Link to={stat.buttonLink} className="hover-button">
+                          {stat.buttonText}
+                        </Link>
+                      )}
+                    </div>
+                  </>
+                )}
+              </div>              
+            </div>
           );
         })}
       </motion.div>

@@ -156,7 +156,7 @@ body.dark .slide-overlay {
   
 
   .swiper-carousel-container {
-    padding: 40px 0 110px; /* más espacio aún abajo */
+    padding: 40px 0 50px; /* más espacio aún abajo */
     overflow: visible !important; /* evita que se oculten los dots */
   }
 
@@ -178,3 +178,35 @@ body.dark .slide-overlay {
   }
 }
 
+/* Para pantallas de 481px a 719px */
+@media (max-width: 719px) and (min-width: 481px) {
+  .carousel-image {
+    max-height: 110px;
+    width: 180px;
+    padding: 8px;
+  }
+  .slide-wrapper {
+    width: 180px;
+    height: 110px;
+  }
+  .swiper-carousel-container {
+    padding: 40px 0 90px;
+  }
+  .overlay-button {
+    padding: 8px 14px;
+    font-size: 15px;
+  }
+}
+
+/* Para pantallas de 720px en adelante */
+@media (min-width: 720px) {
+  .carousel-image {
+    width: 200px;
+    height: 120px;
+    max-height: none;
+  }
+  .slide-wrapper {
+    width: 200px;
+    height: 120px;
+  }
+}

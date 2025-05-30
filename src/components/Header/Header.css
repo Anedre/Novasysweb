@@ -636,11 +636,11 @@
     display: block;
   }
   .header {
-    right: 4px;
+    right: 0px;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1500px) {
   .desktopHeader {
     display: none;
   }
@@ -661,6 +661,7 @@
     height: auto;
     display: block;
     padding: 0;
+    right: 0px;
   }
 }
 

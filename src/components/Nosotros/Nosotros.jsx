@@ -101,16 +101,12 @@ const toggleMode = () => {
               Descubre más
             </motion.a>
           </motion.div>
-          <div className="heroN-fade-bottom" />
         </div>
       </motion.section>
 
 
       <section className="quienes-somos" id="quienes-somos">
-        <div className="section-background qs-background">
-          <img src={figura3} alt="Figura de fondo" className="qs-figure qs-figure1" />
-          <img src={figura4} alt="Figura de fondo" className="qs-figure qs-figure2" />
-        </div>
+       
         <motion.div
           className="quienes-somos-grid"
           initial={{ opacity: 0, y: 50 }}

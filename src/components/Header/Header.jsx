@@ -61,10 +61,12 @@ function Header() {
   const [activeMobileSubmenu, setActiveMobileSubmenu] = useState(null);
 
   // Estado para el modo (día/noche)
-  const [mode, setMode] = useState(() => {
-    const savedMode = localStorage.getItem("mode");
-    return savedMode ? savedMode : "day";
-  });
+const [mode, setMode] = useState(() => {
+  if (document.body.classList.contains("night")) return "night";
+  const savedMode = localStorage.getItem("mode");
+  return savedMode ? savedMode : "day";
+});
+
   
   // Estado para la posición y ancho del marcador
   const [markerStyle, setMarkerStyle] = useState({ left: 0, width: 0 });
@@ -74,6 +76,22 @@ function Header() {
     document.body.classList.remove("day", "night");
     document.body.classList.add(mode);
   }, [mode]);
+
+  useEffect(() => {
+  const observer = new MutationObserver(() => {
+    const newMode = document.body.classList.contains("night") ? "night" : "day";
+    setMode(newMode);
+    localStorage.setItem("mode", newMode); // Mantén sincronizado el localStorage
+  });
+
+  observer.observe(document.body, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+
+  return () => observer.disconnect();
+}, []);
+
 
   // Actualiza el marcador utilizando getBoundingClientRect y condiciones para subsecciones
   useEffect(() => {

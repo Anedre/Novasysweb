@@ -10,17 +10,20 @@
 
 html, body {
   scroll-behavior: smooth;
+
+  overflow-y: auto;
+  overflow-x: hidden; 
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
   position: relative;
 }
 
 
 main {
   flex: 1;
+
 }
 
 /* ======== Estilos para Modo Día ======== */
@@ -71,6 +74,8 @@ body.day {
 
 
 }
+
+
 
 body.day header, body.day footer {
   background-color: #F4F5F7;
@@ -160,6 +165,7 @@ body.night a, body.night button {
 body {
   font-family: 'DM Sans', sans-serif;
   transition: background 0.3s, color 0.3s;
+ 
 }
 
 header {
