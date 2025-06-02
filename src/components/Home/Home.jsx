@@ -19,6 +19,49 @@ function Home() {
     { img: americatel, title: 'Proyecto Americatel', desc: 'Americatel mejora...', tags: ['📡 Telecom', '💼 CRM'] },
   ];
 
+  const statsData = [
+    {
+      icon: "😄",
+      count: 97,
+      suffix: "%",
+      titleST: "Satisfacción",
+      description: "Nuestra prioridad es la seguridad y confianza de nuestros clientes. Un 97% de ellos nos recomiendan.",
+      smallText: "Promedio de satisfacción basado en encuestas internas.",
+      buttonText: null,
+      buttonLink: null
+    },
+    {
+      icon: "🏆",
+      count: 30,
+      suffix: "+",
+      titleST: "Casos de Éxito",
+      description: "Hemos implementado soluciones exitosas para más de 30 empresas de diversas industrias.",
+      smallText: "Incluyendo telecomunicaciones, retail, banca y más.",
+      buttonText: "Ver casos de éxito",
+      buttonLink: "/Casos_de_exito"
+    },
+    {
+      icon: "🌍",
+      count: 78,
+      suffix: "+",
+      titleST: "Clientes Activos",
+      description: "Miles de clientes confían en nuestras soluciones para sus operaciones diarias.",
+      smallText: "Clientes a nivel nacional e internacional.",
+      buttonText: null,
+      buttonLink: null
+    },
+    {
+      icon: "📈",
+      count: 20,
+      suffix: "+",
+      titleST: "Certificaciones",
+      description: "Contamos con más de 20 certificaciones en gestión TI y seguridad de la información.",
+      smallText: "Reconocidas a nivel internacional.",
+      buttonText: "Ver certificaciones",
+      buttonLink: "/Certificaciones"
+    }
+  ];
+
   const sectionVariant = {
     hidden: { opacity: 0, y: 80 },
     show: {
