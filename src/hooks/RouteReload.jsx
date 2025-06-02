@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 
-// Páginas donde quieres forzar reload
 const RELOAD_PATHS = ["/", "/Nosotros"];
 
 const RouteReload = () => {
@@ -11,22 +10,27 @@ const RouteReload = () => {
   useEffect(() => {
     const prev = lastPathRef.current;
     const next = location.pathname;
-    // Si entras o sales de Home/Nosotros, recarga (pero NO si solo refrescas la misma)
     const wasSpecial = RELOAD_PATHS.includes(prev);
     const isSpecial = RELOAD_PATHS.includes(next);
-   if (
-    (wasSpecial && !isSpecial) ||
-    (!wasSpecial && isSpecial) ||
-    (wasSpecial && isSpecial && prev !== next)
+    if (
+      (wasSpecial && !isSpecial) ||
+      (!wasSpecial && isSpecial) ||
+      (wasSpecial && isSpecial && prev !== next)
     ) {
-        if (!window.location.hash.includes("#route-reloaded")) {
-            window.location.hash = "#route-reloaded";
-            window.location.reload();
-        }
+      if (!window.location.hash.includes("#route-reloaded")) {
+        window.location.hash = "#route-reloaded";
+        window.location.reload();
+      }
     }
-
     lastPathRef.current = next;
   }, [location.pathname]);
+
+  // --- EFECTO LIMPIADOR DE HASH ---
+  useEffect(() => {
+    if (window.location.hash === "#route-reloaded") {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+  }, []);
 
   return null;
 };

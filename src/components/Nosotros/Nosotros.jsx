@@ -79,8 +79,8 @@ const toggleMode = () => {
             transition={{ delay: 0.3, duration: 0.8 }}
           >
             <h1 className="heroN-title">
-              <span className="word" style={{ animationDelay: "0s" }}>Bienvenidos</span>
-              <span className="word" style={{ animationDelay: "0.4s" }}>a</span>
+              <span className="word" style={{ animationDelay: "0s" }}>Bienvenidos </span>{" "}
+              <span className="word" style={{ animationDelay: "0.4s" }}>a </span>{" "}
               <span className="word" style={{ animationDelay: "0.8s" }}>Novasys</span>
             </h1>
             <motion.p
