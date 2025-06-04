@@ -628,7 +628,7 @@ const [mode, setMode] = useState(() => {
               closeMobileSubmenu();
             }}
           >
-            <img src={logoimage} alt="Logo Novasys" />
+              <img src={isNight ? logoimage : logoimageN} alt="Logo Novasys" />
           </Link>
 
           <button className="menuButton" onClick={toggleMobileNav}>
