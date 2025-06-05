@@ -6,8 +6,53 @@ import logoimage from "../../img/Nueva carpeta/1x/Recurso 3.png";
 import ToggleSwitch from "../../assets/ToggleSwitch.jsx";
 import { useNightMode } from "../../hooks/useNightMode";
 
+
 function Header() {
+  const navDropdowns = [
+  {
+    id: "nav-snovasys",
+    label: "Soluciones Novasys",
+    links: [
+      { to: "/Ventas", label: "Ventas" },
+      { to: "/Marketing", label: "Marketing" },
+      { to: "/Business_Intelligence", label: "Business Intelligence" },
+      { to: "/Elo", label: "ELO ECM" },
+    ],
+  },
+  {
+    id: "nav-shp",
+    label: "Soluciones HP",
+    links: [
+      { to: "/SolucionesHPEnterprise", label: "HP Enterprise" },
+      { to: "/SolucionesHP", label: "Soluciones HP" },
+    ],
+  },
+  {
+    id: "nav-samazon",
+    label: "Soluciones Amazon",
+    links: [
+      { to: "/Soluciones_AmazonConnect", label: "Amazon Connect" },
+      { to: "/Soluciones_AmazonDialer", label: "Connect Dialer" },
+    ],
+  }
+];
+
+const [markerElement, setMarkerElement] = useState(null);
+
+
+const [dropdownClosing, setDropdownClosing] = useState(null);
+
+const [openDropdown, setOpenDropdown] = useState(null);
+
+
+// Handlers DRY para todos los dropdowns
+const handleDropdownEnter = (dropdown) => setOpenDropdown(dropdown);
+const handleDropdownLeave = () => setOpenDropdown(null);
+const handleDropdownClick = (dropdown) => setOpenDropdown(openDropdown === dropdown ? null : dropdown);
+
+
   const isNight = useNightMode();
+
   
   const location = useLocation();
   const lowerPath = location.pathname.toLowerCase();
@@ -41,25 +86,46 @@ function Header() {
 
   // Refs para manejar timeouts y evitar efectos inesperados
   const markerTimeout = useRef(null);
-  const hoverNovasysRef = useRef(null);
-  const hoverHPRef = useRef(null);
-  const hoverAmazonRef = useRef(null);
 
   // Estados para hover en dropdowns
-  const [isNovasysHovered, setIsNovasysHovered] = useState(false);
-  const [isHPHovered, setIsHPHovered] = useState(false);
-  const [isAmazonHovered, setIsAmazonHovered] = useState(false);
 
 
-  // Estados para abrir/cerrar dropdowns
-  const [isNovasysOpen, setIsNovasysOpen] = useState(false);
-  const [isHPOpen, setIsHPOpen] = useState(false);
-  const [isAmazonOpen, setIsAmazonOpen] = useState(false);
 
 
+
+
+ 
   // Estados para la navegación móvil y su submenú
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [isMobileNavClosing, setIsMobileNavClosing] = useState(false);
+  const [submenuOverlay, setSubmenuOverlay] = useState(null);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
+  const navRef = useRef(null);
+  const markerRef = useRef(null);
+  // Animación del marcador rojo
+useEffect(() => {
+  if (markerElement && markerRef.current && navRef.current) {
+    const navRect = navRef.current.getBoundingClientRect();
+    const rect = markerElement.getBoundingClientRect();
+    markerRef.current.style.left = `${rect.left - navRect.left}px`;
+    markerRef.current.style.width = `${rect.width}px`;
+  }
+}, [markerElement]);
+
+  // Cierra dropdowns al hacer clic afuera
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest('.dropdown')) {
+        setOpenDropdown(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+
+
   const [shouldAnimateMobileNav, setShouldAnimateMobileNav] = useState(false);
 
   const [activeMobileSubmenu, setActiveMobileSubmenu] = useState(null);
@@ -72,8 +138,7 @@ const [mode, setMode] = useState(() => {
 });
 
   
-  // Estado para la posición y ancho del marcador
-  const [markerStyle, setMarkerStyle] = useState({ left: 0, width: 0 });
+
 
   // Actualizar el modo en el body
   useEffect(() => {
@@ -97,61 +162,39 @@ const [mode, setMode] = useState(() => {
 }, []);
 
 
-  // Actualiza el marcador utilizando getBoundingClientRect y condiciones para subsecciones
-  useEffect(() => {
-    // Se usa setTimeout de 0 para esperar al render del DOM
-    setTimeout(() => {
-      const nav = document.querySelector(".nav");
-      if (!nav) return; // ❗ evita el error si no existe
-      const navRect = nav.getBoundingClientRect();
-      let activeEl = null;
-      
-      // Si estamos en Soluciones Novasys o en alguna de sus subsecciones, usamos ese enlace
-      if (
-        lowerPath.startsWith("/soluciones_novasys") ||
-        lowerPath === "/ventas" ||
-        lowerPath === "/marketing" ||
-        lowerPath === "/business_intelligence" ||
-        lowerPath === "/elo"
-      ) {
-        activeEl = document.getElementById("nav-snovasys");
-      } else if (lowerPath.startsWith("/solucioneshp")) {
-        activeEl = document.getElementById("nav-shp");
-      } else if (lowerPath.startsWith("/soluciones_amazon")) {
-        activeEl = document.getElementById("nav-samazon");
-      } else {
-        activeEl = document.querySelector(".navItem.active");
-      }
-      
-      if (activeEl) {
-        const rect = activeEl.getBoundingClientRect();
-        const newLeft = rect.left - navRect.left;
-        const newWidth = rect.width;
-        console.log("updateMarkerToActive:", {
-          lowerPath,
-          activeElement: activeEl.id,
-          left: newLeft,
-          width: newWidth,
-        });
-        setMarkerStyle({ left: newLeft, width: newWidth });
-      } else {
-        console.warn("No se encontró elemento activo. lowerPath:", lowerPath);
-      }
-    }, 0);
-  }, [location.pathname, lowerPath]);
 
-  // Actualiza el marcador en base a un elemento específico (usado en hovers)
-  const updateMarkerForElement = (element) => {
-    if (element) {
-      const nav = document.querySelector(".nav");
-      const navRect = nav.getBoundingClientRect();
-      const rect = element.getBoundingClientRect();
-      const newLeft = rect.left - navRect.left;
-      const newWidth = rect.width;
-      console.log("updateMarkerForElement:", { newLeft, newWidth });
-      setMarkerStyle({ left: newLeft, width: newWidth });
-    }
-  };
+
+  // Actualiza el marker al hacer hover o cambiar markerElement
+useEffect(() => {
+  if (markerElement && markerRef.current && navRef.current) {
+    const navRect = navRef.current.getBoundingClientRect();
+    const rect = markerElement.getBoundingClientRect();
+    markerRef.current.style.left = `${rect.left - navRect.left}px`;
+    markerRef.current.style.width = `${rect.width}px`;
+  }
+}, [markerElement]);
+
+// Cuando cambia la ruta, marca el link activo
+useEffect(() => {
+  let active = null;
+  if (
+    lowerPath.startsWith("/soluciones_novasys") ||
+    lowerPath === "/ventas" ||
+    lowerPath === "/marketing" ||
+    lowerPath === "/business_intelligence" ||
+    lowerPath === "/elo"
+  ) {
+    active = document.getElementById("nav-snovasys");
+  } else if (lowerPath.startsWith("/solucioneshp")) {
+    active = document.getElementById("nav-shp");
+  } else if (lowerPath.startsWith("/soluciones_amazon")) {
+    active = document.getElementById("nav-samazon");
+  } else {
+    active = document.querySelector(".navItem.active");
+  }
+  setMarkerElement(active);
+}, [location.pathname, lowerPath]);
+
 
   // Manejadores de hover en los items de navegación
   const handleNavItemMouseEnter = (e) => {
@@ -196,46 +239,11 @@ const [mode, setMode] = useState(() => {
         const newLeft = rect.left - navRect.left;
         const newWidth = rect.width;
         console.log("handleNavItemMouseLeave: Restaurando marcador a", activeEl.id);
-        setMarkerStyle({ left: newLeft, width: newWidth });
       }
     }, 100);
   };
 
-  // Manejadores para el dropdown de Soluciones Novasys
-  const handleNovasysMouseEnter = () => {
-    if (hoverNovasysRef.current) clearTimeout(hoverNovasysRef.current);
-    setIsNovasysOpen(true);
-  };
 
-  const handleNovasysMouseLeave = () => {
-    hoverNovasysRef.current = setTimeout(() => {
-      setIsNovasysOpen(false);
-    }, 100);
-  };
-
-  // Manejadores para el dropdown de Soluciones HP
-  const handleHPMouseEnter = () => {
-    if (hoverHPRef.current) clearTimeout(hoverHPRef.current);
-    setIsHPOpen(true);
-  };
-
-  const handleHPMouseLeave = () => {
-    hoverHPRef.current = setTimeout(() => {
-      setIsHPOpen(false);
-    }, 100);
-  };
-
-   // Manejadores para el dropdown de Amazon
-   const handleAmazonMouseEnter = () => {
-    if (hoverAmazonRef.current) clearTimeout(hoverAmazonRef.current);
-    setIsAmazonOpen(true);
-  };
-
-  const handleAmazonMouseLeave = () => {
-    hoverAmazonRef.current = setTimeout(() => {
-      setIsAmazonOpen(false);
-    }, 100);
-  };
 
   const closeCompactMenuSmooth = () => {
     setIsClosingCompactMenu(true);
@@ -250,9 +258,7 @@ const [mode, setMode] = useState(() => {
   useEffect(() => {
     return () => {
       clearTimeout(markerTimeout.current);
-      clearTimeout(hoverNovasysRef.current);
-      clearTimeout(hoverHPRef.current);
-      clearTimeout(hoverAmazonRef.current);
+   
     };
   }, []);
 
@@ -279,12 +285,24 @@ const [mode, setMode] = useState(() => {
       }, 350); // mismo tiempo que el CSS
     } else {
       setIsMobileNavOpen(true);
+      
       // ⚠️ Aquí está la magia: espera un frame para aplicar `.open`
       requestAnimationFrame(() => {
         setShouldAnimateMobileNav(true);
       });
     }
   };
+  const handleSubmenuClick = (submenu) => {
+    setSubmenuOverlay(submenu);
+  };
+
+  const handleBackToMainMenu = () => {
+    setSubmenuOverlay(null);
+  };
+
+  const handleMouseEnter = (index) => setHoveredIndex(index);
+  const handleMouseLeave = () => setHoveredIndex(null);
+
 
 
 
@@ -307,8 +325,20 @@ const [mode, setMode] = useState(() => {
       document.body.classList.remove('header-active');
     }
   }, [isMobileNavOpen, isCompactMenuOpen]);
-  
-  
+  const handleDropdownTitleClick = (idx) => {
+  setOpenDropdown(openDropdown === idx ? null : idx);
+};
+
+  const handleDropdownMouseEnter = (idx) => {
+  setOpenDropdown(idx);
+  setHoveredIndex(idx + 3); // Si tienes 3 links antes, ajusta el número según la cantidad de links antes de los dropdowns
+};
+
+const handleDropdownMouseLeave = () => {
+  setOpenDropdown(null);
+  setHoveredIndex(null);
+};
+
   
 
 return (
@@ -324,60 +354,149 @@ return (
         }}>
           <img src={isNight ? logoimage : logoimageN} alt="Logo Novasys" />
         </Link>
-        <nav className="nav" onMouseLeave={handleNavItemMouseLeave}>
+        <nav
+          className="nav"
+          ref={navRef}
+          onMouseLeave={() => {
+            let active = null;
+            if (
+              lowerPath.startsWith("/soluciones_novasys") ||
+              lowerPath === "/ventas" ||
+              lowerPath === "/marketing" ||
+              lowerPath === "/business_intelligence" ||
+              lowerPath === "/elo"
+            ) {
+              active = document.getElementById("nav-snovasys");
+            } else if (lowerPath.startsWith("/solucioneshp")) {
+              active = document.getElementById("nav-shp");
+            } else if (lowerPath.startsWith("/soluciones_amazon")) {
+              active = document.getElementById("nav-samazon");
+            } else {
+              active = navRef.current.querySelector(".navItem.active");
+            }
+            setMarkerElement(active);
+          }}
+        >  
           <Link
             to="/"
             className={`navItem ${lowerPath === "/" ? "active" : ""}`}
-            onMouseEnter={handleNavItemMouseEnter}
-            onMouseLeave={handleNavItemMouseLeave}
+            onMouseEnter={e => setMarkerElement(e.currentTarget)}
+            onFocus={e => setMarkerElement(e.currentTarget)} // Opcional, para accesibilidad con teclado
+            onMouseLeave={() => setMarkerElement(null)}
+            onBlur={() => setMarkerElement(null)} // Opcional
+
           >
             Home
           </Link>
           <Link
             to="/Eventos"
             className={`navItem ${lowerPath === "/eventos" ? "active" : ""}`}
-            onMouseEnter={handleNavItemMouseEnter}
-            onMouseLeave={handleNavItemMouseLeave}
+            onMouseEnter={e => setMarkerElement(e.currentTarget)}
+            onFocus={e => setMarkerElement(e.currentTarget)} // Opcional, para accesibilidad con teclado
+            onMouseLeave={() => setMarkerElement(null)}
+            onBlur={() => setMarkerElement(null)} // Opcional
+
           >
             Eventos
           </Link>
           <Link
             to="/Nosotros"
             className={`navItem ${lowerPath === "/nosotros" ? "active" : ""}`}
-            onMouseEnter={handleNavItemMouseEnter}
-            onMouseLeave={handleNavItemMouseLeave}
+            onMouseEnter={e => setMarkerElement(e.currentTarget)}
+            onFocus={e => setMarkerElement(e.currentTarget)} // Opcional, para accesibilidad con teclado
+            onMouseLeave={() => setMarkerElement(null)}
+            onBlur={() => setMarkerElement(null)} // Opcional
           >
             Nosotros
           </Link>
-          {/* ... aquí pon tus dropdowns y más enlaces ... */}
+
+          {navDropdowns.map((dropdown, idx) => (
+            <div
+              key={dropdown.id}
+              className="navItem dropdown"
+              id={dropdown.id}
+              onMouseEnter={e => {
+                setOpenDropdown(idx);
+                setMarkerElement(e.currentTarget.querySelector('.dropdown-title'));
+              }}
+              onMouseLeave={() => {
+                setOpenDropdown(null);
+                // restaurar marker
+                let active = null;
+                if (
+                  lowerPath.startsWith("/soluciones_novasys") ||
+                  lowerPath === "/ventas" ||
+                  lowerPath === "/marketing" ||
+                  lowerPath === "/business_intelligence" ||
+                  lowerPath === "/elo"
+                ) {
+                  active = document.getElementById("nav-snovasys");
+                } else if (lowerPath.startsWith("/solucioneshp")) {
+                  active = document.getElementById("nav-shp");
+                } else if (lowerPath.startsWith("/soluciones_amazon")) {
+                  active = document.getElementById("nav-samazon");
+                } else {
+                  active = navRef.current.querySelector(".navItem.active");
+                }
+                setMarkerElement(active);
+              }}
+            >
+              <span
+                className={`dropdown-title${openDropdown === idx ? " hovered" : ""}`}
+                tabIndex={0}
+                aria-haspopup="true"
+                aria-expanded={openDropdown === idx}
+                onClick={() => setOpenDropdown(openDropdown === idx ? null : idx)}
+                // SOLO ESTO para marker
+                onMouseEnter={e => setMarkerElement(e.currentTarget)}
+                onFocus={e => setMarkerElement(e.currentTarget)}
+              >
+                {dropdown.label}
+              </span>
+              <div className={`dropdown-menu${openDropdown === idx ? " open" : ""}`}>
+                {dropdown.links.map(link => (
+                  <Link key={link.to} to={link.to} className="dropdown-item">
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
+
+
           <Link
             to="/Casos_de_exito"
             className={`navItem ${lowerPath === "/casos_de_exito" ? "active" : ""}`}
-            onMouseEnter={handleNavItemMouseEnter}
-            onMouseLeave={handleNavItemMouseLeave}
+            onMouseEnter={e => setMarkerElement(e.currentTarget)}
+            onFocus={e => setMarkerElement(e.currentTarget)} // Opcional, para accesibilidad con teclado
+            onMouseLeave={() => setMarkerElement(null)}
+            onBlur={() => setMarkerElement(null)} // Opcional
+
           >
             Casos de Éxito
           </Link>
           <Link
             to="/Contacto"
             className={`navItem ${lowerPath === "/contacto" ? "active" : ""}`}
-            onMouseEnter={handleNavItemMouseEnter}
-            onMouseLeave={handleNavItemMouseLeave}
+            onMouseEnter={e => setMarkerElement(e.currentTarget)}
+            onFocus={e => setMarkerElement(e.currentTarget)} // Opcional, para accesibilidad con teclado
+            onMouseLeave={() => setMarkerElement(null)}
+            onBlur={() => setMarkerElement(null)} // Opcional
+
           >
             Contacto
           </Link>
           <div className="toggle-container">
             <ToggleSwitch isOn={mode === "night"} onToggle={toggleMode} />
           </div>
-          {/* Marcador animado */}
           <div
             className="navMarker"
-            style={{
-              left: markerStyle.left,
-              width: markerStyle.width
-            }}
+            ref={markerRef}
           ></div>
+
         </nav>
+
+
       </div>
     )}
 

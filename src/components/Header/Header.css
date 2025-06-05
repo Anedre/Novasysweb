@@ -58,11 +58,12 @@
   cursor: pointer;
   transition: transform 0.5s ease, color 0.5s ease;
   color: inherit;
+
 }
 
 /* Hover sobre ítems */
 .nav > a.navItem:hover {
-  transform: scale(1.5);
+  transform: scale(1.3);
   color: red;
 }
 
@@ -83,6 +84,9 @@
 
 .dropdown-title {
   text-decoration: none;
+  cursor: pointer;
+  margin: 0 15px;
+
 }
 
 /* Estilos para el dropdown-menu:
@@ -101,8 +105,9 @@
   transform: scaleY(0);       /* Estado cerrado */
   opacity: 0;                 /* Invisible cuando está cerrado */
   transition: transform 0.3s ease, opacity 0.5s ease;
-  pointer-events: none;       /* Evita interacción cuando está cerrado */
-}
+  padding-top: 8px;   /* <-- pequeño solapamiento */
+  margin-top: -8px;   /* <-- lo mismo, pero negativo, para que quede justo bajo el título */
+  pointer-events: auto;}
 
 .dropdown-menu.open {
   transform: scaleY(1);
