@@ -1,6 +1,6 @@
 /* Estilos generales de la sección de contacto */
 .Contacto {
-  padding: 3rem 1rem;
+  padding: 6rem 1rem;
   background-color: var(--bg-light);
   color: var(--text-light);
 }
@@ -537,6 +537,10 @@ body.night .map-frame.dark-mode {
    
 
 @media (max-width: 480px) {
+
+  .Contacto{
+    padding-top: 30%;
+  }
   .contact-container {
     grid-template-columns: 1fr;
     padding: 0 1rem;

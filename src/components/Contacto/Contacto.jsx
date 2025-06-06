@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Contacto.css";
 import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FaWhatsapp, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import MapaContacto from "./../../scripts/Mapa/MapaContacto.jsx"
+import { useNightMode } from "../../hooks/useNightMode.js";
+
 
 // Validaciones con Yup
 const schema = yup.object().shape({
@@ -94,6 +96,9 @@ function Contacto() {
 
 
   const lineaSeleccionada = watch("linea");
+
+  
+const isNight = useNightMode();
 
  
 
@@ -213,25 +218,39 @@ function Contacto() {
 
 
       {/* Mapa de Google */}
-      <div className="map-container">
-        {/* Modo claro: Google Maps Embed */}
-        <iframe
-          title="Mapa modo claro"
-          className="map-frame light-mode"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.938363332167!2d-77.03512688465083!3d-12.120058191037103!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8ddbd528a73%3A0xa8ea1246c88a7a3f!2sCalle%20Narciso%20de%20la%20Colina%2C%20Miraflores%2C%20Lima!5e0!3m2!1ses-419!2spe!4v1672222222222"
-          width="100%"
-          height="450"
-          style={{ border: 0 }}
-          allowFullScreen=""
-          loading="lazy"
-        ></iframe>
-
-
-        {/* Modo oscuro: Leaflet con estilo nocturno */}
-
-        <MapaContacto />
-
+     <div className="map-container">
+        {isNight === null ? (
+          // Loader visual simple mientras detecta modo (puedes tunearlo como gustes)
+          <div style={{
+            height: 450,
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            background: '#f5f5f5',
+            fontSize: '1.1rem',
+            color: '#888',
+            borderRadius: 8
+          }}>
+            Cargando mapa...
+          </div>
+        ) : isNight === true ? (
+          <MapaContacto />
+        ) : (
+          <iframe
+            title="Mapa modo claro"
+            className="map-frame light-mode"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.938363332167!2d-77.03512688465083!3d-12.120058191037103!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8ddbd528a73%3A0xa8ea1246c88a7a3f!2sCalle%20Narciso%20de%20la%20Colina%2C%20Miraflores%2C%20Lima!5e0!3m2!1ses-419!2spe!4v1672222222222"
+            width="100%"
+            height="450"
+            style={{ border: 0, borderRadius: 8 }}
+            allowFullScreen=""
+            loading="lazy"
+          ></iframe>
+        )}
       </div>
+
+
      <div
       className={`toast ${toastType} ${toastVisible ? "toast-enter" : "toast-leave"}`}
       style={{ display: toastVisible || toastMessage ? "block" : "none" }}

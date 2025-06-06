@@ -394,6 +394,10 @@ body.night .Iitem:hover {
     margin: 40px auto;
     gap: 30px 30px;
   }
+
+  .Soluciones{
+    padding-top: 30%;
+  }
 }
 
 @media (max-width: 600px) {

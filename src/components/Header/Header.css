@@ -71,7 +71,7 @@
 .dropdown-title.hovered {
   display: inline-block;
   transform: scale(1.5);
-  color: red;
+  color: red !important;
   transition: transform 0.5s ease, color 0.5s ease;
 }
 
@@ -776,7 +776,7 @@
     padding-bottom: 0;
   }
   .mobileNavItem {
-    padding: 30px 30px;
+    padding: 25px 30px;
     font-size: 0.97rem;
     flex-shrink: 0;
   }

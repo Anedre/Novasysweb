@@ -8,10 +8,11 @@ import { useNightMode } from "../../hooks/useNightMode";
 
 
 function Header() {
-  const navDropdowns = [
+const navDropdowns = [
   {
     id: "nav-snovasys",
     label: "Soluciones Novasys",
+    to: "/Soluciones_Novasys", // <-- AÑADE ESTO
     links: [
       { to: "/Ventas", label: "Ventas" },
       { to: "/Marketing", label: "Marketing" },
@@ -22,6 +23,7 @@ function Header() {
   {
     id: "nav-shp",
     label: "Soluciones HP",
+    to: "/SolucionesHPmain", // <-- AÑADE ESTO
     links: [
       { to: "/SolucionesHPEnterprise", label: "HP Enterprise" },
       { to: "/SolucionesHP", label: "Soluciones HP" },
@@ -30,12 +32,14 @@ function Header() {
   {
     id: "nav-samazon",
     label: "Soluciones Amazon",
+    to: "/Soluciones_Amazon", // <-- AÑADE ESTO
     links: [
       { to: "/Soluciones_AmazonConnect", label: "Amazon Connect" },
       { to: "/Soluciones_AmazonDialer", label: "Connect Dialer" },
     ],
   }
 ];
+
 
 const [markerElement, setMarkerElement] = useState(null);
 
@@ -441,18 +445,38 @@ return (
                 setMarkerElement(active);
               }}
             >
-              <span
-                className={`dropdown-title${openDropdown === idx ? " hovered" : ""}`}
-                tabIndex={0}
-                aria-haspopup="true"
-                aria-expanded={openDropdown === idx}
-                onClick={() => setOpenDropdown(openDropdown === idx ? null : idx)}
-                // SOLO ESTO para marker
-                onMouseEnter={e => setMarkerElement(e.currentTarget)}
-                onFocus={e => setMarkerElement(e.currentTarget)}
-              >
-                {dropdown.label}
-              </span>
+              {dropdown.to ? (
+                <Link
+                  to={dropdown.to}
+                  className={`dropdown-title${openDropdown === idx ? " hovered" : ""}`}
+                  tabIndex={0}
+                  aria-haspopup="true"
+                  aria-expanded={openDropdown === idx}
+                  onClick={e => {
+                    // Si quieres que abra/cierre el dropdown solo si es click derecho o con modificador
+                    if (!e.ctrlKey && !e.metaKey && !e.shiftKey) {
+                      setOpenDropdown(openDropdown === idx ? null : idx);
+                    }
+                  }}
+                  onMouseEnter={e => setMarkerElement(e.currentTarget)}
+                  onFocus={e => setMarkerElement(e.currentTarget)}
+                  style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}
+                >
+                  {dropdown.label}
+                </Link>
+              ) : (
+                <span
+                  className={`dropdown-title${openDropdown === idx ? " hovered" : ""}`}
+                  tabIndex={0}
+                  aria-haspopup="true"
+                  aria-expanded={openDropdown === idx}
+                  onClick={() => setOpenDropdown(openDropdown === idx ? null : idx)}
+                  onMouseEnter={e => setMarkerElement(e.currentTarget)}
+                  onFocus={e => setMarkerElement(e.currentTarget)}
+                >
+                  {dropdown.label}
+                </span>
+              )}
               <div className={`dropdown-menu${openDropdown === idx ? " open" : ""}`}>
                 {dropdown.links.map(link => (
                   <Link key={link.to} to={link.to} className="dropdown-item">
@@ -462,6 +486,7 @@ return (
               </div>
             </div>
           ))}
+
 
 
           <Link

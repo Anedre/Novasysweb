@@ -4,7 +4,6 @@
   align-items: center;
   align-content: center;
   justify-content: center;
-  padding-top: 5%;
   padding-bottom: 5%;
 }
 
@@ -12,7 +11,7 @@
 .HPbanner {
   background: linear-gradient(135deg, #ff2d2d, #8c0000);
   color: #fff;
-  padding: 60px 20px;
+  padding: 100px 20px;
   text-align: center;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   justify-content: center;
