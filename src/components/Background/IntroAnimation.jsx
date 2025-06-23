@@ -186,7 +186,7 @@ const handleArrowClick = () => {
   useEffect(() => {
     if (materialRef.current) {
       materialRef.current.uniforms.dotColor.value.set(
-        isNightMode ? '#00ffe7' : '#103088'
+        isNightMode ? '#92fff4b6' : '#88a8ff9d'
       );
       // Por si acaso fuerza update
       materialRef.current.needsUpdate = true;

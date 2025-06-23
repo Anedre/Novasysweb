@@ -279,16 +279,17 @@ body.night .Sitem1 {
 
 
 body.night .Iitem {
-  background: linear-gradient(145deg, #2a2f3a, #323844);
-  border: 1px solid rgba(0, 217, 255, 0.12);
+  background: linear-gradient(145deg, #1d2129, #282e38 85%, #20232a 100%);
+  border: 1.5px solid rgba(0,217,255,0.11);
+  /* Efecto bisel: sombras y brillos internos y externos */
   box-shadow:
-    6px 6px 12px rgba(0, 0, 0, 0.6),
-    -4px -4px 8px rgba(255, 255, 255, 0.03),
-    inset 0 0 6px rgba(0, 0, 0, 0.3);
-  color: #e5f6ff;
-  transition: all 0.3s ease-in-out;
+    8px 8px 18px 0px rgba(0,0,0,0.85),         /* sombra exterior fuerte */
+    -5px -5px 12px 0px rgba(46,60,73,0.22),    /* brillo biselado arriba/izq */
+    inset 4px 4px 10px rgba(255,255,255,0.03), /* brillo interno sutil */
+    inset -4px -4px 12px rgba(0,0,0,0.23);     /* sombra interna */
+  color: #e9f2fa;
+  transition: all 0.3s cubic-bezier(.77,0,.18,1);
 }
-
 
 body.night .Iitem * {
   color: #d6eaff;
@@ -307,11 +308,12 @@ body.night .Iitem * {
 }
 
 body.night .Iitem:hover {
-  transform: translateY(-10px);
+  background: linear-gradient(145deg, #232833 30%, #23263c 100%);
   box-shadow:
-    0 18px 28px rgba(0, 0, 0, 0.6),
-    0 0 30px rgb(0, 217, 255),
-    inset 0 0 4px rgba(255, 255, 255, 0.05);
+    0 18px 36px rgba(0, 0, 0, 0.70),
+    0 0 40px #00d9ff22,
+    inset 2px 2px 12px #2e374400,
+    inset -4px -4px 18px #000c;
 }
 
 
@@ -325,6 +327,10 @@ body.night .Iitem:hover {
 }
 
 
+body.night .Iitem h3 {
+  color: #fff;
+  text-shadow: 0 2px 6px #131a22c0;
+}
 
 .Iitem h3 {
   font-size: 1rem;

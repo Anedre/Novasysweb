@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useInView from "../../hooks/useInView";
 import "./Soluciones.css";
+import { useNightMode } from "../../hooks/useNightMode";
 
 import Obusiness from "../../img/Obusiness.png";
 import Ocloud from "../../img/Ocloud.png";
@@ -12,7 +13,30 @@ import Oservicecloud from "../../img/oservicecloud.png";
 import OSales from "../../img/OSales.png";
 import Osiebel from "../../img/Osiebel.png";
 import Oconfigure from "../../img/Oconfigure.png";
+
+import ObusinessN from "../../img/Nueva carpeta/ObusinessD.png";
+import OcloudN from "../../img/Nueva carpeta/OcloudD.png";
+import Bluekai_logo_colorN from "../../img/Nueva carpeta/1x/bluekainoche.png";
+import OresponsysN from "../../img/Nueva carpeta/OresponsysD.png";
+import OservicecloudN from "../../img/Nueva carpeta/OservicecloudD.png";
+import OSalesN from "../../img/Nueva carpeta/OSalesD.png";
+import OsiebelN from "../../img/Nueva carpeta/OsiebelD.png";
+import OconfigureN from "../../img/Nueva carpeta/OconfigureD.png";
+
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+
+const nightImages = {
+  "oracle-business-intelligence": ObusinessN,
+  "oracle-paas": OcloudN,
+  "oracle-bluekai": Bluekai_logo_colorN,
+  "oracle-responsys": OresponsysN,
+  "oracle-service-cloud": OservicecloudN,
+  "oracle-sales-cloud": OSalesN,
+  "oracle-siebel": OsiebelN,
+  "oracle-cpq": OconfigureN,
+  "oracle-eloqua": Eloqua,
+};
+
 
 const data = {
   business: [
@@ -33,6 +57,7 @@ const data = {
 };
 
 function Soluciones() {
+  const isNight = useNightMode();
   const [tituloRef, tituloVisible] = useInView();
   const [gridRef, gridVisible] = useInView();
   const [filtroRef, filtroVisible] = useInView();
@@ -48,6 +73,13 @@ function Soluciones() {
     return data[selectedCategory] || [];
   };
 
+  // Nueva función para elegir imagen según el modo
+  const getImage = (item) => {
+    if (isNight && nightImages[item.slug]) {
+      return nightImages[item.slug];
+    }
+    return item.image;
+  };
   return (
     <section className="Soluciones">
       <div className="Stitulo">
@@ -167,7 +199,7 @@ function Soluciones() {
               animation: scontentVisible ? `fadeUp 0.6s ease forwards ${index * 0.4}s` : "none"
             }}
           >        
-            <img src={item.image} alt={item.title} className="item-img" />
+            <img src={getImage(item)} alt={item.title} className="item-img" />
             <h3>{item.title}</h3>
             <button
               className="Iboton"

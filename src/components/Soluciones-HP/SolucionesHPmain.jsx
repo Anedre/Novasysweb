@@ -5,9 +5,12 @@ import HP_enterprise from "../../img/HP_enterprise.png";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-import HPLogoSVGAnimado from "../../assets/HPlogoSVG.svg";
+import HP_enterpriseN from "../../img/Nueva carpeta/HP_enterpriseD.png";
+import { useNightMode } from "../../hooks/useNightMode";
 
 function SolucionesHPmain() {
+  const isNight = useNightMode();
+
   return (
     <section className="HPmain">
 
@@ -65,7 +68,7 @@ function SolucionesHPmain() {
             >
               <Link to="/SolucionesHPEnterprise">
                 <div className="HPmain-image-container">
-                  <img src={HP_enterprise} alt="HP Enterprise" />
+                  <img src={isNight ? HP_enterpriseN : HP_enterprise} alt="HP Enterprise" />
                 </div>
               </Link>
               <p className="captionHP">Soluciones HP Enterprise</p>
