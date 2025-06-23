@@ -18,7 +18,7 @@ import ObusinessN from "../../img/Nueva carpeta/ObusinessD.png";
 import OcloudN from "../../img/Nueva carpeta/OcloudD.png";
 import Bluekai_logo_colorN from "../../img/Nueva carpeta/1x/bluekainoche.png";
 import OresponsysN from "../../img/Nueva carpeta/OresponsysD.png";
-import OservicecloudN from "../../img/Nueva carpeta/OservicecloudD.png";
+import OservicecloudN from "../../img/Nueva carpeta/oservicecloudD.png";
 import OSalesN from "../../img/Nueva carpeta/OSalesD.png";
 import OsiebelN from "../../img/Nueva carpeta/OsiebelD.png";
 import OconfigureN from "../../img/Nueva carpeta/OconfigureD.png";
