@@ -3,7 +3,6 @@ import Plyr from "plyr-react";
 import "plyr/dist/plyr.css";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { motion, useAnimation, useInView } from "framer-motion";
-import { Chrono } from "react-chrono";
 
 import "./Nosotros.css";
 import TrianglesExample from "../Background/TrianglesExample.jsx";
