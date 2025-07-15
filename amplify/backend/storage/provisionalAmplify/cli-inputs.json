@@ -1,0 +1,10 @@
+{
+  "resourceName": "provisionalAmplify",
+  "tableName": "provisionalAmplify",
+  "partitionKey": {
+    "fieldName": "prueba",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

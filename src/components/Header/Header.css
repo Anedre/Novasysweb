@@ -1,17 +1,19 @@
-/* Header general */
+/* =========================
+   HEADER GENERAL
+========================= */
 .header {
   font-family: 'Poppins', sans-serif;
   position: fixed;
   z-index: 1000;
-  padding: 10px 20px;
+  padding: 10px 40px;
   width: 100%;
-
+  right:  15px;
   
 }
 
-
-
-/* Desktop Header */
+/* =========================
+   DESKTOP HEADER
+========================= */
 .desktopHeader {
   display: flex;
   align-items: center;
@@ -23,7 +25,12 @@
 /* Contenedor del logo */
 .logo img {
   width: 200px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
   height: auto;
+}
+.logo img:hover {
+  transform: scale(1.05);
 }
 
 /* Menú de navegación */
@@ -34,13 +41,15 @@
   position: relative;
 }
 
+/* Marcador animado */
 .navMarker {
   position: absolute;
   bottom: 0;
   height: 2px; /* Grosor de la línea */
   background-color: red; /* Color de la línea (puedes cambiarlo) */
-  transition: left 0.5s ease, width 0.3s ease; /* Animación suave para la transición */
+  transition: left 0.5s ease, width 0.3s ease;
 }
+
 /* Ítems del menú */
 .navItem {
   text-decoration: none;
@@ -48,106 +57,109 @@
   position: relative;
   cursor: pointer;
   transition: transform 0.5s ease, color 0.5s ease;
-  color: inherit; /* o el color que uses por defecto */
+  color: inherit;
+
 }
 
-
-
-
-/* Al pasar el mouse, se cambia el color a rojo y se dispara la animación */
+/* Hover sobre ítems */
 .nav > a.navItem:hover {
-  transform: scale(1.5);
+  transform: scale(1.3);
   color: red;
 }
+
+/* Estado hovered en dropdown (para forzar el transform) */
 .dropdown-title.hovered {
-  display: inline-block; /* Agrega esto para que funcione el transform */
+  display: inline-block;
   transform: scale(1.5);
-  color: red;
+  color: red !important;
   transition: transform 0.5s ease, color 0.5s ease;
 }
 
-
-
-
-
-/* Dropdown de escritorio */
+/* =========================
+   DROPDOWN DESKTOP
+========================= */
 .dropdown {
   position: relative;
 }
 
 .dropdown-title {
   text-decoration: none;
+  cursor: pointer;
+  margin: 0 15px;
+  color: var(--dropdown-text)!important;
+
 }
+
+/* Estilos para el dropdown-menu:
+   Se utilizan dos estados: "open" para desplegado, y "closing" para el estado en cierre */
 .dropdown-menu {
   position: absolute;
   top: 38px;
   left: 0;
-  background: rgb(221, 221, 221);
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  background: var(--dropdown-bg);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   width: 200px;
   display: flex;
   flex-direction: column;
   overflow: hidden;           /* Oculta el contenido mientras se contrae */
-  transform-origin: top;      /* La animación se inicia desde la parte superior */
+  transform-origin: top;
   transform: scaleY(0);       /* Estado cerrado */
   opacity: 0;                 /* Invisible cuando está cerrado */
   transition: transform 0.3s ease, opacity 0.5s ease;
-  pointer-events: none;       /* Evita interacción cuando está cerrado */
-}
+  padding-top: 8px;   /* <-- pequeño solapamiento */
+  margin-top: -8px;   /* <-- lo mismo, pero negativo, para que quede justo bajo el título */
+  pointer-events: auto;}
 
-/* Estado abierto: el dropdown se expande de arriba a abajo */
 .dropdown-menu.open {
-  transform: scaleY(1);       /* Estado abierto */
+  transform: scaleY(1);
   opacity: 1;
-  pointer-events: auto;       /* Permite interacción */
+  pointer-events: auto;
 }
 
-/* Estado de cierre: vuelve a contraerse (opcional, ya que al remover el elemento se podría evitar) */
 .dropdown-menu.closing {
   transform: scaleY(0);
   opacity: 0;
 }
 
+/* Ítems del dropdown */
 .dropdown-item {
   padding: 10px;
-  color: rgb(0, 0, 0);
+  color: var(--dropdown-text);
   text-decoration: none;
-  position: relative; /* Para posicionar el pseudo-elemento */
-  padding-right: 40px; /* Espacio para la flecha */
-  transition: color 0.3s ease, font-weight 0.3s ease;
-
+  position: relative;
+  padding-right: 50px; /* Espacio para la flecha */
+  transition: color 0 ease, font-weight 0 ease;
 }
+
+/* Pseudo-elemento para la flecha */
 .dropdown-item::after {
-  content: "➜"; /* Cambié la flecha por otra */
-  font-size: 1.2em;      /* Ajusta el tamaño */
-  color: #007bff;        /* Un azul armonioso */
+  content: "➜";
+  font-size: 1.2em;      
+  color: var(--dropdown-arrow);
   position: absolute;
-  right: 10px;           /* Ajusta el espacio a la derecha */
+  right: 10px;
   top: 50%;
   transform: translateY(-50%) translateX(0px);
   opacity: 0;
-
 }
 
-
 .dropdown-item:hover {
-  color: #00356d;  /* Un tono de azul */
+  color: var(--dropdown-hover-color);
   font-weight: 500;
-  /* Puedes quitar el background si no lo deseas, o ajustarlo */
-  transform: scale(1.02);
-
-  background: transparent;
+  margin: 0;
+  padding: 10px 25px;
+  padding-right: 60px; /* Espacio para la flecha */
+  background: var(--dropdown-hover-bg);
 }
 
 .dropdown-item:hover::after {
-  transform: translateY(-50%) scale(1.2); /* Aparece con efecto zoom */
+  transform: translateY(-50%) scale(1.2);
   opacity: 1;
 }
 
-
-
-
-/* ===== Mobile Header ===== */
+/* =========================
+   MOBILE HEADER
+========================= */
 .mobileHeader {
   display: none;
 }
@@ -155,10 +167,10 @@
 /* Encabezado móvil (logo y botón hamburguesa) */
 .mobileHeaderTop {
   display: flex;
-  justify-content: space-between; /* Esto coloca el primer elemento a la izquierda y el último a la derecha */
+  justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 10px 20px;  /* Ajusta el padding según necesites */
+  padding: 10px 20px;
 }
 
 .menuButton {
@@ -174,80 +186,104 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgb(31, 31, 31);
+  width: 100vw;
+  height: 100vh;
+  z-index: 2000;
+
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  z-index: 2000;
+  justify-content: space-between;
+
+  background: rgba(15, 15, 15, 0.822); /* más opaco */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(30px);
+
+  opacity: 0;
+  transform: scale(1); /* sin desplazamientos */
+  pointer-events: none;
+
+  transition: opacity 0.35s ease-in-out;
+  will-change: opacity;
 }
-/* Estilo para el logo dentro del overlay de navegación móvil */
+
+.mobileNav.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobileNav.closing {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Logo dentro del overlay móvil */
 .mobileNavLogo {
   top: 20px;
   left: 20px;
-
-
 }
 
 .mobileNavLogo img {
-  max-width: 150px; /* O el ancho que necesites */
+  max-width: 150px;
   height: auto;
 }
+
+/* Items de navegación móvil */
 .mobileNavItems {
-  width: 100%;                /* Ocupa todo el ancho */
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;    /* Alinea los items a la izquierda */
-  margin-top: 50px;           /* Ajusta el margen para separarlos del header */
+  align-items: flex-start;
+  margin-top: 50px;
 }
 
-/* Cada item del menú móvil */
 .mobileNavItem {
-  text-align: left;           /* Alinea el texto a la izquierda */
-  padding: 20px 20px;         /* Espaciado interno */
-  font-size: 1rem;          /* Tamaño del texto */
-  color: white;
+  text-align: left;
+  padding: 20px 20px;
+  font-size: 1rem;
+  color: rgb(192, 192, 192) !important;
   text-decoration: none;
 }
 
-.TTmobileNavItem{
-  color:white;
+/* Asegura la consistencia para el título en ítems móviles con submenú */
+.TTmobileNavItem {
+  color: rgb(192, 192, 192) !important;
   text-decoration: none;
+}
+.submenuArrowMobile{
+    color: rgb(192, 192, 192) !important;
 
 }
 
-/* Contenedor del header en el overlay móvil */
+/* Header del overlay móvil */
 .mobileNavHeader {
   display: flex;
-  align-items: flex-start; /* Alinea los elementos al inicio verticalmente */
+  align-items: flex-start;
+  text-align: center;
+  align-items: center;
   justify-content: space-between;
   flex-wrap: nowrap;
   width: 100%;
   padding: 10px 20px;
 }
 
-
-
-/* Nuevo elemento divisor entre cada encabezado */
+/* Divisor entre items */
 .mobileNavDivider {
-  width: calc(100% - 40px);   /* Resta 20px a cada lado */
-  margin: 0 20px;             /* 20px de margen a la izquierda y derecha */
+  width: calc(100% - 40px);
+  margin: 0 20px;
   height: 1px;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: var(--divider-color);
 }
 
-/* Botón de cierre (X) */
+/* Botón de cierre en overlay móvil */
 .mobileNavClose {
   background: transparent;
   border: none;
-  color: white;
-  font-size: 2rem; /* O el tamaño que prefieras */
+  color: rgb(187, 187, 187) !important;
+  font-size: 2rem;
   cursor: pointer;
 }
 
-/* Para ítems móviles con submenú */
+/* Items móviles con submenú */
 .mobileNavItem.withSubmenu {
   display: flex;
   justify-content: space-between;
@@ -258,118 +294,450 @@
 .submenuArrowMobile {
   background: transparent;
   border: none;
-  color: white;
+  color: rgb(187, 187, 187) !important;
   font-size: 1.2rem;
   cursor: pointer;
 }
 
-/* ===== Overlay de Submenú Móvil Actualizado ===== */
+/* =========================
+   OVERLAY DE SUBMENÚ MÓVIL
+========================= */
 .mobileSubmenuOverlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgb(31, 31, 31);
+  width: 100vw;
+  height: 100vh;
+  z-index: 3000;
   display: flex;
   flex-direction: column;
-  z-index: 3000;
+
+   background: rgba(15, 15, 15, 0.664);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(30px);
+
+  opacity: 0;
+  animation: submenuFadeIn 0.4s ease-out forwards;
 }
 
-/* Header del submenú: incluye la flecha para volver, el título y la X para cerrar */
+@keyframes submenuFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+/* Header del submenú (flecha para volver, título y botón para cerrar) */
 .mobileSubmenuHeader {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Alinea verticalmente los elementos */
+  align-items: center;
   width: 100%;
-  padding: 10px 20px;
+  padding: 30px 30px;
 }
 
 .mobileSubmenuBack {
   background: transparent;
   border: none;
-  color: white;
+  color: rgb(187, 187, 187) !important;
   font-size: 1.5rem;
   cursor: pointer;
 }
 
 .mobileSubmenuTitle {
   font-size: 1.5rem;
-  color: white;
+  color: var(--dropdown-text);
   margin: 0;
   flex: 1;
+  padding-bottom: 0;
+  color: rgb(187, 187, 187) !important;
+
   text-align: center;
 }
 
 .mobileSubmenuClose {
-  position: relative;
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 2rem; /* Ajusta el tamaño de la "X" según necesites */
+  
+  color: rgb(187, 187, 187) !important;
+  font-size: 2rem;
   cursor: pointer;
-  width: 40px;
-  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s ease;
-}
-
-/* Pseudo-elemento para el borde cuadrado */
-.mobileSubmenuClose::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 2px solid white;
-  box-sizing: border-box;
-  transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-/* Animación al pasar el mouse */
-.mobileSubmenuClose:hover {
-  transform: scale(1.1);
-}
-
-.mobileSubmenuClose:hover::before {
-  transform: rotate(45deg) scale(1.1);
-  border-color: red; /* O el color que prefieras para resaltar */
+  background-color: transparent;
+  border: none;
 }
 
 
-/* Contenedor de los items del submenú */
+
+
+
+/* Contenedor de items del submenú */
 .mobileSubmenuItems {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Alinea los items a la izquierda */
+  align-items: flex-start;
   margin-top: 30px;
   padding: 0 20px;
+  opacity: 1;
+  
+  transform: translateX(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Estilo para cada item del submenú */
+.mobileSubmenuItems {
+  opacity: 0;
+  transform: translateX(20px);
+  animation: submenuItemFadeIn 0.4s ease forwards;
+}
+
+@keyframes submenuItemFadeIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.mobileSubmenuItems.fade-exit {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+/* Cada item del submenú */
 .mobileSubmenuItem {
   width: 100%;
   text-align: left;
   padding: 20px 0;
   font-size: 1rem;
-  color: white;
+  color: rgb(187, 187, 187) !important;
   text-decoration: none;
 }
 
+
 /* Divisor entre items del submenú */
 .mobileSubmenuDivider {
-  width: 100%; /* Resta 20px a cada lado */
+  width: 100%;
   height: 1px;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: var(--divider-color);
 }
 
 
 
-/* ===== Responsive ===== */
+
+/* PANEL LATERAL COMPACTO */
+
+/* Botón hamburguesa en modo compacto */
+.compactMenuButton button {
+  font-size: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--dropdown-text); /* Para que se adapte a tu modo day/night */
+}
+
+.compactOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.4);
+  z-index: 1500;
+}
+
+.compactSidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100vh;
+  background: var(--dropdown-bg);
+  box-shadow: -4px 0 15px rgba(0, 0, 0, 0.3);
+  z-index: 2001;
+  animation: slideInRight 0.3s ease forwards;
+}
+
+.compactSidebarContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px;
+  overflow-y: auto;
+  position: relative;
+}
+
+
+.compactHeaderRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  align-content: center;
+  padding: 5px 0;
+
+}
+
+.compactTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--dropdown-text);
+  margin: 0;
+  line-height: 1; /* 🔥 Esto es la clave */
+  padding-bottom: 5px;
+
+}
+
+.closeSidebar {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--dropdown-text);
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.compactHeaderRow button{
+  font-size: 2rem;
+
+}
+
+
+.compactItem {
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 1rem;
+  padding: 25px 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.compactItem:hover {
+  background: var(--dropdown-hover-bg);
+  color: var(--dropdown-hover-color);
+  transform: translateX(5px);
+}
+
+.compactSidebarContent button{
+  font-weight: 100;
+  font-family: Poppins, sans-serif;
+}
+
+.compactDivider {
+  height: 1px;
+  width: 100%;
+  background: rgba(129, 129, 129, 0.685);
+  margin: 5px 0;
+}
+.arrow {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.compactItem:hover .arrow {
+  transform: translateX(5px);
+}
+
+.backButton {
+  margin-bottom: 15px;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: var(--dropdown-text);
+  cursor: pointer;
+  padding: 10px;
+  text-align: left;
+}
+
+.backButton:hover {
+  color: var(--dropdown-hover-color);
+}
+
+
+/* Animación */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.compactSidebarContent a {
+  color: var(--dropdown-text);
+  text-decoration: none;
+}
+
+.compactSidebarContent a:hover {
+  color: var(--dropdown-hover-color);
+}
+
+
+
+/* Animación de entrada */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.compactSidebar.closing {
+  animation: slideOutRight 0.3s ease forwards;
+}
+
+.modeToggleButton {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--dropdown-hover-bg);
+  color: var(--dropdown-hover-color);
+  font-size: 1.5rem;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.modeToggleButton:hover {
+  background: var(--dropdown-hover-color);
+  color: var(--dropdown-bg);
+  transform: rotate(15deg) scale(1.1);
+}
+
+.toggle-container-mobile {
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modeToggleButtonMobile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--dropdown-hover-bg);
+  color: var(--dropdown-hover-color);
+  font-size: 1.5rem;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.modeToggleButtonMobile:hover {
+  background: var(--dropdown-hover-color);
+  color: var(--dropdown-bg);
+  transform: rotate(15deg) scale(1.1);
+}
+
+
+
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 1500px) {
+ 
+  
+  .mobileHeader .logo img {
+    width: 150px;
+    height: auto;
+  }
+  .header {
+    height: auto;
+    display: block;
+    padding: 10px 10px;
+    right: 15px;
+  }
+ 
+ .toggle-footer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: auto;
+  width: 100%;
+  padding: 12px 0 8px 0;
+    justify-content: flex-end;
+
+}
+
+.toggle-avatar {
+  font-size: 2rem;
+  border-radius: 50%;
+  background: var(--dropdown-hover-bg);
+  padding: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  margin-right: 4px;
+}
+
+.modeToggleButton {
+  width: 55px;
+  height: 55px;
+  
+  border-radius: 50%;
+  background: var(--dropdown-hover-bg);
+  color: var(--dropdown-hover-color);
+  font-size: 2.5rem;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+
+}
+
+.modeToggleButton:hover {
+  background: var(--dropdown-hover-color);
+  color: var(--dropdown-bg);
+  transform: rotate(15deg) scale(1.1);
+}
+
+
+.modeToggleButton:hover + .toggle-tooltip {
+  color: var(--dropdown-hover-color);
+  opacity: 1;
+}
+
+
+}
 @media (max-width: 480px) {
   .nav {
     display: none;
@@ -380,43 +748,87 @@
   .mobileHeader {
     display: block;
   }
-  .header{
-    right: 4px;
+  .header {
+    right: 0px !important;
   }
-}
-
-
-
-/* Media query para pantallas menores a 768px */
-@media (max-width: 768px) {
-
-
-  .desktopHeader {
-    display: none;
-  }
-  .mobileHeader {
-    display: block;
-  }
-  /* Contenedor superior del header móvil: logo y botón hamburguesa */
-  .mobileHeaderTop {
+   .mobileNav {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;  /* Centra verticalmente el logo y el botón */
-    padding: 10px 20px;
+    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
   }
-  /* Ajustamos el tamaño del logo en móvil */
-  .mobileHeader .logo img {
-    width: 150px;
+  .mobileNavHeader {
+    padding: 20px 30px;
+  }
+  .mobileNavLogo img {
+    max-width: 200px;
     height: auto;
   }
-  .header {
-    height: auto;         /* Permite que se ajuste según el contenido */
-    display: block;       /* O bien, definir una estructura específica para móviles */
-    padding: 0;           /* Ajusta el padding si es necesario */
+   .mobileNavItems {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;  /* <-- Cambia aquí para centrar los links */
+    margin-top: 0;
+    padding-bottom: 0;
+  }
+  .mobileNavItem {
+    padding: 25px 30px;
+    font-size: 0.97rem;
+    flex-shrink: 0;
+  }
+  .mobileNavDivider {
+    height: 1px;
+    margin: 0 30px;
+    flex-shrink: 0;
+  }
+  .toggle-footer {
+    flex-shrink: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: flex-end;
+    padding: 12px 16px 18px 16px;
+  }
+  .toggle-avatar {
+    font-size: 1.6rem;
+    padding: 6px;
+    margin-right: 2px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  .modeToggleButton {
+    width: 45px;
+    height: 45px;
+    font-size: 1.5rem;
   }
 }
 
-/* Definición de la animación de zoom y rebote */
+@media (max-width: 380px) {
+  
+  
+  /* Ajustes para el logo en el header móvil */
+  .mobileNavLogo img {
+    max-width: 150px;
+  }
+
+  /* Ajustes para los ítems del menú móvil */
+  .mobileNavItem {
+    padding: 18px 30px;
+    font-size: 0.85rem;
+  }
+
+}
+
+
+/* =========================
+   EXTRAS
+========================= */
+/* Animación de zoom y rebote (si en algún futuro se utiliza, de lo contrario se puede eliminar) */
 @keyframes bounceZoom {
   0% {
     transform: scale(1);
@@ -432,13 +844,15 @@
   }
 }
 
+/* Contenedor para el toggle del modo (día/noche) */
 .toggle-container {
   display: flex;
   align-items: center;
   margin-left: 15px; /* Espacio entre "Contacto" y el toggle */
 }
 
-/* Asegúrate de que el header tenga suficiente altura y que todos los ítems estén centrados verticalmente */
-.desktopHeader, .nav {
+/* Asegurar que el header y la navegación tengan todos los ítems centrados */
+.desktopHeader,
+.nav {
   align-items: center;
 }

@@ -1,6 +1,6 @@
 /* Estilos generales para la sección */
 .Marketing {
-    padding: 20px;
+    padding: 80px;
 }
 
 .MTitulo {
@@ -90,6 +90,188 @@
     color: #333;
     text-align: center;
 }
+
+.marketing-heading {
+    font-size: 2.4rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+   
+  }
+  
+  .marketing-heading span {
+    display: block;
+    background: linear-gradient(90deg, #00cc99, #00b3b3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .marketing-sub {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: #555;
+    text-align: center;
+    line-height: 1.6;
+  }
+  
+  .marketing-item-link {
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  
+  .marketing-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    height: 100%;
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .marketing-item-link:hover .marketing-card {
+    background-color: rgba(0, 0, 0, 0.03);
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .marketing-card h3 {
+    font-size: 1.1rem;
+    margin: 12px 0 8px;
+    color: #111;
+  }
+  
+  .caption-desc {
+    font-size: 0.95rem;
+    color: #555;
+    text-align: center;
+    line-height: 1.4;
+  }
+  
+  .marketing-overlay {
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(6px);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.2rem;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.4s ease;
+    text-align: center;
+    border-radius: 12px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  
+  .marketing-item-link:hover .marketing-overlay {
+    opacity: 1;
+  }
+  
+  .marketing-overlay span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: textFloat 1.5s ease-in-out infinite;
+  }
+  
+  .marketing-overlay span::after {
+    content: " →";
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-left: 6px;
+    display: inline-block;
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+  }
+  
+  .marketing-item-link:hover .marketing-overlay span::after {
+    transform: translateX(4px);
+  }
+
+  .marketing-explora.mejorada {
+    margin-top: 100px;
+    text-align: center;
+  }
+  
+  .marketing-explora.mejorada h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  body.night .marketing-sub,
+body.night .caption-desc,
+body.night .explora-sub {
+  color: #ccc;
+}
+
+body.night .marketing-card {
+  background: #1c1c1c;
+  border: 1px solid #333;
+  box-shadow: 0 4px 12px rgba(0, 255, 204, 0.05);
+}
+
+body.night .marketing-card h3 {
+  color: #f0f0f0;
+}
+
+body.night .caption-desc {
+  color: #bbb;
+}
+
+body.night .marketing-item-link:hover .marketing-card {
+  background: #222;
+  box-shadow: 0 6px 20px rgba(0, 255, 204, 0.15);
+}
+
+body.night .explora-card {
+  background: #222;
+  border: 1px solid #333;
+  color: #eee;
+}
+
+body.night .explora-card:hover {
+  background: linear-gradient(135deg, #00ffc3, #00aaff);
+  color: #000;
+}
+
+body.night .explora-card p {
+}
+
+body.night .marketing-overlay {
+  background: rgba(0, 255, 204, 0.1);
+  color: #00ffc3;
+  text-shadow: 0 0 5px #00ffc3;
+}
+
+
+
+  
+  @keyframes textFloat {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
 
 /* Responsividad */
 /* En tablets: 2 columnas */

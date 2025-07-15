@@ -1,39 +1,253 @@
-.glitch-container {
-    position: relative;
-    width: auto;
-    overflow: hidden;
+.intro-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s ease;
+  z-index: 0;
+}
+
+.colobase{
+  color:#c0c0c0;
+  color:#ff6c6ca4;
+  color:#7a63d7;
+  color: #92fff4b6;
+  color :#88a8ff9d;
+}
+
+.intro-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(8px);
+  background: var(--background-secondary); /* modo día por defecto */
+  background-size: 400% 400%;
+  animation: gradientMove 10s ease infinite;
+  opacity: 0.4;
+  z-index: 0;
+}
+
+.intro-bg-canvas {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+
+
+/* Fondo modo noche más oscuro y futurista */
+.night .intro-container::before {
+  background: linear-gradient(135deg, #0d0d0d, #1a1a1a, #0d0d0d);
+  background-size: 400% 400%;
+  animation: gradientMove 20s ease infinite;
+  opacity: 0.25;
+}
+
+
+/* Animación del fondo */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.logo-wrapper {
+  display: flex;
+    z-index: 2; /* LOGO SIEMPRE ADELANTE */
+  width: 100%;
+  position: relative;
+
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.intro-logo {
+  max-width: 700px;
+  height: auto;
+  margin: 0 auto;
+  transform: translateY(-50px);
+  transition: filter 0.5s ease, transform 0.5s ease;
+}
+
+.day .intro-logo:hover {
+  filter: drop-shadow(0 2px 8px rgba(87, 61, 62));
+  transform: scale(1.1) translateY(-50px);
+}
+.night .intro-logo:hover {
+  filter: drop-shadow(4px 4px 8px rgba(255, 28, 36, 0.849));
+  transform: scale(1.1) translateY(-50px);;
+}
+
+.intro-container.fade-out {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(.42,.06,.57,1.14);
+}
+
+
+/* Flecha de scroll */
+.intro-arrow {
+  z-index: 5;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+  padding-top: 100px;
+
+}
+
+.bouncy-arrow {
+  font-size: 4rem;
+  font-weight: 100;
+  color: #000000; /* Puedes usar otro color destacado */
+  filter: drop-shadow(0 3px 12px #dca6ff88);
+  animation: bounce-down 1.1s infinite cubic-bezier(.46,.03,.52,.96);
+  transition: filter 0.2s, color 0.25s;
+}
+
+.intro-arrow:hover .bouncy-arrow {
+  color: #ffad41;
+  filter: drop-shadow(0 7px 26px #ea72c488);
+}
+
+@keyframes bounce-down {
+  0%, 100%   { transform: translateY(0); }
+  22%        { transform: translateY(9px) scaleY(1.10); }
+  45%        { transform: translateY(15px) scaleY(0.95);}
+  68%        { transform: translateY(7px) scaleY(1.08);}
+  82%        { transform: translateY(0) scaleY(1);}
+}
+
+
+
+
+.night .bouncy-arrow { color: #fff; }
+
+
+
+.intro-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px; /* Puedes aumentar para un difuminado más largo */
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0) 0%,
+    rgba(245,245,245,1) 100%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+
+/* Para modo noche */
+.night .intro-container::after {
+background: linear-gradient(
+    to bottom,
+    rgba(13, 13, 13, 0) 0%,
+    #151922 100%
+  ) }
+
+
+
+/* ======================= */
+/* RESPONSIVE - TABLET Y CELULAR */
+/* ======================= */
+
+@media (max-width: 768px) {
+  /* LOGO */
+  .intro-logo {
+    max-width: 80%;
+    height: auto;
+    margin-top: -30px;
+    animation: pulseLogo 3s infinite; /* animación especial */
   }
-  
-  .glitch-logo {
-    max-width: 100%;
-    height: 100%;
-    object-fit: contain;
+
+  /* FLECHA */
+  .intro-arrow {
+    bottom: 80px;
   }
-  
-  .main {
-    position: relative;
-    z-index: 2;
+
+  /* CUBITOS */
+  .raindrop {
+    width: 20px;
+    height: 20px;
   }
-  
-  .layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 3;
-    /* Valor base para la opacidad */
-    opacity: 0.8;
+}
+
+/* Para celulares aún más pequeños */
+@media (max-width: 480px) {
+  .logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    min-height: 180px;  /* Para dar espacio mínimo al logo */
   }
-  
-  /* Filtros para diferenciar capas */
-  .layer.layer1 {
-    filter: drop-shadow(3px 0 red);
+  /* LOGO */
+  .intro-bg-canvas {
+    height: 50vh;
   }
-  
-  .layer.layer2 {
-    filter: drop-shadow(-3px 0 blue);
+   .intro-logo {
+    max-width: 70%;
+    height: auto;
+    margin-top: 0;        /* CAMBIA ESTO */
+    margin-bottom: 0;     /* AÑADE ESTO POR SI ACASO */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    animation: pulseLogo 3s infinite; /* animación sigue en móviles */
   }
+
   
-  .layer.layer3 {
-    filter: drop-shadow(0 3px lime);
+  /* FLECHA */
+  .intro-arrow {
+    bottom: 10px;
   }
-  
+
+  /* CUBITOS */
+  .raindrop {
+    width: 15px;
+    height: 15px;
+  }
+  .intro-container{
+    height: 70vh;
+    min-height: 350px;
+  }
+}
+
+/* ======================= */
+/* ANIMACIÓN PULSE DEL LOGO */
+/* ======================= */
+
+@keyframes pulseLogo {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

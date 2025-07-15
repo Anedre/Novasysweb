@@ -1,110 +1,331 @@
-/* Contenedor principal de la sección */
+/* ========= GLOBAL ========= */
 .SolucionesHP {
-    padding: 40px;
+  padding: 150px 200px;
+  color: #1e1e1e;
+  font-family: 'Inter', sans-serif;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+body.night .SolucionesHP {
+  color: #e4e4e4;
+}
+
+/* ========= INTRO ========== */
+.SHPcontent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  align-items: flex-start;
+  margin-bottom: 60px;
+}
+
+.SHPtexto {
+  flex: 1;
+  min-width: 280px;
+}
+
+.SHPtexto h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.SHPtexto p {
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+body.night .SHPtexto p {
+  color: #bbbbbb;
+}
+
+
+.SHPcontact {
+  flex: 1;
+  min-width: 280px;
+  background: linear-gradient(135deg, #fff0f0, #ffe8e8);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+.SHPcontact:hover {
+  transform: translateY(-4px);
+}
+body.night .SHPcontact {
+  background: linear-gradient(135deg, #3b1e1e, #502727);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  color: #f0eaea;
+}
+
+body.night .SHPcontact h2 {
+  color: #ff7070;
+}
+
+body.night .SHPcontact p {
+  color: #dddddd;
+}
+
+
+.SHPcontact h2 {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  font-family: 'Poppins', sans-serif;
+  color: #e01414;
+}
+
+.SHPcontact h2::before {
+  content: '💬 ';
+}
+.SHPcontact p {
+  font-size: 1rem;
+  margin-bottom: 24px;
+  color: #333;
+  line-height: 1.5;
+}
+/* ========= SUBTÍTULO ========== */
+.SHPsubtitulo {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-top: 60px;
+  margin-bottom: 30px;
+  color: #1a1a1a;
+  font-family: 'Poppins', sans-serif;
+}
+body.night .SHPsubtitulo {
+  color: #f1f1f1;
+}
+/* ========= CARDS ========= */
+.SHPcards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
+  padding-bottom: 60px;
+}
+
+.SHPcard {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  padding: 30px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+body.night .SHPcard {
+  background: linear-gradient(145deg, #2c2f37, #363a45);
+  box-shadow:
+    6px 6px 12px rgba(0, 0, 0, 0.6),
+    -4px -4px 8px rgba(255, 255, 255, 0.03),
+    inset 0 0 6px rgba(255, 255, 255, 0.02);
+  color: #eaeaea;
+}
+
+body.night .SHPcard h3 {
+  color: #ffb3b3;
+}
+
+body.night .SHPcard p {
+  color: #dddddd;
+}
+
+
+.SHPcard:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.2),
+    0 0 40px rgba(255, 80, 80, 0.2);
+}
+
+body.night .SHPcard:hover {
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(255, 90, 90, 0.3);
+}
+
+
+.emoji-block {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  transition: transform 0.3s ease;
+}
+
+.SHPcard:hover .emoji-block {
+  transform: scale(1.15) rotate(5deg);
+}
+
+.SHPcard h3 {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.SHPcard p {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 1.5;
+  z-index: 1;
+  position: relative;
+}
+
+/* ========= OVERLAY HOVER DETAILS ========= */
+.SHPcard .extra-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #1a1a1a;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 16px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+body.night .SHPcard .extra-info {
+  background: rgba(60, 60, 60, 0.6);
+  color: #f1f1f1;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+
+.SHPcard:hover .extra-info {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+.extra-info {
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  font-family: 'Inter', sans-serif;
+}
+
+.extra-emoji {
+  font-size: 2.5rem;
+  animation: pulseGlow 2s infinite ease-in-out;
+  text-shadow: 0 0 8px rgba(255, 100, 100, 0.4);
+}
+
+.extra-text {
+  font-size: 0.95rem;
+  max-width: 90%;
+  line-height: 1.5;
+}
+
+/* Night mode adjustments */
+body.night .extra-emoji {
+  text-shadow: 0 0 10px rgba(255, 80, 80, 0.6);
+}
+
+body.night .extra-text {
+  color: #e8e8e8;
+}
+
+/* Pulse animation */
+@keyframes pulseGlow {
+  0% {
+    text-shadow: 0 0 8px rgba(255, 100, 100, 0.3);
   }
-  
-  /* Contenedor que agrupa el contenido en dos columnas y centra el grupo */
+  50% {
+    text-shadow: 0 0 16px rgba(255, 100, 100, 0.6);
+  }
+  100% {
+    text-shadow: 0 0 8px rgba(255, 100, 100, 0.3);
+  }
+}
+
+/* ========= BOTÓN CTA INFO ========= */
+.info-btnHP {
+  background: #e01414;
+  color: white;
+  border: none;
+  padding: 12px 26px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(224, 20, 20, 0.25);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+body.night .info-btnHP {
+  background: linear-gradient(135deg, #ff5151, #d10000);
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(255, 90, 90, 0.3);
+}
+
+body.night .info-btnHP:hover {
+  background: #c70000;
+}
+
+.info-btn:hover {
+  background: #c70000;
+  transform: scale(1.05);
+}
+
+.info-btn .arrow {
+  transition: transform 0.2s ease;
+}
+
+.info-btn:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* ========= RESPONSIVE LOVE 💕 ========= */
+@media (max-width: 768px) {
   .SHPcontent {
-    display: flex;
-    flex-direction: row;           /* Organiza en fila */
-    justify-content: center;         /* Centra horizontalmente el grupo completo */
-    align-items: center;             /* Centra verticalmente los elementos */
-    max-width: 1200px;               /* Limita el ancho total del bloque */
-    margin: 0 auto;                  /* Centra el contenedor en la página */
-    gap: 20px;                      /* Espacio uniforme entre columnas */
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
   }
-  
-  /* Columna izquierda: Título y texto descriptivo */
-  .SHPtexto {
-    flex: 1;
-    max-width: 50%;                /* Ocupa hasta la mitad del ancho del contenedor */
-    text-align: left;
-  }
-  
+
   .SHPtexto h1 {
     font-size: 2rem;
-    margin-bottom: 20px;
-    text-align: left;
   }
-  
-  .SHPtexto p {
-    font-size: 1rem;
-    line-height: 1.5;
+
+  .SHPsubtitulo {
+    font-size: 1.4rem;
   }
-  
-  /* Columna derecha: Cuadro de contacto */
-  .SHPcontact {
-    flex: 0 0 300px;               /* Ancho fijo para el cuadro de contacto */
-    background-color: #f5e0e028;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    text-align: left;
+
+  .SHPcard h3 {
+    font-size: 1.2rem;
   }
-  
-  .SHPcontact h2 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #e21010;
+
+  .emoji-block {
+    font-size: 2.5rem;
   }
-  
-  .SHPcontact p {
-    margin-bottom: 20px;
-    font-size: 1rem;
-  }
-  
-  /* Botón 3D con animación y centrado horizontal */
+
   .info-btn {
-    background-color: #e21010;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 0 #b00;
-    display: block;                /* Se comporta como bloque para usar margin auto */
-    margin: 20px auto 0;            /* Centrado horizontal dentro del cuadro */
+    font-size: 0.95rem;
   }
-  
-  .info-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 0 #b00;
+
+  .extra-info {
+    font-size: 0.9rem;
   }
-  
-  .info-btn:active {
-    transform: translateY(4px);
-    box-shadow: none;
-  }
-  
-  /* La flecha se mueve ligeramente al hacer hover */
-  .arrow {
-    margin-left: 8px;
-    transition: transform 0.2s;
-  }
-  
-  .info-btn:hover .arrow {
-    transform: translateX(5px);
-  }
-  
-  /* Adaptación responsiva para móviles */
-  @media (max-width: 768px) {
-    .SHPcontent {
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .SHPtexto,
-    .SHPcontact {
-      max-width: 100%;
-      width: 100%;
-      margin: 0 0 20px 0;
-    }
-    
-    /* Opcional: en móviles se puede centrar el texto del cuadro de contacto */
-    .SHPcontact {
-      text-align: center;
-    }
-  }
-  
+}

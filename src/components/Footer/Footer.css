@@ -2,11 +2,38 @@
 .footer {
   width: 100%;
   color: #fff;
-  padding: 2rem 15rem;
-  margin-top: 5rem;
+  padding: 2.5% 5%;
   position: relative;
   background: #222;  /* Puedes ajustar el fondo a tu gusto */
+  
 }
+  /* ------------------------- */
+  /* Footer                   */
+  /* ------------------------- */
+  body.day .footer a{
+  color: #ffffff; /* Color claro para modo día */   
+  }
+  body.day .footer {
+ 
+  background: #1a1a1a; /* Fondo oscuro para modo noche */
+  color: #fff;
+}
+
+body.night .footer {
+   background: #0000009d; /* Fondo claro para modo día */
+  color: #fff;
+}
+ 
+  
+  footer h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  footer p {
+    margin-bottom: 0.5rem;
+  }
+
 
 .footer-section img {
   width: 100px;
@@ -29,17 +56,17 @@
 }
 
 .footer-section h3 {
-  border-bottom: 1px solid #0026ff;
+  border-bottom: 1px solid #2f4adf;
   padding-bottom: 0.5rem;
   margin-bottom: 1rem;
   font-size: 1.2rem;
-  color: #e21010;
+  color: #f82929;
   text-align: left;
 }
 
 .footer-section p,
 .footer-section ul li a {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-family: 'Lexend', sans-serif;
   font-weight: 300;
 
@@ -74,7 +101,7 @@
 /* Íconos en contáctanos */
 .contact-icon {
   margin-right: 0.5rem;
-  color: #020069; /* Color de los íconos, se puede ajustar */
+  color: #2f4adf; /* Color de los íconos, se puede ajustar */
 }
 
 /* Sección Social Media */
@@ -90,9 +117,7 @@
   transition: color 0.3s ease;
 }
 
-.footer-social a:hover {
-  color: #1410e2;
-}
+
 
 /* Footer inferior */
 .footer-bottom {
@@ -107,6 +132,65 @@
   font-weight: bold;
   font-size: 1rem;
 }
+
+
+.footer-social a.facebook:hover {
+  color: #1877F2; /* Facebook */
+}
+
+.footer-social a.twitter:hover {
+  color: #1DA1F2; /* Twitter */
+}
+
+.footer-social a.instagram:hover {
+  color: #E4405F; /* Instagram */
+}
+
+.footer-social a.linkedin:hover {
+  color: #0A66C2; /* LinkedIn */
+}
+
+
+.footer-section p a,
+.footer-section ul li a {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.footer-section p a:hover,
+.footer-section ul li a:hover {
+  transform: translateX(8px);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.footer-social .social-icon {
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.footer-social a.facebook:hover .social-icon {
+  transform: scale(1.5) rotate(15deg);
+}
+
+.footer-social a.twitter:hover .social-icon {
+  transform: scale(1.5) rotate(-10deg);
+}
+
+.footer-social a.instagram:hover .social-icon {
+  transform: scale(1.5) rotate(20deg);
+}
+
+.footer-social a.linkedin:hover .social-icon {
+  transform: scale(1.5) rotate(-15deg);
+}
+
+
+
+
+
+
+
+
+
 /* Ajustes para pantallas pequeñas */
 @media (max-width: 768px) {
   .footer-container {
@@ -131,5 +215,5 @@
   margin-right: 0.5rem;
   font-size: 0.2rem; /* Un tamaño pequeño para un punto sutil */
   vertical-align: middle;
-  color: #000000; /* Ajusta el color según tu paleta */
 }
+

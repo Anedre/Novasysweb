@@ -1,95 +1,423 @@
-/* Estilos generales para la sección */
 .HPmain {
-    padding: 20px;   
+  color: #1e1e1e;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  padding-bottom: 5%;
 }
-  
-.HPmaintitulo {
-    text-align: center;
-    padding-bottom: 40px;
-    align-items: center;
+
+/* BANNER PRINCIPAL */
+.HPbanner {
+  background: linear-gradient(135deg, #ff2d2d, #8c0000);
+  color: #fff;
+  padding: 100px 20px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
 }
-.HPmaintitulo p {
-    text-align: center;
+
+.HPbanner h1 {
+  font-size: 2.8rem;
+  margin-bottom: 50px;
+  font-weight: 700;
+}
+
+.HPbanner p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #f9f9f9;
+}
+
+/* BOTÓN CTA */
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #ffffff, #dddddd);
+  color: #c00000 !important;
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 14px 32px;
+  border-radius: 12px;
+  text-decoration: none;
+  border: 1px solid #c00000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
 
 }
 
-  
 
-  
+.cta-btn:hover {
+  background-color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+
+.emoji {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.cta-btn:active .emoji {
+  transform: translateX(2px) scale(0.95);
+}
+
+/* SECCIÓN PRINCIPAL */
+.HPdual-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px 20px;
+}
+
+.HPleft,
+.HPright {
+  flex: 1;
+  min-width: 320px;
+  text-align: center;
+}
+
+.HPleft h2,
+.HPright h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.HPsection-card {
+  background: linear-gradient(145deg, #fefefe, #e8e8e8);
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  box-shadow:
+    6px 6px 12px rgba(0, 0, 0, 0.1),
+    -3px -3px 8px rgba(255, 255, 255, 0.6);
+  padding: 40px;
+  width: 100%;
+  max-width: 800px;
+  box-sizing: border-box;
+  transition: all 0.4s ease;
+}
+body.night .HPsection-card {
+  background: linear-gradient(145deg, #2f3543, #383e4d);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    inset 1px 1px 2px rgba(255, 255, 255, 0.04),
+    6px 6px 16px rgba(0, 0, 0, 0.5);
+  color: #e5e5e5;
+}
+.HPsection-card:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2),
+              0 0 10px rgba(0, 0, 0, 0.08);
+  transform: translateY(-5px);
+}
+
+
+.HPsection-card h2 {
+  text-align: center;
+}
+
+/* TÍTULO Y SUBRAYADO */
+.HPmain-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
 .HPmain-title h2 {
-    font-size: 1rem;
-    text-align: center;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
 
+/* GRID DE SOLUCIONES */
+.HPmain-grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
+  justify-items: center;
+  align-items: center;
 }
-  
-/* Subrayado animado */
-.HPmainunderline {
-    width: 110px;
-    height: 2px;
-    background-color: rgb(255, 0, 98);
-    margin: 0 auto;
-    animation: underline-animation 1.5s infinite alternate;
+
+.HPmain-item {
+  text-align: left;
 }
-  
-@keyframes underline-animation {
-    0% {
-      transform: scaleX(1);
-    }
-   
-    100% {
-      transform: scaleX(0.1);
-    }
-}
-  
-/* Centra el contenedor principal en la página */
-.HPmain-box {
-    width: 100%;           /* O el ancho que necesites */
-    margin: 0 auto;        /* Centrado horizontal */
-    text-align: center;    /* Centra el texto de los títulos, etc. */
-  }
-  
-  /* Estilos para el título */
-  .HPmain-title {
-    margin-bottom: 20px;   /* Espacio entre el título y el grid */
-  }
-  
-  /* Grid con dos columnas centradas */
-  .HPmain-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 0px;                              /* Espaciado entre items */
-    
-    /* Centra los elementos dentro de cada celda */
-    justify-items: center;  /* Centrado horizontal dentro de cada celda */
-    align-items: center;    /* Centrado vertical dentro de cada celda */
-  }
-  
-  /* Opcional: Centrar el contenido interno de cada item */
-  .HPmain-item {
-    text-align: center;
-  }
-  
-  /* Contenedor de la imagen adaptado a distintos tamaños */
+
 .HPmain-image-container {
-    /* Utiliza un ancho flexible */
-    width: 100%;
-    max-width: 600px;  /* Máximo ancho deseado en pantallas grandes */
-    margin: 0 auto;    /* Centra el contenedor horizontalmente */
-    /* Puedes remover o ajustar la altura para evitar distorsiones:
-       Si quieres mantener una proporción fija, puedes usar aspect-ratio */
-    aspect-ratio: 3 / 2;  /* Por ejemplo, 600px x 400px tiene proporción 3:2 */
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;  /* Si la imagen debe recortarse en exceso */
+  max-width: 600px;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s ease;
 }
 
-/* Asegúrate de que la imagen ocupe el 100% del ancho del contenedor y se ajuste en altura */
-.HPmain-image-container img {
-    width: 100%;
-    height: auto;
-    /* Opcional: si deseas que la imagen cubra todo el contenedor sin distorsionar, 
-       podrías usar object-fit, pero ojo, esto podría recortar la imagen */
-    /* object-fit: cover; */
+.HPmain-item:hover .HPmain-image-container {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
 }
+
+.HPmain-image-container img {
+  width: 100%;
+  max-height: 143px;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.HPmain-image-container:hover img {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.captionHP {
+  margin-top: 10px;
+  font-weight: 300;
+  text-align: center;
+  font-size: 1rem;
+}
+
+body.night .caption {
+  color: #d0d8f0;
+}
+
+/* BENEFICIOS */
+.beneficios-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  gap: 30px;
+  list-style: none;
+  padding: 0;
+}
+
+.beneficios-grid li {
+  font-size: 1.1rem;
+  background: linear-gradient(145deg, #ffffff, #f2f2f2);
+    border: 1px solid #ddd;
+
+  border-radius: 12px;
+  padding: 20px;
+  min-width: 200px;
+  box-shadow:
+    4px 4px 8px rgba(0, 0, 0, 0.05),
+    -2px -2px 6px rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease-in-out; 
+}
+
+body.night .beneficios-grid li {
+  background: linear-gradient(145deg, #2b2f38, #373d48);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: #d8e6f6;
+  box-shadow:
+    inset 0 0 4px rgba(255, 255, 255, 0.02),
+    4px 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.beneficios-grid li:hover {
+  transform: translateY(-5px);
+}
+
+.beneficios-grid li span {
+  font-size: 1.5rem;
+  margin-right: 8px;
+  transition: transform 0.3s;
+}
+
+.beneficios-grid li:hover span {
+  transform: rotate(8deg);
+}
+
+/* BENEFICIOS HORIZONTAL */
+.HPright .beneficios-grid.horizontal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.beneficios-grid.horizontal li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fdfcfc;
+  padding: 12px 18px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+/* CTA FINAL */
+.HPcta {
+  text-align: center;
+  padding: 40px 20px;
+  background: #ffffff;
+  color: white;
+  border-radius: 20px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.HPcta h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #000000;
+}
+
+.HPcta .info-btn {
+  background-color: #ffffff;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.HPcta .info-btn:hover {
+  transform: scale(1.05);
+  background-color: #f9f9f9;
+}
+
+body.night .HPcta {
+  background: linear-gradient(145deg, #222831, #2e3541);
+  color: #f5f5f5;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+body.night .HPcta h2 {
+  color: #ffffff;
+}
+
+body.night .info-btn {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: #fff;
+}
+
+
+/* BOTÓN INFO */
+.info-btn {
+  background: linear-gradient(135deg, #e21010, #ff1c22);
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(226, 16, 16, 0.3);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  max-width: 180px;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.info-btn:hover {
+  transform: translateY(-3px);
+}
+
+.arrow {
+  transition: transform 0.2s;
+}
+
+.info-btn:hover .arrow {
+  transform: translateX(5px);
+}
+
+
+body.night .HPmain-image-container img {
+  background-color: #2b2f38;
+  border-radius: 10px;
+  padding: 4px;
+}
+
+
+/* ============================= */
+/* 📱 CELULARES (MENORES A 600PX) */
+/* ============================= */
+@media (max-width: 599px) {
+  .HPbanner h1 {
+    font-size: 2rem;
+  }
+
+  .HPbanner p {
+    font-size: 1rem;
+  }
+
+  .cta-btn {
+    font-size: 0.95rem;
+    padding: 12px 24px;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  .HPdual-section {
+    padding: 40px 10px;
+    gap: 20px;
+  }
+
+  .HPmain-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .beneficios-grid.horizontal {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .HPcta h2 {
+    font-size: 1.5rem;
+  }
+
+  .HPmain-image-container img {
+    max-height: 120px;
+  }
+  
+}
+
+/* ============================ */
+/* 📱 TABLETS (600PX A 1024PX)  */
+/* ============================ */
+@media (min-width: 600px) and (max-width: 1024px) {
+  .HPbanner h1 {
+    font-size: 2.4rem;
+  }
+
+  .HPbanner p {
+    font-size: 1.1rem;
+  }
+
+  .HPmain-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .HPdual-section {
+    gap: 30px;
+  }
+
+  .beneficios-grid.horizontal {
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .HPcta h2 {
+    font-size: 1.8rem;
+  }
+
+  .cta-btn {
+    font-size: 1rem;
+  }
+}
+

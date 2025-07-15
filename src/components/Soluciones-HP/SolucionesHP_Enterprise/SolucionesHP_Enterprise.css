@@ -1,112 +1,267 @@
-/* Contenedor principal de la sección */
+/* ========= GLOBAL ========= */
 .SolucionesHP-Enterprise {
-    padding: 40px;
-  }
-  
-  /* Contenedor que agrupa el contenido en dos columnas y lo centra en la página */
+  padding: 150px 200px;
+  font-family: 'Inter', sans-serif;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+/* ========= ENCABEZADO ========= */
+.SEcontent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  align-items: flex-start;
+  margin-bottom: 60px;
+}
+
+.SEtexto {
+  flex: 1;
+  min-width: 280px;
+}
+
+.SEtexto h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.SEtexto p {
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+.SEcontact {
+  flex: 1;
+  min-width: 280px;
+  background: linear-gradient(135deg, #f1faff, #e5f2ff);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.SEcontact a{
+  color: #ffffff !important;
+  font-family: 'Poppins', sans-serif;
+}
+
+.SEcontact h2 {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.SEcontact p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* ========= SUBTÍTULO ========= */
+.SEsubtitulo {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-top: 60px;
+  margin-bottom: 30px;
+  color: #1a1a1a;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ========= CARDS ========= */
+.SEcards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
+  padding-bottom: 60px;
+}
+
+.SEcard {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  padding: 30px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.SEcard:hover {
+  transform: translateY(-8px);
+}
+
+.emoji-block {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  transition: transform 0.3s ease;
+}
+
+.SEcard:hover .emoji-block {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.SEcard h3 {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.SEcard p {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 1.5;
+  z-index: 1;
+  position: relative;
+}
+
+/* ========= OVERLAY INFO GLASS ========= */
+.extra-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 30px 20px;
+  background: rgba(50, 50, 50, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, box-shadow 0.4s ease;
+  z-index: 2;
+}
+
+.SEcard:hover .extra-info {
+  opacity: 1;
+  pointer-events: auto;
+  box-shadow: 0 0 24px 6px rgba(0, 122, 255, 0.35);
+}
+
+.extra-info .emoji-overlay {
+  font-size: 4rem;
+  margin-bottom: 18px;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+}
+
+
+.extra-info p {
+  font-size: 1rem;
+  color: #eaeaea;
+  line-height: 1.5;
+}
+
+
+/* ========= BOTÓN ========= */
+.info-btn {
+  background: linear-gradient(135deg, #004aad, #007bff);
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 122, 255, 0.3);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.info-btn:hover {
+  background: #005ce6;
+  transform: translateY(-2px);
+}
+
+.arrow {
+  transition: transform 0.2s;
+}
+
+.info-btn:hover .arrow {
+  transform: translateX(5px);
+}
+
+
+
+body.night .SEtexto h1,
+body.night .SEsubtitulo,
+body.night .SEcontact h2,
+body.night .SEcard h3 {
+  color: #f1f1f1;
+}
+
+body.night .SEtexto p,
+body.night .SEcontact p,
+body.night .SEcard p,
+body.night .extra-info {
+  color: #cfcfcf;
+}
+
+body.night .SEcontact {
+  background: linear-gradient(135deg, #1e1e2f, #2d2d44);
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.05);
+}
+
+body.night .SEcard {
+  background-color: #1e1e1e;
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.05);
+}
+
+body.night .extra-info {
+  background: rgba(50, 50, 50, 0.7);
+  backdrop-filter: blur(10px);
+  color: #e0e0e0;
+}
+
+body.night .info-btn {
+  background: linear-gradient(135deg, #004aad, #005fff);
+  box-shadow: 0 4px 8px rgba(0, 122, 255, 0.4);
+}
+
+body.night .info-btn:hover {
+  background: #003bb5;
+}
+/* ========= RESPONSIVO ========= */
+@media (max-width: 768px) {
   .SEcontent {
-    display: flex;
-    flex-direction: row;           /* Organiza en fila */
-    justify-content: center;         /* Centra horizontalmente los elementos */
-    align-items: center;             /* Centra verticalmente los elementos */
-    max-width: 1500px;               /* Limita el ancho total del bloque */
-    margin: 0 auto;                  /* Centra el contenedor en la página */
-    gap: 300px;                      /* Espacio uniforme entre columnas */
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
   }
-  
-  /* Columna izquierda: Título y texto descriptivo */
-  .SEtexto {
-    flex: 1;
-    max-width: 40%;                /* Ocupa hasta la mitad del ancho del contenedor */
-    /* Se elimina el margin-right ya que usamos gap en el contenedor */
-    text-align: left;              /* Puedes cambiar a center si deseas centrar el texto */
-  }
-  
+
   .SEtexto h1 {
     font-size: 2rem;
-    margin-bottom: 20px;
-    text-align: left;              /* Ajusta según prefieras */
   }
-  
-  .SEtexto p {
-    font-size: 1rem;
-    line-height: 1.5;
+
+  .SEsubtitulo {
+    font-size: 1.4rem;
   }
-  
-  /* Columna derecha: Cuadro de contacto */
-  .SEcontact {
-    flex: 0 0 300px;               /* Ancho fijo para el cuadro de contacto */
-    /* Se elimina el margin-left para evitar empujar el contenido fuera del centro */
-    background-color: #f5e0e028;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    text-align: left;              /* Puedes centrar el texto aquí si lo deseas */
+
+  .SEcard h3 {
+    font-size: 1.2rem;
   }
-  
-  .SEcontact h2 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #e21010;
+
+  .emoji-block {
+    font-size: 2.5rem;
   }
-  
-  .SEcontact p {
-    margin-bottom: 20px;
-    font-size: 1rem;
-  }
-  
-  /* Botón 3D con animación y centrado horizontal */
+
   .info-btn {
-    background-color: #e21010;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 0 #b00;
-    display: block;               /* Se comporta como bloque para usar margin auto */
-    margin: 20px auto 0;           /* Centra el botón horizontalmente */
+    font-size: 0.95rem;
   }
-  
-  .info-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 0 #b00;
+
+  .extra-info {
+    font-size: 0.9rem;
   }
-  
-  .info-btn:active {
-    transform: translateY(4px);
-    box-shadow: none;
-  }
-  
-  /* La flecha se mueve ligeramente al hacer hover */
-  .arrow {
-    margin-left: 8px;
-    transition: transform 0.2s;
-  }
-  
-  .info-btn:hover .arrow {
-    transform: translateX(5px);
-  }
-  
-  /* Media query para dispositivos móviles */
-  @media (max-width: 768px) {
-    .SEcontent {
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .SEtexto,
-    .SEcontact {
-      max-width: 100%;
-      width: 100%;
-      margin: 0 0 20px 0;
-    }
-    
-    /* Opcional: en móvil puedes centrar el texto del cuadro de contacto */
-    .SEcontact {
-      text-align: center;
-    }
-  }
-  
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import './footer.css';
+import './Footer.css';
 import logoimage from "../../img/logo_novasys_transparent.png";
 import { 
   FaMapMarkerAlt, 
@@ -15,7 +15,7 @@ import {
 } from 'react-icons/fa';
 
 function Footer() {
-  const phoneNumber = "+51-1-7024006";
+  const phoneNumber = "+51-1-6433467";
   const whatsappNumber = "51989069217"; // sin el signo +
   
   // Detección sencilla de dispositivos móviles
@@ -120,20 +120,21 @@ function Footer() {
       </div>
 
       {/* Sección Social Media */}
-      <div className="footer-social">
-        <a href="https://www.facebook.com/Miguelavsm/" target="_blank" rel="noopener noreferrer">
-          <FaFacebookF />
+     <div className="footer-social">
+        <a className="facebook" href="https://www.facebook.com/Miguelavsm/" target="_blank" rel="noopener noreferrer">
+          <FaFacebookF className="social-icon" />
         </a>
-        <a href="https://x.com/novasysperu" target="_blank" rel="noopener noreferrer">
-          <FaTwitter />
+        <a className="twitter" href="https://x.com/novasysperu" target="_blank" rel="noopener noreferrer">
+          <FaTwitter className="social-icon" />
         </a>
-        <a href="https://www.instagram.com/miguelav_sm/" target="_blank" rel="noopener noreferrer">
-          <FaInstagram />
+        <a className="instagram" href="https://www.instagram.com/miguelav_sm/" target="_blank" rel="noopener noreferrer">
+          <FaInstagram className="social-icon" />
         </a>
-        <a href="https://www.linkedin.com/company/novasyspe/" target="_blank" rel="noopener noreferrer">
-          <FaLinkedinIn />
+        <a className="linkedin" href="https://www.linkedin.com/company/novasyspe/" target="_blank" rel="noopener noreferrer">
+          <FaLinkedinIn className="social-icon" />
         </a>
       </div>
+
 
       <div className="footer-bottom">
         <p>&copy; 2025 Novasys del Peru. Todos los derechos reservados.</p>

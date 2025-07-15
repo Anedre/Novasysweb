@@ -1,0 +1,340 @@
+/* Sección heroR */
+.heroR {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centra horizontalmente */
+    padding: 2rem;
+    position: relative;
+  }
+  
+  .heroR-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    gap: 2rem;
+    z-index: 1; /* Asegura que el contenido esté por encima del fondo */
+  }
+  .heroR p {
+    font-size: 1rem;
+  }
+  .heroR h1 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  /* Contenedor general */
+  .containerR {
+    justify-items: center;
+    margin-bottom: 5%;
+  }
+  .containerR h2 {
+    font-size: 2rem;
+  }
+  .containerR p {
+    font-size: 1rem;
+  }
+  .containerR.resultados {
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Hero Title y Elementos */
+  .heroR-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+  }
+  .heroR-icon {
+    font-size: 2.5rem;
+  }
+  .heroR-description {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  .heroR-cta {
+    text-align: center;
+    margin: 1rem auto;
+  }
+  .cta-button {
+    background: #ff6600;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: background 0.3s;
+  }
+  .cta-button:hover {
+    background: #e65c00;
+  }
+  .heroR-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .heroR-left {
+    display: flex;
+    flex-direction: column;
+    padding-left: 200px;
+    justify-content: center;
+    height: 100%; /* Asegura que ocupe toda la altura de la celda del grid */
+  }
+  .heroR-smartphone {
+    width: 100%;
+    font-size: 10rem; /* Ajusta según lo que necesites */
+  }
+  
+  /* Contenedor de la imagen con efecto flotante */
+  .heroR-image-container {
+    width: 100%;
+    max-width: 400px;
+    animation: float 3s ease-in-out infinite;
+  }
+  .heroR-image {
+    width: 100%;
+    border-radius: 15px;
+  }
+  
+  /* Keyframes para el efecto "flotante" (sube y baja como la marea) */
+  @keyframes float {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+  }
+  
+  /* Contenedor para la sección El Desafío y La Solución usando Grid */
+  .gridR {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 2rem;
+    align-items: center;
+    max-width: 1000px;
+  }
+  
+  /* Si se necesita invertir el orden, se aplican clases específicas */
+  .text-block {
+    grid-area: text;
+  }
+  .image-block {
+    grid-area: image;
+    place-self: center; /* Centra horizontal y verticalmente */
+  }
+  
+  /* Tarjeta base */
+  .cardR {
+    border-radius: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 2rem;
+    margin: 3rem 0;
+    position: relative;
+    right: 200px;
+    background-color: #f7f9fc; /* Color suave */
+    min-height: 320px;
+  }
+  
+  /* Tarjeta de "El Desafío" con color suave (Challenge) */
+  .challenge-cardR {
+    /* Puedes ajustar estilos específicos para la tarjeta de desafío */
+  }
+  
+  /* Tarjeta de "La Solución" con color diferente (Solution) */
+  .solution-cardR {
+    max-width: 1400px;
+    left: 200px;
+    background-color: #e8f0fe; /* Otro tono suave */
+  }
+  
+  /* (Opcional) Info-cards si se usaran */
+  .info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    height: 1px;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  .info-card {
+    background: #f7f9fc;
+    border-radius: 8px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.1),
+                -5px -5px 15px rgba(255,255,255,0.7);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .info-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.15),
+                -5px -5px 15px rgba(255,255,255,0.8);
+  }
+  .info-card p {
+    margin: 0;
+  }
+  .info-icon {
+    font-size: 1.5rem;
+    color: #0073e6;
+  }
+  
+  /* Sección Resultados / KPIs usando Grid */
+  .KPIR {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente */
+    width: 100%;
+  }
+  .metrics-cardsR {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Tres columnas iguales */
+    gap: 2rem;
+    margin: 5rem 0;
+    max-width: 1200px;
+    justify-content: center;
+    text-align: center;
+    align-content: center;
+  }
+  .metric-cardR {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+    align-items: center;
+    text-align: center;
+  }
+  .metric-cardR.active {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0,26,97,0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .metric-cardR h3 {
+    font-size: 2rem;
+  }
+  .metric-iconR {
+    font-size: 3rem;
+    color: #360032;
+    margin: 5%;
+  }
+  
+  /* Íconos grandes para desafío y solución */
+  .challenge-large-iconR {
+    font-size: 8rem;
+    color: #ff6600;
+    margin: auto;
+  }
+  .solution-large-iconR {
+    font-size: 8rem;
+    color: #0073e6;
+    margin: auto;
+  }
+  
+  /* Íconos referenciales pequeños */
+  .challenge-refR, .solution-refR {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  .challenge-iconR, .solution-iconR {
+    font-size: 1.8rem;
+  }
+  
+  /* Animaciones para aparición */
+  .fade-in {
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+  }
+  .slide-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .zoom-in {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  
+  /* Testimonios y Slider */
+  /* Efecto 3D base para el slide */
+  .testimonialsR.custom-testimonial.slide-up.visible {
+    border-radius: 15px !important;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    transform: perspective(1000px) rotateY(0deg) !important;
+  }
+  .slick-track > .testimonialsR.custom-testimonial.slide-up.visible:nth-child(4n+1) {
+    background-color: #f8f9fa !important;
+  }
+  .slick-track > .testimonialsR.custom-testimonial.slide-up.visible:nth-child(4n+2) {
+    background-color: #e9f7ef !important;
+  }
+  .slick-track > .testimonialsR.custom-testimonial.slide-up.visible:nth-child(4n+3) {
+    background-color: #fce4ec !important;
+  }
+  .slick-track > .testimonialsR.custom-testimonial.slide-up.visible:nth-child(4n+4) {
+    background-color: #e8f8ff !important;
+  }
+  /* Efecto hover para 3D */
+  .testimonialsR.custom-testimonial.slide-up.visible:hover {
+    transform: perspective(1000px) rotateY(5deg) translateY(-5px) !important;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.3) !important;
+  }
+  
+  .testimonial-sliderR {
+    cursor: grab;
+  }
+  .testimonial-sliderR:active {
+    cursor: grabbing;
+  }
+  .testimonialsR h2.fade-in.visible {
+    font-size: 2rem;
+    text-align: left;
+    padding-left: 400px;
+    margin-bottom: 2%;
+  }
+  .testimonial-sliderR {
+    position: relative;
+    margin: 0 auto;
+    max-width: 800px;
+    background: none !important;
+    overflow: hidden; /* Para que los pseudo-elementos queden "sobre" el slider */
+    align-items: center;
+    justify-content: center;
+  }
+  .slick-list {
+    width: 1000px;
+    margin: 2%;
+  }
+
+  
+  /* Responsividad */
+  @media (max-width: 768px) {
+    .gridR {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .heroR-grid {
+      grid-template-columns: 1fr;
+      padding: 1rem;
+    }
+    .heroR-left {
+      padding-left: 0;
+    }
+    .info-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+  

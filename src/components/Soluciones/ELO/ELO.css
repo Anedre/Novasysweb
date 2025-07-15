@@ -1,6 +1,6 @@
 /* Estilos generales para la sección */
 .ELO {
-    padding: 20px;   
+    padding: 80px;   
 }
   
 .Etitulo {
@@ -51,12 +51,12 @@
   
 /* Grid de imágenes y títulos */
 .ELO-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    max-width: 800px;    /* Ancho máximo de 800px */
-    margin: 0 auto;      /* Centra el grid */
-}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+  }
+  
 
 /* Cada item: convertimos en flex para controlar el alineamiento */
 .ELO-item {
@@ -64,11 +64,12 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    
 }
 
 /* Contenedor con alto fijo para las imágenes */
 .image-container {
-    width: 200px;        /* O el ancho que desees */
+    width: auto;        /* O el ancho que desees */
     height: 200px;       /* Altura fija para uniformidad */
     display: flex;
     align-items: center; /* Centra verticalmente la imagen */
@@ -88,7 +89,248 @@
     color: #333;
     text-align: center;
 }
+
+.elo-heading {
+    font-size: 2.4rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+  }
   
+  .elo-heading span {
+    display: block;
+    background: linear-gradient(90deg, #00cc99, #00b3b3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .elo-sub {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: #555;
+    text-align: center;
+    line-height: 1.6;
+  }
+  
+  .elo-item-link {
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    display: block;
+    transition: transform 0.3s ease;
+    align-items: center;
+    justify-content: center;
+    max-width: 250px;
+
+  }
+
+  
+  .elo-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    height: 100%;
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+
+  }
+  
+  .elo-item-link:hover .elo-card {
+    background-color: rgba(0, 0, 0, 0.03);
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .elo-card h3 {
+    font-size: 1.1rem;
+    margin: 12px 0 8px;
+    color: #111;
+  }
+  
+  .caption-desc {
+    font-size: 0.95rem;
+    color: #555;
+    text-align: center;
+    line-height: 1.4;
+  }
+  
+  .elo-overlay {
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(6px);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.2rem;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.4s ease;
+    text-align: center;
+    border-radius: 12px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  
+  .elo-item-link:hover .elo-overlay {
+    opacity: 1;
+  }
+  
+  .elo-overlay span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: textFloat 1.5s ease-in-out infinite;
+  }
+  
+  .elo-overlay span::after {
+    content: " →";
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-left: 6px;
+    display: inline-block;
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+  }
+  
+  .elo-item-link:hover .elo-overlay span::after {
+    transform: translateX(4px);
+  }
+  
+  .elo-explora.mejorada {
+    margin-top: 100px;
+    text-align: center;
+  }
+  
+  .elo-explora.mejorada h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  
+  .explora-sub {
+    font-size: 1.1rem;
+    color: #555;
+    max-width: 720px;
+    margin: 0 auto 40px;
+  }
+  
+  .explora-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .explora-card {
+    background-color: #ffffff;
+    border: 2px solid #e6e6e6;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: left;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    text-decoration: none;
+    color: #111;
+  }
+  
+  .explora-card:hover {
+    background: linear-gradient(135deg, #00cc99, #00b3b3);
+    color: #fff;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  .explora-card:hover .icon {
+    transform: scale(1.2);
+  }
+  
+  .explora-card .icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+  
+  .explora-card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .explora-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
+  @keyframes textFloat {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  body.night .elo-sub,
+body.night .caption-desc,
+body.night .explora-sub {
+  color: #ccc;
+}
+
+body.night .elo-card {
+  background: #1c1c1c;
+  border: 1px solid #333;
+  box-shadow: 0 4px 12px rgba(0, 255, 204, 0.05);
+}
+
+body.night .elo-card h3 {
+  color: #f0f0f0;
+}
+
+body.night .caption-desc {
+  color: #bbb;
+}
+
+body.night .elo-item-link:hover .elo-card {
+  background: #222;
+  box-shadow: 0 6px 20px rgba(0, 255, 204, 0.15);
+}
+
+body.night .explora-card {
+  background: #222;
+  border: 1px solid #333;
+  color: #eee;
+}
+
+body.night .explora-card:hover {
+  background: linear-gradient(135deg, #00ffc3, #00aaff);
+  color: #000;
+}
+
+body.night .explora-card p {
+}
+
+body.night .elo-overlay {
+  background: rgba(0, 255, 204, 0.1);
+  color: #00ffc3;
+  text-shadow: 0 0 5px #00ffc3;
+}
+
+
+
 /* Responsividad */
 /* En tablets: 2 columnas */
 @media (max-width: 768px) {

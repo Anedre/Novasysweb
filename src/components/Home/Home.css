@@ -2,7 +2,41 @@
 .Home {
   width: 100%;
   margin: 0;
+
 }
+
+.section-scroll {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  overflow: hidden;
+}
+
+.intro-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+
+/* Blur elegante para aplicar a secciones (opcional) */
+.blur-on-scroll {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: backdrop-filter 0.3s ease;
+}
+
+
+
+
+
+
 
 /* Estilos para la sección Intro */
 .Home .intro {
@@ -13,132 +47,266 @@
   align-items: center;
 }
 
+/* Sección: Intro */
 .intro {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.intro img {
-  width: 700px; /* Tamaño inicial para pantallas grandes */
-  height: 200px;
-}
-
-.solutions-btn {
-  grid-area: solutions-btn;
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-
+/* Botón principal */
 .btn-casos {
   display: inline-block;
   padding: 12px 24px;
-  background-color: #007BFF;
-  color: #fff;
-  text-decoration: none;
+  background: linear-gradient(135deg, #ff9900, #ff6600);
+  color: white;
   font-weight: bold;
-  border-radius: 8px;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  cursor: pointer;
-  margin-top: 20px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif  ;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(255, 102, 0, 0.6);
 }
 
 .btn-casos:hover {
-  transform: scale(1.05);
-  background-color: #0056b3;
+  background: linear-gradient(135deg, #ff6600, #ff3300);
+  transform: translateY(-5px) scale(1.05);
 }
-
-
 
 /* Sección: Casos de éxito */
 .section__paragraph1 {
   height: 100vh;
-  display: flex;
-  flex-direction: column;  /* Organiza el contenido en columna */
-  justify-content: center; /* Centra verticalmente */
-  align-items: center;     /* Centra horizontalmente */
-  scroll-snap-align: center; /* Si se utiliza scroll snapping nativo */
   text-align: center;
-  margin:5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Sección: Nuestras soluciones */
-.section__paragraph2 {
-  height: 100vh;
+/* Grid de casos */
+.success-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;           /* Dos columnas en la primera fila */
-  grid-template-rows: auto auto;            /* Dos filas */
-  grid-template-areas:
-    "solutions-text solutions-carousel"     /* Primera fila: dos columnas */
-    "solutions-btn  solutions-btn";           /* Segunda fila: el botón abarca ambas columnas */
-  align-items: center;
-  padding: 7%;
-  box-sizing: border-box;
-}
-/* Sección: Estadísticas - Contenedor completo */
-.section__paragraph3 {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin-bottom: 50px;
   justify-content: center;
 }
 
-
-
-/* Grid de casos de éxito */
-.success-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 3 columnas */
-  gap: 100px;  /* Ajusta el espacio entre ítems según lo necesites */
-  max-width: 1200px;
-  width: 100%;
-  margin: auto auto;
-  margin-bottom: 5%;
-}
-
 .success-item {
-  max-width: 250px;
-
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-card);
+  color: var(--color-text-main);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 25px 20px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.success-item img {
-  max-height: 100px;
-  width: auto;
-  transition: transform 0.3s ease-in-out;
-  margin-bottom:10%;
-  
-}
-img[alt="Proyecto 1"] {
- 
-  width: 160px;       /* Cambia el ancho */
-  /* O cualquier otra propiedad CSS */
+.success-item:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 10px 30px rgba(255, 153, 0, 0.3);
+  border-color: rgba(255, 153, 0, 0.5);
 }
 
-.success-item img:hover {
-  transform: scale(1.5); /* Efecto al pasar el mouse */
+.success-logo-wrapper {
+  margin-bottom: 15px;
 }
 
-.success-item p {
+.success-logo-wrapper img {
+  width: 100%;
+  height: 80px;
+  object-fit: contain;
+  filter: brightness(0.95) contrast(1.1);
+  transition: transform 0.3s ease;
+}
+
+.success-item:hover img {
+  transform: scale(1.05);
+}
+
+.success-content h3 {
+  color: var(--color-text-main);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.success-content p {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+/* BADGES - Etiquetas de tecnología */
+.success-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  margin-bottom: 10px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background-color: var(--color-tag-bg);
+  color: var(--color-tag-text);
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
   font-weight: 500;
-  font-size: 0.8em;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid var(--color-tag-border);
+  transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
-.success-item h3{
-  padding-bottom: 0;
-  font-size:1.1em;
+.success-item:hover .tag {
+  background-color: rgba(255, 153, 0, 0.25);
+  border-color: rgba(255, 153, 0, 0.6);
 }
+
+/* Ver más en hover */
+.more-link {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: #ff9900;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.success-item:hover .more-link {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+
+/* Sección: Nuestras soluciones */
+.section__paragraph2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 60px;
+  padding: 2% 5%;
+  box-sizing: border-box;
+}
+
+
+
+
+.solutions-btn {
+  margin-top: 20px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+.solutions-grid-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  width: 100%;
+}
+
+.solutions-content-wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+
+.solutions-text-wrapper {
+  flex: 1;
+  min-width: 400px;
+  text-align: left;
+}
+
+
+.solutions-content-wrapper .carousel-wrapper {
+  flex: 1;
+  min-width: 30px;
+  max-width: 50px;
+}
+
+.solutions-carousel {
+  flex: 1;
+  max-width: 600px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.solutions-text-wrapper {
+  grid-area: solutions-text;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Que el botón quede a la izquierda */
+  justify-content: center;
+}
+
+.solutions-text {
+  text-align: left;
+
+}
+
+.solutions-carousel {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 20px; /* iguala el padding con el texto */
+  max-width: 50%;
+  overflow: visible;
+}
+
+
+
+
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+/* Sección: Estadísticas - Contenedor completo */
+.section__paragraph3 {
+  height: 70vh;
+  width: 100%;
+  padding: 60px 20px;
+  box-sizing: border-box;
+  display: block; /* <-- aquí el cambio clave */
+}
+
+
 
 /* Grid de soluciones */
 
 
 .solutions-text{
-  padding-right: 50px;
   grid-area: solutions-text;
 
 }
@@ -162,175 +330,257 @@ img[alt="Proyecto 1"] {
   transform: scale(1);
   opacity: 1;
 }
-/* Clase para las secciones que se desplazarán manualmente */
-/* Se descuenta la altura del header (70px) */
-.section-scroll {
-  height: calc(100vh - 200px);
-  scroll-snap-align: center;
-  align-items: center;
+
+.solutions-left {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
-/* Estado base: elemento oculto y desplazado a la izquierda */
-.animate-left {
-  opacity: 0;
-  transform: translateX(-50px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+.solutions-right {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-/* Animación de entrada: el elemento se posiciona correctamente y se vuelve opaco */
-.animate-left.active {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* Animación de salida: por ejemplo, el elemento se desplaza hacia la derecha y se desvanece */
-.animate-left.exit {
-  opacity: 0;
-  transform: translateX(50px);
-}
-
-
-.animate-text{
-  padding-bottom: 100px;
-}
-
-
-
-/* Animación para elementos de la sección 3 (entrada desde abajo) */
-.animate-up {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 1s ease-out, transform 1s ease-out;
-}
-
-.animate-up.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Animación de salida para sección 3: el elemento se desplaza hacia arriba al salir */
-.animate-up.exit {
-  opacity: 0;
-  transform: translateY(-50px);
-}
-
-/* Responsive para móviles (hasta 480px) */
-@media (max-width: 780px) {
-  /* Ajuste en la sección Intro */
-  .intro img {
+@media (max-width: 768px) {
+  .solutions-content-wrapper {
+    flex-direction: column !important;
+    gap: 32px;
+    align-items: center;
+  }
+  .solutions-text-wrapper,
+  .solutions-carousel {
     width: 100%;
-    max-width: 400px;
-    height: auto;
-    padding-left: 10%;
-
+    min-width: 0;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
   }
-  
-  /* Sección Casos de éxito */
+  .solutions-grid-layout {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 3rem 1rem;
+  }
+
+  .solutions-left,
+  .solutions-right {
+    width: 100%;
+  }
+}
+
+
+/* Responsive para Tablets (hasta 768px) */
+@media (max-width: 768px) {
+  .intro {
+    min-height: 100vh;
+  }
+
   .section__paragraph1 {
-    padding: 1rem;
-    height: auto; /* Permite que el contenido se adapte sin forzar 100vh */
-  }
-  .section__paragraph1 h2 {
-    font-size: 1.2rem;
-  }
-  .section__paragraph1 p {
-    font-size: 0.9rem;
-  }
-  .success-grid {
-    margin: 20px 0;
-    gap: 10px;
-    grid-template-columns: repeat(2, 1fr);
-
-
-  }
-  .success-item {
-    max-width: 90%;
-  }
-  .success-item img {
-    max-height: 40px;
-    width: auto;
-  }
-  
-  /* Sección Nuestras soluciones */
-  .section__paragraph2 {
+    padding: 3rem 1rem;
+    margin-top: 0;
     text-align: center;
-    padding: 2%;
     height: auto;
+    scroll-margin-top: 70px; /* Ajuste para scroll */
   }
-  .solutions-text {
-    text-align: center;
-    padding-right: 0;
+
+  .section__paragraph1 h2 {
+    font-size: 2rem;
     margin-bottom: 1rem;
   }
-  .solutions-text h2 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-  }
-  .solutions-text p {
-    font-size: 0.9rem;
-  }
-  .solutions-carousel {
-    padding: 0 10px;
-    grid-area: solutions-carousel;
 
-    justify-content: center;
-  }
-  
-  
-  
-  /* Ajuste en el scroll snapping (si lo requieres) */
- 
-  .section-scroll {
-    height: 100vh;
-    padding: 2rem 0;
-    grid-template-columns: 1fr; /* Una sola columna */
-
-  }
-  .success-item h3{
-    font-size: 0.5em;
+  .section__paragraph1 p {
+    font-size: 1.1rem;
+    max-width: 500px;
+    margin: 0 auto 2rem;
   }
 
-  .success-item p{
-    font-size: 0.2em;
+  .success-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    width: 100%;
+    margin: 0 auto;
   }
 
-  .success-item img {
-    max-height: 20px;
-    width: auto;
+  .success-item {
+    max-width: 95%;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
   }
-  
+
+  .success-content h3 {
+    font-size: 1.5rem;
+  }
+
+  .success-content p {
+    font-size: 1rem;
+  }
+
+  .success-tags {
+    gap: 6px;
+    margin-top: 10px;
+  }
+
+  .tag {
+    font-size: 0.7rem;
+  }
+
+  .btn-casos {
+    margin-top: 2rem;
+    padding: 12px 28px;
+    font-size: 1rem;
+  }
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .success-item img {
-    max-height: 60px;
-    width: auto;
+/* Responsive para Móviles (hasta 480px) */
+@media (max-width: 480px) {
+  .section-scroll{
+    margin:auto;
+    justify-items: center;
+    align-items: center;
+    min-height: 90vh;
   }
-  .intro img {
-    max-width: 90%; /* Ajusta el tamaño de la imagen para dispositivos pequeños */
+ 
+    .solutions-content-wrapper {
+    flex-direction: column !important;
+    gap: 24px;
+    align-items: center;
+  }
+  .solutions-text-wrapper,
+  .solutions-carousel {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  .intro {
+    min-height: 100vh;
+  }
+
+  .section__paragraph1 {
+    padding: 2rem 1rem;
+    margin-top: 0;
+    text-align: center;
     height: auto;
-  }
-  
-  
-  
-  
-
-  
-  .section {
-    padding-left: 1rem; /* Reduce el padding en dispositivos móviles */
-  }
-  
-  .success-grid{
-    gap: 20px;
+    scroll-margin-top: 70px; /* Ajuste para scroll */
   }
 
-  .success-item h3{
-    font-size: 1em;
+  .section__paragraph1 h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
   }
 
-  .success-item p{
-    font-size: 0.5em;
+  .section__paragraph1 p {
+    font-size: 1rem;
+    max-width: 90%;
+    margin: 0 auto 1.5rem;
   }
+
+  .success-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 20px;
+  }
+  .success-logo-wrapper {
+    margin: 0px;
+  }
+
+  .success-item {
+    flex: 0 1 calc(45% - 10px);
+    max-width: calc(45% - 10px);
+    min-width: 160px;
+    padding: 20px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: var(--card-background, #fff);
+    border-radius: 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+    justify-content: center;  
+  }
+ /* Ajustes internos */
+.success-logo-wrapper img {
+  width: auto;
+  max-height: 40px;
+  margin-bottom: 10px;
+}
+
+.success-content h3 {
+  font-size: 1rem;
+  padding: 0;
+}
+
+.success-content p {
+  font-size: 0.75rem;
+}
+
+  .success-tags {
+    gap: 5px;
+    margin-top: 8px;
+  }
+
+  .tag {
+    font-size: 0.5rem;
+  }
+
+  .btn-casos {
+    margin-top: 1.5rem;
+    padding: 10px 25px;
+    font-size: 1rem;
+  }
+
+ 
+  .solutions-text-wrapper {
+    order: 1;
+    width: 100%;
+    text-align: center;
+  }
+
+  .solutions-text {
+    text-align: center;
+  }
+
+  .solutions-text h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .solutions-text p {
+    font-size: 1.1rem;
+    max-width: 90%;
+    margin: 0 auto 2rem;
+  }
+
+  .solutions-carousel {
+    order: 2;
+    width: 100%;
+    margin: 2rem 0;
+  }
+  .solutions-btn {
+    order: 3;
+    margin-top: 1.5rem;
+  }
+
+  .solutions-text-wrapper {
+  align-items: center;
+}
+.solutions-text {
+  text-align: center;
+  align-items: center;
+}
+.solutions-carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 2rem 0;
+}
+
 }

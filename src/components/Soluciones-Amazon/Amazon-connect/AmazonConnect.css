@@ -1,0 +1,187 @@
+.amazon-connect-page {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* HERO */
+  .hero-amazon-connect {
+    background: linear-gradient(135deg, #232f3e, #394867);
+    color: white;
+    padding: 120px 20px;
+    text-align: center;
+    background-size: cover;
+  }
+  
+  .hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  
+  .hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+  }
+  
+  .hero-button {
+    background-color: #ff9900;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+  }
+  
+  .hero-button:hover {
+    background-color: #e68a00;
+  }
+  
+  /* INFO */
+  .section-info-grid {
+    padding: 80px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+  
+  .info-text {
+    flex: 1 1 400px;
+    text-align: left;
+  }
+  
+  .info-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .info-text p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+  
+  .info-animation {
+    flex: 1 1 400px;
+    max-width: 700px;
+  }
+  
+  .info-animation canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+  
+  
+  /* BENEFITS */
+  .section-benefits-flat {
+    padding: 80px 20px;
+    text-align: center;
+  }
+  
+  .section-benefits-flat h2 {
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+  }
+  
+  .benefits-flat-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .flat-benefit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+    background: var(--card-background);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    max-width: 320px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .flat-benefit:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: rgba(255, 153, 0, 0.4); /* Naranja tipo Amazon */
+    box-shadow: 0 10px 25px rgba(255, 153, 0, 0.2), 0 4px 10px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(
+      to bottom right,
+      var(--card-background),
+      rgba(255, 153, 0, 0.03)
+    );
+  }
+  
+  
+  .emoji-big {
+    font-size: 3rem;
+    margin-bottom: 15px;
+  }
+  
+  .flat-benefit h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .flat-benefit p {
+    font-size: 1rem;
+    color: var(--text-color-secondary);
+    line-height: 1.4;
+    max-width: 280px;
+  }
+  
+  
+  /* CTA FINAL */
+  .cta-final {
+    padding: 100px 20px;
+    text-align: center;
+  }
+  
+  .cta-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .cta-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+  }
+  
+  .cta-button {
+    background-color: #ff9900;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: #e68a00;
+  }
+  
+  /* Modo Día/Noche */
+  body.day {
+    --background-secondary: #f5f5f5;
+    --card-background: white;
+  }
+  
+  body.night {
+    --background-secondary: #1c1c1e;
+    --card-background: #2c2c2e;
+  }
+  

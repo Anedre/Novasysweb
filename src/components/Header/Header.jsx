@@ -1,113 +1,214 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Header.css";
-import logoimage from "../../img/logo_novasys_transparent.png";
+import logoimageN from "../../img/logo_novasys_transparent.png";
+import logoimage from "../../img/Nueva carpeta/1x/Recurso 3.png";
 import ToggleSwitch from "../../assets/ToggleSwitch.jsx";
+import { useNightMode } from "../../hooks/useNightMode";
+
 
 function Header() {
-  const hoverNovasysRef = useRef(null);
-  const hoverHPRef = useRef(null);
+const navDropdowns = [
+  {
+    id: "nav-snovasys",
+    label: "Soluciones Novasys",
+    to: "/Soluciones_Novasys", // <-- AÑADE ESTO
+    links: [
+      { to: "/Ventas", label: "Ventas" },
+      { to: "/Marketing", label: "Marketing" },
+      { to: "/Business_Intelligence", label: "Business Intelligence" },
+      { to: "/Elo", label: "ELO ECM" },
+    ],
+  },
+  {
+    id: "nav-shp",
+    label: "Soluciones HP",
+    to: "/SolucionesHPmain", // <-- AÑADE ESTO
+    links: [
+      { to: "/SolucionesHPEnterprise", label: "HP Enterprise" },
+      { to: "/SolucionesHP", label: "Soluciones HP" },
+    ],
+  },
+  {
+    id: "nav-samazon",
+    label: "Soluciones Amazon",
+    to: "/Soluciones_Amazon", // <-- AÑADE ESTO
+    links: [
+      { to: "/Soluciones_AmazonConnect", label: "Amazon Connect" },
+      { to: "/Soluciones_AmazonDialer", label: "Connect Dialer" },
+    ],
+  }
+];
 
 
-  const [isNovasysHovered, setIsNovasysHovered] = useState(false);
-  const [isHPHovered, setIsHPHovered] = useState(false);
+const [markerElement, setMarkerElement] = useState(null);
 
 
+const [dropdownClosing, setDropdownClosing] = useState(null);
+
+const [openDropdown, setOpenDropdown] = useState(null);
+
+
+// Handlers DRY para todos los dropdowns
+const handleDropdownEnter = (dropdown) => setOpenDropdown(dropdown);
+const handleDropdownLeave = () => setOpenDropdown(null);
+const handleDropdownClick = (dropdown) => setOpenDropdown(openDropdown === dropdown ? null : dropdown);
+
+
+  const isNight = useNightMode();
+
+  
   const location = useLocation();
+  const lowerPath = location.pathname.toLowerCase();
 
-   /*** Dropdown Soluciones Novasys ***/
-   const [isNovasysVisible, setIsNovasysVisible] = useState(false);
-   const [isNovasysOpen, setIsNovasysOpen] = useState(false);
-   const novasysCloseTimeoutRef = useRef(null);
-   const novasysTransitionTimeoutRef = useRef(null);
+
+  // NUEVOS 
+  
+  const [isClosingCompactMenu, setIsClosingCompactMenu] = useState(false);
+
+
+  const [activeCompactMenu, setActiveCompactMenu] = useState("main"); // 'main', 'novasys', 'hp', 'amazon'
+
+  const [isCompactMode, setIsCompactMode] = useState(false);
+  const [isMobileMode, setIsMobileMode] = useState(false);
+
+  const [isCompactMenuOpen, setIsCompactMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const checkModes = () => {
+      setIsCompactMode(window.innerWidth <= 1500 && window.innerWidth > 480);
+      setIsMobileMode(window.innerWidth <= 480);
+    };
+    checkModes();
+    window.addEventListener("resize", checkModes);
+    return () => window.removeEventListener("resize", checkModes);
+  }, []);
+
+
+  
+
+
+  // Refs para manejar timeouts y evitar efectos inesperados
+  const markerTimeout = useRef(null);
+
+  // Estados para hover en dropdowns
+
+
+
+
+
+
  
-   const handleNovasysMouseEnter = () => {
-     if (novasysCloseTimeoutRef.current) clearTimeout(novasysCloseTimeoutRef.current);
-     if (novasysTransitionTimeoutRef.current) clearTimeout(novasysTransitionTimeoutRef.current);
-     setIsNovasysVisible(true);
-     setIsNovasysOpen(true);
-   };
- 
-   const handleNovasysMouseLeave = () => {
-     novasysCloseTimeoutRef.current = setTimeout(() => {
-       setIsNovasysOpen(false);
-       novasysTransitionTimeoutRef.current = setTimeout(() => {
-         setIsNovasysVisible(false);
-       }, 100);
-     }, 100);
-   };
-
- /*** Dropdown Soluciones HP ***/
- const [isHPVisible, setIsHPVisible] = useState(false);
- const [isHPOpen, setIsHPOpen] = useState(false);
- const hpCloseTimeoutRef = useRef(null);
- const hpTransitionTimeoutRef = useRef(null);
-
- const handleHPMouseEnter = () => {
-   if (hpCloseTimeoutRef.current) clearTimeout(hpCloseTimeoutRef.current);
-   if (hpTransitionTimeoutRef.current) clearTimeout(hpTransitionTimeoutRef.current);
-   setIsHPVisible(true);
-   setIsHPOpen(true);
- };
-
- const handleHPMouseLeave = () => {
-   hpCloseTimeoutRef.current = setTimeout(() => {
-     setIsHPOpen(false);
-     hpTransitionTimeoutRef.current = setTimeout(() => {
-       setIsHPVisible(false);
-     }, 100);
-   }, 100);
- };
-
-
- useEffect(() => {
-  return () => {
-    if (novasysCloseTimeoutRef.current) clearTimeout(novasysCloseTimeoutRef.current);
-    if (novasysTransitionTimeoutRef.current) clearTimeout(novasysTransitionTimeoutRef.current);
-    if (hpCloseTimeoutRef.current) clearTimeout(hpCloseTimeoutRef.current);
-    if (hpTransitionTimeoutRef.current) clearTimeout(hpTransitionTimeoutRef.current);
-  };
-}, []);
-
-  // ESTADOS PARA LA NAVEGACIÓN MÓVIL (se mantiene igual)
+  // Estados para la navegación móvil y su submenú
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
-  const toggleMobileNav = () => setIsMobileNavOpen(prev => !prev);
+  const [isMobileNavClosing, setIsMobileNavClosing] = useState(false);
+  const [submenuOverlay, setSubmenuOverlay] = useState(null);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
-  // ESTADOS PARA EL SUBMENÚ MÓVIL (overlay para dropdown)
+  const navRef = useRef(null);
+  const markerRef = useRef(null);
+  // Animación del marcador rojo
+useEffect(() => {
+  if (markerElement && markerRef.current && navRef.current) {
+    const navRect = navRef.current.getBoundingClientRect();
+    const rect = markerElement.getBoundingClientRect();
+    markerRef.current.style.left = `${rect.left - navRect.left}px`;
+    markerRef.current.style.width = `${rect.width}px`;
+  }
+}, [markerElement]);
+
+  // Cierra dropdowns al hacer clic afuera
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest('.dropdown')) {
+        setOpenDropdown(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+
+
+  const [shouldAnimateMobileNav, setShouldAnimateMobileNav] = useState(false);
+
   const [activeMobileSubmenu, setActiveMobileSubmenu] = useState(null);
-  const openMobileSubmenu = (submenu) => setActiveMobileSubmenu(submenu);
-  const closeMobileSubmenu = () => setActiveMobileSubmenu(null);
 
-  // ESTADOS PARA EL TEMA (modo día y noche)
-  const [mode, setMode] = useState("day");
-  const toggleMode = () => setMode(prev => (prev === "day" ? "night" : "day"));
+  // Estado para el modo (día/noche)
+const [mode, setMode] = useState(() => {
+  if (document.body.classList.contains("night")) return "night";
+  const savedMode = localStorage.getItem("mode");
+  return savedMode ? savedMode : "day";
+});
 
+  
+
+
+  // Actualizar el modo en el body
   useEffect(() => {
     document.body.classList.remove("day", "night");
     document.body.classList.add(mode);
   }, [mode]);
 
-  /*** NUEVA FUNCIONALIDAD: Marcador de navegación ***/
-  // Estado para almacenar la posición y ancho del marcador
-  const [markerStyle, setMarkerStyle] = useState({ left: 0, width: 0 });
+  useEffect(() => {
+  const observer = new MutationObserver(() => {
+    const newMode = document.body.classList.contains("night") ? "night" : "day";
+    setMode(newMode);
+    localStorage.setItem("mode", newMode); // Mantén sincronizado el localStorage
+  });
 
-    // Función para actualizar el marcador para un elemento dado
-    const updateMarkerForElement = (element) => {
-      if (element) {
-        const navElement = document.querySelector(".nav");
-        const navRect = navElement.getBoundingClientRect();
-        const targetRect = element.getBoundingClientRect();
-        setMarkerStyle({
-          left: targetRect.left - navRect.left,
-          width: targetRect.width
-        });
-      }
-    };
+  observer.observe(document.body, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
 
-  // Si el evento proviene de un dropdown-menu, usamos el título
+  return () => observer.disconnect();
+}, []);
+
+
+
+
+  // Actualiza el marker al hacer hover o cambiar markerElement
+useEffect(() => {
+  if (markerElement && markerRef.current && navRef.current) {
+    const navRect = navRef.current.getBoundingClientRect();
+    const rect = markerElement.getBoundingClientRect();
+    markerRef.current.style.left = `${rect.left - navRect.left}px`;
+    markerRef.current.style.width = `${rect.width}px`;
+  }
+}, [markerElement]);
+
+// Cuando cambia la ruta, marca el link activo
+useEffect(() => {
+  let active = null;
+  if (
+    lowerPath.startsWith("/soluciones_novasys") ||
+    lowerPath === "/ventas" ||
+    lowerPath === "/marketing" ||
+    lowerPath === "/business_intelligence" ||
+    lowerPath === "/elo"
+  ) {
+    active = document.getElementById("nav-snovasys");
+  } else if (lowerPath.startsWith("/solucioneshp")) {
+    active = document.getElementById("nav-shp");
+  } else if (lowerPath.startsWith("/soluciones_amazon")) {
+    active = document.getElementById("nav-samazon");
+  } else {
+    active = document.querySelector(".navItem.active");
+  }
+  setMarkerElement(active);
+}, [location.pathname, lowerPath]);
+
+
+  // Manejadores de hover en los items de navegación
   const handleNavItemMouseEnter = (e) => {
+    if (markerTimeout.current) {
+      clearTimeout(markerTimeout.current);
+      markerTimeout.current = null;
+    }
     let targetElement = e.target.closest("a");
     if (targetElement && targetElement.closest(".dropdown-menu")) {
+      // Si el hover es sobre un enlace dentro del dropdown, usamos el título
       const dropdownContainer = targetElement.closest(".dropdown");
       const dropdownTitle = dropdownContainer.querySelector(".dropdown-title");
       if (dropdownTitle) {
@@ -116,355 +217,566 @@ function Header() {
     }
     updateMarkerForElement(targetElement);
   };
-  
-  
 
-  // Al salir del nav, se resetea el marcador al ítem activo (según la URL)
-  const handleNavMouseLeave = () => {
-    const activeEl = document.querySelector('.navItem.active');
-    if (activeEl) {
-      setMarkerStyle({ left: activeEl.offsetLeft, width: activeEl.offsetWidth });
-    }
+  const handleNavItemMouseLeave = () => {
+    markerTimeout.current = setTimeout(() => {
+      const nav = document.querySelector(".nav");
+      const navRect = nav.getBoundingClientRect();
+      let activeEl = null;
+      if (
+        lowerPath.startsWith("/soluciones_novasys") ||
+        lowerPath === "/ventas" ||
+        lowerPath === "/marketing" ||
+        lowerPath === "/business_intelligence" ||
+        lowerPath === "/elo"
+      ) {
+        activeEl = document.getElementById("nav-snovasys");
+      } else if (lowerPath.startsWith("/solucioneshp")) {
+        activeEl = document.getElementById("nav-shp");
+      } else if (lowerPath.startsWith("/soluciones_amazon")) {
+        activeEl = document.getElementById("nav-samazon");
+      } else {
+        activeEl = document.querySelector(".navItem.active");
+      }
+      if (activeEl) {
+        const rect = activeEl.getBoundingClientRect();
+        const newLeft = rect.left - navRect.left;
+        const newWidth = rect.width;
+        console.log("handleNavItemMouseLeave: Restaurando marcador a", activeEl.id);
+      }
+    }, 100);
   };
 
-  // Al cambiar de ruta, se actualiza la posición del marcador
+
+
+  const closeCompactMenuSmooth = () => {
+    setIsClosingCompactMenu(true);
+    setTimeout(() => {
+      setIsCompactMenuOpen(false);
+      setIsClosingCompactMenu(false);
+      setActiveCompactMenu("main");
+    }, 300); // tiempo igual al CSS
+  };
+  
+  // Limpieza de timeouts al desmontar el componente
   useEffect(() => {
-    const activeEl = document.querySelector('.navItem.active');
-    if (activeEl) {
-      setMarkerStyle({ left: activeEl.offsetLeft, width: activeEl.offsetWidth });
-    }
-  }, [location.pathname]);
+    return () => {
+      clearTimeout(markerTimeout.current);
+   
+    };
+  }, []);
 
-   // Función para actualizar el marcador usando siempre el título del dropdown
-   const updateMarkerForDropdown = (dropdownContainer) => {
-    const dropdownTitle = dropdownContainer.querySelector(".dropdown-title");
-    updateMarkerForElement(dropdownTitle);
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        closeCompactMenuSmooth(); // Llama directamente a la función de cierre
+      }
+    };
+  
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  // Funciones para la navegación móvil y para el toggle de modo
+  const toggleMobileNav = () => {
+    if (isMobileNavOpen) {
+      // Animación de salida
+      setIsMobileNavClosing(true);
+      setTimeout(() => {
+        setIsMobileNavOpen(false);
+        setIsMobileNavClosing(false);
+        setShouldAnimateMobileNav(false); // Resetea
+      }, 350); // mismo tiempo que el CSS
+    } else {
+      setIsMobileNavOpen(true);
+      
+      // ⚠️ Aquí está la magia: espera un frame para aplicar `.open`
+      requestAnimationFrame(() => {
+        setShouldAnimateMobileNav(true);
+      });
+    }
+  };
+  const handleSubmenuClick = (submenu) => {
+    setSubmenuOverlay(submenu);
   };
 
-  return (
-    <header className="header">
-      {/* ===== DESKTOP HEADER ===== */}
+  const handleBackToMainMenu = () => {
+    setSubmenuOverlay(null);
+  };
+
+  const handleMouseEnter = (index) => setHoveredIndex(index);
+  const handleMouseLeave = () => setHoveredIndex(null);
+
+
+
+
+
+  const openMobileSubmenu = (submenu) => setActiveMobileSubmenu(submenu);
+  const closeMobileSubmenu = () => setActiveMobileSubmenu(null);
+  const toggleMode = () => {
+    setMode((prevMode) => {
+      const newMode = prevMode === "day" ? "night" : "day";
+      localStorage.setItem("mode", newMode);
+      return newMode;
+    });
+  };
+
+  useEffect(() => {
+    const shouldHideWidgets = isMobileNavOpen || isCompactMenuOpen;
+    if (shouldHideWidgets) {
+      document.body.classList.add('header-active');
+    } else {
+      document.body.classList.remove('header-active');
+    }
+  }, [isMobileNavOpen, isCompactMenuOpen]);
+  const handleDropdownTitleClick = (idx) => {
+  setOpenDropdown(openDropdown === idx ? null : idx);
+};
+
+  const handleDropdownMouseEnter = (idx) => {
+  setOpenDropdown(idx);
+  setHoveredIndex(idx + 3); // Si tienes 3 links antes, ajusta el número según la cantidad de links antes de los dropdowns
+};
+
+const handleDropdownMouseLeave = () => {
+  setOpenDropdown(null);
+  setHoveredIndex(null);
+};
+
+  
+
+return (
+  <header className="header">
+
+    {/* ================= DESKTOP HEADER (>1500px) ================= */}
+    {!isCompactMode && !isMobileMode && (
       <div className="desktopHeader">
-        {/* Logo */}
-        <div className="logo">
-          <img src={logoimage} alt="Logo" />
-        </div>
-        {/* Menú de navegación */}
-        <nav className="nav" onMouseLeave={handleNavMouseLeave}>
+        <Link to="/" className="logo" onClick={() => {
+          setIsMobileNavOpen(false);
+          setIsCompactMenuOpen(false);
+          setActiveCompactMenu("main");
+        }}>
+          <img src={isNight ? logoimage : logoimageN} alt="Logo Novasys" />
+        </Link>
+        <nav
+          className="nav"
+          ref={navRef}
+          onMouseLeave={() => {
+            let active = null;
+            if (
+              lowerPath.startsWith("/soluciones_novasys") ||
+              lowerPath === "/ventas" ||
+              lowerPath === "/marketing" ||
+              lowerPath === "/business_intelligence" ||
+              lowerPath === "/elo"
+            ) {
+              active = document.getElementById("nav-snovasys");
+            } else if (lowerPath.startsWith("/solucioneshp")) {
+              active = document.getElementById("nav-shp");
+            } else if (lowerPath.startsWith("/soluciones_amazon")) {
+              active = document.getElementById("nav-samazon");
+            } else {
+              active = navRef.current.querySelector(".navItem.active");
+            }
+            setMarkerElement(active);
+          }}
+        >  
           <Link
             to="/"
-            className={`navItem ${location.pathname === "/" ? "active" : ""}`}
-            onMouseEnter={handleNavItemMouseEnter}
+            className={`navItem ${lowerPath === "/" ? "active" : ""}`}
+            onMouseEnter={e => setMarkerElement(e.currentTarget)}
+            onFocus={e => setMarkerElement(e.currentTarget)} // Opcional, para accesibilidad con teclado
+            onMouseLeave={() => setMarkerElement(null)}
+            onBlur={() => setMarkerElement(null)} // Opcional
+
           >
             Home
           </Link>
           <Link
             to="/Eventos"
-            className={`navItem ${location.pathname === "/Eventos" ? "active" : ""}`}
-            onMouseEnter={handleNavItemMouseEnter}
+            className={`navItem ${lowerPath === "/eventos" ? "active" : ""}`}
+            onMouseEnter={e => setMarkerElement(e.currentTarget)}
+            onFocus={e => setMarkerElement(e.currentTarget)} // Opcional, para accesibilidad con teclado
+            onMouseLeave={() => setMarkerElement(null)}
+            onBlur={() => setMarkerElement(null)} // Opcional
+
           >
             Eventos
           </Link>
           <Link
             to="/Nosotros"
-            className={`navItem ${location.pathname === "/Nosotros" ? "active" : ""}`}
-            onMouseEnter={handleNavItemMouseEnter}
+            className={`navItem ${lowerPath === "/nosotros" ? "active" : ""}`}
+            onMouseEnter={e => setMarkerElement(e.currentTarget)}
+            onFocus={e => setMarkerElement(e.currentTarget)} // Opcional, para accesibilidad con teclado
+            onMouseLeave={() => setMarkerElement(null)}
+            onBlur={() => setMarkerElement(null)} // Opcional
           >
             Nosotros
           </Link>
-          {/* Dropdown: Soluciones Novasys */}
-          <div
-            className="navItem dropdown"
-            onMouseEnter={(e) => {
-              // Cancela el timeout pendiente para Novasys
-              if (hoverNovasysRef.current) {
-                clearTimeout(hoverNovasysRef.current);
-                hoverNovasysRef.current = null;
-              }
-              handleNovasysMouseEnter();
-              // Actualiza el marcador usando el título del dropdown
-              updateMarkerForDropdown(e.currentTarget);
-              setIsNovasysHovered(true);
-              // Desactiva HP si estuviera activo
-              setIsHPHovered(false);
-            }}
-            onMouseLeave={(e) => {
-              if (!e.currentTarget.contains(e.relatedTarget)) {
-                hoverNovasysRef.current = setTimeout(() => {
-                  handleNovasysMouseLeave();
-                  setIsNovasysHovered(false);
-                  hoverNovasysRef.current = null;
-                  // **No actualizamos el marcador aquí**
-                }, 100);
-              }
-            }}
-          >
-          <Link
-            to="/Soluciones_Novasys"
-            className={`dropdown-title ${location.pathname === "/Soluciones Novasys" ? "active" : ""} ${isNovasysHovered ? "hovered" : ""}`}
-            onMouseEnter={handleNavItemMouseEnter}
-            style={{
-              display: "inline-block",
-              transform: isNovasysHovered ? "scale(1.5)" : "scale(1)",
-              color: isNovasysHovered ? "red" : "inherit",
-              transition: "transform 0.5s ease, color 0.5s ease"
-            }}
-          >
-            Soluciones Novasys
-          </Link>
-          {/* Se eliminaron los eventos de mouse del dropdown-menu para que no actualicen el marcador */}
-            <div className={`dropdown-menu ${isNovasysOpen ? "open" : "closed"}`}>
-              <Link to="/Ventas" className="dropdown-item">Ventas</Link>
-              <Link to="/Marketing" className="dropdown-item">Marketing</Link>
-              <Link to="/Business_Intelligence" className="dropdown-item">Business Intelligence</Link>
-              <Link to="/Elo" className="dropdown-item">ELO ECM</Link>
+
+          {navDropdowns.map((dropdown, idx) => (
+            <div
+              key={dropdown.id}
+              className="navItem dropdown"
+              id={dropdown.id}
+              onMouseEnter={e => {
+                setOpenDropdown(idx);
+                setMarkerElement(e.currentTarget.querySelector('.dropdown-title'));
+              }}
+              onMouseLeave={() => {
+                setOpenDropdown(null);
+                // restaurar marker
+                let active = null;
+                if (
+                  lowerPath.startsWith("/soluciones_novasys") ||
+                  lowerPath === "/ventas" ||
+                  lowerPath === "/marketing" ||
+                  lowerPath === "/business_intelligence" ||
+                  lowerPath === "/elo"
+                ) {
+                  active = document.getElementById("nav-snovasys");
+                } else if (lowerPath.startsWith("/solucioneshp")) {
+                  active = document.getElementById("nav-shp");
+                } else if (lowerPath.startsWith("/soluciones_amazon")) {
+                  active = document.getElementById("nav-samazon");
+                } else {
+                  active = navRef.current.querySelector(".navItem.active");
+                }
+                setMarkerElement(active);
+              }}
+            >
+              {dropdown.to ? (
+                <Link
+                  to={dropdown.to}
+                  className={`dropdown-title${openDropdown === idx ? " hovered" : ""}`}
+                  tabIndex={0}
+                  aria-haspopup="true"
+                  aria-expanded={openDropdown === idx}
+                  onClick={e => {
+                    // Si quieres que abra/cierre el dropdown solo si es click derecho o con modificador
+                    if (!e.ctrlKey && !e.metaKey && !e.shiftKey) {
+                      setOpenDropdown(openDropdown === idx ? null : idx);
+                    }
+                  }}
+                  onMouseEnter={e => setMarkerElement(e.currentTarget)}
+                  onFocus={e => setMarkerElement(e.currentTarget)}
+                  style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}
+                >
+                  {dropdown.label}
+                </Link>
+              ) : (
+                <span
+                  className={`dropdown-title${openDropdown === idx ? " hovered" : ""}`}
+                  tabIndex={0}
+                  aria-haspopup="true"
+                  aria-expanded={openDropdown === idx}
+                  onClick={() => setOpenDropdown(openDropdown === idx ? null : idx)}
+                  onMouseEnter={e => setMarkerElement(e.currentTarget)}
+                  onFocus={e => setMarkerElement(e.currentTarget)}
+                >
+                  {dropdown.label}
+                </span>
+              )}
+              <div className={`dropdown-menu${openDropdown === idx ? " open" : ""}`}>
+                {dropdown.links.map(link => (
+                  <Link key={link.to} to={link.to} className="dropdown-item">
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
             </div>
-      </div>
+          ))}
 
 
-        {/* Dropdown: Soluciones HP */}
-        <div
-          className="navItem dropdown"
-          onMouseEnter={(e) => {
-            if (hoverHPRef.current) {
-              clearTimeout(hoverHPRef.current);
-              hoverHPRef.current = null;
-            }
-            handleHPMouseEnter();
-            updateMarkerForDropdown(e.currentTarget);
-            setIsHPHovered(true);
-            setIsNovasysHovered(false);
-          }}
-          onMouseLeave={(e) => {
-            if (!e.currentTarget.contains(e.relatedTarget)) {
-              hoverHPRef.current = setTimeout(() => {
-                handleHPMouseLeave();
-                setIsHPHovered(false);
-                hoverHPRef.current = null;
-                // **No actualizamos el marcador aquí**
-              }, 100);
-            }
-          }}
-        >
-        <Link
-          to="/SolucionesHPmain"
-          className={`dropdown-title ${location.pathname === "/SolucionesHPmain" ? "active" : ""} ${isHPHovered ? "hovered" : ""}`}
-          onMouseEnter={handleNavItemMouseEnter}
-          style={{
-            display: "inline-block",
-            transform: isHPHovered ? "scale(1.5)" : "scale(1)",
-            color: isHPHovered ? "red" : "inherit",
-            transition: "transform 0.5s ease, color 0.5s ease"
-          }}
-        >
-        Soluciones HP
-        </Link>
-            <div className={`dropdown-menu ${isHPOpen ? "open" : "closing"}`}>
-              <Link to="/SolucionesHPEnterprise" className="dropdown-item">Soluciones HP Enterprise</Link>
-              <Link to="/SolucionesHP" className="dropdown-item">Soluciones HP</Link>
-            </div>
-          </div>
 
           <Link
             to="/Casos_de_exito"
-            className={`navItem ${location.pathname === "/Casos_de_exito" ? "active" : ""}`}
-            onMouseEnter={handleNavItemMouseEnter}
+            className={`navItem ${lowerPath === "/casos_de_exito" ? "active" : ""}`}
+            onMouseEnter={e => setMarkerElement(e.currentTarget)}
+            onFocus={e => setMarkerElement(e.currentTarget)} // Opcional, para accesibilidad con teclado
+            onMouseLeave={() => setMarkerElement(null)}
+            onBlur={() => setMarkerElement(null)} // Opcional
+
           >
             Casos de Éxito
           </Link>
           <Link
             to="/Contacto"
-            className={`navItem ${location.pathname === "/Contacto" ? "active" : ""}`}
-            onMouseEnter={handleNavItemMouseEnter}
+            className={`navItem ${lowerPath === "/contacto" ? "active" : ""}`}
+            onMouseEnter={e => setMarkerElement(e.currentTarget)}
+            onFocus={e => setMarkerElement(e.currentTarget)} // Opcional, para accesibilidad con teclado
+            onMouseLeave={() => setMarkerElement(null)}
+            onBlur={() => setMarkerElement(null)} // Opcional
+
           >
             Contacto
           </Link>
           <div className="toggle-container">
             <ToggleSwitch isOn={mode === "night"} onToggle={toggleMode} />
           </div>
-          {/* Marcador animado */}
-          <div className="navMarker" style={{ left: markerStyle.left, width: markerStyle.width }}></div>
-        </nav>
-      </div>
+          <div
+            className="navMarker"
+            ref={markerRef}
+          ></div>
 
-      {/* ===== MOBILE HEADER ===== */}
-     
+        </nav>
+
+
+      </div>
+    )}
+
+    {/* ================= COMPACT (SIDEBAR) HEADER (481px a 1500px) ================= */}
+    {isCompactMode && (
+      <div className="desktopHeader">
+        <Link to="/" className="logo" onClick={() => {
+          setIsMobileNavOpen(false);
+          setIsCompactMenuOpen(false);
+          setActiveCompactMenu("main");
+        }}>
+          <img src={isNight ? logoimage : logoimageN} alt="Logo Novasys" />
+        </Link>
+        <div className="compactMenuButton">
+          <button onClick={() => setIsCompactMenuOpen((prev) => !prev)}>
+            ☰
+          </button>
+        </div>
+        {isCompactMenuOpen && (
+          <>
+            <div className="compactOverlay" onClick={closeCompactMenuSmooth} />
+            <div className={`compactSidebar ${isClosingCompactMenu ? "closing" : ""}`} onClick={e => e.stopPropagation()}>
+              <div className="compactSidebarContent">
+
+                <div className="compactHeaderRow">
+                  <h2 className="compactTitle">
+                    {activeCompactMenu === "main"
+                      ? "Menú"
+                      : activeCompactMenu === "novasys"
+                      ? "Soluciones Novasys"
+                      : activeCompactMenu === "hp"
+                      ? "Soluciones HP"
+                      : activeCompactMenu === "amazon"
+                      ? "Soluciones Amazon"
+                      : ""}
+                  </h2>
+                  <button className="closeSidebar" onClick={closeCompactMenuSmooth}>×</button>
+                </div>
+
+                {/* MENÚ PRINCIPAL */}
+                {activeCompactMenu === "main" && (
+                  <>
+                    <Link className="compactItem" to="/" onClick={closeCompactMenuSmooth}>Home</Link>
+                    <div className="compactDivider" />
+                    <Link className="compactItem" to="/Eventos" onClick={closeCompactMenuSmooth}>Eventos</Link>
+                    <div className="compactDivider" />
+                    <Link className="compactItem" to="/Nosotros" onClick={closeCompactMenuSmooth}>Nosotros</Link>
+                    <div className="compactDivider" />
+                    <button className="compactItem" onClick={() => setActiveCompactMenu("novasys")}>
+                      Soluciones Novasys <span className="arrow">➔</span>
+                    </button>
+                    <div className="compactDivider" />
+                    <button className="compactItem" onClick={() => setActiveCompactMenu("hp")}>
+                      Soluciones HP <span className="arrow">➔</span>
+                    </button>
+                    <div className="compactDivider" />
+                    <button className="compactItem" onClick={() => setActiveCompactMenu("amazon")}>
+                      Soluciones Amazon <span className="arrow">➔</span>
+                    </button>
+                    <div className="compactDivider" />
+                    <Link className="compactItem" to="/Casos_de_exito" onClick={closeCompactMenuSmooth}>Casos de Éxito</Link>
+                    <div className="compactDivider" />
+                    <Link className="compactItem" to="/Contacto" onClick={closeCompactMenuSmooth}>Contacto</Link>
+                  </>
+                )}
+
+                {/* SUBMENÚS */}
+                {activeCompactMenu === "novasys" && (
+                  <>
+                    <button className="backButton" onClick={() => setActiveCompactMenu("main")}>← Volver</button>
+                    <Link className="compactItem" to="/Ventas" onClick={closeCompactMenuSmooth}>Ventas</Link>
+                    <div className="compactDivider" />
+                    <Link className="compactItem" to="/Marketing" onClick={closeCompactMenuSmooth}>Marketing</Link>
+                    <div className="compactDivider" />
+                    <Link className="compactItem" to="/Business_Intelligence" onClick={closeCompactMenuSmooth}>Business Intelligence</Link>
+                    <div className="compactDivider" />
+                    <Link className="compactItem" to="/Elo" onClick={closeCompactMenuSmooth}>ELO ECM</Link>
+                  </>
+                )}
+
+                {activeCompactMenu === "hp" && (
+                  <>
+                    <button className="backButton" onClick={() => setActiveCompactMenu("main")}>← Volver</button>
+                    <Link className="compactItem" to="/SolucionesHPEnterprise" onClick={closeCompactMenuSmooth}>HP Enterprise</Link>
+                    <div className="compactDivider" />
+                    <Link className="compactItem" to="/SolucionesHP" onClick={closeCompactMenuSmooth}>Soluciones HP</Link>
+                  </>
+                )}
+
+                {activeCompactMenu === "amazon" && (
+                  <>
+                    <button className="backButton" onClick={() => setActiveCompactMenu("main")}>← Volver</button>
+                    <Link className="compactItem" to="/Soluciones_AmazonConnect" onClick={closeCompactMenuSmooth}>Amazon Connect</Link>
+                    <div className="compactDivider" />
+                    <Link className="compactItem" to="/Soluciones_AmazonDialer" onClick={closeCompactMenuSmooth}>Connect Dialer</Link>
+                  </>
+                )}
+
+                <div className="toggle-footer">
+                  <span className="toggle-avatar" role="img" aria-label="user">👤</span>
+                  <button className="modeToggleButton" onClick={toggleMode}>
+                    {mode === "day" ? "🌙" : "☀️"}
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+    )}
+
+    {/* ================= MOBILE HEADER (≤480px) ================= */}
+    {isMobileMode && (
       <div className="mobileHeader">
-        {/* Parte superior: Logo y botón de hamburguesa */}
         <div className="mobileHeaderTop">
-          <div className="logo">
-            <img src={logoimage} alt="Logo" />
-          </div>
+          <Link
+            to="/"
+            className="logo"
+            onClick={() => {
+              setIsMobileNavOpen(false);
+              setIsCompactMenuOpen(false);
+              setActiveCompactMenu("main");
+              closeMobileSubmenu();
+            }}
+          >
+            <img src={isNight ? logoimage : logoimageN} alt="Logo Novasys" />
+          </Link>
           <button className="menuButton" onClick={toggleMobileNav}>
             ☰
           </button>
         </div>
-
-        {/* Overlay de navegación móvil */}
-        {isMobileNavOpen && (
-          <div className="mobileNav">
+        {(isMobileNavOpen || isMobileNavClosing) && (
+          <div className={`mobileNav ${shouldAnimateMobileNav ? 'open' : ''} ${isMobileNavClosing ? 'closing' : ''}`}>
             <div className="mobileNavHeader">
               <div className="mobileNavLogo">
-                <img src={logoimage} alt="Logo" />
+                <Link
+                  to="/"
+                  className="logo"
+                  onClick={() => {
+                    setIsMobileNavOpen(false);
+                    setIsCompactMenuOpen(false);
+                    setActiveCompactMenu("main");
+                    closeMobileSubmenu();
+                  }}
+                >
+                  <img src={isNight ? logoimage : logoimageN} alt="Logo Novasys" />
+                </Link>
               </div>
               <button className="mobileNavClose" onClick={toggleMobileNav}>
-                X
+                ✕
               </button>
             </div>
             <div className="mobileNavItems">
-              <Link to="/" className="mobileNavItem" onClick={toggleMobileNav}>
-                Home
-              </Link>
+              <Link to="/" className="mobileNavItem" onClick={toggleMobileNav}>Home</Link>
               <div className="mobileNavDivider"></div>
-              <Link to="/Eventos" className="mobileNavItem" onClick={toggleMobileNav}>
-                Eventos
-              </Link>
+              <Link to="/Eventos" className="mobileNavItem" onClick={toggleMobileNav}>Eventos</Link>
               <div className="mobileNavDivider"></div>
-              <Link to="/Nosotros" className="mobileNavItem" onClick={toggleMobileNav}>
-                Nosotros
-              </Link>
+              <Link to="/Nosotros" className="mobileNavItem" onClick={toggleMobileNav}>Nosotros</Link>
               <div className="mobileNavDivider"></div>
-              {/* Ítem móvil con submenú: Soluciones Novasys */}
               <div className="mobileNavItem withSubmenu">
-                 <Link to="/Soluciones_Novasys" className="TTmobileNavItem" onClick={toggleMobileNav}>
+                <Link to="/Soluciones_Novasys" className="TTmobileNavItem" onClick={toggleMobileNav}>
                   Soluciones Novasys
-                 </Link>   
-               <button
-                  className="submenuArrowMobile"
-                  onClick={() => openMobileSubmenu("novasys")}
-                >
+                </Link>
+                <button className="submenuArrowMobile" onClick={() => openMobileSubmenu("novasys")}>
                   ➔
                 </button>
               </div>
               <div className="mobileNavDivider"></div>
-              {/* Ítem móvil con submenú: Soluciones HP */}
               <div className="mobileNavItem withSubmenu">
-                 <Link to="/SolucionesHPmain" className="TTmobileNavItem" onClick={toggleMobileNav}>
+                <Link to="/SolucionesHPmain" className="TTmobileNavItem" onClick={toggleMobileNav}>
                   Soluciones HP
-                 </Link>
-                <button
-                  className="submenuArrowMobile"
-                  onClick={() => openMobileSubmenu("hp")}
-                >
+                </Link>
+                <button className="submenuArrowMobile" onClick={() => openMobileSubmenu("hp")}>
                   ➔
                 </button>
               </div>
               <div className="mobileNavDivider"></div>
-              <Link to="/Casos_de_exito" className="mobileNavItem" onClick={toggleMobileNav}>
-                Casos de Éxito
-              </Link>
+              <div className="mobileNavItem withSubmenu">
+                <Link to="/Soluciones_Amazon" className="TTmobileNavItem" onClick={toggleMobileNav}>
+                  Soluciones Amazon
+                </Link>
+                <button className="submenuArrowMobile" onClick={() => openMobileSubmenu("amazon")}>
+                  ➔
+                </button>
+              </div>
               <div className="mobileNavDivider"></div>
-              <Link to="/Contacto" className="mobileNavItem" onClick={toggleMobileNav}>
-                Contacto
-              </Link>
+              <Link to="/Casos_de_exito" className="mobileNavItem" onClick={toggleMobileNav}>Casos de Éxito</Link>
+              <div className="mobileNavDivider"></div>
+              <Link to="/Contacto" className="mobileNavItem" onClick={toggleMobileNav}>Contacto</Link>
+            </div>
+            <div className="toggle-footer">
+              <span className="toggle-avatar" role="img" aria-label="user">👤</span>
+              <button className="modeToggleButton" onClick={toggleMode}>
+                {mode === "day" ? "🌙" : "☀️"}
+              </button>
             </div>
           </div>
         )}
-
       </div>
+    )}
 
-      {/* ===== OVERLAY DE SUBMENÚ MÓVIL ===== */}
-      {activeMobileSubmenu && (
-        <div className="mobileSubmenuOverlay">
-          <div className="mobileSubmenuHeader">
-            <button
-              className="mobileSubmenuBack"
-              onClick={closeMobileSubmenu}
-            >
-              ←
-            </button>
-            <h2 className="mobileSubmenuTitle">
-              {activeMobileSubmenu === "novasys" ? "Soluciones Novasys" : "Soluciones HP"}
-            </h2>
-            <button
-              className="mobileSubmenuClose"
-              onClick={() => {
-                closeMobileSubmenu();
-                toggleMobileNav();
-              }}
-            >
-              X
-            </button>
-          </div>
-          <div className="mobileSubmenuItems">
-            {activeMobileSubmenu === "novasys" && (
-              <>
-                <Link
-                  to="/Ventas"
-                  className="mobileSubmenuItem"
-                  onClick={() => {
-                    closeMobileSubmenu();
-                    toggleMobileNav();
-                  }}
-                >
-                  Ventas
-                </Link>
-                <div className="mobileSubmenuDivider"></div>
-                <Link
-                  to="/Marketing"
-                  className="mobileSubmenuItem"
-                  onClick={() => {
-                    closeMobileSubmenu();
-                    toggleMobileNav();
-                  }}
-                >
-                  Marketing
-                </Link>
-                <div className="mobileSubmenuDivider"></div>
-                <Link
-                  to="/Business_Intelligence"
-                  className="mobileSubmenuItem"
-                  onClick={() => {
-                    closeMobileSubmenu();
-                    toggleMobileNav();
-                  }}
-                >
-                  Business Intelligence
-                </Link>
-                <div className="mobileSubmenuDivider"></div>
-                <Link
-                  to="/Elo"
-                  className="mobileSubmenuItem"
-                  onClick={() => {
-                    closeMobileSubmenu();
-                    toggleMobileNav();
-                  }}
-                >
-                  ELO ECM
-                </Link>
-              </>
-            )}
-            {activeMobileSubmenu === "hp" && (
-              <>
-                <Link
-                  to="/SolucionesHPEnterprise"
-                  className="mobileSubmenuItem"
-                  onClick={() => {
-                    closeMobileSubmenu();
-                    toggleMobileNav();
-                  }}
-                >
-                  Soluciones HP Enterprise
-                </Link>
-                <div className="mobileSubmenuDivider"></div>
-                <Link
-                  to="/SolucionesHP"
-                  className="mobileSubmenuItem"
-                  onClick={() => {
-                    closeMobileSubmenu();
-                    toggleMobileNav();
-                  }}
-                >
-                  Soluciones HP
-                </Link>
-              </>
-            )}
-          </div>
+    {/* ======= OVERLAY DE SUBMENÚ MÓVIL (puedes dejar igual que tienes) ======= */}
+    {activeMobileSubmenu && (
+      <div className="mobileSubmenuOverlay">
+        <div className="mobileSubmenuHeader">
+          <button className="mobileSubmenuBack" onClick={closeMobileSubmenu}>
+            ←
+          </button>
+          <h2 className="mobileSubmenuTitle">
+            {activeMobileSubmenu === "novasys" ? "Soluciones Novasys"
+              : activeMobileSubmenu === "hp" ? "Soluciones HP"
+              : "Soluciones Amazon"}
+          </h2>
+          <button className="mobileSubmenuClose" onClick={() => {
+            closeMobileSubmenu();
+            toggleMobileNav();
+          }}>
+            ✕
+          </button>
         </div>
-      )}
+        <div className="mobileSubmenuItems">
 
-    </header>
-  );
+          {activeMobileSubmenu === "novasys" && (
+            <>
+              <Link to="/Ventas" className="mobileSubmenuItem" onClick={() => { closeMobileSubmenu(); toggleMobileNav(); }}>Ventas</Link>
+              <div className="mobileSubmenuDivider"></div>
+              <Link to="/Marketing" className="mobileSubmenuItem" onClick={() => { closeMobileSubmenu(); toggleMobileNav(); }}>Marketing</Link>
+              <div className="mobileSubmenuDivider"></div>
+              <Link to="/Business_Intelligence" className="mobileSubmenuItem" onClick={() => { closeMobileSubmenu(); toggleMobileNav(); }}>Business Intelligence</Link>
+              <div className="mobileSubmenuDivider"></div>
+              <Link to="/Elo" className="mobileSubmenuItem" onClick={() => { closeMobileSubmenu(); toggleMobileNav(); }}>ELO ECM</Link>
+            </>
+          )}
+          {activeMobileSubmenu === "hp" && (
+            <>
+              <Link to="/SolucionesHPEnterprise" className="mobileSubmenuItem" onClick={() => { closeMobileSubmenu(); toggleMobileNav(); }}>Soluciones HP Enterprise</Link>
+              <div className="mobileSubmenuDivider"></div>
+              <Link to="/SolucionesHP" className="mobileSubmenuItem" onClick={() => { closeMobileSubmenu(); toggleMobileNav(); }}>Soluciones HP</Link>
+            </>
+          )}
+          {activeMobileSubmenu === "amazon" && (
+            <>
+              <Link to="/Soluciones_AmazonConnect" className="mobileSubmenuItem" onClick={() => { closeMobileSubmenu(); toggleMobileNav(); }}>Amazon Connect</Link>
+              <div className="mobileSubmenuDivider"></div>
+              <Link to="/Soluciones_AmazonDialer" className="mobileSubmenuItem" onClick={() => { closeMobileSubmenu(); toggleMobileNav(); }}>Connect Dialer</Link>
+            </>
+          )}
+        </div>
+      </div>
+    )}
+
+  </header>
+);
+
 }
 
 export default Header;

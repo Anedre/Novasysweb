@@ -1,291 +1,273 @@
-/* === Grid y animación de entrada de los bloques === */
-.statistics-container {
+/*************************************
+  ESTILO GENERAL DE LA SECCIÓN
+**************************************/
+body.day {
+  background: #f8f9fa !important;
+}
+body.night {
+  background: #151922 !important;
+}
+
+.stats-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 28px 10px 32px 10px;
+  box-sizing: border-box;
+}
+
+.stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 100px;
-  justify-items: center;
-}
-
-.statistics-container .stats-block {
-  position: relative;
-  width: 250px;
-  height: 300px;
-  border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.658);
-  overflow: hidden;
-  /* Estado inicial para la animación de entrada */
-  opacity: 0;
-  transform: translateX(50px);
-}
-
-.statistics-container.active .stats-block {
-  animation: fadeInRight 0.5s ease-out forwards;
-}
-
-.statistics-container.active .stats-block:nth-child(1) {
-  animation-delay: 0.2s;
-}
-.statistics-container.active .stats-block:nth-child(2) {
-  animation-delay: 0.4s;
-}
-.statistics-container.active .stats-block:nth-child(3) {
-  animation-delay: 0.6s;
-}
-.statistics-container.active .stats-block:nth-child(4) {
-  animation-delay: 0.8s;
-}
-
-@keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* === Animación del borde con ::before === */
-.stats-block::before {
-  content: "";
-  position: absolute;
-  top: -100px;
-  left: -100px;
-  width: calc(100% + 200px);
-  height: calc(100% + 200px);
-  background-image: conic-gradient(transparent, rgba(0, 71, 133, 0.466), rgba(255, 0, 0, 0.397));
-  opacity: 0;
-  animation: rotar 4s linear infinite;
-  transition: opacity 0.5s ease-out 0.5s, background 1s ease;
-  z-index: 0;
-}
-
-.statistics-container.active .stats-block::before {
-  opacity: 1;
-}
-
-@keyframes rotar {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(-360deg);
-  }
-}
-
-/* === Borde rojo que se "llena" gradualmente === */
-.border-fill {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  right: 5px;
-  bottom: 5px;
-  border: 5px solid red;
-  border-radius: inherit;
-  z-index: 1;
-  clip-path: inset(0 100% 0 0);
-  transition: clip-path 1s ease;
-}
-
-.stats-block:hover::before {
-  background-color: red;
-}
-
-.stats-block:hover .border-fill {
-  clip-path: inset(0 0 0 0);
-}
-
-/* === Pseudo-elemento ::after para cubrir el centro === */
-.stats-block::after {
-  content: "";
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  right: 5px;
-  bottom: 5px;
-  border-radius: inherit;
-  background-color: #F4F5F7;
-  z-index: 1;
-}
-
-/* === Información principal (.contentH) === */
-.contentH {
-  position: relative;
-  z-index: 3;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 26px;
   justify-content: center;
-  height: 100%;
-  font-size: 1rem;
-  opacity: 1;
-  transform: scale(1);
-  /* Se quita el transition para usar animaciones keyframe */
+  align-items: stretch;
 }
 
-/* Al hacer hover, la info principal "explota" */
-.stats-block:hover .contentH {
-  animation: explodeOut 0.5s forwards;
-}
-
-/* Cuando el mouse se retira, la info principal vuelve (implosión inversa) */
-.stats-block:not(:hover) .contentH {
-  animation: implodeIn 0.5s forwards;
-}
-
-/* === Información extra (.extra-info) === */
-/* Inicialmente oculta y sin escala */
-.extra-info {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  text-align: center;
-  opacity: 0;
-  transform: scale(0);
-  z-index: 4;
-  font-size: 0.8rem;
-}
-
-/* Al hacer hover, aparece con animación de entrada (explosión inversa) */
-.stats-block:hover .extra-info {
-  animation: explodeIn 0.5s forwards 0.3s;
-}
-
-/* Al quitar el hover, la info extra se oculta con animación inversa */
-.stats-block:not(:hover) .extra-info {
-  animation: implodeOut 0.5s forwards;
-}
-
-/* === Keyframes para la información principal === */
-@keyframes explodeOut {
-  0% {
-    opacity: 1;
-    transform: scale(1);
+@media (min-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 38px;
   }
-  50% {
-    opacity: 0.5;
-    transform: scale(1.2);
+}
+@media (min-width: 1024px) {
+  .stats-container {
+    padding-left: 30px;
+    padding-right: 30px;
   }
-  100% {
-    opacity: 0;
-    transform: scale(1.5);
+  .stats-block {
+    max-width: 270px;
   }
 }
 
-@keyframes implodeIn {
-  0% {
-    opacity: 0;
-    transform: scale(1.5);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* === Keyframes para la información extra === */
-@keyframes explodeIn {
-  0% {
-    opacity: 0;
-    transform: scale(0);
-  }
-  50% {
-    opacity: 0.5;
-    transform: scale(1.1);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes implodeOut {
-  0% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(0);
-  }
-}
-
-/* === Detalle extra interno === */
-.extra-info .detail {
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
-.extra-info .detail p {
-  font-size: 0.8rem;
-}
-
-/* === Estilos para el icono (usando react-icons) === */
-.extra-info .detail .icon {
-  font-size: 4rem;
-  margin: 0;
-  padding: 0;
-}
-
-/* === Botón de llamada a la acción === */
-.extra-info .btn {
-  margin-top: 0.5rem;
-  padding: 0.4rem 0.8rem;
-  background-color: #0071a5;
-  color: #fff;
-  border-radius: 5px;
-  text-decoration: none;
-  font-size: 0.8rem;
-  transition: background-color 0.3s ease;
-}
-
-.extra-info .btn:hover {
-  background-color: #005f8d;
-}
-
-/* Otros estilos */
-.dividerST {
-  width: 20%;
-  border: none;
-  border-top: 2px solid #000;
-  margin: 20px 0;
-}
-
-/* === Zoom del bloque completo al hacer hover con suavidad === */
-/* Contenedor externo para el zoom */
+/*************************************
+  CARD PRINCIPAL
+**************************************/
 .stats-block-wrapper {
-  display: inline-block; /* O block, según tu layout */
-  transition: transform 0.6s ease-in-out;
-  /* Opcional: "will-change" puede ayudar al renderizado */
-  will-change: transform;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  perspective: 900px;
 }
 
-.stats-block-wrapper:hover {
-  transform: scale(1.05);
+.stats-block {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 1/1;
+  transform-style: preserve-3d;
+  border-radius: 19px;
+  border: none;
+  overflow: visible;
+  min-height: 0;
+  transition: box-shadow 0.3s, transform 0.38s;
 }
 
-/* === Información principal (.contentH) con easing más fluido === */
-.stats-block:hover .contentH {
-  animation: explodeOut 0.5s ease-in-out forwards;
+/*************************************
+  CARA FRONTAL Y TRASERA DEL CARD
+**************************************/
+.stats-card-face {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 28px 18px 24px 18px;
+  border-radius: 19px;
+  box-sizing: border-box;
+  text-align: center;
+}
+.stats-card-front { z-index: 2; backface-visibility: hidden; }
+.stats-card-back  {
+  z-index: 3;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  opacity: 0;
+  pointer-events: none;
+  justify-content: center;
+  align-items: center;
 }
 
-.stats-block:not(:hover) .contentH {
-  animation: implodeIn 0.5s ease-in-out forwards;
+.stats-card-front,
+.stats-card-back {
+  min-height: 100%;
+  min-width: 100%;
 }
 
-/* === Información extra (.extra-info) con easing más fluido === */
-.stats-block:hover .extra-info {
-  animation: explodeIn 0.5s ease-in-out forwards 0.3s;
+/*************************************
+  ICONO, NÚMERO, LABEL
+**************************************/
+.stats-icon {
+  font-size: 2.7rem;
+  margin-bottom: 14px;
+  line-height: 1;
 }
 
-.stats-block:not(:hover) .extra-info {
-  animation: implodeOut 0.5s ease-in-out forwards;
+.stats-number {
+  font-size: 2.1rem;
+  margin-bottom: 4px;
+  letter-spacing: -1px;
+  color: #ff7700;
+  text-shadow: 0 2px 10px #ffecce18;
+}
+
+.stats-label {
+  font-size: 1.15rem;
+  margin-bottom: 0;
+  margin-top: 3px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  font-weight: 600;
+}
+
+/*************************************
+  TEXTO DESCRIPTIVO Y BOTÓN
+**************************************/
+.stats-bottom-mobile-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  gap: 7px;
+}
+
+.stats-desc {
+  font-size: 1.01rem;
+  font-weight: 500;
+  margin: 0 0 6px 0;
+  text-align: center;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.stats-small {
+  font-size: 0.92rem;
+  margin-bottom: 4px;
+  text-align: center;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+.hover-button {
+  padding: 10px 22px;
+  border-radius: 9px;
+  text-decoration: none;
+  font-size: 1.04rem;
+  box-shadow: 0 2px 10px #ffec8a22;
+  border: none;
+  margin-top: 10px;
+  transition: background 0.18s, transform 0.22s, box-shadow 0.19s;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  font-weight: 700;
+}
+.hover-button:hover {
+  background: #e65500;
+  transform: scale(1.045);
+  box-shadow: 0 4px 18px #ffca9070;
+}
+
+/*************************************
+  HOVER/FOCO DEL CARD (BRILLO)
+**************************************/
+body.day .stats-block-wrapper:hover .stats-block,
+body.day .stats-block-wrapper:focus-within .stats-block {
+  box-shadow: 0 0 24px 4px #ffd700bb, 0 2px 18px 2px #2222;
+  transition: box-shadow 0.21s cubic-bezier(.55,.2,.35,1.18);
+  outline: none;
+}
+body.night .stats-block-wrapper:hover .stats-block,
+body.night .stats-block-wrapper:focus-within .stats-block {
+  box-shadow: 0 0 28px 6px #ffe06644, 0 0 14px 4px #3338;
+  transition: box-shadow 0.21s cubic-bezier(.55,.2,.35,1.18);
+  outline: none;
+}
+
+/*************************************
+  FORMATO PARA MODO DÍA
+**************************************/
+body.day .stats-block,
+body.day .stats-card-face {
+  background: #ffffff;
+  color: #23252c;
+  box-shadow:
+    0 4px 18px 0 rgba(40,40,60,0.16),
+    0 1.5px 9px 0 #fff6,
+    0 0.5px 0 #fff7 inset;
+}
+body.day .stats-card-face {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05), 0 1px 0px #fff9 inset;
+}
+body.day .stats-label,
+body.day .stats-small {
+  color: #6e7a97;
+}
+body.day .hover-button {
+  background: #ff6600;
+  color: #ffffff;
+}
+
+/*************************************
+  FORMATO PARA MODO NOCHE
+**************************************/
+body.night .stats-block,
+body.night .stats-card-face {
+  background: #181c24;
+  color: #e4e9f4;
+  box-shadow:
+    0 6px 28px 0 #1118,
+    0 2px 12px 0 #232b3a60 inset;
+}
+body.night .stats-card-face {
+  box-shadow: 0 2px 8px #151c2830, 0 1px 0px #313543 inset;
+}
+body.night .stats-label,
+body.night .stats-small {
+  color: #8c98ae;
+}
+body.night .hover-button {
+  background: #ff983a;
+  color: #242424;
+  box-shadow: 0 2px 10px #ffec8a33;
+}
+
+/*************************************
+  MOBILE OPTIMIZADO
+**************************************/
+@media (max-width: 480px) {
+  .stats-grid {
+    gap: 14px;
+  }
+  .stats-block {
+    max-width: 97vw;
+    padding-top: 100%;
+    border-radius: 14px;
+    min-width: 0;
+  }
+  .stats-card-face {
+    padding: 14px 4vw 14px 4vw;
+    font-size: 0.98rem;
+  }
+  .stats-bottom-mobile-content {
+    padding: 0 2vw;
+    gap: 4px;
+  }
+  .stats-desc {
+    font-size: 0.97rem;
+    font-weight: 500;
+    padding-bottom: 2px;
+  }
+  .stats-label {
+    font-size: 0.99rem;
+    font-weight: 600;
+  }
+  .hover-button {
+    font-size: 0.96rem;
+    padding: 9px 14px;
+    margin-top: 7px;
+  }
 }
