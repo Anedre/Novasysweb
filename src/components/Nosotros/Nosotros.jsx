@@ -165,7 +165,7 @@ function TimelineCard({ data, index }) {
 function Nosotros() {
   const source = {
     type: "video",
-    sources: [
+    sources:[
       { src: "https://dist-webpagenovasys.s3.us-east-1.amazonaws.com/Videos/video.mp4", type: "video/mp4" }
     ],
   };
