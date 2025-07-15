@@ -8,15 +8,8 @@ import "./Nosotros.css";
 import TrianglesExample from "../Background/TrianglesExample.jsx";
 import MapaPresencia from "../../scripts/Mapa/MapaPresencia.jsx"; // asegúrate de ajustar el path
 
-import videoAniversario from "../../../video/Novasys-20años-Logo.MOV";
-import crono1 from "../../../video/crono1.mp4";
-import crono2 from "../../../video/crono2.mp4";
-import crono3 from "../../../video/crono3.mp4";
-import crono4 from "../../../video/crono4.mp4";
 
-import video from "../../assets/video.mp4";
-import figura3 from "../../assets/figura5.svg";
-import figura4 from "../../assets/figura6.svg";
+
 import figura5 from "../../assets/figura7.svg";
 import figura6 from "../../assets/figura8.svg";
 
@@ -25,35 +18,35 @@ const timeline = [
     year: "2005",
     title: "Fundación de Novasys",
     description: "Inicio de operaciones en Lima como integradora de tecnología y consultoría TI.",
-     image: crono1,      // tu primer video
+    image: "https://dist-webpagenovasys.s3.us-east-1.amazonaws.com/Videos/crono1.mp4",
     isVideo: true
   },
   {
     year: "2010",
     title: "Expansión de Servicios",
     description: "Ampliación de soluciones en CRM, BI y marketing digital.",
-     image: crono2,      // tu segundo video
+    image: "https://dist-webpagenovasys.s3.us-east-1.amazonaws.com/Videos/crono2.mp4",
     isVideo: true
   },
   {
     year: "2015",
     title: "Alianzas Estratégicas",
     description: "Alianzas con Oracle, HP y otras empresas líderes en tecnología.",
-    image: crono3,      // tu tercer video
+    image: "https://dist-webpagenovasys.s3.us-east-1.amazonaws.com/Videos/crono3.mp4",
     isVideo: true
   },
   {
     year: "2020",
     title: "Presencia Internacional",
     description: "Apertura de operaciones en Canadá y expansión remota.",
-     image: crono4,      // tu cuarto video
+    image: "https://dist-webpagenovasys.s3.us-east-1.amazonaws.com/Videos/crono4.mp4",
     isVideo: true
   },
   {
     year: "2023",
     title: "Innovación Continua (20 años)",
     description: "Implementación de soluciones en la nube y transformación digital. ¡Celebramos 20 años de innovación contigo! 🚀",
-    image: videoAniversario, // Aquí podrías poner un video o gif si quieres
+    image: "https://dist-webpagenovasys.s3.us-east-1.amazonaws.com/Videos/Novasys-20años-Logo.MOV",
     isVideo: true,
   },
 ];
@@ -176,7 +169,9 @@ function TimelineCard({ data, index }) {
 function Nosotros() {
   const source = {
     type: "video",
-    sources: [{ src: video, type: "video/mp4" }],
+    sources: [
+      { src: "https://dist-webpagenovasys.s3.us-east-1.amazonaws.com/Videos/video.mp4", type: "video/mp4" }
+    ],
   };
 
   const [dimensions, setDimensions] = useState({ width: window.innerWidth, height: window.innerHeight });
