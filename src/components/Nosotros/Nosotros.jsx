@@ -162,10 +162,6 @@ function TimelineCard({ data, index }) {
   );
 }
 
-
-
-
-
 function Nosotros() {
   const source = {
     type: "video",
@@ -180,8 +176,6 @@ function Nosotros() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-
 
   const equipo = [
     { nombre: "Ana Rodríguez", rol: "CEO", emoji: "👩‍💼" },

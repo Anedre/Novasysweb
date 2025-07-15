@@ -7,8 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "postinstall": "git lfs pull"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@aws-sdk/client-ses": "^3.810.0",
