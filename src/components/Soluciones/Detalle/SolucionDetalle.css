@@ -617,9 +617,185 @@ body.night .solucion-back.upgraded-back:hover {
   background: #000;
 }
 
-
-@media (max-width: 768px) {
-  .benefit-text ul {
+/* ----- MOBILE (hasta 480px) ----- */
+@media (max-width: 480px) {
+  .solucion-detalle {
+    padding: 18px 4px;
+  }
+  .introS {
+    height: auto;
+  }
+  .intro-content {
+    padding: 0 5px;
+  }
+  .titulo-principal {
+    font-size: 2rem;
+  }
+  .subtitulo {
+    font-size: 1.15rem;
+  }
+  .intro-descripcion {
+    font-size: 1rem;
+  }
+  .solucion-img {
+    width: 100%;
+    max-width: 200px;
+    margin: 30px auto;
+  }
+  .solucion-benefit-block {
+    flex-direction: column;
+    gap: 18px;
+    padding: 12px 4px;
+  }
+  .benefit-img {
+    max-width: 160px;
+    min-width: 60px;
+    margin: 0 auto;
+  }
+  .benefit-text {
+    min-width: unset;
+    padding: 12px 4px;
+  }
+  .benefit-text h2 {
+    font-size: 1.3rem;
+  }
+  .solucion-row {
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .solucion-video-box,
+  .solucion-related-box {
+    padding: 10px 5px;
+  }
+  .related-grid {
     grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .related-card {
+    height: 120px;
+    padding: 6px;
+  }
+  .solucion-contacto {
+    padding: 18px 4px;
+  }
+  .contacto-header.mejorado {
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    text-align: left;
+  }
+  .contacto-btn {
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+  }
+  .contacto-detalles {
+    gap: 8px;
+  }
+  .contacto-item {
+    font-size: 0.95rem;
+    gap: 4px;
+  }
+  .modal-content {
+    padding: 15px 4px;
   }
 }
+
+/* ----- MOBILE GRANDE / TABLET CHICA (481px - 768px) ----- */
+@media (max-width: 768px) {
+  .benefit-text ul {
+    margin: 0 5%;
+  }
+  .banner-top {
+    padding-top: 30%;
+  }
+  .solucion-detalle {
+    width: 100%;
+    max-width: 430px;  /* Ajusta este valor a tu gusto */
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+    padding: 12px 0;
+  }
+    .introS, .intro-content, .solucion-benefit-block, .solucion-row, .solucion-contacto {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 12px auto;
+    border-radius: 12px;
+    background: #fff;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .solucion-benefit-block,
+  .solucion-row {
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .banner-top {
+    border-radius: 16px 16px 0 0;
+    max-width: 430px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  .titulo-principal {
+    font-size: 2.3rem;
+  }
+  .intro-content {
+    padding: 0 10px;
+  }
+  .solucion-img {
+    width: 100%;
+    max-width: 250px;
+    margin: 40px auto;
+  }
+  .solucion-benefit-block {
+    flex-direction: column;
+    gap: 25px;
+    padding: 20px 6px;
+  }
+  .benefit-img {
+    max-width: 220px;
+    min-width: 70px;
+    margin: 0 auto;
+  }
+  .benefit-text {
+    padding: 20px 6px;
+  }
+  .solucion-row {
+    flex-direction: column;
+    gap: 50px;
+    margin-top: 24px;
+  }
+  
+  .solucion-video-box,
+  .solucion-related-box {
+    padding: 12px 6px;
+  }
+  .related-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .related-card {
+    height: 150px;
+    padding: 8px;
+  }
+  .solucion-contacto {
+    padding: 22px 8px;
+  }
+}
+
+/* ----- TABLET (769px - 991px) ----- */
+@media (max-width: 991px) {
+  .solucion-detalle {
+    padding: 30px 16px;
+  }
+  .solucion-img {
+    max-width: 320px;
+  }
+  .benefit-img {
+    max-width: 300px;
+  }
+}
+
