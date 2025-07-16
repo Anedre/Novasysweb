@@ -298,34 +298,182 @@ body.night .info-btnHP:hover {
 }
 
 /* ========= RESPONSIVE LOVE 💕 ========= */
-@media (max-width: 768px) {
+/* ---------- MOBILE PEQUEÑO (hasta 480px) ---------- */
+@media (max-width: 480px) {
+  .SolucionesHP {
+    padding: 20px 4px 30px 4px;
+    height: auto;
+    min-height: 100vh;
+    box-sizing: border-box;
+    max-width: 100vw;
+  }
   .SHPcontent {
     flex-direction: column;
-    align-items: center;
-    gap: 30px;
+    align-items: stretch;
+    gap: 14px;
+    margin-bottom: 24px;
   }
-
+  .SHPtexto, .SHPcontact {
+    min-width: unset;
+    width: 100%;
+    padding: 13px 4px;
+    border-radius: 10px;
+    box-sizing: border-box;
+  }
   .SHPtexto h1 {
-    font-size: 2rem;
+    font-size: 1.25rem;
+    margin-bottom: 10px;
   }
-
+  .SHPtexto p {
+    font-size: 1rem;
+  }
+  .SHPcontact h2 {
+    font-size: 1.02rem;
+    margin-bottom: 6px;
+  }
+  .SHPcontact p {
+    font-size: 0.97rem;
+    margin-bottom: 9px;
+  }
   .SHPsubtitulo {
-    font-size: 1.4rem;
+    font-size: 1.02rem;
+    margin-top: 18px;
+    margin-bottom: 10px;
   }
-
+  .SHPcards {
+    grid-template-columns: 1fr;
+    gap: 13px;
+    padding-bottom: 18px;
+  }
+  .SHPcard {
+    padding: 11px 7px 18px 7px;
+    border-radius: 12px;
+    margin: 0 auto;
+    min-width: unset;
+    max-width: 96vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: visible;
+  }
+  .emoji-block {
+    font-size: 2.8rem;
+    margin-bottom: 8px;
+  }
   .SHPcard h3 {
-    font-size: 1.2rem;
+    font-size: 1.08rem;
+    margin-bottom: 6px;
   }
+  .SHPcard p {
+    font-size: 0.96rem;
+    color: #333;
+    margin-bottom: 0;
+    text-align: center;
+    line-height: 1.4;
+  }
+  .extra-info {
+    display: none !important;
+  }
+  .info-btnHP {
+    width: 100%;
+    font-size: 1rem;
+    padding: 9px 0;
+    justify-content: center;
+  }
+}
 
+/* ---------- MOBILE/TABLET (481px - 768px) ---------- */
+@media (max-width: 768px) {
+  .SolucionesHP {
+    padding: 36px 10px 40px 10px;
+    min-height: 100vh;
+    height: auto;
+    max-width: 100vw;
+  }
+  .SHPcontent {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 22px;
+    margin-bottom: 30px;
+  }
+  .SHPtexto, .SHPcontact {
+    min-width: unset;
+    width: 100%;
+    padding: 16px 8px;
+    border-radius: 14px;
+  }
+  .SHPtexto h1 {
+    font-size: 1.48rem;
+  }
+  .SHPcontact h2 {
+    font-size: 1.1rem;
+  }
+  .SHPsubtitulo {
+    font-size: 1.14rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .SHPcards {
+    grid-template-columns: 1fr;
+    gap: 17px;
+    padding-bottom: 22px;
+  }
+  .SHPcard {
+    padding: 13px 8px 20px 8px;
+    border-radius: 13px;
+  }
   .emoji-block {
     font-size: 2.5rem;
   }
-
-  .info-btn {
-    font-size: 0.95rem;
+  .SHPcard h3 {
+    font-size: 1.13rem;
   }
-
+  .SHPcard p {
+    font-size: 0.97rem;
+  }
   .extra-info {
-    font-size: 0.9rem;
+    display: none !important;
+  }
+  .info-btnHP {
+    width: 100%;
+    font-size: 1.01rem;
+    padding: 10px 0;
+    justify-content: center;
   }
 }
+
+/* ---------- TABLET GRANDE / DESKTOP CHICO (769px - 991px) ---------- */
+@media (max-width: 991px) {
+  .SolucionesHP {
+    padding: 52px 24px;
+    min-height: 100vh;
+    height: auto;
+    max-width: 100vw;
+  }
+  .SHPcontent {
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+  .SHPtexto, .SHPcontact {
+    min-width: 210px;
+    padding: 22px 12px;
+    border-radius: 16px;
+  }
+  .SHPtexto h1 {
+    font-size: 2rem;
+  }
+  .SHPsubtitulo {
+    font-size: 1.2rem;
+  }
+  .SHPcards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 23px;
+    padding-bottom: 26px;
+  }
+  .SHPcard {
+    padding: 19px 10px 24px 10px;
+    border-radius: 15px;
+  }
+}
+
