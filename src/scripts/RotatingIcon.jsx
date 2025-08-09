@@ -1,37 +1,32 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaExclamationTriangle } from 'react-icons/fa';
 import '../components/Casos_de_exito/Casos/Entel.css';
 
-const RotatingIcon = ({ icon: IconComponent, className }) => {
-  const defaultSpeed = 30; // Velocidad lenta constante (30°/seg)
+const RotatingIcon = ({ icon, className }) => {
+  const defaultSpeed = 30;
   const [rotation, setRotation] = useState(0);
-  const [speed, setSpeed] = useState(0); // velocidad en grados/segundo
+  const [speed, setSpeed] = useState(0);
   const requestRef = useRef();
   const previousTimeRef = useRef();
 
-  // Función de animación: actualiza el ángulo según la velocidad actual.
   const animate = time => {
     if (previousTimeRef.current != null) {
-      const deltaTime = (time - previousTimeRef.current) / 1000; // convertir a segundos
+      const deltaTime = (time - previousTimeRef.current) / 1000;
       setRotation(prev => prev + speed * deltaTime);
     }
     previousTimeRef.current = time;
     requestRef.current = requestAnimationFrame(animate);
   };
 
-  // Inicia la animación continua
   useEffect(() => {
     requestRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(requestRef.current);
   }, [speed]);
 
-  // Animación inicial: gira rápido y desacelera gradualmente hasta la velocidad lenta (defaultSpeed)
   useEffect(() => {
-    setSpeed(360); // Giro rápido: 360°/seg
+    setSpeed(360);
     const decelerationInterval = setInterval(() => {
       setSpeed(prevSpeed => {
         if (prevSpeed > defaultSpeed + 1) {
-          // Desacelera pero sin bajar de defaultSpeed
           return Math.max(prevSpeed * 0.9, defaultSpeed);
         } else {
           clearInterval(decelerationInterval);
@@ -42,12 +37,10 @@ const RotatingIcon = ({ icon: IconComponent, className }) => {
     return () => clearInterval(decelerationInterval);
   }, []);
 
-  // Al pasar el mouse, aumenta la velocidad a 360°/seg
   const handleMouseEnter = () => {
     setSpeed(360);
   };
 
-  // Al salir el mouse, desacelera gradualmente hasta volver a la velocidad lenta
   const handleMouseLeave = () => {
     const decelerationInterval = setInterval(() => {
       setSpeed(prevSpeed => {
@@ -63,21 +56,25 @@ const RotatingIcon = ({ icon: IconComponent, className }) => {
 
   return (
     <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-      <IconComponent
+      <span
         className={className}
         style={{
+          display: 'inline-block',
           transform: `perspective(800px) rotateY(${rotation}deg)`,
-          transition: 'transform 0.1s linear'
+          transition: 'transform 0.1s linear',
         }}
-      />
+        role="img"
+        aria-label="emoji-icon"
+      >
+        {icon}
+      </span>
     </div>
   );
 };
 
-// Valor por defecto: usa FaExclamationTriangle y la clase 'challenge-large-icon'
 RotatingIcon.defaultProps = {
-  icon: FaExclamationTriangle,
-  className: 'challenge-large-icon'
+  icon: '⚠️',
+  className: 'challenge-large-icon',
 };
 
 export default RotatingIcon;

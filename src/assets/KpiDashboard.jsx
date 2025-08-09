@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Line } from 'react-chartjs-2';
-import { FaChartLine, FaClock, FaUsers } from 'react-icons/fa';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -100,29 +99,33 @@ const KpiDashboard = () => {
   const kpiCards = [
     {
       key: 'productivity',
-      icon: <FaChartLine className="metric-icon" />,
+      icon: <span className="metric-icon" role="img" aria-label="gráfico">📈</span>,
       value: 'Productividad +30% ',
-      description: 'Gracias a la integración y automatización implementada por Novasys, se optimizaron procesos internos y se redujeron tareas manuales, logrando un aumento del 30% en la eficiencia operativa.',
+      description: 'Gracias a la integración y automatización implementada por Novasys...',
     },
     {
       key: 'responseTime',
-      icon: <FaClock className="metric-icon" />,
+      icon: <span className="metric-icon" role="img" aria-label="reloj">⏱️</span>,
       value: 'Tiempos de Respuesta -40%',
-      description: 'La centralización de la información y la automatización de flujos permitieron responder de forma ágil a los clientes, reduciendo los tiempos de respuesta en un 40%.',
+      description: 'La centralización de la información y la automatización de flujos...',
     },
     {
       key: 'managedClients',
-      icon: <FaUsers className="metric-icon" />,
-      value: 'Clientes  +10K',
-      description: 'La consolidación de datos en una única plataforma facilitó el seguimiento y la fidelización, permitiendo gestionar de manera efectiva a más de 10,000 clientes.',
+      icon: <span className="metric-icon" role="img" aria-label="clientes">👥</span>,
+      value: 'Clientes +10K',
+      description: 'La consolidación de datos en una única plataforma facilitó el seguimiento...',
     },
   ];
 
-  const handleCardClick = (key) => {
-    setSelectedKpi(key);
-    setAnimationKey((prev) => prev + 1);
-  };
 
+
+
+  const handleHover = (key) => {
+  if (key !== selectedKpi) {
+    setSelectedKpi(key);
+    setAnimationKey(prev => prev + 1);
+  }
+};
   return (
     <div className="KPI">
       <div className="metrics-cards">
@@ -130,13 +133,16 @@ const KpiDashboard = () => {
           <div
             key={card.key}
             className={`metric-card visible ${selectedKpi === card.key ? 'active' : ''}`}
-            onClick={() => handleCardClick(card.key)}
-            style={{ cursor: 'pointer' }}
+            onMouseEnter={() => handleHover(card.key)}
+            onFocus={() => handleHover(card.key)}   // teclado
+            // opcional: deja onClick como fallback para móviles sin hover
+            onClick={() => handleHover(card.key)}
           >
             {card.icon}
             <h3>{card.value}</h3>
             <p>{card.description}</p>
           </div>
+
         ))}
       </div>
 

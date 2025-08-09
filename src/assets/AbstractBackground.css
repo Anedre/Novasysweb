@@ -1,20 +1,41 @@
-@keyframes floatShape1 {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-90px); }
-    100% { transform: translateY(0); }
-  }
-  
-  @keyframes floatShape2 {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(90px); }
-    100% { transform: translateY(0); }
-  }
-  
-  .float1 {
-    animation: floatShape1 8s ease-in-out infinite;
-  }
-  
-  .float2 {
-    animation: floatShape2 10s ease-in-out infinite;
-  }
-  
+@keyframes float1 {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-50px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes float2 {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(50px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes float3 {
+  0% { transform: translateY(0); }
+  25% { transform: translateY(-25px) scale(1.04); }
+  50% { transform: translateY(10px) scale(1.02); }
+  75% { transform: translateY(-20px) scale(0.99);}
+  100% { transform: translateY(0); }
+}
+
+@keyframes float4 {
+  0% { transform: translateY(0); }
+  20% { transform: translateY(40px) scale(0.98);}
+  40% { transform: translateY(-10px) scale(1.05);}
+  60% { transform: translateY(30px) scale(1.01);}
+  80% { transform: translateY(-15px) scale(1.03);}
+  100% { transform: translateY(0); }
+}
+
+.float1 {
+  animation: float1 9s ease-in-out infinite;
+}
+.float2 {
+  animation: float2 9s ease-in-out infinite;
+}
+.float3 {
+  animation: float3 7s ease-in-out infinite;
+}
+.float4 {
+  animation: float4 7s ease-in-out infinite;
+}
