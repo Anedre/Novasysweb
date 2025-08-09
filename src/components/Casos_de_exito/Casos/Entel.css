@@ -279,32 +279,22 @@ body.night .meta-pill:focus{
 /* ====== NUEVO: CTA final ====== */
 /* ===== CTA PRO ===== */
 .cta-pro{
-  --bcol: rgba(0,140,255,.14);
-  --gradA: #eef7ff;
-  --gradB: #f5fff8;
+  --gradA: #9fd2ff;
+  --gradB: #7cffa3;
 
   display:grid;
   grid-template-columns: 1.6fr 1fr;
   align-items:center;
   gap:1.2rem;
   padding: 2% 15%;
-  border-radius: 18px;
   background:
-    radial-gradient(120% 140% at 100% 0, rgba(0,200,255,.12) 0%, transparent 60%),
+    radial-gradient(120% 140% at 100% 0, rgb(0, 200, 255) 0%, transparent 60%),
     linear-gradient(120deg, var(--gradA), var(--gradB));
-  border:1px solid var(--bcol);
   position:relative;
   overflow:hidden;
 }
 
-.cta-pro::after{
-  /* highlight suave diagonal */
-  content:"";
-  position:absolute; inset:-40% -10% auto -10%;
-  height: 80%;
-  background: radial-gradient(80% 40% at 50% 0%, rgba(255,255,255,.55), transparent 60%);
-  pointer-events:none;
-}
+
 
 .cta-left h3{
   margin:.2rem 0 .4rem;
@@ -374,20 +364,7 @@ body.night .meta-pill:focus{
   border-color: rgba(255,255,255,.14); color:#eaf1ff;
 }
 
-/* Responsive stack */
-@media (max-width: 900px){
-  .cta-pro{ grid-template-columns: 1fr; text-align:left; }
-  .cta-right{ justify-self:center; }
-}
-/* Centrado + ancho controlado + aire */
-.cta-pro{
-  align-items: center;
-  justify-content: center;
-  margin: 48px auto 64px;     /* <- NUEVO: centrado y separado del footer */
-  box-shadow: 0 10px 28px rgba(0,0,0,.06);
-  border-radius: 18px;
-  grid-template-columns: 1.3fr 0.7fr; /* balancea texto/ícono */
-}
+
 
 /* Texto alineado y respirando mejor */
 .cta-left h3{ 
@@ -407,7 +384,7 @@ body.night .meta-pill:focus{
 }
 .cta-rotating{ 
   font-size: clamp(3.8rem, 7vw, 5.4rem); 
-  opacity: .25;               /* no distrae */
+  opacity: 1;               /* no distrae */
   filter: drop-shadow(0 6px 12px rgba(0,0,0,.08));
   transform: translateY(6px);
 }
@@ -416,20 +393,13 @@ body.night .meta-pill:focus{
 .cta-pro{
   --bcol: rgba(0,140,255,.14);
   --gradA: #eff7ff;
-  --gradB: #f6fff7;
+  --gradB: #306837;
   background:
     linear-gradient(120deg, var(--gradA), var(--gradB));
   position: relative;
 }
 
-/* Highlight sutil y centrado, no cargado al borde */
-.cta-pro::after{
-  content:"";
-  position:absolute; inset:auto -10% -30% -10%;
-  height: 70%;
-  background: radial-gradient(70% 60% at 50% 0%, rgba(255,255,255,.55), transparent 60%);
-  pointer-events:none;
-}
+
 
 /* Modo noche consistente */
 .night .cta-pro, body.night .cta-pro{
@@ -876,7 +846,6 @@ body.night .cardE h2, .night .cardE h2 {
 @media (max-width: 991px){
  
   /* Hero */
-  .heroE{ min-height: unset; padding-top: 1.5rem;}
   .heroE-grid{ grid-template-columns: 1fr; gap: 1.4rem; }
   .heroE-left{ order:1; align-items:center; text-align:center; }
   .heroE-right{ order:2; justify-content:center; }
@@ -896,7 +865,7 @@ body.night .cardE h2, .night .cardE h2 {
 
   /* Testimonios / CTA */
   .testimonial-slider{ max-width: 92vw; margin: 0 auto; }
-  .cta-pro{ grid-template-columns: 1fr; text-align: center; width: min(1100px, 92vw); }
+  .cta-pro{ text-align: center; }
   .cta-right{ justify-content: center; }
 }
 
@@ -927,24 +896,160 @@ body.night .cardE h2, .night .cardE h2 {
 /* <= 480px (móvil chico) */
 @media (max-width: 480px){
   
-  /* Títulos y párrafos */
-  .heroE-title h1{ font-size: 2rem; }
-  .cardE h2{ font-size: 1.45rem; }
+  
 
   /* Botones */
-  .btnE{ width: 100%; justify-content: center; }
+  .btnE{ width: 40%; justify-content: center; }
   .heroE-cta{ gap: .5rem; }
 
   /* Pills (meta) */
   .meta-pills{ justify-content: center; gap: .5rem; }
-  .pill-label, .pill-value{ font-size: .74rem; }
+  .pill-label, .pill-value,.pill-emoji{ font-size: .6rem; }
 
-  /* KPIs */
-  .metrics-cards{ grid-template-columns: 1fr; }
-  .metric-card{ padding: 1rem; }
 
-  /* CTA icono */
+
+ 
+  /* Títulos y párrafos */
+
+  .Entel{
+    padding-top: 100px  ;
+  }
+
+
+  .heroE{
+    padding: 0 30px;
+    height: auto;
+    padding-bottom: 5%;
+  }
+  .heroE-title h1{  
+    font-size: 1.5rem;
+  }
+  .heroE-icon{
+    font-size: 1.5rem;
+  }
+  .heroE-description h1{
+    font-size: 1.8rem;
+  }
+  .heroE-description p{
+    font-size: 1rem;
+  }
+  .heroE-image-container{
+    max-width: 100px;
+  }
+   .heroE-grid{ grid-template-columns:1fr; gap:.8rem ;padding-top: 50px;}
+  .heroE-right{ order:1 }
+  .heroE-left{ order:2 }
+
+  .heroE-image-container{
+    width:min(92vw, 360px);
+    margin-inline:auto;
+    border-radius:12px;
+    overflow:hidden;
+    aspect-ratio:4/3;
+  }
+
+  /* Rediseño del Contact Center */
+
+
+  .heroE-smartphone{ width:100%; height:100%; object-fit:cover }
+
+
+  .containerE{
+    margin-top: 0%;
+  }
+  .solution-large-icon{
+    font-size: 3rem;
+  }
+  .text-block h2{
+    font-size: 1.2rem;
+  }
+  .text-block p{
+    font-size: 0.8rem;
+  }
+  .emoji-list li{
+    font-size: 0.7rem;
+  }
+  .cardE{
+    width: 300px;
+  }
+
+    /* KPIs */
+  .kpiGrid{ grid-template-columns: 1fr; }
+  .kpiTitle{ margin-bottom: 1rem; }
+  .kpiIcon{ font-size: 32px; }
+  .kpiCard h3{ font-size: clamp(1.1rem, 6vw, 1.5rem); }
+  .kpiCard p{ font-size: .95rem; }
+  .kpiChartWrap{ margin-top: 16px; padding: .8rem; }
+  .metrics-cards{
+    grid-template-columns: repeat(3,1fr);
+    margin: 10% 0;
+  }
+  
+  .metric-card h3{
+    font-size: 0.8rem;
+    padding: 0;
+  }
+  .metric-card p{
+  display: none;  
+  }
+  .metric-icon{
+    font-size: 1rem;
+  }
+  .metric-card{
+    padding: 10%;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .containerE.resultados{
+    margin-top: 0%;
+    padding: 0 20px;
+  }
+
+  /* Testimonios */
+  .testimonials h2.fade-in.visible {
+    font-size: 1rem;
+    text-align: center;
+    padding-left: 0;
+    margin-bottom: 1rem;
+  }
+  .slick-track{
+    padding: 0 0;
+  }
+  .testimonial{
+    padding: 1rem;
+    margin: 0 auto;
+    max-width: 100%;
+    font-size: 0.9rem;
+  }
+  .slick-list{
+    width: 350px !important;
+  }
+  .testimonial-slider{
+        justify-content: center;
+
+  }
+  .slick-slider{
+    justify-content: center;
+    display: flex !important;
+
+  }
+   /* CTA icono */
   .cta-rotating{ font-size: 3.2rem; }
+  .cta-pro{
+    padding: 5% 2%;
+    margin:0;
+    width: 100%;
+    border-radius: 0%;
+    grid-template-columns: 2fr 1fr; /* Izquierda = 2 partes, Derecha = 1 parte */
+
+  }
+  .btn-wa.pro{
+    padding: 0.8rem 1rem;
+    font-size: 0.7rem;
+  }
+  .cta-left h3{ font-size: 1.4rem; }
+
 }
 
  

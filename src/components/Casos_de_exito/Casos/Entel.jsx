@@ -93,7 +93,7 @@ function Entel() {
 
               <a
                 className="btnE btn-outline"
-                href="https://api.whatsapp.com/send?phone=51953730189&text=Hola%20Novasys,%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20este%20caso%20de%20%C3%A9xito"
+                href="https://api.whatsapp.com/send?phone=51908825660&text=Hola%20Novasys,%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20este%20caso%20de%20%C3%A9xito"
                 target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp"
               >
                 <span className="i-wa" aria-hidden>💬</span> Contactar
@@ -225,15 +225,13 @@ function Entel() {
               <span className="i-wa" aria-hidden>💬</span> Hablar por WhatsApp
             </a>
 
-            <a className="btn-ghost" href="#detalles">
-              Ver el detalle
-            </a>
+           
           </div>
         </div>
 
         <div className="cta-right">
           {/* Usamos tu componente para mantener estilo del sitio */}
-          <RotatingIcon icon="💬" className="cta-rotating" />
+          <RotatingIcon icon="📝" className="cta-rotating" />
         </div>
       </section>
 
