@@ -117,25 +117,25 @@ const RenzoKpiDashboard = () => {
   const kpiCards = [
     {
       key: 'ticketEfficiency',
-      icon: <FaChartLine className="metric-icon" />,
+      icon: <FaChartLine className="metric-iconR" />,
       value: 'Eficiencia Tickets +20%',
       description: 'Aumento del 20% en la eficiencia de gestión de tickets gracias a la centralización y automatización.',
     },
     {
       key: 'responseTime',
-      icon: <FaClock className="metric-icon" />,
+      icon: <FaClock className="metric-iconR" />,
       value: 'Tiempos Respuesta -30%',
       description: 'Reducción del 30% en los tiempos de respuesta, mejorando la atención al cliente.',
     },
     {
       key: 'marketingEffectiveness',
-      icon: <FaUsers className="metric-icon" />,
+      icon: <FaUsers className="metric-iconR" />,
       value: 'Campañas +25%',
       description: 'Incremento del 25% en la efectividad de campañas de marketing con segmentación avanzada.',
     },
     {
       key: 'integration',
-      icon: <FaCogs className="metric-icon" />,
+      icon: <FaCogs className="metric-iconR" />,
       value: 'Integración 100%',
       description: 'Integración completa entre ERP, POS, eCommerce y Responsys, logrando una vista 360° de los clientes.',
     },

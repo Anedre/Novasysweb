@@ -69,12 +69,36 @@ function Renzo() {
               <p>
                 Renzo Costa optimizó la gestión de clientes integrando Oracle Service Cloud (OSvC) y Oracle Responsys, centralizando la información y automatizando procesos.
               </p>
-              <p><strong>Cliente:</strong> Renzo Costa</p>
-              <p><strong>Solución:</strong> OSvC, Oracle Responsys</p>
-              <p><strong>Objetivo:</strong> Centralizar la información de clientes y optimizar la gestión de tickets.</p>
+
+                          {/* META como pastillas (Renzo Costa) */}
+              <div className="meta-pillsR slide-up" role="list">
+                <div className="meta-pillR client" role="listitem" tabIndex={0}>
+                  <span className="pill-emojiR" aria-hidden>👤</span>
+                  <span className="pill-labelR">Cliente</span>
+                  <strong className="pill-valueR">Renzo Costa</strong>
+                </div>
+
+                <div className="meta-pillR industry" role="listitem" tabIndex={0}>
+                  <span className="pill-emojiR" aria-hidden>🏬</span>
+                  <span className="pill-labelR">Industria</span>
+                  <strong className="pill-valueR">Retail / Moda</strong>
+                </div>
+
+                <div className="meta-pillR stack" role="listitem" tabIndex={0}>
+                  <span className="pill-emojiR" aria-hidden>🧩</span>
+                  <span className="pill-labelR">Stack</span>
+                  <strong className="pill-valueR">OSvC + Responsys</strong>
+                </div>
+
+                <div className="meta-pillR duration" role="listitem" tabIndex={0}>
+                  <span className="pill-emojiR" aria-hidden>⏱️</span>
+                  <span className="pill-labelR">Duración</span>
+                  <strong className="pill-valueR">6 meses</strong>
+                </div>
+              </div>
             </div>
             <div className="heroR-cta slide-up">
-              <a href="#integraciones" className="cta-button pulse">Ver Más</a>
+              <a href="#integraciones" className="cta-buttonR pulse">Ver Más</a>
             </div>
           </div>
           <div className="heroR-right">
@@ -102,7 +126,7 @@ function Renzo() {
               </ul>
             </div>
             <div className="image-block zoom-in">
-              <RotatingIcon icon={FaDatabase} className="solution-large-icon" />
+              <RotatingIcon icon="🗄️" className="solution-large-icon" />
             </div>
           </div>
         </div>
@@ -115,14 +139,14 @@ function Renzo() {
               <p>
                 Se sincronizó automáticamente la información de clientes y pedidos online con OSvC. Se desarrolló un servicio web para actualizar datos en tiempo real, reflejando cualquier actualización en el eCommerce en OSvC.
               </p>
-              <ul>
-                <li>✔ Menos problemas con pedidos online</li>
-                <li>✔ Mejor seguimiento de compras y devoluciones</li>
-                <li>✔ Atención rápida y personalizada</li>
+              <ul className="emoji-list" data-emoji="compras">
+                <li>Menos problemas con pedidos online</li>
+                <li>Mejor seguimiento de compras y devoluciones</li>
+                <li>Atención rápida y personalizada</li>
               </ul>
             </div>
             <div className="image-block zoom-in">
-              <RotatingIcon icon={FaHeadset} className="solution-large-icon" />
+              <RotatingIcon icon="🛒" className="solution-large-icon" />
             </div>
           </div>
         </div>
@@ -135,14 +159,14 @@ function Renzo() {
               <p>
                 Se habilitó la Vista 360° en el POS para que los asesores puedan ver el historial de compras del cliente. Se creó un servicio web para crear y actualizar tickets en tiempo real, integrando la gestión de cupones y SCAMs.
               </p>
-              <ul>
-                <li>✔ Mejor experiencia en tienda</li>
-                <li>✔ Resolución rápida de problemas</li>
-                <li>✔ Gestión eficiente de promociones y fidelización</li>
+              <ul className="emoji-list" data-emoji="tienda">
+                <li>Mejor experiencia en tienda</li>
+                <li>Resolución rápida de problemas</li>
+                <li>Gestión eficiente de promociones y fidelización</li>
               </ul>
             </div>
             <div className="image-block zoom-in">
-              <RotatingIcon icon={FaMobileAlt} className="solution-large-icon" />
+              <RotatingIcon icon="💳" className="solution-large-icon" />
             </div>
           </div>
         </div>
@@ -155,37 +179,55 @@ function Renzo() {
               <p>
                 Se conectó OSvC con Oracle Responsys para enviar campañas personalizadas según el historial de compras. Se habilitó la carga automática de clientes y pedidos, optimizando la segmentación con estrategias automatizadas.
               </p>
-              <ul>
-                <li>✔ Campañas 25% más efectivas</li>
-                <li>✔ Promociones personalizadas en tiempo real</li>
-                <li>✔ Mayor retención de clientes</li>
+              <ul className="emoji-list" data-emoji="spark">
+                <li>Campañas 25% más efectivas</li>
+                <li>Promociones personalizadas en tiempo real</li>
+                <li>Mayor retención de clientes</li>
               </ul>
             </div>
             <div className="image-block zoom-in">
-              <RotatingIcon icon={FaDatabase} className="solution-large-icon" />
+              <RotatingIcon icon="🛍️" className="solution-large-icon" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Sección Resultados y KPIs */}
-      <section className="containerR resultados">
-        <h2 className="fade-in">Resultados y KPIs</h2>
-        <KpiDashboard />
-      </section>
+      {/* Sección final: KPIs (izq) + Testimonios (der) */}
+      <section className="containerR end-gridR" id="resultados">
+        {/* Columna izquierda: KPIs */}
+        <div className="end-leftR">
+          <h2 className="fade-in">Resultados y KPIs</h2>
+          <KpiDashboard />
+        </div>
 
-      {/* Sección Testimonios */}
-      <section className="testimonialsR">
-        <h2 className="fade-in">Testimonios de Clientes</h2>
-        <div className="testimonial-sliderR">
-          <Slider {...testimonialSettings}>
-            {testimonials.map((item, index) => (
-              <div key={index} className="testimonial custom-testimonial slide-up">
-                <p>“{item.text}”</p>
-                <h4>- {item.author}</h4>
-              </div>
-            ))}
-          </Slider>
+        {/* Columna derecha: Testimonios */}
+        <div className="end-rightR">
+          <h2 className="fade-in">Testimonios de Clientes</h2>
+          <div className="testimonial-sliderR">
+            <Slider
+              {...{
+                dots: false,
+                infinite: true,
+                arrows: false,
+                speed: 500,
+                slidesToShow: 3,        // 3 visibles en la columna
+                slidesToScroll: 1,
+                vertical: true,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                pauseOnHover: true,
+                draggable: true,
+                swipeToSlide: true,
+              }}
+            >
+              {testimonials.map((item, index) => (
+                <div key={index} className="testimonialR custom-testimonialR slide-up">
+                  <p>“{item.text}”</p>
+                  <h4>- {item.author}</h4>
+                </div>
+              ))}
+            </Slider>
+          </div>
         </div>
       </section>
     </div>

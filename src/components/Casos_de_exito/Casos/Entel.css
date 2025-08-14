@@ -488,6 +488,9 @@ body.night .meta-pill:focus{
 .emoji-list[data-emoji="gear"]   { --emoji: "⚙️"; }
 .emoji-list[data-emoji="chart"]  { --emoji: "📈"; }
 .emoji-list[data-emoji="db"]     { --emoji: "🗂️"; }
+.emoji-list[data-emoji="compras"]{ --emoji: "📦"; }
+.emoji-list[data-emoji="tienda"]     { --emoji: "🏪"; }
+
 .emoji-list[data-emoji="spark"]  { --emoji: "✨"; }
 
 /* ==== CHALLENGE CARD nuevo color ==== */
@@ -1029,11 +1032,7 @@ body.night .cardE h2, .night .cardE h2 {
         justify-content: center;
 
   }
-  .slick-slider{
-    justify-content: center;
-    display: flex !important;
 
-  }
    /* CTA icono */
   .cta-rotating{ font-size: 3.2rem; }
   .cta-pro{

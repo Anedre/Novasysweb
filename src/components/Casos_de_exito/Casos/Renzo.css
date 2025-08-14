@@ -20,34 +20,47 @@
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 2rem;
-  width: min(1200px, 100%);
+  width: min(1800px, 100%);
   z-index: 1;
 }
-.heroR h1 { font-size: clamp(1.8rem, 2.4vw + 1rem, 2.6rem); font-weight: 800; }
+.heroR h1 { font-size: clamp(1.8rem, 2.4vw + 1rem, 3.5rem); font-weight: 800;padding-left: 10%;padding-bottom: 0; }
 .heroR p  { font-size: 1.05rem; line-height: 1.6; color: #222; }
 
 
   
   /* Hero Title y Elementos */
   .heroR-title {
-    display: flex; align-items: center; gap: .75rem; margin-bottom: .75rem;
+    display: flex; align-items: center;
+    width: 700px;
   }
  .heroR-icon { font-size: 2.2rem; color: var(--rc-red); }
-  .heroR-description { margin-top: .25rem; }
-  .heroR-cta { margin-top: 1.25rem; }
+  .heroR-description { margin-top: .25rem; width: 500px;justify-content: center;}
+  .heroR-description h3 {
+    font-size: clamp(1.2rem, 1.4vw + .5rem, 1.6rem);
+    line-height: 1.5; color: rgba(0,0,0,.8);
+    margin-bottom: 1.25rem;
+  }
+  .heroR-description p {
+    font-size: 1.2rem; line-height: 1.6; color: rgba(0,0,0,.7);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+  .heroR-cta { margin-top: 1.25rem;}
  
-  .cta-button {
+  .cta-buttonR {
     background: linear-gradient(180deg, var(--rc-red), #d61a1a);
     color: #fff; padding: .75rem 1.25rem;
     border-radius: .75rem; text-decoration: none;
     font-weight: 700; border: 1px solid rgba(0,0,0,.06);
     box-shadow: 0 6px 20px rgba(164,0,0,.15);
     transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+    justify-content: center; 
   }
-  .cta-button:hover { transform: translateY(-1px); filter: brightness(1.02); }
-  .cta-button:active { transform: translateY(0); }
+
+  .cta-buttonR:hover { transform: translateY(-1px); filter: brightness(1.02); }
+  .cta-buttonR:active { transform: translateY(0); }
   /* Columna izquierda/derecha sin offsets fijos */
-.heroR-left  { display: flex; flex-direction: column; justify-content: center; }
+.heroR-left  { display: flex; flex-direction: column; justify-content: center; align-items: center;}
 .heroR-right { display: grid; place-items: center; }
 .heroR-image-container { width: 100%; max-width: 420px; animation: float 3s ease-in-out infinite; }
 .heroR-smartphone { width: 100%; display: block; border-radius: 16px; }
@@ -177,10 +190,55 @@
     box-shadow: 0 0 20px rgba(0,26,97,0.5);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
-.metric-cardR h3 { font-size: clamp(1.4rem, 1.2vw + 1rem, 2rem); }
-.metric-iconR { font-size: 2.6rem; color: var(--rc-black); margin: .5rem 0; }
+.metric-cardR h3 { font-size: clamp(0.5rem, 1vw + 0.6rem, 1.1rem); }
+.metric-iconR { font-size: 2rem; color: var(--rc-black); margin: .5rem 0; }
+.metric-cardR p{
+  font-size: clamp(0.4rem, 1vw + 0.4rem, 0.9rem);
+  color: rgba(0,0,0,.7); margin-top: .5rem;
 
-  
+}
+
+  /* ===== Pills Renzo Costa ===== */
+/* Pills que se acomodan solas en 1 o 2 filas */
+.meta-pillsR{
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;        /* separación entre pills */
+  margin-top: 1rem;
+
+}
+
+.meta-pillR{
+   align-items:center; gap:.5rem;
+  border:1px solid rgba(0,0,0,.06);
+  background: linear-gradient(120deg, #ffffff, #fbfbfb);
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.06);
+  transition: transform .15s ease, box-shadow .2s ease, border-color .2s ease;
+  padding: 1%;
+}
+.meta-pillR:hover{ transform: translateY(-1px); box-shadow: 0 8px 18px rgba(0,0,0,.09); }
+.pill-emojiR{ font-size: 1.05rem; line-height:1; }
+.pill-labelR{ font-size:.8rem; opacity:.8; }
+.pill-valueR{ font-weight:700; font-size:.7rem; }
+
+/* Acentos Renzo (granate + dorado) */
+.meta-pillR.client{    border-color: rgba(122, 30, 30, .18);}
+.meta-pillR.industry{  border-color: rgba(199,167,112,.22); }
+.meta-pillR.stack{     border-color: rgba(122, 30, 30, .18); }
+.meta-pillR.duration{  border-color: rgba(199,167,112,.22); }
+.meta-pillR .pill-emojiR{ filter: drop-shadow(0 1px 0 rgba(0,0,0,.05)); }
+
+/* ===== Modo noche (con body.night) ===== */
+body.night .meta-pillR{
+  background: linear-gradient(120deg, #151515, #111);
+  border-color: rgba(255,255,255,.10);
+  box-shadow: 0 8px 20px rgba(0,0,0,.45);
+}
+body.night .meta-pillR.client{   border-color: rgba(199, 70, 70, .25); }
+body.night .meta-pillR.industry{ border-color: rgba(199,167,112,.28); }
+body.night .pill-labelR{ color:#cfcfcf; }
+body.night .pill-valueR{ color:#f0f0f0; }
   /* Íconos grandes para desafío y solución */
   .challenge-large-iconR {
     font-size: 8rem;
@@ -237,6 +295,9 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease !important;
     transform: perspective(1000px) rotateY(0deg) !important;
   }
+  .slick-slider{
+    margin-top: 5% !important;
+  }
   .slick-track > .testimonialsR.custom-testimonial.slide-up.visible:nth-child(4n+1) {
     background-color: #f8f9fa !important;
   }
@@ -267,6 +328,9 @@
     padding-left: 400px;
     margin-bottom: 2%;
   }
+  .fade-in{
+    padding-bottom: 50px;
+  }
   .testimonial-sliderR {
     position: relative;
     margin: 0 auto;
@@ -280,30 +344,147 @@
     width: 1000px;
     margin: 2%;
   }
-/* Responsive */
+
+  /* Grid final KPIs + Testimonios */
+.end-gridR {
+  display: grid;
+  grid-template-columns: 1.5fr 0.5fr; /* KPIs un poco más anchos */
+  gap: 50px;
+  width: min(1600px, 100%);
+  align-items: start;
+}
+
+/* Columnas */
+.end-leftR  { width: 100%; }
+.end-rightR { max-width: 700px; }
+
+/* Asegurar que las cards de métricas usen todo el ancho disponible */
+.end-leftR .KPIR { width: 100%; }
+.end-leftR .metrics-cardsR { margin: 2rem 0; }
+
+/* Testimonios en columna derecha: ocupar ancho del contenedor */
+.testimonialR{
+  max-width: 600px !important;
+  border-radius: 15px !important;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  transform: perspective(1000px) rotateY(0deg) !important;
+  padding: 1rem !important;
+  background: #fff !important;
+  margin: 0 auto !important;
+
+}
+
+.testimonial-sliderR::before,
+ .testimonial-sliderR::after {
+   content: "";
+   position: absolute;
+   left: 0;
+   right: 0;
+   pointer-events: none;
+   z-index: 2;
+   /* Agregamos un filtro de desenfoque para suavizar la transición */
+   filter: blur(2px)!important;
+ }
+
+
+/* ======== MODO NOCHE por clase en <body> ======== */
+:root{
+  /* Opcional: variables base para fondo/texto */
+  --bg: #ffffff;
+  --text: #111111;
+  --card: #ffffff;
+  --cardAlt: var(--rc-gray-100);
+  --border: rgba(0,0,0,.06);
+  --shadow: rgba(0,0,0,.06);
+  --muted: #222;
+}
+body{ background: var(--bg); color: var(--text); }
+
+/* Override en modo noche */
+body.night{
+  --bg: #0b0b0b;
+  --text: #e8e8e8;
+  --card: #141414;
+  --cardAlt: #1b1b1b;
+  --border: rgba(255,255,255,.08);
+  --shadow: rgba(0,0,0,.5);
+  --muted: #ffffff;
+}
+
+/* Contenido general en noche */
+body.night .heroR p,
+body.night .containerR p { color: var(--muted); }
+
+body.night .cardR{
+  background: linear-gradient(120deg, var(--card), var(--cardAlt)) !important;
+  border-color: var(--border) !important;
+  box-shadow: 0 20px 40px var(--shadow) !important;
+}
+body.night .challenge-cardR{
+  background: linear-gradient(120deg, #1a0d0d, #1b1414) !important; /* toque “vino” Renzo */
+  border-color: rgba(199,167,112,.12) !important;
+}
+body.night .solution-cardR{
+  background: linear-gradient(120deg, #131313, #181818) !important;
+}
+
+/* Métricas / KPIs */
+body.night .metric-cardR{
+  background: #141414 !important;
+  color: var(--text) !important;
+  box-shadow: 0 10px 24px var(--shadow) !important;
+}
+body.night .metric-iconR{ color: var(--rc-gold) !important; }
+
+/* Testimonios */
+body.night .testimonialR{
+  background: #141414 !important;
+  color: var(--text) !important;
+  box-shadow: 0 8px 16px var(--shadow) !important;
+}
+
+/* Iconos grandes: mejor contraste en noche */
+body.night .challenge-large-iconR{ color: var(--rc-red) !important; }
+body.night .solution-large-iconR { color: var(--rc-gold) !important; }
+
+/* Hero */
+body.night .heroR p{ color: var(--muted) !important; }
+
+/* Bordes/inputs (si los hubiera) */
+body.night .cardR, 
+body.night .metric-cardR,
+body.night .testimonialR{ border-color: var(--border) !important; }
+
+/* ======== RESPONSIVE 3 TAMAÑOS ======== */
+/* ≥992px = desktop (ya estás) */
+
+/* 768–991px: tablet */
+@media (max-width: 991px){
+  .heroR-grid{ grid-template-columns: 1fr; gap: 1.25rem; }
+  .gridR{ grid-template-columns: 1fr; }
+  .containerR h2{ font-size: clamp(1.3rem, 1.2vw + 1rem, 1.8rem); }
+  .metrics-cardsR{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .containerR.end-gridR{ grid-template-columns: 1fr; } /* KPIs ↑ Testimonios ↓ */
+  .end-rightR{ margin-top: 1.25rem; }
+}
+
+/* ≤480px: móvil */
+@media (max-width: 480px){
+  .containerR{ padding: 0 1rem; }
+  .heroR{ padding: 2.25rem 1rem; }
+  .metrics-cardsR{ grid-template-columns: 1fr; gap: .9rem; }
+  .cardR{ padding: 1rem; }
+  .challenge-large-iconR, .solution-large-iconR{ font-size: clamp(3rem, 18vw, 5.5rem); }
+  .testimonialR{ padding: .85rem !important; }
+}
+
+
+/* Responsive: apilar en una sola columna en tablets/móviles */
 @media (max-width: 992px) {
-  .heroR-grid { grid-template-columns: 1fr; }
-  .gridR      { grid-template-columns: 1fr; }
+  .end-gridR { grid-template-columns: 1fr; }
+  .end-rightR { margin-top: 1.5rem; }
 }
-@media (max-width: 640px) {
-  .metrics-cardsR { grid-template-columns: repeat(2, minmax(0,1fr)); }
-}
-  
-  /* Responsividad */
-  @media (max-width: 768px) {
-    .gridR {
-      grid-template-columns: 1fr;
-      text-align: center;
-    }
-    .heroR-grid {
-      grid-template-columns: 1fr;
-      padding: 1rem;
-    }
-    .heroR-left {
-      padding-left: 0;
-    }
-    .info-cards {
-      grid-template-columns: 1fr;
-    }
-  }
+
+
   
