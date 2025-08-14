@@ -95,10 +95,10 @@ function Renzo() {
               <p>
                 Se conectó el ERP con Oracle Service Cloud para centralizar la información de clientes y pedidos. Se creó un servicio web para la carga automática de clientes, pedidos y facturas, automatizando la microsegmentación y la gestión de estrellas.
               </p>
-              <ul>
-                <li>✔ Información 100% unificada</li>
-                <li>✔ Menos errores en facturación y pedidos</li>
-                <li>✔ Gestión de clientes más eficiente</li>
+              <ul className="emoji-list" data-emoji="db">
+                <li>Información 100% unificada</li>
+                <li>Menos errores en facturación y pedidos</li>
+                <li>Gestión de clientes más eficiente</li>
               </ul>
             </div>
             <div className="image-block zoom-in">

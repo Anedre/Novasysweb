@@ -1,92 +1,71 @@
-/* Sección heroR */
+/* Paleta */
+:root {
+  --rc-red: #A40000;
+  --rc-black: #111111;
+  --rc-gold: #C7A770;
+  --rc-gray-100: #f7f7f7;
+  --rc-gray-200: #efefef;
+  --rc-gray-300: #e8e8e8;
+}
+
+/* Hero */
 .heroR {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center; /* Centra horizontalmente */
-    padding: 2rem;
-    position: relative;
-  }
-  
-  .heroR-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 100%;
-    gap: 2rem;
-    z-index: 1; /* Asegura que el contenido esté por encima del fondo */
-  }
-  .heroR p {
-    font-size: 1rem;
-  }
-  .heroR h1 {
-    font-size: 2rem;
-    font-weight: bold;
-  }
-  
-  /* Contenedor general */
-  .containerR {
-    justify-items: center;
-    margin-bottom: 5%;
-  }
-  .containerR h2 {
-    font-size: 2rem;
-  }
-  .containerR p {
-    font-size: 1rem;
-  }
-  .containerR.resultados {
-    justify-items: center;
-    justify-content: center;
-    align-items: center;
-  }
+  min-height: 88vh;
+  display: grid;
+  place-items: center;
+  padding: 3rem 1.25rem;
+  position: relative;
+}
+.heroR-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2rem;
+  width: min(1200px, 100%);
+  z-index: 1;
+}
+.heroR h1 { font-size: clamp(1.8rem, 2.4vw + 1rem, 2.6rem); font-weight: 800; }
+.heroR p  { font-size: 1.05rem; line-height: 1.6; color: #222; }
+
+
   
   /* Hero Title y Elementos */
   .heroR-title {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: .75rem; margin-bottom: .75rem;
   }
-  .heroR-icon {
-    font-size: 2.5rem;
-  }
-  .heroR-description {
-    font-size: 1rem;
-    line-height: 1.5;
-  }
-  .heroR-cta {
-    text-align: center;
-    margin: 1rem auto;
-  }
+ .heroR-icon { font-size: 2.2rem; color: var(--rc-red); }
+  .heroR-description { margin-top: .25rem; }
+  .heroR-cta { margin-top: 1.25rem; }
+ 
   .cta-button {
-    background: #ff6600;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 1.2rem;
-    transition: background 0.3s;
+    background: linear-gradient(180deg, var(--rc-red), #d61a1a);
+    color: #fff; padding: .75rem 1.25rem;
+    border-radius: .75rem; text-decoration: none;
+    font-weight: 700; border: 1px solid rgba(0,0,0,.06);
+    box-shadow: 0 6px 20px rgba(164,0,0,.15);
+    transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
   }
-  .cta-button:hover {
-    background: #e65c00;
-  }
-  .heroR-right {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .heroR-left {
-    display: flex;
-    flex-direction: column;
-    padding-left: 200px;
-    justify-content: center;
-    height: 100%; /* Asegura que ocupe toda la altura de la celda del grid */
-  }
-  .heroR-smartphone {
-    width: 100%;
-    font-size: 10rem; /* Ajusta según lo que necesites */
-  }
+  .cta-button:hover { transform: translateY(-1px); filter: brightness(1.02); }
+  .cta-button:active { transform: translateY(0); }
+  /* Columna izquierda/derecha sin offsets fijos */
+.heroR-left  { display: flex; flex-direction: column; justify-content: center; }
+.heroR-right { display: grid; place-items: center; }
+.heroR-image-container { width: 100%; max-width: 420px; animation: float 3s ease-in-out infinite; }
+.heroR-smartphone { width: 100%; display: block; border-radius: 16px; }
+
+@keyframes float { 0%{transform:translateY(0)} 50%{transform:translateY(-10px)} 100%{transform:translateY(0)} }
   
+
+  
+  /* Contenedores */
+.containerR {
+  width: min(1200px, 100%);
+  margin-inline: auto;
+  padding: 0 1.25rem;
+  margin-bottom: 4rem;
+}
+.containerR h2 { font-size: clamp(1.4rem, 1.4vw + 1rem, 2rem); }
+.containerR p  { font-size: 1rem; }
+
   /* Contenedor de la imagen con efecto flotante */
   .heroR-image-container {
     width: 100%;
@@ -105,48 +84,38 @@
     100% { transform: translateY(0); }
   }
   
-  /* Contenedor para la sección El Desafío y La Solución usando Grid */
+  /* Grid de tarjetas (desafío / solución) */
   .gridR {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
     gap: 2rem;
-    align-items: center;
-    max-width: 1000px;
   }
+  .text-block  { grid-area: text; }
+  .image-block { grid-area: image; place-self: center; }
   
-  /* Si se necesita invertir el orden, se aplican clases específicas */
-  .text-block {
-    grid-area: text;
-  }
-  .image-block {
-    grid-area: image;
-    place-self: center; /* Centra horizontal y verticalmente */
-  }
-  
-  /* Tarjeta base */
-  .cardR {
-    border-radius: 15px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    padding: 2rem;
-    margin: 3rem 0;
-    position: relative;
-    right: 200px;
-    background-color: #f7f9fc; /* Color suave */
-    min-height: 320px;
-  }
-  
-  /* Tarjeta de "El Desafío" con color suave (Challenge) */
-  .challenge-cardR {
-    /* Puedes ajustar estilos específicos para la tarjeta de desafío */
-  }
-  
-  /* Tarjeta de "La Solución" con color diferente (Solution) */
-  .solution-cardR {
-    max-width: 1400px;
-    left: 200px;
-    background-color: #e8f0fe; /* Otro tono suave */
-  }
+ /* Tarjetas */
+.cardR {
+  background: linear-gradient(120deg, #fff, var(--rc-gray-100));
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.06);
+  padding: clamp(1.25rem, 1.2vw + .5rem, 2rem);
+  margin: 2rem 0;
+}
+.challenge-cardR { background: linear-gradient(120deg, #fff3f3, #f9efef); border-color: rgba(164,0,0,.12); }
+.solution-cardR  { background: linear-gradient(120deg, #f6f6f6, #efefef);   border-color: rgba(0,0,0,.08); }
+
+/* Título con acento */
+.cardR h2 {
+  background: linear-gradient(90deg, var(--rc-red), var(--rc-gold));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* Iconos grandes */
+.challenge-large-iconR { font-size: clamp(4rem, 8vw, 7rem); color: var(--rc-red); }
+.solution-large-iconR  { font-size: clamp(4rem, 8vw, 7rem); color: var(--rc-black); }
+
   
   /* (Opcional) Info-cards si se usaran */
   .info-cards {
@@ -185,43 +154,32 @@
   }
   
   /* Sección Resultados / KPIs usando Grid */
-  .KPIR {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centra horizontalmente */
-    width: 100%;
-  }
-  .metrics-cardsR {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Tres columnas iguales */
-    gap: 2rem;
-    margin: 5rem 0;
-    max-width: 1200px;
-    justify-content: center;
-    text-align: center;
-    align-content: center;
-  }
-  .metric-cardR {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-    align-items: center;
-    text-align: center;
-  }
+.KPIR { 
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+
+}
+
+.metrics-cardsR {
+  display: grid; gap: 1.25rem; width: 100%;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  margin: 5rem 0;
+
+}
+.metric-cardR {
+  background: #fff; padding: 1.25rem; border-radius: 14px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.06); text-align: center;
+}
   .metric-cardR.active {
     transform: scale(1.05);
     box-shadow: 0 0 20px rgba(0,26,97,0.5);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
-  .metric-cardR h3 {
-    font-size: 2rem;
-  }
-  .metric-iconR {
-    font-size: 3rem;
-    color: #360032;
-    margin: 5%;
-  }
+.metric-cardR h3 { font-size: clamp(1.4rem, 1.2vw + 1rem, 2rem); }
+.metric-iconR { font-size: 2.6rem; color: var(--rc-black); margin: .5rem 0; }
+
   
   /* Íconos grandes para desafío y solución */
   .challenge-large-iconR {
@@ -269,6 +227,10 @@
   
   /* Testimonios y Slider */
   /* Efecto 3D base para el slide */
+
+.testimonialsR { width: min(1100px, 100%); margin: 0 auto 4rem; padding: 0 1.25rem; }
+.testimonialsR h2 { text-align: center; margin-bottom: 1rem; }
+
   .testimonialsR.custom-testimonial.slide-up.visible {
     border-radius: 15px !important;
     box-shadow: 0 8px 16px rgba(0,0,0,0.2) !important;
@@ -318,7 +280,14 @@
     width: 1000px;
     margin: 2%;
   }
-
+/* Responsive */
+@media (max-width: 992px) {
+  .heroR-grid { grid-template-columns: 1fr; }
+  .gridR      { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .metrics-cardsR { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
   
   /* Responsividad */
   @media (max-width: 768px) {
