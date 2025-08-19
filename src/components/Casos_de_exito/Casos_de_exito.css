@@ -6,7 +6,6 @@
   --shadow:0 16px 40px rgba(0,0,0,.10);
   --shadow-lg:0 22px 70px rgba(0,0,0,.14);
   --r:16px; --gap:1.1rem;
-  --h1:clamp(1.8rem,1.2vw+1.2rem,2.35rem);
   --h3:clamp(1.06rem,.6vw+.85rem,1.28rem);
   --p:clamp(.95rem,.25vw+.82rem,1rem);
   --telecom:210 92% 46%; --seguros:193 92% 42%; --educacion:266 78% 56%; --finanzas:148 57% 36%; --retail:355 80% 50%;
@@ -17,7 +16,7 @@ body.night{
 }
 
 /* Sección */
-.CE-sigma{  color:var(--txt); padding:100px 40px; position:relative; }
+.CE-sigma{  color:var(--txt); padding:150px 70px; position:relative; }
 .CE-sigma::before{
   content:""; position:absolute; inset:0; pointer-events:none;
   background: radial-gradient(1100px 480px at 8% -10%, rgba(199,167,112,.08), transparent 60%),
@@ -25,7 +24,7 @@ body.night{
   opacity:.6;
 }
 .ce-headline{ text-align:center; margin-bottom:12px; }
-.ce-headline h1{ font-size:var(--h1); margin:0 0 .25rem 0; letter-spacing:.25px; }
+.ce-headline h1{ font-size:3rem; margin:0 0 .25rem 0; letter-spacing:.25px; }
 .ce-headline p{ color:var(--muted); font-size:var(--p); margin:0; }
 
 /* Pills + search */
@@ -42,18 +41,36 @@ body.night{
 .cases-searchR{ min-width:220px; padding:.5rem .8rem; border-radius:12px; border:1px solid var(--stroke); background:var(--card); color:var(--txt); font-size:.95rem; }
 
 /* Grid */
-.sigma-grid{ display:grid; gap:var(--gap); margin-top:1.2rem; grid-template-columns: repeat(12, minmax(0, 1fr)); }
-
+.sigma-grid{
+  display: grid;
+  gap: var(--gap);
+  margin-top: 1.2rem;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  /* quita justify-content si lo tenías para no “apretar” el grid */
+}
 /* Card clickeable */
 .sigma-card{
-  position:relative; grid-column:span 4;
-  display:grid; grid-template-rows:auto auto 1fr auto;
+  position:relative; 
+  display:grid; 
   gap:.55rem; padding:1rem 1rem 1.05rem;
   background:var(--card); border:1px solid var(--stroke); border-radius:var(--r);
   box-shadow:var(--shadow-sm); overflow:clip; isolation:isolate;
   transform: translateY(0);
   transition: transform .22s ease, box-shadow .28s ease, border-color .3s ease, background .25s ease;
   text-decoration:none; color:inherit; cursor:pointer;
+}
+/* Ajuste de tamaño máximo y alineación */
+.sigma-grid {
+  display: grid;
+  gap: var(--gap);
+  margin-top: 1.2rem;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  justify-content: center; /* centra si sobra espacio */
+}
+
+/* Tope de tamaño para las tarjetas */
+.sigma-card {
+  width: 100%;
 }
 .sigma-card:hover{ transform: translateY(-2px); box-shadow:var(--shadow-lg); border-color:var(--ring); }
 .sigma-card:focus-visible{ outline:2px solid var(--ring); outline-offset:3px; }
@@ -114,7 +131,7 @@ body.night{
 
 /* Top + contenido */
 .sigma-top{ display:flex; align-items:center; justify-content:space-between; gap:.75rem; z-index:2; }
-.sigma-logo{ height:28px; width:auto; display:block; }
+.sigma-logo{ height:50px; width:auto; display:block; }
 .sigma-tag{ padding:.26rem .56rem; border-radius:999px; font-size:.78rem; font-weight:700; background:rgba(199,167,112,.12); color:rgba(74,42,42,.95); border:1px solid var(--ring); }
 body.night .sigma-tag{ background:rgba(199,167,112,.14); color:#f1e6cf; }
 
@@ -138,21 +155,104 @@ body.night .sigma-kpis li{ background:#1c1610; color:#f1e6cf; }
 /* ===== Responsividad (3 tamaños, SIEMPRE 2 por fila) ===== */
 /* Desktop grande (≥1200px): 2 por fila */
 @media (min-width: 1200px){
-  .sigma-card{ grid-column: span 6; } /* 6 + 6 = 12 */
+  .CE-sigma{
+    padding-top:5% ;
+  }
+  .sigma-grid{   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
 }
 
 /* Tablet (768–1199px): 2 por fila + tipografía/paddings ajustados */
 @media (max-width: 1199px) and (min-width: 768px){
-  .sigma-card{ grid-column: span 6; }
   .CE-sigma{ padding:48px 28px; }
   .sigma-title{ letter-spacing:.15px; }
+  .sigma-grid{   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
+  }
 }
 
 /* Móvil (≤767px): 2 por fila también */
 @media (max-width: 767px){
   .CE-sigma{ padding:100px 14px;  }
-  .sigma-grid{ column-gap:.9rem; row-gap:1rem; }
-  .sigma-card{ grid-column: span 6; padding:.9rem .9rem .95rem; }
+  .sigma-grid{ column-gap:.9rem; row-gap:1rem; 
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+
   .meta-pillR{ font-size:.88rem; padding:.48rem .72rem; }
   .overlay-emoji{ font-size: clamp(1.3rem, 2.4vw + 1rem, 1.6rem); }
+}
+/* ===== Mobile bonito (≤767px) ===== */
+@media (max-width: 767px){
+  /* Tipos más compactos via variables */
+  :root{
+    --h3: clamp(0.95rem, .6vw + .78rem, 1.08rem);
+    --p:  clamp(.88rem, .3vw + .76rem, .95rem);
+    --gap: .8rem;
+    --r: 12px;
+  }
+
+  .CE-sigma{ padding:72px 12px; }
+
+  .sigma-grid{
+    column-gap: .75rem;
+    row-gap: .9rem;
+    /* ya tienes minmax(150px,1fr); queda bien para 2 col en móviles anchos */
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+
+  .sigma-card{
+    padding: .82rem .82rem .9rem;
+    border-radius: var(--r);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .sigma-top{ gap: .6rem; }
+  .sigma-logo{ height: 36px; }           /* antes 50px */
+  .sigma-tag{
+    font-size: .7rem;
+    padding: .2rem .48rem;
+  }
+
+  .sigma-title{ letter-spacing: .14px; }
+  .sigma-summary{
+    font-size: var(--p);
+    line-height: 1.42;
+  }
+
+  .sigma-kpis{ gap: .35rem; margin: .15rem 0 .35rem; }
+  .sigma-kpis li{
+    font-size: .75rem;
+    font-weight: 700;
+    padding: .26rem .44rem;
+  }
+
+  /* Pills + buscador más discretos */
+  .meta-pillR{
+    font-size: .82rem;
+    padding: .42rem .64rem;
+  }
+  .cases-searchR{
+    min-width: 170px;
+    font-size: .9rem;
+    padding: .44rem .7rem;
+    border-radius: 10px;
+  }
+
+  /* Overlay */
+  .overlay-emoji{
+    font-size: clamp(1.1rem, 2vw + .8rem, 1.35rem);
+  }
+}
+
+/* ===== Extra pequeño (≤480px) ===== */
+@media (max-width: 480px){
+  :root{
+    --h3: clamp(0.9rem, .8vw + .72rem, 1rem);
+    --p:  clamp(.84rem, .4vw + .7rem, .9rem);
+    --gap: .7rem;
+  }
+
+  .CE-sigma{ padding-top: 25%; }
+  .sigma-grid{ grid-template-columns: 1fr 1fr; } /* 2 por fila limpio */
+  .sigma-logo{ height: 32px; }
+  .sigma-kpis li{ font-size: .72rem; }
 }
