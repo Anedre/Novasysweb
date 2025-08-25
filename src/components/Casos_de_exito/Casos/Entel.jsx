@@ -50,8 +50,8 @@ function Entel() {
 
             <div className="heroE-description slide-up">
               <div className="heroE-title">
-                <span className="heroE-icon fade-in" role="img" aria-label="cohete">🚀</span>
-                <h1 className="fade-in">Caso de Éxito: Entel</h1>
+                <span className="heroE-icon fade-inE" role="img" aria-label="cohete">🚀</span>
+                <h1 className="fade-inE">Caso de Éxito: Entel</h1>
               </div>
               <p>
                 Entel Empresas optimizó su gestión comercial y su Contact Center con la implementación de Oracle Sales Cloud, Oracle Java Cloud y OCDM, logrando una mejor integración de datos y procesos.
@@ -103,7 +103,7 @@ function Entel() {
 
           <div className="heroE-right">
             <div className="heroE-image-container zoom-in">
-              <img src={entelCA} alt="Entel Empresas" className="heroE-smartphone fade-in" />
+              <img src={entelCA} alt="Entel Empresas" className="heroE-smartphone fade-inE" />
             </div>
           </div>
         </div>
@@ -182,7 +182,7 @@ function Entel() {
 
       {/* Resultados y KPIs */}
       <section className="containerE resultados">
-        <h2 className="fade-in">Resultados y KPIs</h2>
+        <h2 className="fade-inE">Resultados y KPIs</h2>
         <KpiDashboard />
 
      
@@ -190,7 +190,7 @@ function Entel() {
 
       {/* Testimonios */}
       <section className="testimonials">
-        <h2 className="fade-in">Lo que Dicen Nuestros Clientes</h2>
+        <h2 className="fade-inE">Lo que Dicen Nuestros Clientes</h2>
         <div className="testimonial-slider">
           <Slider {...testimonialSettings}>
             {testimonials.map((item, index) => {

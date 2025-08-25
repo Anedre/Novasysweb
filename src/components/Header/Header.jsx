@@ -394,7 +394,7 @@ return (
           </Link>
           <Link
             to="/Eventos"
-            className={`navItem ${lowerPath === "/eventos" ? "active" : ""}`}
+            className={`navItem disabled ${lowerPath === "/eventos" ? "active" : ""}`}
             onMouseEnter={e => setMarkerElement(e.currentTarget)}
             onFocus={e => setMarkerElement(e.currentTarget)} // Opcional, para accesibilidad con teclado
             onMouseLeave={() => setMarkerElement(null)}

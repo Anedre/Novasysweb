@@ -11,13 +11,14 @@
 
 
 
-.heroE-grid {
-   display: grid;
-   grid-template-columns: 1fr 1fr;
-   width: 100%;
-   gap: 2rem;
-   z-index: 1; /* Asegura que el contenido esté por encima del fondo */
- }
+.heroE-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "left right";
+  width: 100%;
+  gap: 2rem;
+  z-index: 1;
+}
 .heroE p{
    font-size: 1rem;
 }
@@ -152,11 +153,13 @@
    display: flex;
    justify-content: center;
    align-items: center;
+   grid-area: right;
  }
 
  /* Centra título, párrafo y botones dentro de la columna izquierda */
 .heroE-left{
   display:flex;
+  grid-area: left;
   flex-direction:column;
   align-items:center;   /* centra el contenido (incluye .heroE-cta) */
   margin: auto 0;
@@ -676,7 +679,7 @@ body.night .cardE h2, .night .cardE h2 {
  }
  
 /* Animaciones para aparición */
-.fade-in {
+.fade-inE {
    opacity: 0;
    transition: opacity 0.6s ease-out;
  }
@@ -740,7 +743,7 @@ body.night .cardE h2, .night .cardE h2 {
    cursor: grabbing;
  }
  
- .testimonials h2.fade-in.visible {
+ .testimonials h2.fade-inE.visible {
    font-size:2rem;
    text-align: left;
    padding-left:400px;
@@ -849,7 +852,13 @@ body.night .cardE h2, .night .cardE h2 {
 @media (max-width: 991px){
  
   /* Hero */
-  .heroE-grid{ grid-template-columns: 1fr; gap: 1.4rem; }
+  .heroE-grid{
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "right"
+      "left";
+    gap: 1.4rem;
+  }
   .heroE-left{ order:1; align-items:center; text-align:center; }
   .heroE-right{ order:2; justify-content:center; }
 
@@ -939,23 +948,34 @@ body.night .cardE h2, .night .cardE h2 {
   .heroE-image-container{
     max-width: 100px;
   }
-   .heroE-grid{ grid-template-columns:1fr; gap:.8rem ;padding-top: 50px;}
+ .heroE-grid{
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "right"   /* imagen */
+      "left";   /* textos */
+    gap: .8rem;
+    padding-top: 50px; /* si lo necesitas por el header fijo */
+  }
   .heroE-right{ order:1 }
   .heroE-left{ order:2 }
 
-  .heroE-image-container{
-    width:min(92vw, 360px);
-    margin-inline:auto;
-    border-radius:12px;
-    overflow:hidden;
-    aspect-ratio:4/3;
-  }
+.heroE-image-container{
+  width: min(92vw, 400px);
+  margin-inline: auto;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;         /* asegura alto */
+  animation: float 3s ease-in-out infinite; /* ya lo tenías */
+}
 
   /* Rediseño del Contact Center */
 
 
-  .heroE-smartphone{ width:100%; height:100%; object-fit:cover }
-
+.heroE-smartphone{
+  width: 100%;
+  height: 100%;       /* OK porque el contenedor ya tiene aspect-ratio */
+  object-fit: cover;
+}
 
   .containerE{
     margin-top: 0%;
@@ -1010,7 +1030,7 @@ body.night .cardE h2, .night .cardE h2 {
   }
 
   /* Testimonios */
-  .testimonials h2.fade-in.visible {
+  .testimonials h2.fade-inE.visible {
     font-size: 1rem;
     text-align: center;
     padding-left: 0;

@@ -61,9 +61,8 @@ function Renzo() {
         <AbstractBackground />
         <div className="heroR-grid">
           <div className="heroR-left">
-            <div className="heroR-title">
-              <FaRocket className="heroR-icon fade-in" />
-              <h1 className="fade-in">Caso de Éxito: Transformación Digital de Renzo Costa</h1>
+            <div className="heroR-title">              
+              <h1 className="fade-in">🚀 Caso de Éxito: Transformación Digital de Renzo Costa</h1>
             </div>
             <div className="heroR-description slide-up">
               <p>
@@ -99,6 +98,14 @@ function Renzo() {
             </div>
             <div className="heroR-cta slide-up">
               <a href="#integraciones" className="cta-buttonR pulse">Ver Más</a>
+              <a
+                className="cta-buttonR outline" 
+                href="https://api.whatsapp.com/send?phone=51908825660&text=Hola%20Novasys,%20quiero%20más%20información%20sobre%20este%20caso%20de%20éxito"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                💬 Contactar
+              </a>
             </div>
           </div>
           <div className="heroR-right">
@@ -114,7 +121,7 @@ function Renzo() {
         {/* Card: Integración del ERP con OSvC */}
         <div className="cardR challenge-cardR">
           <div className="gridR challenge-section">
-            <div className="text-block slide-up">
+            <div className="text-blockR slide-up">
               <h2>Integración del ERP con OSvC</h2>
               <p>
                 Se conectó el ERP con Oracle Service Cloud para centralizar la información de clientes y pedidos. Se creó un servicio web para la carga automática de clientes, pedidos y facturas, automatizando la microsegmentación y la gestión de estrellas.
@@ -134,7 +141,7 @@ function Renzo() {
         {/* Card: Integración del eCommerce con OSvC */}
         <div className="cardR solution-cardR alt-bg">
           <div className="gridR reverse solution-section">
-            <div className="text-block slide-up">
+            <div className="text-blockR slide-up">
               <h2>Integración del eCommerce con OSvC</h2>
               <p>
                 Se sincronizó automáticamente la información de clientes y pedidos online con OSvC. Se desarrolló un servicio web para actualizar datos en tiempo real, reflejando cualquier actualización en el eCommerce en OSvC.
@@ -154,7 +161,7 @@ function Renzo() {
         {/* Card: Integración del POS con OSvC */}
         <div className="cardR challenge-cardR">
           <div className="gridR challenge-section">
-            <div className="text-block slide-up">
+            <div className="text-blockR slide-up">
               <h2>Integración del POS con OSvC</h2>
               <p>
                 Se habilitó la Vista 360° en el POS para que los asesores puedan ver el historial de compras del cliente. Se creó un servicio web para crear y actualizar tickets en tiempo real, integrando la gestión de cupones y SCAMs.
@@ -174,7 +181,7 @@ function Renzo() {
         {/* Card: Integración con Responsys (Marketing Digital) */}
         <div className="cardR solution-cardR alt-bg">
           <div className="gridR reverse solution-section">
-            <div className="text-block slide-up">
+            <div className="text-blockR slide-up">
               <h2>Integración con Responsys (Marketing Digital)</h2>
               <p>
                 Se conectó OSvC con Oracle Responsys para enviar campañas personalizadas según el historial de compras. Se habilitó la carga automática de clientes y pedidos, optimizando la segmentación con estrategias automatizadas.
@@ -227,6 +234,24 @@ function Renzo() {
                 </div>
               ))}
             </Slider>
+          </div>
+        </div>
+      </section>      
+        {/* CTA final PRO para Renzo */}
+      <section className="cta-proR">
+        <div className="cta-leftR">
+          <h3>¿Quieres ser el próximo caso de éxito?</h3>
+          <p>Conectamos tu CRM, optimizamos procesos y te dejamos métricas claras desde el día 1.</p>
+
+          <div className="cta-actionsR">
+            <a
+              className="btn-waR pro"
+              href="https://api.whatsapp.com/send?phone=51908825660&text=Hola%20Novasys,%20quiero%20hablar%20sobre%20CRM%20y%20automatización"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              💬 Contactar
+            </a>
           </div>
         </div>
       </section>

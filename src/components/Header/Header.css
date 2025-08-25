@@ -40,6 +40,11 @@
   gap: 25px;
   position: relative;
 }
+.navItem.disabled {
+  pointer-events: none;
+  opacity: 0.5; /* opcional, para que se vea gris */
+  cursor: not-allowed;
+}
 
 /* Marcador animado */
 .navMarker {
