@@ -1,347 +1,1025 @@
-/* Estilos generales para la sección */
-.ELO {
-    padding: 80px;   
-}
-  
-.Etitulo {
-    text-align: center;
-    padding-bottom: 40px;
-}
-.Etitulo h1 {
-    padding-bottom: 40px;
+/* ============================================
+   Elo.css - Tema Gestión Documental
+   Diseño único: Document Management & Organization
+   Color principal: Emerald Green (#10b981)
+   ============================================ */
+
+/* Variables del tema ELO */
+.elo-page {
+  --elo-primary: #10b981;
+  --elo-secondary: #059669;
+  --elo-accent: #34d399;
+  --elo-gradient: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+  --elo-gradient-subtle: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(5, 150, 105, 0.08) 100%);
+  --elo-surface: #ffffff;
+  --elo-surface-alt: #f0fdf4;
+  --elo-text: #0f172a;
+  --elo-text-secondary: #64748b;
+  --elo-border: #d1fae5;
+
+  position: relative;
+  min-height: 100vh;
+  background: var(--elo-surface);
+  overflow: hidden;
 }
 
-  
-/* Cuadro adicional para Ventas */
-.ELO-box {
-    width: auto;
+body.night .elo-page {
+  --elo-surface: #0f172a;
+  --elo-surface-alt: #1e293b;
+  --elo-text: #f1f5f9;
+  --elo-text-secondary: #94a3b8;
+  --elo-border: #334155;
+  --elo-gradient-subtle: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(5, 150, 105, 0.12) 100%);
 }
-  
-.ELO-title {
+
+/* ========================================
+   Hero Section
+   ======================================== */
+.elo-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 5% 80px;
+  overflow: hidden;
+}
+
+.elo-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Imagen de fondo corporativa */
+.elo-hero-image {
+  position: absolute;
+  inset: 0;
+  background-image: url('../../../img/Corporativo/sigmund-LCun3uxh-z0-unsplash.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.06;
+}
+
+body.night .elo-hero-image {
+  opacity: 0.1;
+  filter: brightness(0.8);
+}
+
+.elo-hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 30% 20%, rgba(16, 185, 129, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(5, 150, 105, 0.1) 0%, transparent 50%);
+}
+
+body.night .elo-hero-gradient {
+  background: 
+    radial-gradient(ellipse at 30% 20%, rgba(16, 185, 129, 0.18) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(5, 150, 105, 0.12) 0%, transparent 50%);
+}
+
+.elo-hero-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 50px,
+      rgba(16, 185, 129, 0.03) 50px,
+      rgba(16, 185, 129, 0.03) 51px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 50px,
+      rgba(16, 185, 129, 0.03) 50px,
+      rgba(16, 185, 129, 0.03) 51px
+    );
+}
+
+.elo-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+.elo-orb-1 {
+  width: 500px;
+  height: 500px;
+  top: 0;
+  left: 10%;
+  background: var(--elo-primary);
+  opacity: 0.12;
+}
+
+.elo-orb-2 {
+  width: 400px;
+  height: 400px;
+  bottom: 10%;
+  right: 5%;
+  background: var(--elo-secondary);
+  opacity: 0.1;
+}
+
+.elo-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.elo-hero-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* Hero Text */
+.elo-hero-text {
+  max-width: 580px;
+}
+
+.elo-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--elo-gradient-subtle);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--elo-primary);
+  margin-bottom: 24px;
+}
+
+.elo-badge-icon {
+  font-size: 1.1rem;
+}
+
+.elo-hero-title {
+  font-size: clamp(2.5rem, 5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--elo-text);
+  margin-bottom: 24px;
+}
+
+.elo-title-gradient {
+  display: block;
+  background: var(--elo-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.elo-hero-desc {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--elo-text-secondary);
+  margin-bottom: 32px;
+}
+
+.elo-hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.elo-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.elo-btn-primary {
+  background: var(--elo-gradient);
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+}
+
+.elo-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(16, 185, 129, 0.4);
+}
+
+.elo-btn-secondary {
+  background: var(--elo-surface-alt);
+  color: var(--elo-text);
+  border: 2px solid var(--elo-border);
+}
+
+.elo-btn-secondary:hover {
+  border-color: var(--elo-primary);
+  color: var(--elo-primary);
+}
+
+.elo-btn-light {
+  background: #fff;
+  color: var(--elo-primary);
+}
+
+.elo-btn-light:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+}
+
+.elo-btn-ghost {
+  background: transparent;
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.elo-btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+}
+
+/* Hero Visual - Floating Documents */
+.elo-hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.elo-visual-container {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  height: 400px;
+}
+
+.elo-central-folder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140px;
+  height: 140px;
+  background: var(--elo-gradient);
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 25px 60px rgba(16, 185, 129, 0.35);
+  z-index: 10;
+}
+
+.elo-folder-icon {
+  font-size: 3rem;
+  color: #fff;
+}
+
+.elo-central-folder span {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.elo-floating-docs {
+  position: absolute;
+  inset: 0;
+}
+
+.elo-floating-doc {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: var(--elo-surface);
+  border: 2px solid var(--elo-border);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+body.night .elo-floating-doc {
+  background: var(--elo-surface-alt);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.elo-connections {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* ========================================
+   Stats Section
+   ======================================== */
+.elo-stats {
+  padding: 60px 5%;
+  background: var(--elo-surface-alt);
+  border-top: 1px solid var(--elo-border);
+  border-bottom: 1px solid var(--elo-border);
+}
+
+.elo-stats-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.elo-stat-card {
+  text-align: center;
+  padding: 30px 20px;
+  background: var(--elo-surface);
+  border-radius: 16px;
+  border: 1px solid var(--elo-border);
+  transition: all 0.3s ease;
+}
+
+.elo-stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(16, 185, 129, 0.1);
+}
+
+.elo-stat-icon {
+  font-size: 2rem;
+  color: var(--elo-primary);
+  margin-bottom: 12px;
+}
+
+.elo-stat-value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: var(--elo-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.elo-stat-label {
+  font-size: 0.9rem;
+  color: var(--elo-text-secondary);
+}
+
+/* ========================================
+   Section Common Styles
+   ======================================== */
+.elo-section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.elo-section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--elo-text);
+  margin-bottom: 16px;
+  position: relative;
+  display: inline-block;
+}
+
+.elo-section-title.elo-title-light {
+  color: #fff;
+}
+
+.elo-title-underline {
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--elo-gradient);
+  border-radius: 2px;
+  margin: 16px auto 0;
+}
+
+.elo-title-underline.elo-underline-light {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.elo-section-subtitle {
+  font-size: 1.15rem;
+  color: var(--elo-text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ========================================
+   Product Section
+   ======================================== */
+.elo-product {
+  padding: 100px 5%;
+}
+
+.elo-product-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.elo-product-card {
+  background: var(--elo-surface);
+  border-radius: 24px;
+  border: 1px solid var(--elo-border);
+  overflow: hidden;
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+}
+
+body.night .elo-product-card {
+  background: var(--elo-surface-alt);
+}
+
+.elo-product-card:hover {
+  box-shadow: 0 20px 60px rgba(16, 185, 129, 0.15);
+}
+
+.elo-product-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.elo-product-image-wrap {
+  position: relative;
+  padding: 60px;
+  background: var(--elo-gradient-subtle);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.elo-product-image {
+  max-width: 280px;
+  height: auto;
+  filter: drop-shadow(0 10px 30px rgba(16, 185, 129, 0.2));
+  transition: transform 0.4s ease;
+}
+
+.elo-product-card:hover .elo-product-image {
+  transform: scale(1.05);
+}
+
+.elo-product-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.elo-product-info {
+  padding: 40px;
+  text-align: center;
+}
+
+.elo-product-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--elo-text);
+  margin-bottom: 12px;
+}
+
+.elo-product-desc {
+  font-size: 1.05rem;
+  color: var(--elo-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.elo-product-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--elo-primary);
+  font-weight: 600;
+  transition: gap 0.3s ease;
+}
+
+.elo-product-card:hover .elo-product-cta {
+  gap: 12px;
+}
+
+/* ========================================
+   Features Section
+   ======================================== */
+.elo-features {
+  padding: 100px 5%;
+  background: var(--elo-surface-alt);
+}
+
+.elo-features-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.elo-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.elo-feature-card {
+  background: var(--elo-surface);
+  padding: 35px;
+  border-radius: 20px;
+  border: 1px solid var(--elo-border);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.elo-feature-card:hover {
+  box-shadow: 0 15px 40px rgba(16, 185, 129, 0.1);
+  border-color: var(--elo-primary);
+}
+
+.elo-feature-icon {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 20px;
+  background: var(--elo-gradient-subtle);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: var(--elo-primary);
+}
+
+.elo-feature-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--elo-text);
+  margin-bottom: 12px;
+}
+
+.elo-feature-desc {
+  font-size: 0.95rem;
+  color: var(--elo-text-secondary);
+  line-height: 1.6;
+}
+
+/* ========================================
+   Use Cases Section
+   ======================================== */
+.elo-usecases {
+  padding: 100px 5%;
+}
+
+.elo-usecases-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.elo-usecases-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.elo-usecase-card {
+  background: var(--elo-surface);
+  padding: 30px 24px;
+  border-radius: 16px;
+  border: 1px solid var(--elo-border);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.elo-usecase-card:hover {
+  background: var(--elo-gradient-subtle);
+  border-color: var(--elo-primary);
+}
+
+.elo-usecase-icon {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.elo-usecase-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--elo-text);
+  margin-bottom: 8px;
+}
+
+.elo-usecase-desc {
+  font-size: 0.9rem;
+  color: var(--elo-text-secondary);
+  line-height: 1.5;
+}
+
+/* ========================================
+   Workflow Section
+   ======================================== */
+.elo-workflow {
+  padding: 100px 5%;
+  background: var(--elo-gradient);
+}
+
+.elo-workflow-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.elo-workflow-steps {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-top: 40px;
+}
+
+.elo-workflow-step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  padding: 0 20px;
+}
+
+.elo-step-number {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #fff;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.elo-step-content {
+  position: relative;
+  z-index: 2;
+}
+
+.elo-step-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.elo-step-desc {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+}
+
+.elo-step-connector {
+  position: absolute;
+  top: 30px;
+  right: -15%;
+  width: 30%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.elo-step-connector::after {
+  content: '→';
+  position: absolute;
+  right: -8px;
+  top: -10px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.2rem;
+}
+
+/* ========================================
+   Explore Section
+   ======================================== */
+.elo-explore {
+  padding: 100px 5%;
+  background: var(--elo-surface-alt);
+}
+
+.elo-explore-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.elo-explore-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.elo-explore-card {
+  background: var(--elo-surface);
+  border-radius: 20px;
+  border: 1px solid var(--elo-border);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.elo-explore-card:hover {
+  border-color: var(--card-color, var(--elo-primary));
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+.elo-explore-link {
+  display: block;
+  padding: 35px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.elo-explore-icon {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.elo-explore-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--elo-text);
+  margin-bottom: 10px;
+}
+
+.elo-explore-desc {
+  font-size: 0.95rem;
+  color: var(--elo-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.elo-explore-arrow {
+  display: inline-block;
+  color: var(--card-color, var(--elo-primary));
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.elo-explore-card:hover .elo-explore-arrow {
+  transform: translateX(5px);
+}
+
+/* ========================================
+   CTA Section
+   ======================================== */
+.elo-cta {
+  padding: 100px 5%;
+  background: var(--elo-gradient);
+  position: relative;
+  overflow: hidden;
+}
+
+.elo-cta-container {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.elo-cta-content {
+  text-align: center;
+}
+
+.elo-cta-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.elo-cta-text {
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 600px;
+  margin: 0 auto 30px;
+  line-height: 1.7;
+}
+
+.elo-cta-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.elo-cta-decoration {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.elo-cta-docs {
+  position: absolute;
+  display: flex;
+  gap: 30px;
+  font-size: 4rem;
+  opacity: 0.15;
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+@media (max-width: 1024px) {
+  .elo-hero-layout {
+    grid-template-columns: 1fr;
+    gap: 60px;
     text-align: center;
-    position: relative;
-    margin-bottom: 40px;
-    padding-bottom: 40px;
-}
-  
-.ELO-title h2 {
-    font-size: 1rem;
-}
-  
-/* Subrayado animado */
-.Eunderline {
-    width: 80px;
-    height: 2px;
-    background-color: rgb(255, 0, 98);
-    margin: 0 auto;
-    animation: underline-animation 2s infinite alternate;
-}
-  
-@keyframes underline-animation {
-    0% {
-      transform: scaleX(1);
-    }
-    50% {
-      transform: scaleX(0.1);
-    }
-    100% {
-      transform: scaleX(1);
-    }
-}
-  
-/* Grid de imágenes y títulos */
-.ELO-grid {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 40px;
   }
-  
 
-/* Cada item: convertimos en flex para controlar el alineamiento */
-.ELO-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    
-}
-
-/* Contenedor con alto fijo para las imágenes */
-.image-container {
-    width: auto;        /* O el ancho que desees */
-    height: 200px;       /* Altura fija para uniformidad */
-    display: flex;
-    align-items: center; /* Centra verticalmente la imagen */
-    justify-content: center; /* Centra horizontalmente la imagen */
-    overflow: hidden;    /* Oculta lo que sobresalga */
-}
-  
-.image-container img {
+  .elo-hero-text {
     max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;  /* Se ajusta sin recortar, centrando la imagen */
-}
-  
-.caption {
-    margin-top: 8px;
-    font-size: 1rem;
-    color: #333;
-    text-align: center;
-}
+  }
 
-.elo-heading {
-    font-size: 2.4rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .elo-heading span {
-    display: block;
-    background: linear-gradient(90deg, #00cc99, #00b3b3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  
-  .elo-sub {
-    max-width: 800px;
-    margin: 0 auto;
-    font-size: 1.1rem;
-    color: #555;
-    text-align: center;
-    line-height: 1.6;
-  }
-  
-  .elo-item-link {
-    text-decoration: none;
-    color: inherit;
-    position: relative;
-    display: block;
-    transition: transform 0.3s ease;
-    align-items: center;
+  .elo-hero-actions {
     justify-content: center;
-    max-width: 250px;
-
   }
 
-  
-  .elo-card {
-    background: #fff;
+  .elo-stats-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .elo-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .elo-usecases-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .elo-workflow-steps {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .elo-step-connector {
+    display: none;
+  }
+
+  .elo-explore-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .elo-hero {
+    padding: 100px 5% 60px;
+    min-height: auto;
+  }
+
+  .elo-hero-title {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  .elo-hero-desc {
+    font-size: 1rem;
+  }
+
+  .elo-stats-container,
+  .elo-usecases-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .elo-stat-card,
+  .elo-usecase-card {
+    padding: 20px 15px;
+  }
+
+  .elo-stat-value {
+    font-size: 1.8rem;
+  }
+
+  .elo-features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .elo-section-title {
+    font-size: 1.8rem;
+  }
+
+  .elo-cta-title {
+    font-size: 1.8rem;
+  }
+
+  .elo-visual-container {
+    height: 280px;
+  }
+
+  .elo-central-folder {
+    width: 100px;
+    height: 100px;
+    border-radius: 24px;
+  }
+
+  .elo-folder-icon {
+    font-size: 2rem;
+  }
+
+  .elo-floating-doc {
+    width: 45px;
+    height: 45px;
     border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-    height: 100%;
-    min-height: 420px;
-    display: flex;
+    font-size: 1.3rem;
+  }
+
+  .elo-feature-card {
+    padding: 28px;
+  }
+
+  .elo-workflow-step {
+    padding: 24px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .elo-hero {
+    padding: 90px 4% 50px;
+  }
+
+  .elo-hero-title {
+    font-size: 1.75rem;
+  }
+
+  .elo-hero-badge {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+  }
+
+  .elo-stats-container {
+    grid-template-columns: 1fr;
+  }
+
+  .elo-usecases-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .elo-hero-actions {
+    flex-direction: column;
+  }
+
+  .elo-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 24px;
+  }
+
+  .elo-cta-buttons {
     flex-direction: column;
     align-items: center;
-    position: relative;
-    overflow: hidden;
+  }
 
+  .elo-visual-container {
+    height: 220px;
   }
-  
-  .elo-item-link:hover .elo-card {
-    background-color: rgba(0, 0, 0, 0.03);
-    transform: translateY(-4px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+
+  .elo-central-folder {
+    width: 80px;
+    height: 80px;
   }
-  
-  .elo-card h3 {
+
+  .elo-floating-doc {
+    width: 38px;
+    height: 38px;
     font-size: 1.1rem;
-    margin: 12px 0 8px;
-    color: #111;
   }
-  
-  .caption-desc {
-    font-size: 0.95rem;
-    color: #555;
-    text-align: center;
-    line-height: 1.4;
+
+  .elo-section-header {
+    margin-bottom: 40px;
   }
-  
-  .elo-overlay {
-    position: absolute;
-    inset: 0;
-    backdrop-filter: blur(6px);
-    background: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    font-weight: 600;
-    font-size: 1.2rem;
-    opacity: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.4s ease;
-    text-align: center;
-    border-radius: 12px;
-    z-index: 2;
-    pointer-events: none;
+
+  .elo-section-title {
+    font-size: 1.5rem;
   }
-  
-  .elo-item-link:hover .elo-overlay {
-    opacity: 1;
+
+  .elo-section-subtitle {
+    font-size: 1rem;
   }
-  
-  .elo-overlay span {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    animation: textFloat 1.5s ease-in-out infinite;
+
+  .elo-cta-title {
+    font-size: 1.5rem;
   }
-  
-  .elo-overlay span::after {
-    content: " →";
-    font-weight: bold;
-    font-size: 1.3rem;
-    margin-left: 6px;
-    display: inline-block;
-    transform: translateX(0);
-    transition: transform 0.3s ease;
+
+  .elo-cta-text {
+    font-size: 1rem;
   }
-  
-  .elo-item-link:hover .elo-overlay span::after {
-    transform: translateX(4px);
-  }
-  
-  .elo-explora.mejorada {
-    margin-top: 100px;
-    text-align: center;
-  }
-  
-  .elo-explora.mejorada h2 {
+
+  .elo-usecase-icon {
     font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 10px;
   }
-  
-  .explora-sub {
-    font-size: 1.1rem;
-    color: #555;
-    max-width: 720px;
-    margin: 0 auto 40px;
-  }
-  
-  .explora-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 30px;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  
-  .explora-card {
-    background-color: #ffffff;
-    border: 2px solid #e6e6e6;
-    border-radius: 16px;
-    padding: 24px;
-    text-align: left;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-    text-decoration: none;
-    color: #111;
-  }
-  
-  .explora-card:hover {
-    background: linear-gradient(135deg, #00cc99, #00b3b3);
-    color: #fff;
-    transform: translateY(-5px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-  }
-  
-  .explora-card:hover .icon {
-    transform: scale(1.2);
-  }
-  
-  .explora-card .icon {
-    font-size: 2rem;
-    margin-bottom: 12px;
-    display: inline-block;
-    transition: transform 0.3s ease;
-  }
-  
-  .explora-card h3 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-  
-  .explora-card p {
-    font-size: 0.95rem;
-    line-height: 1.5;
-  }
-  
-  @keyframes textFloat {
-    0% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-4px);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
-  
-  body.night .elo-sub,
-body.night .caption-desc,
-body.night .explora-sub {
-  color: #ccc;
-}
-
-body.night .elo-card {
-  background: #1c1c1c;
-  border: 1px solid #333;
-  box-shadow: 0 4px 12px rgba(0, 255, 204, 0.05);
-}
-
-body.night .elo-card h3 {
-  color: #f0f0f0;
-}
-
-body.night .caption-desc {
-  color: #bbb;
-}
-
-body.night .elo-item-link:hover .elo-card {
-  background: #222;
-  box-shadow: 0 6px 20px rgba(0, 255, 204, 0.15);
-}
-
-body.night .explora-card {
-  background: #222;
-  border: 1px solid #333;
-  color: #eee;
-}
-
-body.night .explora-card:hover {
-  background: linear-gradient(135deg, #00ffc3, #00aaff);
-  color: #000;
-}
-
-body.night .explora-card p {
-}
-
-body.night .elo-overlay {
-  background: rgba(0, 255, 204, 0.1);
-  color: #00ffc3;
-  text-shadow: 0 0 5px #00ffc3;
-}
-
-
-
-/* Responsividad */
-/* En tablets: 2 columnas */
-@media (max-width: 768px) {
-    .ventas-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-}
-  
-/* En móviles: 1 columna */
-@media (max-width: 480px) {
-    .ventas-grid {
-      grid-template-columns: 1fr;
-    }
 }

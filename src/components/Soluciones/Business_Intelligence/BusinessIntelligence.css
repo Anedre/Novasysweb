@@ -1,0 +1,1034 @@
+/* ============================================
+   BusinessIntelligence.css - Tema Analytics
+   Diseño único: Data Visualization & Insights
+   ============================================ */
+
+/* Variables del tema BI */
+.bi-page {
+  --bi-primary: #3b82f6;
+  --bi-secondary: #06b6d4;
+  --bi-accent: #8b5cf6;
+  --bi-gradient: linear-gradient(135deg, #3b82f6 0%, #06b6d4 50%, #8b5cf6 100%);
+  --bi-gradient-subtle: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+  --bi-surface: #ffffff;
+  --bi-surface-alt: #f8fafc;
+  --bi-text: #0f172a;
+  --bi-text-secondary: #64748b;
+  --bi-border: #e2e8f0;
+
+  position: relative;
+  min-height: 100vh;
+  background: var(--bi-surface);
+  overflow: hidden;
+}
+
+body.night .bi-page {
+  --bi-surface: #0f172a;
+  --bi-surface-alt: #1e293b;
+  --bi-text: #f1f5f9;
+  --bi-text-secondary: #94a3b8;
+  --bi-border: #334155;
+}
+
+/* ========================================
+   Hero Section
+   ======================================== */
+.bi-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 5% 80px;
+  overflow: hidden;
+}
+
+.bi-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Imagen de fondo corporativa */
+.bi-hero-image {
+  position: absolute;
+  inset: 0;
+  background-image: url('../../../img/Corporativo/luke-chesser-JKUTrJ4vK00-unsplash.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.08;
+}
+
+body.night .bi-hero-image {
+  opacity: 0.12;
+  filter: brightness(0.8);
+}
+
+.bi-hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 20% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 60%, rgba(6, 182, 212, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 90%, rgba(139, 92, 246, 0.1) 0%, transparent 40%);
+}
+
+body.night .bi-hero-gradient {
+  background: 
+    radial-gradient(ellipse at 20% 30%, rgba(59, 130, 246, 0.2) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 60%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 90%, rgba(139, 92, 246, 0.12) 0%, transparent 40%);
+}
+
+.bi-hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+}
+
+.bi-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.bi-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--bi-primary);
+  border-radius: 50%;
+  opacity: 0.4;
+}
+
+.bi-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.bi-orb-1 {
+  width: 500px;
+  height: 500px;
+  top: -10%;
+  right: 10%;
+  background: var(--bi-primary);
+  opacity: 0.15;
+}
+
+.bi-orb-2 {
+  width: 400px;
+  height: 400px;
+  bottom: -5%;
+  left: 5%;
+  background: var(--bi-secondary);
+  opacity: 0.12;
+}
+
+.bi-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.bi-hero-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* Hero Text */
+.bi-hero-text {
+  max-width: 600px;
+}
+
+.bi-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--bi-gradient-subtle);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--bi-primary);
+  margin-bottom: 24px;
+}
+
+.bi-badge-icon {
+  font-size: 1.1rem;
+}
+
+.bi-hero-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--bi-text);
+  margin-bottom: 24px;
+}
+
+.bi-title-gradient {
+  display: block;
+  background: var(--bi-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bi-hero-desc {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: var(--bi-text-secondary);
+  margin-bottom: 32px;
+}
+
+.bi-hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.bi-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.bi-btn-primary {
+  background: var(--bi-gradient);
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+}
+
+.bi-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+}
+
+.bi-btn-secondary {
+  background: var(--bi-surface-alt);
+  color: var(--bi-text);
+  border: 2px solid var(--bi-border);
+}
+
+.bi-btn-secondary:hover {
+  border-color: var(--bi-primary);
+  color: var(--bi-primary);
+}
+
+.bi-btn-light {
+  background: #fff;
+  color: var(--bi-primary);
+}
+
+.bi-btn-light:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+}
+
+.bi-btn-ghost {
+  background: transparent;
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.bi-btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+}
+
+/* Hero Visual - Data Visualization */
+.bi-hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bi-data-viz {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 400px;
+  background: var(--bi-surface);
+  border-radius: 24px;
+  border: 1px solid var(--bi-border);
+  box-shadow: 0 25px 80px rgba(59, 130, 246, 0.15);
+  padding: 30px;
+  overflow: hidden;
+}
+
+body.night .bi-data-viz {
+  background: var(--bi-surface-alt);
+  box-shadow: 0 25px 80px rgba(59, 130, 246, 0.25);
+}
+
+.bi-chart-bars {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  right: 30px;
+  height: 60%;
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.bi-bar {
+  flex: 1;
+  background: var(--bi-gradient);
+  border-radius: 8px 8px 0 0;
+  opacity: 0.8;
+}
+
+.bi-bar:nth-child(odd) {
+  background: linear-gradient(180deg, var(--bi-secondary) 0%, var(--bi-primary) 100%);
+}
+
+.bi-trend-line {
+  position: absolute;
+  top: 20%;
+  left: 30px;
+  right: 30px;
+  height: 40%;
+}
+
+.bi-data-points {
+  position: absolute;
+  inset: 0;
+}
+
+.bi-data-point {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: var(--bi-accent);
+  border-radius: 50%;
+  border: 3px solid var(--bi-surface);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+}
+
+/* ========================================
+   Stats Section
+   ======================================== */
+.bi-stats {
+  padding: 60px 5%;
+  background: var(--bi-surface-alt);
+  border-top: 1px solid var(--bi-border);
+  border-bottom: 1px solid var(--bi-border);
+}
+
+.bi-stats-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.bi-stat-card {
+  text-align: center;
+  padding: 30px 20px;
+  background: var(--bi-surface);
+  border-radius: 16px;
+  border: 1px solid var(--bi-border);
+  transition: all 0.3s ease;
+}
+
+.bi-stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(59, 130, 246, 0.1);
+}
+
+.bi-stat-icon {
+  font-size: 2rem;
+  color: var(--bi-primary);
+  margin-bottom: 12px;
+}
+
+.bi-stat-value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: var(--bi-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.bi-stat-label {
+  font-size: 0.9rem;
+  color: var(--bi-text-secondary);
+}
+
+/* ========================================
+   Product Section
+   ======================================== */
+.bi-product {
+  padding: 100px 5%;
+}
+
+.bi-product-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.bi-section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.bi-section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--bi-text);
+  margin-bottom: 16px;
+  position: relative;
+  display: inline-block;
+}
+
+.bi-title-underline {
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--bi-gradient);
+  border-radius: 2px;
+  margin: 16px auto 0;
+}
+
+.bi-section-subtitle {
+  font-size: 1.15rem;
+  color: var(--bi-text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.bi-product-card {
+  background: var(--bi-surface);
+  border-radius: 24px;
+  border: 1px solid var(--bi-border);
+  overflow: hidden;
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+}
+
+body.night .bi-product-card {
+  background: var(--bi-surface-alt);
+}
+
+.bi-product-card:hover {
+  box-shadow: 0 20px 60px rgba(59, 130, 246, 0.15);
+}
+
+.bi-product-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.bi-product-image-wrap {
+  position: relative;
+  padding: 60px;
+  background: var(--bi-gradient-subtle);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bi-product-image {
+  max-width: 280px;
+  height: auto;
+  filter: drop-shadow(0 10px 30px rgba(59, 130, 246, 0.2));
+  transition: transform 0.4s ease;
+}
+
+.bi-product-card:hover .bi-product-image {
+  transform: scale(1.05);
+}
+
+.bi-product-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.bi-product-info {
+  padding: 40px;
+  text-align: center;
+}
+
+.bi-product-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--bi-text);
+  margin-bottom: 12px;
+}
+
+.bi-product-desc {
+  font-size: 1.05rem;
+  color: var(--bi-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.bi-product-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--bi-primary);
+  font-weight: 600;
+  transition: gap 0.3s ease;
+}
+
+.bi-product-card:hover .bi-product-cta {
+  gap: 12px;
+}
+
+/* ========================================
+   Features Section
+   ======================================== */
+.bi-features {
+  padding: 100px 5%;
+  background: var(--bi-surface-alt);
+}
+
+.bi-features-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.bi-features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.bi-feature-card {
+  background: var(--bi-surface);
+  padding: 35px;
+  border-radius: 20px;
+  border: 1px solid var(--bi-border);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.bi-feature-card:hover {
+  box-shadow: 0 15px 40px rgba(59, 130, 246, 0.1);
+  border-color: var(--bi-primary);
+}
+
+.bi-feature-icon {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 20px;
+  background: var(--bi-gradient-subtle);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: var(--bi-primary);
+}
+
+.bi-feature-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--bi-text);
+  margin-bottom: 12px;
+}
+
+.bi-feature-desc {
+  font-size: 0.95rem;
+  color: var(--bi-text-secondary);
+  line-height: 1.6;
+}
+
+/* ========================================
+   Benefits Section
+   ======================================== */
+.bi-benefits {
+  padding: 100px 5%;
+}
+
+.bi-benefits-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.bi-benefits-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.bi-benefits-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--bi-text);
+  margin-bottom: 16px;
+}
+
+.bi-benefits-desc {
+  font-size: 1.1rem;
+  color: var(--bi-text-secondary);
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+.bi-benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px;
+}
+
+.bi-benefits-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+  color: var(--bi-text);
+  font-size: 1rem;
+}
+
+.bi-check-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  background: var(--bi-gradient-subtle);
+  border-radius: 50%;
+  color: var(--bi-primary);
+  padding: 4px;
+}
+
+/* Dashboard Preview */
+.bi-benefits-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.bi-dashboard-preview {
+  width: 100%;
+  max-width: 450px;
+  background: var(--bi-surface);
+  border-radius: 20px;
+  border: 1px solid var(--bi-border);
+  box-shadow: 0 25px 80px rgba(59, 130, 246, 0.12);
+  overflow: hidden;
+}
+
+body.night .bi-dashboard-preview {
+  background: var(--bi-surface-alt);
+}
+
+.bi-dash-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: var(--bi-surface-alt);
+  border-bottom: 1px solid var(--bi-border);
+}
+
+.bi-dash-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.bi-dash-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--bi-border);
+}
+
+.bi-dash-dots span:first-child { background: #ef4444; }
+.bi-dash-dots span:nth-child(2) { background: #f59e0b; }
+.bi-dash-dots span:last-child { background: #22c55e; }
+
+.bi-dash-title {
+  font-size: 0.85rem;
+  color: var(--bi-text-secondary);
+}
+
+.bi-dash-content {
+  padding: 30px;
+}
+
+.bi-dash-kpi {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.bi-kpi-label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--bi-text-secondary);
+  margin-bottom: 8px;
+}
+
+.bi-kpi-value {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: var(--bi-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bi-kpi-trend {
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.bi-dash-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 100px;
+}
+
+.bi-mini-bar {
+  flex: 1;
+  background: var(--bi-gradient);
+  border-radius: 4px 4px 0 0;
+  opacity: 0.8;
+}
+
+.bi-mini-bar:nth-child(odd) {
+  background: var(--bi-secondary);
+}
+
+/* ========================================
+   Explore Section
+   ======================================== */
+.bi-explore {
+  padding: 100px 5%;
+  background: var(--bi-surface-alt);
+}
+
+.bi-explore-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.bi-explore-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.bi-explore-card {
+  background: var(--bi-surface);
+  border-radius: 20px;
+  border: 1px solid var(--bi-border);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.bi-explore-card:hover {
+  border-color: var(--card-color, var(--bi-primary));
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+.bi-explore-link {
+  display: block;
+  padding: 35px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.bi-explore-icon {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.bi-explore-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--bi-text);
+  margin-bottom: 10px;
+}
+
+.bi-explore-desc {
+  font-size: 0.95rem;
+  color: var(--bi-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.bi-explore-arrow {
+  display: inline-block;
+  color: var(--card-color, var(--bi-primary));
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.bi-explore-card:hover .bi-explore-arrow {
+  transform: translateX(5px);
+}
+
+/* ========================================
+   CTA Section
+   ======================================== */
+.bi-cta {
+  padding: 100px 5%;
+  background: var(--bi-gradient);
+  position: relative;
+  overflow: hidden;
+}
+
+.bi-cta-container {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.bi-cta-content {
+  text-align: center;
+}
+
+.bi-cta-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.bi-cta-text {
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 600px;
+  margin: 0 auto 30px;
+  line-height: 1.7;
+}
+
+.bi-cta-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.bi-cta-decoration {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.bi-cta-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.bi-cta-ring-1 {
+  width: 400px;
+  height: 400px;
+  top: -100px;
+  right: -100px;
+}
+
+.bi-cta-ring-2 {
+  width: 300px;
+  height: 300px;
+  bottom: -80px;
+  left: -80px;
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+@media (max-width: 1024px) {
+  .bi-hero-layout {
+    grid-template-columns: 1fr;
+    gap: 60px;
+    text-align: center;
+  }
+
+  .bi-hero-text {
+    max-width: 100%;
+  }
+
+  .bi-hero-actions {
+    justify-content: center;
+  }
+
+  .bi-stats-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bi-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bi-benefits-layout {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .bi-explore-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .bi-hero {
+    padding: 100px 5% 60px;
+    min-height: auto;
+  }
+
+  .bi-hero-title {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  .bi-hero-desc {
+    font-size: 1rem;
+  }
+
+  .bi-stats-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .bi-stat-card {
+    padding: 20px 15px;
+  }
+
+  .bi-stat-value {
+    font-size: 1.8rem;
+  }
+
+  .bi-features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bi-section-title {
+    font-size: 1.8rem;
+  }
+
+  .bi-cta-title {
+    font-size: 1.8rem;
+  }
+
+  .bi-data-viz {
+    height: 280px;
+  }
+
+  .bi-viz-bar {
+    width: 35px;
+  }
+
+  .bi-viz-value {
+    font-size: 0.65rem;
+  }
+
+  .bi-feature-card {
+    padding: 28px;
+  }
+
+  .bi-benefit-item {
+    padding: 16px;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bi-hero {
+    padding: 90px 4% 50px;
+  }
+
+  .bi-hero-title {
+    font-size: 1.75rem;
+  }
+
+  .bi-hero-badge {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+  }
+
+  .bi-stats-container {
+    grid-template-columns: 1fr;
+  }
+
+  .bi-hero-actions {
+    flex-direction: column;
+  }
+
+  .bi-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 24px;
+  }
+
+  .bi-cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bi-data-viz {
+    height: 220px;
+    padding: 20px;
+  }
+
+  .bi-viz-bar {
+    width: 28px;
+  }
+
+  .bi-section-header {
+    margin-bottom: 40px;
+  }
+
+  .bi-section-title {
+    font-size: 1.5rem;
+  }
+
+  .bi-section-subtitle {
+    font-size: 1rem;
+  }
+
+  .bi-cta-title {
+    font-size: 1.5rem;
+  }
+
+  .bi-cta-text {
+    font-size: 1rem;
+  }
+
+  .bi-dashboard-preview {
+    border-radius: 12px;
+  }
+
+  .bi-product-image {
+    max-width: 200px;
+  }
+}
