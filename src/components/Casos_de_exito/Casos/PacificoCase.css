@@ -1,0 +1,690 @@
+/* ============================================
+   PACIFICO - DISEÑO ÚNICO
+   Estilo: Insurance Modern, Clean, Asymmetric
+============================================ */
+
+/* === VARIABLES === */
+.pac-page {
+  --pac-primary: #1e88e5;
+  --pac-primary-light: #64b5f6;
+  --pac-primary-dark: #1565c0;
+  --pac-primary-alpha: rgba(30, 136, 229, 0.1);
+  --pac-primary-glow: rgba(30, 136, 229, 0.25);
+  
+  background: var(--surface-ground);
+  min-height: 100vh;
+}
+
+.pac-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* === HERO ASYMMETRIC === */
+.pac-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 6rem 0;
+  overflow: hidden;
+}
+
+.pac-hero-shape {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--pac-primary-alpha), transparent);
+  clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.pac-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 4rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.pac-hero-badge {
+  display: inline-block;
+  background: var(--pac-primary-alpha);
+  color: var(--pac-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.pac-hero-logo {
+  height: 50px;
+  margin-bottom: 1.5rem;
+}
+
+body.night .pac-hero-logo {
+  filter: brightness(0) invert(1);
+}
+
+.pac-hero h1 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.pac-highlight {
+  color: var(--pac-primary);
+  position: relative;
+}
+
+.pac-highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: var(--pac-primary-alpha);
+  z-index: -1;
+}
+
+.pac-hero-content > p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  max-width: 480px;
+}
+
+.pac-hero-cta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.pac-btn-primary {
+  background: var(--pac-primary);
+  color: white;
+  padding: 0.875rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 15px var(--pac-primary-glow);
+  transition: all 0.3s;
+}
+
+.pac-btn-primary:hover {
+  background: var(--pac-primary-dark);
+  transform: translateY(-2px);
+}
+
+.pac-btn-text {
+  color: var(--pac-primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.pac-btn-text:hover {
+  color: var(--pac-primary-dark);
+}
+
+/* Hero Visual */
+.pac-hero-visual {
+  position: relative;
+}
+
+.pac-visual-main {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+}
+
+.pac-visual-main img {
+  width: 100%;
+  display: block;
+}
+
+.pac-visual-badge {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  background: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--pac-primary);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.pac-vb-icon {
+  width: 24px;
+  height: 24px;
+  background: var(--pac-primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+}
+
+.pac-stat-card {
+  position: absolute;
+  background: var(--surface-primary);
+  border: 1px solid var(--border-default);
+  border-radius: 16px;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.pac-sc-1 {
+  top: -20px;
+  right: 40px;
+}
+
+.pac-sc-2 {
+  bottom: 60px;
+  left: -40px;
+}
+
+.pac-sc-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--pac-primary);
+}
+
+.pac-sc-label {
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+}
+
+/* === SECTION HEADER === */
+.pac-section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.pac-label {
+  display: inline-block;
+  background: var(--pac-primary-alpha);
+  color: var(--pac-primary);
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.pac-label-white {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+.pac-section-header h2 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+/* === FEATURES BENTO === */
+.pac-features {
+  padding: 6rem 0;
+  background: var(--surface-secondary);
+}
+
+.pac-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto;
+  gap: 1.5rem;
+}
+
+.pac-bento-item {
+  background: var(--surface-primary);
+  border: 1px solid var(--border-default);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.pac-bento-item:hover {
+  border-color: var(--pac-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px var(--pac-primary-glow);
+}
+
+.pac-bento-1 {
+  grid-column: span 2;
+}
+
+.pac-bento-2 {
+  grid-column: span 2;
+}
+
+.pac-bento-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.pac-bento-item h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.pac-bento-item p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* === PROCESS === */
+.pac-process {
+  padding: 6rem 0;
+}
+
+.pac-process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.pac-process-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.pac-process-step::after {
+  content: '';
+  position: absolute;
+  top: 30px;
+  right: -50%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--pac-primary), var(--pac-primary-alpha));
+}
+
+.pac-process-step:last-child::after {
+  display: none;
+}
+
+.pac-step-num {
+  width: 60px;
+  height: 60px;
+  background: var(--pac-primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 4px 20px var(--pac-primary-glow);
+}
+
+.pac-step-content h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.pac-step-content p {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+}
+
+/* === STATS === */
+.pac-stats {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, var(--pac-primary), var(--pac-primary-dark));
+}
+
+.pac-stats-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.pac-stats-intro {
+  color: white;
+}
+
+.pac-stats-intro h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.pac-stats-intro p {
+  opacity: 0.9;
+  line-height: 1.7;
+}
+
+.pac-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.pac-stat-item {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  color: white;
+}
+
+.pac-stat-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.pac-stat-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.pac-stat-detail {
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+/* === SHOWCASE === */
+.pac-showcase {
+  padding: 6rem 0;
+}
+
+.pac-showcase-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.pac-showcase-images {
+  position: relative;
+  height: 400px;
+}
+
+.pac-img-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 70%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.pac-img-2 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 60%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.pac-showcase-images img {
+  width: 100%;
+  display: block;
+}
+
+.pac-showcase-content h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.pac-showcase-content > p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.pac-showcase-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pac-showcase-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.pac-showcase-list li:last-child {
+  border-bottom: none;
+}
+
+.pac-showcase-list li > span {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.pac-showcase-list strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.pac-showcase-list li div span {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+}
+
+/* === TEAM === */
+.pac-team {
+  position: relative;
+  height: 400px;
+  display: flex;
+  align-items: center;
+}
+
+.pac-team-bg {
+  position: absolute;
+  inset: 0;
+}
+
+.pac-team-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pac-team-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(30, 136, 229, 0.9), transparent);
+}
+
+.pac-team-content {
+  position: relative;
+  z-index: 1;
+  color: white;
+  max-width: 400px;
+}
+
+.pac-team-content h3 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.pac-team-content p {
+  opacity: 0.9;
+}
+
+/* === CTA === */
+.pac-cta {
+  padding: 6rem 0;
+  background: var(--surface-secondary);
+}
+
+.pac-cta-box {
+  text-align: center;
+  background: var(--surface-primary);
+  border: 1px solid var(--border-default);
+  border-radius: 24px;
+  padding: 4rem;
+}
+
+.pac-cta-box h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.pac-cta-box > p {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.pac-cta-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.pac-btn-secondary {
+  padding: 0.875rem 2rem;
+  border: 2px solid var(--border-default);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.pac-btn-secondary:hover {
+  border-color: var(--pac-primary);
+  color: var(--pac-primary);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 1024px) {
+  .pac-hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .pac-hero-content > p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .pac-hero-cta {
+    justify-content: center;
+  }
+  
+  .pac-hero-shape {
+    width: 100%;
+    clip-path: none;
+    opacity: 0.5;
+  }
+  
+  .pac-hero-visual {
+    max-width: 500px;
+    margin: 2rem auto 0;
+  }
+  
+  .pac-bento-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .pac-bento-1,
+  .pac-bento-2 {
+    grid-column: span 1;
+  }
+  
+  .pac-process-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .pac-process-step::after {
+    display: none;
+  }
+  
+  .pac-stats-wrapper {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .pac-showcase-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .pac-showcase-images {
+    height: 300px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .pac-bento-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .pac-process-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .pac-stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .pac-stat-card {
+    display: none;
+  }
+  
+  .pac-cta-box {
+    padding: 2rem;
+  }
+  
+  .pac-team {
+    height: 300px;
+  }
+}

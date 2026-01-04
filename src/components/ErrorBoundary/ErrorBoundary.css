@@ -1,0 +1,107 @@
+/* ============ ErrorBoundary Styles ============ */
+
+.error-boundary {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: var(--surface-0, #ffffff);
+  color: var(--text-main, #111111);
+}
+
+.error-boundary-content {
+  max-width: 500px;
+  text-align: center;
+}
+
+.error-icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  line-height: 1;
+}
+
+.error-title {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  margin: 0 0 1rem;
+  color: var(--text-main, #111111);
+}
+
+.error-message {
+  font-size: 1.1rem;
+  color: var(--text-secondary, #4a4a4a);
+  line-height: 1.6;
+  margin: 0 0 2rem;
+}
+
+.error-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.error-btn {
+  padding: 0.875rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  border: none;
+}
+
+.error-btn:hover {
+  transform: translateY(-2px);
+}
+
+.error-btn:active {
+  transform: translateY(0);
+}
+
+.error-btn-primary {
+  background: var(--primary-color, #c62828);
+  color: var(--primary-contrast, #ffffff);
+  box-shadow: 0 4px 14px rgba(198, 40, 40, 0.3);
+}
+
+.error-btn-primary:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 6px 20px rgba(198, 40, 40, 0.4);
+}
+
+.error-btn-secondary {
+  background: var(--surface-1, #f6f7f9);
+  color: var(--text-main, #111111);
+  border: 1px solid var(--border-soft, rgba(0,0,0,0.08));
+}
+
+.error-btn-secondary:hover {
+  background: var(--surface-2, #eceff1);
+}
+
+.error-details {
+  margin-top: 2rem;
+  text-align: left;
+  background: var(--surface-1, #f6f7f9);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  border: 1px solid var(--border-soft, rgba(0,0,0,0.08));
+}
+
+.error-details summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text-secondary, #4a4a4a);
+  margin-bottom: 0.5rem;
+}
+
+.error-details pre {
+  font-size: 0.75rem;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--text-muted, #6b6b6b);
+  margin: 0.5rem 0 0;
+}

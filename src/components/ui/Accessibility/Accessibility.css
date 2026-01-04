@@ -1,0 +1,268 @@
+/* ============================================
+   Accessibility - Estilos WCAG 2.1
+   Fase 5 del Plan de Modernización
+   ============================================ */
+
+/* Skip Link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  padding: 12px 24px;
+  background: var(--primary, #0066cc);
+  color: white;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid var(--primary, #0066cc);
+  outline-offset: 2px;
+}
+
+/* Visually Hidden - Accesible pero oculto visualmente */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Live Region - Para anuncios de lectores de pantalla */
+.live-region {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus Trap Container */
+.focus-trap {
+  outline: none;
+}
+
+/* ============================================
+   Estilos de Focus Global - WCAG 2.4.7
+   ============================================ */
+
+/* Focus visible mejorado para todos los elementos interactivos */
+:focus-visible {
+  outline: 3px solid var(--primary, #0066cc);
+  outline-offset: 2px;
+}
+
+/* Alternativa para navegadores sin :focus-visible */
+.js-focus-visible :focus:not(.focus-visible) {
+  outline: none;
+}
+
+.js-focus-visible .focus-visible {
+  outline: 3px solid var(--primary, #0066cc);
+  outline-offset: 2px;
+}
+
+/* Focus para botones */
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 3px solid var(--primary, #0066cc);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.2);
+}
+
+/* Focus para links */
+a:focus-visible {
+  outline: 3px solid var(--primary, #0066cc);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Focus para inputs */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--primary, #0066cc);
+  outline-offset: 0;
+  border-color: var(--primary, #0066cc);
+}
+
+/* ============================================
+   Modo de Alto Contraste
+   ============================================ */
+
+@media (prefers-contrast: high) {
+  :root {
+    --primary: #0000ff;
+    --text-primary: #000000;
+    --text-secondary: #333333;
+    --surface-primary: #ffffff;
+    --surface-secondary: #f0f0f0;
+    --border-default: #000000;
+  }
+
+  body.night {
+    --primary: #00ccff;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --surface-primary: #000000;
+    --surface-secondary: #111111;
+    --border-default: #ffffff;
+  }
+
+  /* Bordes más visibles */
+  button,
+  input,
+  select,
+  textarea,
+  .card {
+    border: 2px solid currentColor !important;
+  }
+
+  /* Links subrayados */
+  a {
+    text-decoration: underline !important;
+  }
+}
+
+/* ============================================
+   Movimiento Reducido - WCAG 2.3.3
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Mantener algunas transiciones críticas pero más rápidas */
+  .allow-motion {
+    transition-duration: 0.1s !important;
+  }
+}
+
+/* ============================================
+   Tamaño de Texto - WCAG 1.4.4
+   ============================================ */
+
+/* Respetar preferencias de tamaño de texto del usuario */
+html {
+  font-size: 100%; /* 16px base */
+}
+
+/* Asegurar que el texto puede escalarse hasta 200% */
+body {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* ============================================
+   Colores y Contraste - WCAG 1.4.3
+   ============================================ */
+
+/* Modo de color forzado (Windows High Contrast) */
+@media (forced-colors: active) {
+  .btn,
+  button {
+    border: 2px solid ButtonText;
+  }
+
+  .btn:hover,
+  button:hover {
+    border-color: Highlight;
+  }
+
+  a {
+    color: LinkText;
+  }
+
+  a:visited {
+    color: VisitedText;
+  }
+
+  :focus {
+    outline: 3px solid Highlight;
+  }
+}
+
+/* ============================================
+   Accessible Icon
+   ============================================ */
+
+.a11y-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================
+   Indicadores de Estado Accesibles
+   ============================================ */
+
+/* Error state */
+[aria-invalid="true"] {
+  border-color: #dc2626 !important;
+}
+
+[aria-invalid="true"]:focus {
+  outline-color: #dc2626;
+}
+
+/* Required fields */
+[aria-required="true"]::after {
+  content: " *";
+  color: #dc2626;
+}
+
+/* Disabled state */
+[aria-disabled="true"],
+:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Loading state */
+[aria-busy="true"] {
+  cursor: wait;
+}
+
+/* ============================================
+   Touch Targets - WCAG 2.5.5
+   ============================================ */
+
+/* Mínimo 44x44px para targets táctiles */
+@media (pointer: coarse) {
+  button,
+  [role="button"],
+  a,
+  input[type="checkbox"],
+  input[type="radio"],
+  select {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Espaciado entre elementos táctiles */
+  .touch-target-spacing > * + * {
+    margin-top: 8px;
+  }
+}

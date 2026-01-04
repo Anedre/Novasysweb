@@ -48,54 +48,38 @@ function Footer() {
           </p>
         </div>
 
-        {/* Sección Contáctanos */}
-        <div className="footer-section">
+        {/* Sección Contáctanos - Compacta */}
+        <div className="footer-section footer-contact">
           <h3>Contáctanos</h3>
-          <p>
-            <FaMapMarkerAlt className="contact-icon" />{" "}
-            <a 
-              href="https://maps.app.goo.gl/rwoHrEs1r5V21fPM7" 
-              target="_blank" 
-              rel="noopener noreferrer">
-              Narciso de la Colina 421, Miraflores, Lima
+          <div className="contact-list">
+            <a href="https://maps.app.goo.gl/rwoHrEs1r5V21fPM7" target="_blank" rel="noopener noreferrer" className="contact-item">
+              <span className="contact-icon-wrapper"><FaMapMarkerAlt /></span>
+              <span>Narciso de la Colina 421, Miraflores</span>
             </a>
-          </p>
-          <p>
-            <FaPhoneAlt className="contact-icon" />{" "}
             { isMobile ? (
-              <a href={`tel:${phoneNumber}`}>
-                {phoneNumber}
+              <a href={`tel:${phoneNumber}`} className="contact-item">
+                <span className="contact-icon-wrapper"><FaPhoneAlt /></span>
+                <span>{phoneNumber}</span>
               </a>
             ) : (
-              <a href="#" onClick={handlePhoneClick}>
-                {phoneNumber}
+              <a href="#" onClick={handlePhoneClick} className="contact-item">
+                <span className="contact-icon-wrapper"><FaPhoneAlt /></span>
+                <span>{phoneNumber}</span>
               </a>
             )}
-          </p>
-          <p>
-            <FaEnvelope className="contact-icon" />{" "}
-            <a href="mailto:contacto@novasysperu.com">
-              contacto@novasysperu.com
+            <a href="mailto:contacto@novasysperu.com" className="contact-item">
+              <span className="contact-icon-wrapper"><FaEnvelope /></span>
+              <span>contacto@novasysperu.com</span>
             </a>
-          </p>
-          <p>
-            <FaClock className="contact-icon" />{" "}
-            <a 
-              href="https://g.co/kgs/anpBbMF" 
-              target="_blank" 
-              rel="noopener noreferrer">
-              Lunes a Viernes 9:00 – 18:00
+            <a href="https://g.co/kgs/anpBbMF" target="_blank" rel="noopener noreferrer" className="contact-item">
+              <span className="contact-icon-wrapper"><FaClock /></span>
+              <span>Lun - Vie: 9:00 – 18:00</span>
             </a>
-          </p>
-          <p>
-            <FaWhatsapp className="contact-icon" />{" "}
-            <a 
-              href={`https://wa.me/${whatsappNumber}`} 
-              target="_blank" 
-              rel="noopener noreferrer">
-              +51-908825660
+            <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="contact-item whatsapp">
+              <span className="contact-icon-wrapper"><FaWhatsapp /></span>
+              <span>+51 908 825 660</span>
             </a>
-          </p>
+          </div>
         </div>
 
         {/* Sección Enlaces Rápidos */}
@@ -103,12 +87,12 @@ function Footer() {
           <h3>Enlaces Rápidos</h3>
           <ul>
             <li><a href="/"><FaCircle className="quick-link-icon" /> Inicio</a></li>
-            <li><a href="/eventos"><FaCircle className="quick-link-icon" /> Eventos</a></li>
-            <li><a href="/nosotros"><FaCircle className="quick-link-icon" /> Nosotros</a></li>
-            <li><a href="/soluciones-novasys"><FaCircle className="quick-link-icon" /> Soluciones Novasys</a></li>
-            <li><a href="/soluciones-hp"><FaCircle className="quick-link-icon" /> Soluciones HP</a></li>
-            <li><a href="/casos-de-exito"><FaCircle className="quick-link-icon" /> Casos de Éxito</a></li>
-            <li><a href="/contacto"><FaCircle className="quick-link-icon" /> Contacto</a></li>
+            <li><a href="/Eventos"><FaCircle className="quick-link-icon" /> Eventos</a></li>
+            <li><a href="/Nosotros"><FaCircle className="quick-link-icon" /> Nosotros</a></li>
+            <li><a href="/Soluciones_Novasys"><FaCircle className="quick-link-icon" /> Soluciones Novasys</a></li>
+            <li><a href="/SolucionesHPmain"><FaCircle className="quick-link-icon" /> Soluciones HP</a></li>
+            <li><a href="/Casos_de_exito"><FaCircle className="quick-link-icon" /> Casos de Éxito</a></li>
+            <li><a href="/Contacto"><FaCircle className="quick-link-icon" /> Contacto</a></li>
           </ul>
         </div>
 
@@ -137,7 +121,7 @@ function Footer() {
 
 
       <div className="footer-bottom">
-        <p>&copy; 2025 Novasys del Peru. Todos los derechos reservados.</p>
+        <p>&copy; 2026 Novasys del Peru. Todos los derechos reservados.</p>
       </div>
     </footer>
   );

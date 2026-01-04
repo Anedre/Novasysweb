@@ -1,0 +1,13 @@
+/* ============================================
+   SolucionesHPNew - Estilos Base
+   Página principal con componentes modulares
+   ============================================ */
+
+.hp-main-page {
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+.hp-main-page.night {
+  background: #0a1628;
+}

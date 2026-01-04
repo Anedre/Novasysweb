@@ -1,219 +1,521 @@
-/* El footer ocupa el 100% del ancho y su fondo se extiende a lo largo de la pantalla */
+/* Footer.css - Diseño Tecnológico con Efectos Modernos */
+
+/* ==========================================================
+   FOOTER - Variables y Base
+   ========================================================== */
 .footer {
+  --footer-bg: #0a0a0d;
+  --footer-text: #ffffff;
+  --footer-text-secondary: #a0a0a0;
+  --footer-text-muted: #606060;
+  --footer-border: rgba(255, 255, 255, 0.06);
+  --footer-primary: #c62828;
+  --footer-accent: #3b82f6;
+  --glow-primary: rgba(198, 40, 40, 0.4);
+  --glow-accent: rgba(59, 130, 246, 0.3);
+  
   width: 100%;
-  color: #fff;
-  padding: 2.5% 5%;
+  color: var(--footer-text);
+  padding: 60px 5% 0;
   position: relative;
-  background: #222;  /* Puedes ajustar el fondo a tu gusto */
-  
+  background: var(--footer-bg);
+  font-family: 'Inter', -apple-system, sans-serif;
+  overflow: hidden;
 }
-  /* ------------------------- */
-  /* Footer                   */
-  /* ------------------------- */
-  body.day .footer a{
-  color: #ffffff; /* Color claro para modo día */   
-  }
-  body.day .footer {
- 
-  background: #1a1a1a; /* Fondo oscuro para modo noche */
+
+/* Línea decorativa superior con gradiente animado */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    var(--footer-primary) 0%, 
+    #ef5350 20%, 
+    var(--footer-accent) 40%, 
+    #14b8a6 60%, 
+    #8b5cf6 80%, 
+    var(--footer-primary) 100%);
+  background-size: 200% 100%;
+  animation: gradientMove 8s linear infinite;
+  z-index: 1;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
+
+/* ==========================================================
+   MODO DÍA - Diseño claro profesional
+   ========================================================== */
+body.day .footer {
+  --footer-bg: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+  --footer-text: #1e293b;
+  --footer-text-secondary: #475569;
+  --footer-text-muted: #94a3b8;
+  --footer-border: rgba(0, 0, 0, 0.08);
+  --footer-primary: #e91e63;
+  --footer-accent: #667eea;
+  --glow-primary: rgba(233, 30, 99, 0.2);
+  --glow-accent: rgba(102, 126, 234, 0.2);
+  background: var(--footer-bg);
+}
+
+
+
+body.day .footer-section img {
+  filter: brightness(1) contrast(1.1);
+}
+
+body.day .footer-section h3 {
+  color: var(--footer-text);
+}
+
+body.day .footer-section p,
+body.day .footer-section ul li a {
+  color: var(--footer-text-secondary);
+}
+
+body.day .footer-section ul li a:hover {
+  color: var(--footer-primary);
+}
+
+body.day .footer-section p a:hover {
+  color: var(--footer-primary);
+}
+
+body.day .footer-social a {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: var(--footer-text-secondary);
+}
+
+body.day .footer-social a:hover {
+  background: var(--footer-primary);
+  border-color: var(--footer-primary);
   color: #fff;
 }
 
+body.day .footer-bottom {
+  background: rgba(0, 0, 0, 0.03);
+  border-top-color: rgba(0, 0, 0, 0.06);
+}
+
+body.day .footer-bottom p {
+  color: var(--footer-text-muted);
+}
+
+body.day .footer a {
+  color: var(--footer-text-secondary);
+}
+
+/* ==========================================================
+   MODO NOCHE
+   ========================================================== */
 body.night .footer {
-   background: #0000009d; /* Fondo claro para modo día */
-  color: #fff;
-}
- 
-  
-  footer h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  footer p {
-    margin-bottom: 0.5rem;
-  }
-
-
-.footer-section img {
-  width: 100px;
-  height: auto;
+  --footer-bg: #050506;
 }
 
-/* Contenedor interno que centra el contenido y limita su ancho */
+/* ==========================================================
+   CONTAINER
+   ========================================================== */
 .footer-container {
   width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1.5fr 1.2fr 1fr 1fr;
+  gap: 40px;
+  position: relative;
+  z-index: 1;
 }
 
+/* ==========================================================
+   SECCIONES
+   ========================================================== */
 .footer-section {
-  flex: 1;
-  margin: 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-section img {
+  width: 140px;
+  height: auto;
+  margin-bottom: 8px;
+  filter: brightness(1.3);
 }
 
 .footer-section h3 {
-  border-bottom: 1px solid #2f4adf;
-  padding-bottom: 0.5rem;
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-  color: #f82929;
-  text-align: left;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--footer-text);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding-bottom: 10px;
+  margin-bottom: 4px;
+  border-bottom: none;
+  position: relative;
 }
 
-.footer-section p,
-.footer-section ul li a {
-  font-size: 0.9rem;
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
+.footer-section h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--footer-primary) 0%, #ef5350 100%);
+  border-radius: 2px;
+  box-shadow: 0 0 10px var(--glow-primary);
+}
 
+.footer-section p {
+  font-size: 0.875rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--footer-text-secondary);
+  margin-bottom: 8px;
 }
 
 .footer-section p a {
+  color: var(--footer-text-secondary);
   text-decoration: none;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .footer-section p a:hover {
-  text-decoration: underline;
+  color: var(--footer-primary);
+  transform: translateX(4px);
+  text-shadow: 0 0 20px var(--glow-primary);
 }
 
+/* ==========================================================
+   SECCIÓN CONTACTO - Compacta con iconos en línea
+   ========================================================== */
+.footer-contact .contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--footer-text-secondary);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.92rem;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+  background: rgba(198, 40, 40, 0.08);
+  border-color: rgba(198, 40, 40, 0.2);
+  color: var(--footer-text);
+  transform: translateX(6px);
+}
+
+.contact-item.whatsapp:hover {
+  background: rgba(37, 211, 102, 0.1);
+  border-color: rgba(37, 211, 102, 0.3);
+}
+
+.contact-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: rgba(198, 40, 40, 0.15);
+  border-radius: 8px;
+  color: var(--footer-primary);
+  font-size: 14px;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.contact-item:hover .contact-icon-wrapper {
+  background: var(--footer-primary);
+  color: #fff;
+  box-shadow: 0 4px 15px var(--glow-primary);
+}
+
+.contact-item.whatsapp .contact-icon-wrapper {
+  background: rgba(37, 211, 102, 0.15);
+  color: #25d366;
+}
+
+.contact-item.whatsapp:hover .contact-icon-wrapper {
+  background: #25d366;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+}
+
+/* Legacy icon support */
+.contact-icon {
+  margin-right: 14px;
+  color: var(--footer-primary);
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+/* ==========================================================
+   ENLACES RÁPIDOS
+   ========================================================== */
 .footer-section ul {
   list-style: none;
   padding: 0;
-}
-
-.footer-section ul li {
-  margin-bottom: 0.5rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .footer-section ul li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
   text-decoration: none;
-  color: inherit;
+  color: var(--footer-text-secondary);
+  transition: all 0.25s ease;
+  padding: 4px 0;
 }
 
 .footer-section ul li a:hover {
-  text-decoration: underline;
+  color: var(--footer-primary);
+  transform: translateX(8px);
+  text-shadow: 0 0 15px var(--glow-primary);
 }
 
-/* Íconos en contáctanos */
-.contact-icon {
-  margin-right: 0.5rem;
-  color: #2f4adf; /* Color de los íconos, se puede ajustar */
+.quick-link-icon {
+  font-size: 5px;
+  color: var(--footer-primary);
+  opacity: 0.8;
+  transition: all 0.3s ease;
 }
 
-/* Sección Social Media */
+.footer-section ul li a:hover .quick-link-icon {
+  transform: scale(1.5);
+  box-shadow: 0 0 10px var(--footer-primary);
+  border-radius: 50%;
+}
+
+/* ==========================================================
+   REDES SOCIALES
+   ========================================================== */
 .footer-social {
   text-align: center;
-  margin: 2rem 0;
+  padding: 30px 0;
+  margin-top: 40px;
+  border-top: 1px solid var(--footer-border);
+  display: flex;
+  justify-content: center;
+  gap: 12px;
 }
 
 .footer-social a {
-  color: #5f5f5f;
-  margin: 0 0.5rem;
-  font-size: 1.5rem;
-  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: var(--footer-text-secondary);
+  font-size: 18px;
+  transition: all 0.3s ease;
 }
 
-
-
-/* Footer inferior */
-.footer-bottom {
-  text-align: center;
-  margin-top: 2rem;
-  border-top: 1px solid #444;
-  padding-top: 1rem;
-  
+.footer-social a:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
-.footer-bottom p{
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: bold;
-  font-size: 1rem;
-}
-
 
 .footer-social a.facebook:hover {
-  color: #1877F2; /* Facebook */
+  background: #1877F2;
+  border-color: #1877F2;
+  color: #ffffff;
+  box-shadow: 0 15px 40px rgba(24, 119, 242, 0.5);
 }
 
 .footer-social a.twitter:hover {
-  color: #1DA1F2; /* Twitter */
+  background: #1DA1F2;
+  border-color: #1DA1F2;
+  color: #ffffff;
+  box-shadow: 0 15px 40px rgba(29, 161, 242, 0.5);
 }
 
 .footer-social a.instagram:hover {
-  color: #E4405F; /* Instagram */
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: 0 15px 40px rgba(225, 48, 108, 0.5);
 }
 
 .footer-social a.linkedin:hover {
-  color: #0A66C2; /* LinkedIn */
+  background: #0A66C2;
+  border-color: #0A66C2;
+  color: #ffffff;
+  box-shadow: 0 15px 40px rgba(10, 102, 194, 0.5);
 }
 
-
-.footer-section p a,
-.footer-section ul li a {
-  display: inline-block;
-  transition: transform 0.3s ease;
-}
-
-.footer-section p a:hover,
-.footer-section ul li a:hover {
-  transform: translateX(8px);
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
 .footer-social .social-icon {
   transition: transform 0.3s ease;
-  display: inline-block;
 }
 
-.footer-social a.facebook:hover .social-icon {
-  transform: scale(1.5) rotate(15deg);
+.footer-social a:hover .social-icon {
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 8px currentColor);
 }
 
-.footer-social a.twitter:hover .social-icon {
-  transform: scale(1.5) rotate(-10deg);
+/* ==========================================================
+   FOOTER BOTTOM
+   ========================================================== */
+.footer-bottom {
+  text-align: center;
+  padding: 20px 0;
+  border-top: 1px solid var(--footer-border);
+  background: rgba(0, 0, 0, 0.5);
+  margin: 0 -5%;
+  padding-left: 5%;
+  padding-right: 5%;
+  position: relative;
+  z-index: 1;
 }
 
-.footer-social a.instagram:hover .social-icon {
-  transform: scale(1.5) rotate(20deg);
+.footer-bottom p {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: var(--footer-text-muted);
+  margin: 0;
+  letter-spacing: 0.03em;
 }
 
-.footer-social a.linkedin:hover .social-icon {
-  transform: scale(1.5) rotate(-15deg);
+/* Efecto glow sutil en el borde */
+.footer-bottom::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--footer-primary), transparent);
+  opacity: 0.5;
 }
 
-
-
-
-
-
-
-
-
-/* Ajustes para pantallas pequeñas */
-@media (max-width: 768px) {
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+@media (max-width: 1100px) {
   .footer-container {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0 3rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
   }
-  .footer-section {
-    width: 100%;
-    margin: 1rem 0;
-    text-align: left;
-  }
-  .footer-bottom {
-    text-align: center;
-    width: 100%;
-  }
+  
   .footer {
-    padding: 2rem 2rem;
+    padding: 80px 5% 0;
   }
 }
-.quick-link-icon {
-  margin-right: 0.5rem;
-  font-size: 0.2rem; /* Un tamaño pequeño para un punto sutil */
-  vertical-align: middle;
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 70px 5% 0;
+  }
+  
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 50px;
+    text-align: center;
+  }
+  
+  .footer-section {
+    align-items: center;
+  }
+  
+  .footer-section h3::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .footer-section ul {
+    align-items: center;
+  }
+  
+  .footer-section ul li a:hover {
+    transform: none;
+  }
+  
+  .footer-section p a:hover {
+    transform: none;
+  }
+  
+  .footer-section img {
+    width: 160px;
+  }
+  
+  .footer-social {
+    margin-top: 50px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
+  .footer-social a {
+    width: 52px;
+    height: 52px;
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 60px 4% 0;
+  }
+  
+  .footer-section img {
+    width: 140px;
+  }
+  
+  .footer-section h3 {
+    font-size: 1.1rem;
+  }
+  
+  .footer-section p,
+  .footer-section ul li a {
+    font-size: 1rem;
+  }
+  
+  .footer-social a {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+  
+  .footer-bottom {
+    padding: 24px 0;
+  }
+  
+  .footer-bottom p {
+    font-size: 0.9rem;
+  }
 }
 

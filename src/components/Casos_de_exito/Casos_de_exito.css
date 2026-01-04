@@ -16,7 +16,7 @@ body.night{
 }
 
 /* Sección */
-.CE-sigma{  color:var(--txt); padding:150px 70px; position:relative; }
+.CE-sigma{  color:var(--txt); padding:140px 70px 80px; position:relative; }
 .CE-sigma::before{
   content:""; position:absolute; inset:0; pointer-events:none;
   background: radial-gradient(1100px 480px at 8% -10%, rgba(199,167,112,.08), transparent 60%),

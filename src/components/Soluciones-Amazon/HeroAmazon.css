@@ -1,0 +1,572 @@
+/* ============================================
+   HeroAmazonNew.css - Hero AWS Modernizado
+   ============================================ */
+
+.ha-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 20px 60px;
+  overflow: hidden;
+}
+
+/* Background */
+.ha-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 50%, #232f3e 100%);
+  z-index: 0;
+}
+
+.ha-hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(255, 153, 0, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(236, 114, 17, 0.1) 0%, transparent 50%);
+}
+
+.ha-hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 153, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 153, 0, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.5;
+}
+
+.ha-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.ha-orb-1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255, 153, 0, 0.3) 0%, transparent 70%);
+  top: 10%;
+  left: 10%;
+}
+
+.ha-orb-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(236, 114, 17, 0.25) 0%, transparent 70%);
+  bottom: 10%;
+  right: 5%;
+}
+
+/* Content */
+.ha-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.ha-hero-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* Text */
+.ha-hero-text {
+  color: #fff;
+}
+
+.ha-hero-badge {
+  display: inline-block;
+  padding: 10px 24px;
+  background: rgba(255, 153, 0, 0.15);
+  border: 1px solid rgba(255, 153, 0, 0.3);
+  border-radius: 50px;
+  font-size: 0.95rem;
+  color: #ff9900;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.ha-hero-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 25px;
+}
+
+.ha-title-line {
+  display: block;
+  color: #fff;
+}
+
+.ha-title-highlight {
+  display: block;
+  background: linear-gradient(135deg, #ff9900 0%, #ec7211 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ha-hero-desc {
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+  margin-bottom: 35px;
+  max-width: 500px;
+}
+
+/* Actions */
+.ha-hero-actions {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+}
+
+.ha-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 30px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.ha-btn-primary {
+  background: linear-gradient(135deg, #ff9900 0%, #ec7211 100%);
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(255, 153, 0, 0.3);
+}
+
+.ha-btn-primary:hover {
+  box-shadow: 0 15px 40px rgba(255, 153, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.ha-btn-ghost {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.ha-btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Quick Stats */
+.ha-quick-stats {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.ha-qs-item {
+  text-align: center;
+}
+
+.ha-qs-value {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ff9900 0%, #ec7211 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ha-qs-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Visual */
+.ha-hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 450px;
+}
+
+/* Grid de servicios AWS */
+.ha-services-grid {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  width: 100%;
+  max-width: 450px;
+}
+
+.ha-grid-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.ha-row-top,
+.ha-row-bottom {
+  padding: 0 30px;
+}
+
+.ha-row-middle {
+  align-items: center;
+  gap: 15px;
+}
+
+/* Tarjetas de servicios */
+.ha-service-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  background: rgba(20, 20, 35, 0.85);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--color, rgba(255, 153, 0, 0.4));
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  min-width: 100px;
+}
+
+.ha-service-card:hover {
+  border-color: var(--color, #ff9900);
+  box-shadow: 
+    0 15px 40px rgba(0, 0, 0, 0.4),
+    0 0 25px color-mix(in srgb, var(--color) 30%, transparent);
+}
+
+.ha-card-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, var(--color, rgba(255, 153, 0, 0.1)) 0%, transparent 70%);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.ha-card-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  position: relative;
+  z-index: 1;
+}
+
+.ha-card-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+/* Centro principal */
+.ha-center-hero {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ha-center-rings {
+  position: absolute;
+  inset: -20px;
+}
+
+.ha-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px dashed rgba(255, 153, 0, 0.3);
+}
+
+.ha-ring-1 {
+  inset: 0;
+  border-color: rgba(255, 153, 0, 0.4);
+}
+
+.ha-ring-2 {
+  inset: -15px;
+  border-color: rgba(255, 153, 0, 0.2);
+}
+
+.ha-center-content {
+  position: relative;
+  z-index: 2;
+  width: 110px;
+  height: 110px;
+  background: linear-gradient(145deg, rgba(255, 153, 0, 0.2), rgba(236, 114, 17, 0.3));
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 2px solid rgba(255, 153, 0, 0.5);
+  box-shadow: 
+    0 0 40px rgba(255, 153, 0, 0.3),
+    inset 0 0 25px rgba(255, 153, 0, 0.1);
+}
+
+.ha-center-content img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 10px rgba(255, 153, 0, 0.4));
+}
+
+.ha-center-content span {
+  font-size: 0.65rem;
+  color: #ff9900;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Líneas conectoras SVG */
+.ha-connectors {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Partículas de datos */
+.ha-data-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ha-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #ff9900;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #ff9900, 0 0 20px rgba(255, 153, 0, 0.5);
+}
+
+.ha-particle:nth-child(1) { top: 20%; left: 20%; }
+.ha-particle:nth-child(2) { top: 15%; right: 25%; }
+.ha-particle:nth-child(3) { top: 50%; right: 10%; }
+.ha-particle:nth-child(4) { bottom: 30%; right: 20%; }
+.ha-particle:nth-child(5) { bottom: 20%; left: 15%; }
+.ha-particle:nth-child(6) { top: 40%; left: 5%; }
+
+/* Orb adicional */
+.ha-orb-3 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(82, 127, 255, 0.2) 0%, transparent 70%);
+  top: 50%;
+  right: 20%;
+}
+
+/* Scroll Indicator */
+.ha-scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.2rem;
+  z-index: 10;
+}
+
+/* Night mode */
+.night .ha-hero-bg {
+  background: linear-gradient(135deg, #0a0a15 0%, #050510 50%, #121a25 100%);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .ha-hero-layout {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 50px;
+  }
+
+  .ha-hero-text {
+    order: 1;
+  }
+
+  .ha-hero-visual {
+    order: 0;
+    min-height: 350px;
+  }
+
+  .ha-hero-desc {
+    max-width: 100%;
+  }
+
+  .ha-hero-actions {
+    justify-content: center;
+  }
+
+  .ha-quick-stats {
+    justify-content: center;
+  }
+
+  .ha-services-grid {
+    max-width: 380px;
+    gap: 15px;
+  }
+
+  .ha-grid-row {
+    gap: 15px;
+  }
+
+  .ha-service-card {
+    padding: 12px 16px;
+    min-width: 85px;
+  }
+
+  .ha-card-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .ha-card-name {
+    font-size: 0.7rem;
+  }
+
+  .ha-center-hero {
+    width: 110px;
+    height: 110px;
+  }
+
+  .ha-center-content {
+    width: 90px;
+    height: 90px;
+  }
+
+  .ha-center-content img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ha-hero {
+    padding: 80px 15px 40px;
+  }
+
+  .ha-hero-title {
+    font-size: 2.2rem;
+  }
+
+  .ha-quick-stats {
+    gap: 25px;
+  }
+
+  .ha-qs-item {
+    flex: 1 1 40%;
+  }
+
+  .ha-qs-value {
+    font-size: 1.5rem;
+  }
+
+  .ha-hero-visual {
+    min-height: 300px;
+  }
+
+  .ha-services-grid {
+    max-width: 320px;
+    gap: 12px;
+  }
+
+  .ha-grid-row {
+    gap: 10px;
+  }
+
+  .ha-service-card {
+    padding: 10px 12px;
+    min-width: 70px;
+  }
+
+  .ha-card-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .ha-card-name {
+    font-size: 0.65rem;
+  }
+
+  .ha-center-hero {
+    width: 90px;
+    height: 90px;
+  }
+
+  .ha-center-content {
+    width: 75px;
+    height: 75px;
+  }
+
+  .ha-center-content img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .ha-center-content span {
+    font-size: 0.55rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ha-hero-actions {
+    flex-direction: column;
+  }
+
+  .ha-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .ha-row-middle .ha-service-card {
+    display: none;
+  }
+
+  .ha-services-grid {
+    max-width: 280px;
+  }
+
+  .ha-grid-row {
+    flex-wrap: wrap;
+  }
+}

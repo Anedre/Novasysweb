@@ -1,430 +1,631 @@
-/* ========= GLOBAL ========= */
-.SolucionesHP-Enterprise {
-  padding: 150px 200px;
-  font-family: 'Inter', sans-serif;
-  height: 100vh;
+/* ============================================
+   HP Enterprise Page - Modernizada
+   Color principal: #01a982 (HPE Green)
+   ============================================ */
+
+/* Page Container */
+.hpe-page {
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+.hpe-page.night {
+  background: #0a1628;
+}
+
+/* ========================================
+   Hero Section
+   ======================================== */
+.hpe-hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 20px 80px;
+  overflow: hidden;
+}
+
+.hpe-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #0a1628 0%, #0d2137 50%, #061420 100%);
+  z-index: 0;
+}
+
+.hpe-page.night .hpe-hero-bg {
+  background: linear-gradient(135deg, #050a12 0%, #0a1525 50%, #030810 100%);
+}
+
+.hpe-gradient {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 80% 50% at 20% 40%, rgba(1, 169, 130, 0.15), transparent 50%),
+    radial-gradient(ellipse 60% 40% at 80% 60%, rgba(0, 179, 136, 0.1), transparent 50%);
+}
+
+.hpe-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+}
+
+.hpe-orb-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(1, 169, 130, 0.25), transparent 60%);
+  top: -150px;
+  right: -100px;
+}
+
+.hpe-orb-2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0, 179, 136, 0.2), transparent 60%);
+  bottom: -100px;
+  left: -100px;
+}
+
+/* Hero Content */
+.hpe-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.hpe-hero-text {
+  color: #fff;
+}
+
+.hpe-badge {
+  display: inline-block;
+  padding: 10px 22px;
+  background: rgba(1, 169, 130, 0.15);
+  border: 1px solid rgba(1, 169, 130, 0.4);
+  border-radius: 30px;
+  color: #01a982;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.hpe-title {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 25px;
+}
+
+.hpe-title-line {
+  font-size: 3.2rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #fff;
+}
+
+.hpe-title-highlight {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #01a982;
+}
+
+.hpe-desc {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 30px;
+  max-width: 500px;
+}
+
+/* Actions */
+.hpe-actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.hpe-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 26px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.hpe-btn-primary {
+  background: linear-gradient(135deg, #01a982 0%, #00b388 100%);
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(1, 169, 130, 0.3);
+}
+
+.hpe-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(1, 169, 130, 0.4);
+}
+
+.hpe-btn-ghost {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hpe-btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(1, 169, 130, 0.5);
+}
+
+/* Stats */
+.hpe-stats {
+  display: flex;
+  gap: 35px;
+  flex-wrap: wrap;
+}
+
+.hpe-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hpe-stat-value {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #01a982;
+}
+
+.hpe-stat-label {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Hero Visual */
+.hpe-hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hpe-logo-container {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hpe-logo-img {
+  width: 160px;
+  height: auto;
+  filter: brightness(0) invert(1);
+  z-index: 2;
+  position: relative;
+}
+
+.hpe-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px dashed rgba(1, 169, 130, 0.3);
+}
+
+.hpe-ring-1 {
+  width: 220px;
+  height: 220px;
+  animation: hpe-rotate 20s linear infinite;
+}
+
+.hpe-ring-2 {
+  width: 300px;
+  height: 300px;
+  border-color: rgba(0, 179, 136, 0.2);
+  animation: hpe-rotate-reverse 25s linear infinite;
+}
+
+@keyframes hpe-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes hpe-rotate-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+/* ========================================
+   Products Section
+   ======================================== */
+.hpe-products {
+  padding: 100px 20px;
+  background: #f8fafc;
+}
+
+.hpe-page.night .hpe-products {
+  background: #0d1b2a;
+}
+
+.hpe-products-content {
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-/* ========= ENCABEZADO ========= */
-.SEcontent {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 40px;
-  align-items: flex-start;
+/* Header */
+.hpe-products-header {
+  text-align: center;
   margin-bottom: 60px;
 }
 
-.SEtexto {
-  flex: 1;
-  min-width: 280px;
-}
-
-.SEtexto h1 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  font-family: 'Poppins', sans-serif;
-}
-
-.SEtexto p {
-  font-size: 1.1rem;
-  color: #444;
-  line-height: 1.6;
-}
-
-.SEcontact {
-  flex: 1;
-  min-width: 280px;
-  background: linear-gradient(135deg, #f1faff, #e5f2ff);
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-  text-align: center;
-}
-
-.SEcontact a{
-  color: #ffffff !important;
-  font-family: 'Poppins', sans-serif;
-}
-
-.SEcontact h2 {
-  font-size: 1.4rem;
-  margin-bottom: 12px;
-  font-family: 'Poppins', sans-serif;
-}
-
-.SEcontact p {
-  font-size: 1rem;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-/* ========= SUBTÍTULO ========= */
-.SEsubtitulo {
-  text-align: center;
-  font-size: 1.6rem;
+.hpe-section-badge {
+  display: inline-block;
+  padding: 8px 20px;
+  background: rgba(1, 169, 130, 0.1);
+  border: 1px solid rgba(1, 169, 130, 0.3);
+  border-radius: 30px;
+  color: #01a982;
+  font-size: 0.9rem;
   font-weight: 600;
-  margin-top: 60px;
-  margin-bottom: 30px;
-  color: #1a1a1a;
-  font-family: 'Poppins', sans-serif;
-}
-
-/* ========= CARDS ========= */
-.SEcards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 40px;
-  padding-bottom: 60px;
-}
-
-.SEcard {
-  background: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  padding: 30px 20px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s ease;
-}
-
-.SEcard:hover {
-  transform: translateY(-8px);
-  box-shadow:
-    0 12px 24px rgba(0, 0, 0, 0.2),
-    0 0 40px rgba(162, 80, 255, 0.2);
-}
-body.night .SEcard:hover {
-  box-shadow:
-    0 12px 24px rgba(0, 0, 0, 0.5),
-    0 0 40px rgba(217, 90, 255, 0.3);
-}
-.emoji-block {
-  font-size: 3rem;
-  margin-bottom: 16px;
-  transition: transform 0.3s ease;
-}
-
-.SEcard:hover .emoji-block {
-  transform: scale(1.1) rotate(5deg);
-}
-
-.SEcard h3 {
-  font-size: 1.4rem;
-  margin-bottom: 12px;
-  font-family: 'Poppins', sans-serif;
-}
-
-.SEcard p {
-  font-size: 1rem;
-  color: #333;
   margin-bottom: 20px;
-  line-height: 1.5;
-  z-index: 1;
-  position: relative;
 }
 
-/* ========= OVERLAY INFO GLASS ========= */
-.extra-info {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding: 30px 20px;
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+.hpe-section-title {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  border-radius: 16px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease, box-shadow 0.4s ease;
-  z-index: 2;
+  gap: 5px;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 15px;
 }
 
-.SEcard:hover .extra-info {
-  opacity: 1;
-  pointer-events: auto;
-  box-shadow: 0 0 24px 6px rgba(0, 122, 255, 0.35);
-}
-
-.extra-info .emoji-overlay {
-  font-size: 4rem;
-  margin-bottom: 18px;
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
-}
-
-
-.extra-info p {
-  font-size: 1rem;
-  color:#1a1a1a;
-  line-height: 1.5;
-}
-
-
-/* ========= BOTÓN ========= */
-.info-btn {
-  background: linear-gradient(135deg, #004aad, #007bff);
+.hpe-page.night .hpe-section-title {
   color: #fff;
-  border: none;
-  padding: 12px 28px;
-  font-size: 1rem;
+}
+
+.hpe-section-sub {
+  font-size: 1.5rem;
   font-weight: 600;
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 122, 255, 0.3);
+  color: #01a982;
+}
+
+.hpe-section-desc {
+  font-size: 1.1rem;
+  color: #64748b;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.hpe-page.night .hpe-section-desc {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* Products Grid */
+.hpe-products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+/* Product Card */
+.hpe-product-card {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
   transition: all 0.3s ease;
+  cursor: default;
+}
+
+.hpe-page.night .hpe-product-card {
+  background: rgba(15, 25, 45, 0.7);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.hpe-product-card:hover {
+  border-color: var(--card-color, #01a982);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+.hpe-page.night .hpe-product-card:hover {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.hpe-card-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.hpe-card-icon {
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(1, 169, 130, 0.1), rgba(1, 169, 130, 0.05));
+  border-radius: 14px;
+  font-size: 1.6rem;
+}
+
+.hpe-card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.hpe-page.night .hpe-card-title {
+  color: #fff;
+}
+
+.hpe-card-desc {
+  font-size: 0.9rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.hpe-page.night .hpe-card-desc {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Product Tags */
+.hpe-card-products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.hpe-product-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: rgba(1, 169, 130, 0.08);
+  border-radius: 8px;
+}
+
+.hpe-product-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.hpe-page.night .hpe-product-name {
+  color: #fff;
+}
+
+.hpe-product-badge {
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  background: var(--card-color, #01a982);
+  color: #fff;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+/* Features */
+.hpe-card-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-grow: 1;
+}
+
+.hpe-card-features li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.hpe-page.night .hpe-card-features li {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.hpe-check {
+  color: var(--card-color, #01a982);
+  font-weight: bold;
+}
+
+.hpe-card-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  color: var(--card-color, #01a982);
+  font-size: 0.9rem;
+  font-weight: 600;
   text-decoration: none;
+  transition: gap 0.3s ease;
 }
 
-.info-btn:hover {
-  background: #005ce6;
+.hpe-card-link:hover {
+  gap: 12px;
+}
+
+/* ========================================
+   CTA Section
+   ======================================== */
+.hpe-cta {
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #0a1628 0%, #0d2137 100%);
+}
+
+.hpe-cta-content {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 50px;
+  background: linear-gradient(135deg, rgba(1, 169, 130, 0.1), rgba(0, 179, 136, 0.08));
+  border: 1px solid rgba(1, 169, 130, 0.2);
+  border-radius: 24px;
+}
+
+.hpe-cta-text h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.hpe-cta-text p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  max-width: 450px;
+}
+
+.hpe-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #01a982 0%, #00b388 100%);
+  color: #fff;
+  border-radius: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(1, 169, 130, 0.3);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.hpe-cta-btn:hover {
   transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(1, 169, 130, 0.4);
 }
 
-.arrow {
-  transition: transform 0.2s;
-}
-
-.info-btn:hover .arrow {
-  transform: translateX(5px);
-}
-
-
-
-body.night .SEtexto h1,
-body.night .SEsubtitulo,
-body.night .SEcontact h2,
-body.night .SEcard h3 {
-  color: #f1f1f1;
-}
-
-body.night .SEtexto p,
-body.night .SEcontact p,
-body.night .SEcard p,
-body.night .extra-info {
-  color: #cfcfcf;
-}
-
-body.night .SEcontact {
-  background: linear-gradient(135deg, #1e1e2f, #2d2d44);
-  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.05);
-}
-
-body.night .SEcard {
-  background-color: #1e1e1e;
-  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.05);
-}
-
-body.night .extra-info {
-  background: rgba(50, 50, 50, 0.7);
-  backdrop-filter: blur(10px);
-  color: #e0e0e0;
-}
-
-body.night .info-btn {
-  background: linear-gradient(135deg, #004aad, #005fff);
-  box-shadow: 0 4px 8px rgba(0, 122, 255, 0.4);
-}
-
-body.night .info-btn:hover {
-  background: #003bb5;
-}
-/* ---------- MOBILE PEQUEÑO (hasta 480px) ---------- */
-@media (max-width: 480px) {
-  .SolucionesHP-Enterprise {
-    padding: 24px 4px 40px 4px;
-    height: auto;
-    min-height: 100vh;
-    box-sizing: border-box;
-    max-width: 100vw;
-  }
-  .SEcontent {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 18px;
-    margin-bottom: 36px;
-  }
-  .SEtexto, .SEcontact {
-    min-width: unset;
-    width: 100%;
-    padding: 14px 4px;
-    border-radius: 10px;
-    box-sizing: border-box;
-  }
-  .SEtexto h1 {
-    font-size: 1.35rem;
-    margin-bottom: 12px;
-  }
-  .SEtexto p {
-    font-size: 1rem;
-  }
-  .SEcontact h2 {
-    font-size: 1.05rem;
-    margin-bottom: 7px;
-  }
-  .SEcontact p {
-    font-size: 0.98rem;
-    margin-bottom: 10px;
-  }
-  .SEsubtitulo {
-    font-size: 1.08rem;
-    margin-top: 22px;
-    margin-bottom: 18px;
-  }
-  .SEcards {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    align-items: stretch;
-    padding: 0 2px 20px 2px;
-  }
-  .SEcard {
-    border-radius: 22px;
-    padding: 14px 10px 18px 10px;
-    background: #fff;
-    box-shadow: 0 2px 12px rgba(50,50,50,0.06);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: unset;
-    min-width: unset;
-    max-width: 96vw;
-    margin: 0 auto;
-    position: relative;
-    transition: box-shadow 0.3s;
-    overflow: visible; /* overlay ya no se muestra, pero si hay, que no moleste */
-  }
-  .SEcard .emoji-block {
-    font-size: 3.2rem;
-    margin-bottom: 10px;
-  }
-  .SEcard h3 {
-    font-size: 1.15rem;
-    font-weight: bold;
-    margin-bottom: 7px;
-    text-align: center;
-  }
-  .SEcard p {
-    font-size: 1.01rem;
-    color: #333;
-    margin-bottom: 0;
-    text-align: center;
-    line-height: 1.4;
-  }
-  .extra-info {
-    display: none !important; /* Elimina el overlay en mobile */
-  }
-  .info-btn {
-    width: 100%;
-    font-size: 0.99rem;
-    padding: 10px 0;
-    justify-content: center;
-  }
-}
-
-/* ---------- MOBILE/TABLET (481px - 768px) ---------- */
-@media (max-width: 768px) {
-  .SolucionesHP-Enterprise {
-    padding: 42px 12px 60px 12px;
-    min-height: 100vh;
-    height: auto;
-    max-width: 100vw;
-  }
-  .SEcontent {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 22px;
-    margin-bottom: 40px;
-  }
-  .SEtexto, .SEcontact {
-    min-width: unset;
-    width: 100%;
-    padding: 18px 8px;
-    border-radius: 14px;
-  }
-  .SEtexto h1 {
-    font-size: 1.6rem;
-  }
-  .SEcontact h2 {
-    font-size: 1.18rem;
-  }
-  .SEsubtitulo {
-    font-size: 1.2rem;
-    margin-top: 30px;
-    margin-bottom: 15px;
-  }
-  .SEcards {
+/* ========================================
+   Responsive
+   ======================================== */
+@media (max-width: 1024px) {
+  .hpe-hero-content {
     grid-template-columns: 1fr;
-    gap: 18px;
-    padding-bottom: 30px;
+    text-align: center;
+    gap: 50px;
   }
-  .SEcard {
-    padding: 18px 8px;
-    border-radius: 14px;
+
+  .hpe-hero-text {
+    order: 1;
   }
-  .emoji-block {
-    font-size: 2.3rem;
+
+  .hpe-hero-visual {
+    order: 0;
   }
-  .SEcard h3 {
-    font-size: 1.13rem;
+
+  .hpe-desc {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
-  .SEcard p {
-    font-size: 1.01rem;
+
+  .hpe-actions {
+    justify-content: center;
   }
-  .extra-info {
-    padding: 18px 8px;
-    border-radius: 12px;
-    font-size: 1rem;
+
+  .hpe-stats {
+    justify-content: center;
   }
-  .info-btn {
+
+  .hpe-products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .hpe-hero {
+    padding: 100px 15px 60px;
+    min-height: auto;
+  }
+
+  .hpe-title-line {
+    font-size: 2.4rem;
+  }
+
+  .hpe-title-highlight {
+    font-size: 1.3rem;
+  }
+
+  .hpe-products {
+    padding: 80px 15px;
+  }
+
+  .hpe-products-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .hpe-cta-content {
+    flex-direction: column;
+    text-align: center;
+    padding: 35px;
+  }
+
+  .hpe-cta-text p {
+    max-width: 100%;
+  }
+
+  .hpe-cta-btn {
     width: 100%;
-    font-size: 1rem;
-    padding: 11px 0;
     justify-content: center;
   }
 }
 
-/* ---------- TABLET GRANDE / DESKTOP CHICO (769px - 991px) ---------- */
-@media (max-width: 991px) {
-  .SolucionesHP-Enterprise {
-    padding: 60px 38px;
-    min-height: 100vh;
-    height: auto;
-    max-width: 100vw;
+@media (max-width: 480px) {
+  .hpe-actions {
+    flex-direction: column;
   }
-  .SEcontent {
-    gap: 34px;
-    margin-bottom: 44px;
+
+  .hpe-btn {
+    width: 100%;
+    justify-content: center;
   }
-  .SEtexto, .SEcontact {
-    min-width: 220px;
-    padding: 22px 12px;
-    border-radius: 16px;
+
+  .hpe-stats {
+    gap: 20px;
   }
-  .SEtexto h1 {
-    font-size: 2.1rem;
+
+  .hpe-product-card {
+    padding: 22px;
   }
-  .SEsubtitulo {
-    font-size: 1.25rem;
+
+  .hpe-logo-container {
+    width: 200px;
+    height: 200px;
   }
-  .SEcards {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 26px;
-    padding-bottom: 36px;
+
+  .hpe-logo-img {
+    width: 120px;
   }
-  .SEcard {
-    padding: 20px 14px;
-    border-radius: 16px;
+
+  .hpe-ring-1 {
+    width: 160px;
+    height: 160px;
+  }
+
+  .hpe-ring-2 {
+    width: 220px;
+    height: 220px;
   }
 }

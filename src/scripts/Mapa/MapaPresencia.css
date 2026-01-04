@@ -139,4 +139,37 @@
       font-size: 1.4rem;
     }
   }
-  
+
+/* ===== MODO DÍA - Estilos explícitos ===== */
+body:not(.night) .mapa-titulo {
+  color: #1a1a2e;
+}
+
+body:not(.night) .mapa-descripcion {
+  color: rgba(26, 26, 46, 0.65);
+}
+
+body:not(.night) .mapa-card {
+  background: #ffffff;
+  border: 1px solid rgba(26, 26, 46, 0.08);
+}
+
+body:not(.night) .mapa-card:hover {
+  background: #f8f8fa;
+  border-color: rgba(230, 43, 30, 0.2);
+}
+
+body:not(.night) .mapa-card strong {
+  color: #1a1a2e;
+}
+
+body:not(.night) .mapa-card p {
+  color: rgba(26, 26, 46, 0.6);
+}
+
+body:not(.night) .mapboxgl-popup-content {
+  background: #ffffff;
+  color: #1a1a2e;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}

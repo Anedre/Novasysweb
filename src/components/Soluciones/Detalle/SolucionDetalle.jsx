@@ -1,11 +1,10 @@
 // SolucionDetalle.jsx
-import React, { useEffect, useState,useRef  } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useMotionInView } from "../../../hooks/useMotionInView";
-
-
-
+import FAQSection from "./FAQSection";
+import solucionesFAQs from "./solucionesFAQs";
 
 import "./SolucionDetalle.css";
 
@@ -474,6 +473,15 @@ function SolucionDetalle() {
             </div>
           </div>
         </section>
+
+        {/* Sección FAQ */}
+        {solucionesFAQs[solucion.slug] && (
+          <FAQSection
+            title={`Preguntas Frecuentes sobre ${solucion.title}`}
+            subtitle="Resolvemos tus dudas más comunes sobre esta solución"
+            faqs={solucionesFAQs[solucion.slug]}
+          />
+        )}
 
         <section className="solucion-contacto">
           <div className="contacto-header mejorado">

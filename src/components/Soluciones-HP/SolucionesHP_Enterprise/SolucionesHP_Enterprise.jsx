@@ -1,108 +1,286 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { useNightMode } from "../../../hooks/useNightMode";
 import "./SolucionesHP_Enterprise.css";
-function useIsMobile(breakpoint = 480) {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= breakpoint);
-  useEffect(() => {
-    function onResize() {
-      setIsMobile(window.innerWidth <= breakpoint);
-    }
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, [breakpoint]);
-  return isMobile;
-}
+
+// Logo HPE
+import HPELogo from "../../../img/HP_enterprise.png";
+
+// Categorías de productos HPE
+const HPE_CATEGORIES = [
+  {
+    icon: "🖥️",
+    title: "Servidores ProLiant",
+    description: "Servidores rack y torre de última generación con gestión inteligente iLO.",
+    products: [
+      { name: "ProLiant DL", badge: "Rack" },
+      { name: "ProLiant ML", badge: "Torre" },
+      { name: "ProLiant Gen11", badge: "Nuevo" }
+    ],
+    features: ["Intel Xeon Scalable", "Hasta 8 GPUs", "iLO 6 con IA", "Eficiencia energética"],
+    color: "#01a982"
+  },
+  {
+    icon: "💾",
+    title: "Almacenamiento",
+    description: "Soluciones all-flash y híbridas con predicción de fallos basada en IA.",
+    products: [
+      { name: "HPE Alletra", badge: "All-Flash" },
+      { name: "HPE Nimble", badge: "Híbrido" },
+      { name: "HPE StoreOnce", badge: "Backup" }
+    ],
+    features: ["99.9999% uptime", "InfoSight Analytics", "Deduplicación", "Cloud-ready"],
+    color: "#00b388"
+  },
+  {
+    icon: "🌐",
+    title: "Networking Aruba",
+    description: "Redes empresariales seguras con WiFi 6E y SD-WAN inteligente.",
+    products: [
+      { name: "Aruba CX Switches", badge: "Switching" },
+      { name: "Aruba Access Points", badge: "WiFi 6E" },
+      { name: "Aruba EdgeConnect", badge: "SD-WAN" }
+    ],
+    features: ["Zero Trust Security", "AIOps", "Gestión cloud", "IoT ready"],
+    color: "#ff8300"
+  },
+  {
+    icon: "☁️",
+    title: "HPE GreenLake",
+    description: "Cloud híbrido as-a-Service con modelo de pago por uso flexible.",
+    products: [
+      { name: "GreenLake for Compute", badge: "IaaS" },
+      { name: "GreenLake for Storage", badge: "STaaS" },
+      { name: "GreenLake Private Cloud", badge: "PaaS" }
+    ],
+    features: ["On-premises", "Pay-per-use", "Edge to Cloud", "Gestión unificada"],
+    color: "#01a982"
+  },
+  {
+    icon: "🔧",
+    title: "Servicios HPE",
+    description: "Consultoría, implementación, soporte y servicios gestionados empresariales.",
+    products: [
+      { name: "HPE Pointnext", badge: "Consulting" },
+      { name: "HPE Tech Care", badge: "Support" },
+      { name: "HPE Complete Care", badge: "Managed" }
+    ],
+    features: ["SLA garantizado", "24/7 global", "Expertos certificados", "Proactive care"],
+    color: "#00b388"
+  },
+  {
+    icon: "🤖",
+    title: "Edge & IoT",
+    description: "Computación en el edge para manufactura, retail y operaciones distribuidas.",
+    products: [
+      { name: "HPE Edgeline", badge: "Edge Compute" },
+      { name: "HPE ProLiant e910", badge: "IoT" },
+      { name: "Aruba ESP", badge: "Platform" }
+    ],
+    features: ["Procesamiento local", "Baja latencia", "Rugged options", "IA en el edge"],
+    color: "#ff8300"
+  }
+];
+
+// Stats HPE
+const HPE_STATS = [
+  { value: "$28B", label: "Revenue anual" },
+  { value: "60K+", label: "Empleados" },
+  { value: "170+", label: "Países" },
+  { value: "#1", label: "en Servidores" }
+];
+
 function SolucionesHP_Enterprise() {
-  const isMobile = useIsMobile(480);
+  const isNight = useNightMode();
 
-   const soluciones = [
-    {
-      emoji: "🧠",
-      title: "Infraestructura Inteligente",
-      desc: "Soluciones para centros de datos híbridos, servidores HPE ProLiant y almacenamiento escalable.",
-      detalle: "💾 Optimiza tu infraestructura con servidores HPE Gen10+, almacenamiento Nimble y soluciones de virtualización.",
-      resumen: "Optimiza tus servidores y almacenamiento con HPE."
-    },
-    {
-      emoji: "☁️",
-      title: "Servicios en la Nube",
-      desc: "HPE GreenLake: consumo de nube híbrida, pago por uso, con control y seguridad empresarial.",
-      detalle: "🌐 Integra GreenLake para entornos híbridos con control de costes, escalabilidad automática y soporte local.",
-      resumen: "Nube híbrida y pago flexible con GreenLake."
-    },
-    {
-      emoji: "📡",
-      title: "Redes Empresariales",
-      desc: "Soluciones con Aruba para conectividad de alto rendimiento, segura y definida por software.",
-      detalle: "🔐 Redes seguras, WiFi 6, SD-WAN con análisis inteligente, integración IoT y visibilidad de usuarios y dispositivos.",
-      resumen: "Redes WiFi6, SD-WAN y seguridad Aruba."
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 }
     }
-  ];
+  };
 
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" }
+    }
+  };
 
   return (
-    <motion.section
-      className="SolucionesHP-Enterprise"
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -50 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-    >
-      <div className="SEcontent">
-        <div className="SEtexto">
-          <h1>Soluciones HP Enterprise</h1>
-          <p>
-            Hewlett Packard Enterprise es líder del sector en servidores y sistemas, optimización de operaciones TI,
-            modelos de consumo flexible, IoT, redes cableadas e inalámbricas, soluciones convergentes y servicios en la nube.
-            En Novasys, llevamos estas soluciones al siguiente nivel, integrándolas a tu infraestructura actual.
-          </p>
-        </div>
-        <div className="SEcontact">
-          <h2>¿Necesitas soluciones de nivel empresarial?</h2>
-          <p>Un asesor especializado puede ayudarte a implementar HPE en tu organización.</p>
-          <Link to="/Contacto" className="info-btn">Habla con un asesor <span className="arrow">→</span></Link>
-        </div>
-      </div>
+    <>
+      <Helmet>
+        <title>Soluciones HPE | Servidores, Storage, Networking | Novasys</title>
+        <meta name="description" content="Soluciones HP Enterprise en Perú: servidores ProLiant, almacenamiento Alletra y Nimble, networking Aruba, HPE GreenLake. Partner certificado HPE." />
+      </Helmet>
 
-      <h2 className="SEsubtitulo">Áreas donde HP Enterprise potencia tu empresa</h2>
+      <div className={`hpe-page ${isNight ? "night" : ""}`}>
+        {/* Hero Section */}
+        <section className="hpe-hero">
+          <div className="hpe-hero-bg">
+            <div className="hpe-gradient"></div>
+            <div className="hpe-orb hpe-orb-1"></div>
+            <div className="hpe-orb hpe-orb-2"></div>
+          </div>
 
-      <div className="SEcards">
-        {soluciones.map((item, idx) => {
-          const detalleEmoji = item.detalle.match(/^(\p{Emoji_Presentation}|\p{Extended_Pictographic})/gu)?.[0] || "";
-          const detalleTexto = item.detalle.replace(detalleEmoji, "").trim();
-          return (
-            <motion.div
-              key={idx}
-              className="SEcard"
+          <div className="hpe-hero-content">
+            <motion.div 
+              className="hpe-hero-text"
               initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="hpe-badge">🏢 HPE Partner Oficial</span>
+              
+              <h1 className="hpe-title">
+                <span className="hpe-title-line">HP Enterprise</span>
+                <span className="hpe-title-highlight">Infraestructura de Clase Mundial</span>
+              </h1>
+
+              <p className="hpe-desc">
+                Servidores, almacenamiento, networking y cloud híbrido para empresas que 
+                demandan rendimiento, seguridad y escalabilidad sin compromisos.
+              </p>
+
+              <div className="hpe-actions">
+                <Link to="/Contacto" className="hpe-btn hpe-btn-primary">
+                  Solicitar Cotización
+                  <span>→</span>
+                </Link>
+                <a href="#productos" className="hpe-btn hpe-btn-ghost">
+                  Ver Soluciones
+                </a>
+              </div>
+
+              {/* Stats */}
+              <div className="hpe-stats">
+                {HPE_STATS.map((stat, index) => (
+                  <div key={index} className="hpe-stat">
+                    <span className="hpe-stat-value">{stat.value}</span>
+                    <span className="hpe-stat-label">{stat.label}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div 
+              className="hpe-hero-visual"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <div className="hpe-logo-container">
+                <img src={HPELogo} alt="HP Enterprise" className="hpe-logo-img" />
+                <div className="hpe-ring hpe-ring-1"></div>
+                <div className="hpe-ring hpe-ring-2"></div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Products Section */}
+        <section id="productos" className="hpe-products">
+          <div className="hpe-products-content">
+            <motion.div 
+              className="hpe-products-header"
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.2, duration: 0.6 }}
             >
-              <div className="emoji-block">{item.emoji}</div>
-              <h3>{item.title}</h3>
-              <p>
-                {isMobile ? item.resumen : item.desc}
+              <span className="hpe-section-badge">Portafolio Enterprise</span>
+              <h2 className="hpe-section-title">
+                Soluciones de Infraestructura
+                <span className="hpe-section-sub">HPE</span>
+              </h2>
+              <p className="hpe-section-desc">
+                Tecnología empresarial para transformar tu data center y operaciones
               </p>
-              {/* Overlay sólo en desktop/tablet */}
-              {!isMobile && (
-                <div className="extra-info">
-                  <div className="emoji-overlay">{detalleEmoji}</div>
-                  <motion.p
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1, duration: 0.5 }}
-                  >
-                    {detalleTexto}
-                  </motion.p>
-                </div>
-              )}
             </motion.div>
-          );
-        })}
+
+            <motion.div 
+              className="hpe-products-grid"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+            >
+              {HPE_CATEGORIES.map((category, index) => (
+                <motion.div
+                  key={index}
+                  className="hpe-product-card"
+                  variants={cardVariants}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.02,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  style={{ "--card-color": category.color }}
+                >
+                  <div className="hpe-card-header">
+                    <span className="hpe-card-icon">{category.icon}</span>
+                    <h3 className="hpe-card-title">{category.title}</h3>
+                  </div>
+
+                  <p className="hpe-card-desc">{category.description}</p>
+
+                  <div className="hpe-card-products">
+                    {category.products.map((product, pIdx) => (
+                      <div key={pIdx} className="hpe-product-tag">
+                        <span className="hpe-product-name">{product.name}</span>
+                        <span className="hpe-product-badge">{product.badge}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <ul className="hpe-card-features">
+                    {category.features.map((feature, fIdx) => (
+                      <li key={fIdx}>
+                        <span className="hpe-check">✓</span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Link to="/Contacto" className="hpe-card-link">
+                    Cotizar
+                    <span>→</span>
+                  </Link>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="hpe-cta">
+          <motion.div 
+            className="hpe-cta-content"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="hpe-cta-text">
+              <h2>¿Listo para transformar tu infraestructura?</h2>
+              <p>
+                Nuestros arquitectos de soluciones HPE diseñarán la infraestructura 
+                perfecta para los desafíos de tu negocio.
+              </p>
+            </div>
+            <div className="hpe-cta-actions">
+              <Link to="/Contacto" className="hpe-cta-btn">
+                Hablar con un Arquitecto
+                <span>🏗️</span>
+              </Link>
+            </div>
+          </motion.div>
+        </section>
       </div>
-    </motion.section>
+    </>
   );
 }
 

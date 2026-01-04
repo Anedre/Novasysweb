@@ -3,41 +3,34 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from './components/Header/Header.jsx';
 import Footer from './components/Footer/Footer.jsx';
-import ScrollToTop from './scripts/ScrollToTop.jsx'; // Ajusta la ruta según corresponda
-import AmazonConnectChat from './components/AmazonConnectChat/AmazonConnectChat.jsx'; // Ajusta la ruta si es necesario
+import ScrollToTop from './scripts/ScrollToTop.jsx';
+import AmazonConnectChat from './components/AmazonConnectChat/AmazonConnectChat.jsx';
 import WhatsAppWidget from './components/WhatsAppWidget/WhatsAppWidget.jsx';
-import Canonical from './hooks/Canonical.jsx'; // Asegúrate que la ruta sea correcta
+import Canonical from './hooks/Canonical.jsx';
 import ContactFloatingMenu from './components/ContactFloatingMenu/ContactFloatingMenu';
-import { AnimatePresence } from "framer-motion";
-import RouteReload from './hooks/RouteReload.jsx'; // Ajusta la ruta si está en otra carpeta
-
-
-
-
+import RouteReload from './hooks/RouteReload.jsx';
+// Accesibilidad (Fase 5)
+import { SkipLink } from './components/ui';
+import './index.css';
 import "./App.css";
-
-
 
 function AppLayout() {
   return (
     <div className="App">
+      {/* Skip Link para accesibilidad - WCAG 2.4.1 */}
+      <SkipLink targetId="main-content" />
+      <Header />
       <RouteReload />
-      {/* Asegúrate de que Canonical esté antes de Outlet para que se procese correctamente */}
       <Canonical />
       <ScrollToTop />
-      <Header />
-      <main className="content">
-        <AnimatePresence mode="wait">
-          <Outlet />
-        </AnimatePresence>
+      <main id="main-content" className="content" role="main">
+        <Outlet />
       </main>
 
       <Footer />
-       {/* Agrega el widget para que aparezca siempre */}
-       <AmazonConnectChat />
-       <WhatsAppWidget />
-       <ContactFloatingMenu />
-
+      <AmazonConnectChat />
+      <WhatsAppWidget />
+      <ContactFloatingMenu />
     </div>
   );
 }

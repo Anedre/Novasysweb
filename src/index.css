@@ -1,6 +1,7 @@
 /* ======== Reset y Configuración Global ======== */
 
 @import "mapbox-gl/dist/mapbox-gl.css";
+@import "./styles/variables.css";
 
 * {
   margin: 0;
@@ -8,9 +9,15 @@
   box-sizing: border-box;
 }
 
-html, body {
+html {
   scroll-behavior: smooth;
+  /* Optimización de renderizado de texto */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
 
+html, body {
   overflow-y: auto;
   overflow-x: hidden; 
   height: 100%;
@@ -20,139 +27,274 @@ html, body {
   position: relative;
 }
 
+/* ============================================
+   OPTIMIZACIONES DE RENDIMIENTO
+============================================ */
+
+/* Forzar aceleración GPU en elementos animados */
+.will-animate,
+[data-animate],
+.motion-element {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Optimización de imágenes */
+img {
+  content-visibility: auto;
+}
+
+/* Reducir movimiento para accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 
 main {
   flex: 1;
+}
+
+/* ==========================================================
+PALETA NOVASYS — Día: ROJO + BLANCO (con grises)
+Noche: ROJO + NEGRO (con grises)
+Variables por modo: body.day / body.night
+========================================================== */
+:root{
+  background: #FFFFFF; /* blanco puro para el fondo de día */
+color: #0e0e0e;
+transition: background 0.3s ease, color 0.3s ease;
+
+
+/* Core brand */
+--primary-color: #c62828; /* rojo principal sobrio */
+--primary-color-strong: #b71c1c; /* rojo profundo */
+--primary-color-soft: #ef5350; /* rojo claro para hover/focus */
+--primary-contrast: #ffffff; /* texto sobre rojo */
+
+
+/* Gradientes y superficies */
+--brand-gradient: linear-gradient(135deg, #e53935 0%, #b71c1c 55%, #ffffff 100%);
+--brand-gradient-soft: linear-gradient(135deg, #fff1f1, #ffe5e5, #fbe9e7);
+--surface-0: #ffffff; /* tarjetas/base blancas */
+--surface-1: #f6f7f9; /* secciones alternas grises muy claros */
+--surface-2: #eceff1; /* bordes/inputs */
+
+
+/* Tipografía */
+--text-main: #111111;
+--text-secondary: #4a4a4a;
+--text-muted: #6b6b6b;
+
+
+/* Bordes y sombras */
+--border-soft: rgba(0,0,0,0.08);
+--shadow-soft: 0 8px 24px rgba(198, 40, 40, 0.08);
+--glow: 0 0 0 6px rgba(198, 40, 40, 0.12);
+
+
+/* Dropdown/menus */
+--dropdown-bg: #fcfcfc;
+--dropdown-text: #111111;
+--dropdown-hover-bg: #f5f5f5;
+--dropdown-arrow: #111111;
+--dropdown-hover-color: var(--primary-color);
+
+
+/* Tags / chips */
+--tag-bg: rgba(198, 40, 40, 0.08);
+--tag-border: rgba(198, 40, 40, 0.22);
+--tag-text: #8d1111;
+
+
+/* Dots / sliders */
+--dot-color-inactive: #9e9e9e;
+--dot-color-active: var(--primary-color);
+
+
+/* Inputs */
+--input-border: #bdbdbd;
+--input-focus: #4a4a4a;
+
+
+/* Cards (compat con tus variables previas) */
+--card-background: var(--surface-0);
+
+/* ---- Mapeo y brillo de tarjetas (DÍA) ---- */
+--color-bg-card: var(--surface-0);
+--color-border-card: var(--surface-2);
+--color-text-main: var(--text-main);
+--color-text-secondary: var(--text-secondary);
+
+/* Glow rojo suave para sombras */
+--card-glow: rgba(198, 40, 40, 0.20);
+
+/* Tags (coherentes con Home.css) */
+--color-tag-bg: var(--tag-bg);
+--color-tag-border: var(--tag-border);
+--color-tag-text: var(--tag-text);
 
 }
 
-/* ======== Estilos para Modo Día ======== */
+/* ======== Estilos para Modo Día (rojo + blanco) ======== */
 body.day {
-  background: #F4F5F7;
-  color: #000;
-  transition: background 0.3s ease, color 0.3s ease;
-  --dropdown-bg: rgb(238, 238, 238);
-  --dropdown-text: #000;
-  --dropdown-hover-bg: #f5f5f5;
-  --dropdown-arrow: #0300ad;
-  --dropdown-hover-color: #d50000;
-  --divider-color: #77777775;
-  --card-background: white;
-  --color-bg-card: rgba(255, 255, 255, 0.5);
-  --color-border-card: rgba(0, 0, 0, 0.05);
-  --color-text-main: #111;
-  --color-text-secondary: #444;
-  --color-tag-bg: rgba(255, 153, 0, 0.1);
-  --color-tag-border: rgba(255, 153, 0, 0.3);
-  --color-tag-text: #b35500;
-  --color-btn-bg: #ff9900;
-  --dot-color-inactive: #999;
-  --dot-color-active: #ff9900;
-  --bg-section: #f9f9f9;
-  --card-bg: rgba(255, 255, 255, 0.8);
-  --card-blur-bg: rgba(255, 255, 255, 0.6);
-  --card-border: rgba(0, 0, 0, 0.05);
-  --card-glow: rgba(255, 153, 0, 0.3);
-  --text-main: #111;
-  --text-secondary: #555;
-  --accent-color: #ff9900;
-  --shine-gradient: linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 165, 0, 0.4) 50%, /* naranja suave */
-    rgba(255, 255, 255, 0) 100%
-    
-  );
-   --bg-light: #f4f4f4;
-  --text-light: #222;
-  --card-light: #ffffff;
-  --input-border: #999;
-  --input-focus: #555;
-  --primary-color: #c62828; /* rojo profesional */
+background: #FFFFFF; /* blanco puro para el fondo de día */
+color: #0e0e0e;
+transition: background 0.3s ease, color 0.3s ease;
 
-  
 
+/* Core brand */
+--primary-color: #c62828; /* rojo principal sobrio */
+--primary-color-strong: #b71c1c; /* rojo profundo */
+--primary-color-soft: #ef5350; /* rojo claro para hover/focus */
+--primary-contrast: #ffffff; /* texto sobre rojo */
+
+
+/* Gradientes y superficies */
+--brand-gradient: linear-gradient(135deg, #e53935 0%, #b71c1c 55%, #ffffff 100%);
+--brand-gradient-soft: linear-gradient(135deg, #fff1f1, #ffe5e5, #fbe9e7);
+--surface-0: #ffffff; /* tarjetas/base blancas */
+--surface-1: #f6f7f9; /* secciones alternas grises muy claros */
+--surface-2: #eceff1; /* bordes/inputs */
+
+
+/* Tipografía */
+--text-main: #111111;
+--text-secondary: #4a4a4a;
+--text-muted: #6b6b6b;
+
+
+/* Bordes y sombras */
+--border-soft: rgba(0,0,0,0.08);
+--shadow-soft: 0 8px 24px rgba(198, 40, 40, 0.08);
+--glow: 0 0 0 6px rgba(198, 40, 40, 0.12);
+
+
+/* Dropdown/menus */
+--dropdown-bg: #fcfcfc;
+--dropdown-text: #111111;
+--dropdown-hover-bg: #f5f5f5;
+--dropdown-arrow: #111111;
+--dropdown-hover-color: var(--primary-color);
+
+
+/* Tags / chips */
+--tag-bg: rgba(198, 40, 40, 0.08);
+--tag-border: rgba(198, 40, 40, 0.22);
+--tag-text: #8d1111;
+
+
+/* Dots / sliders */
+--dot-color-inactive: #9e9e9e;
+--dot-color-active: var(--primary-color);
+
+
+/* Inputs */
+--input-border: #bdbdbd;
+--input-focus: #4a4a4a;
+
+
+/* Cards (compat con tus variables previas) */
+--card-background: var(--surface-0);
+
+/* ---- Mapeo y brillo de tarjetas (DÍA) ---- */
+--color-bg-card: var(--surface-0);
+--color-border-card: var(--surface-2);
+--color-text-main: var(--text-main);
+--color-text-secondary: var(--text-secondary);
+
+/* Glow rojo suave para sombras */
+--card-glow: rgba(198, 40, 40, 0.20);
+
+/* Tags (coherentes con Home.css) */
+--color-tag-bg: var(--tag-bg);
+--color-tag-border: var(--tag-border);
+--color-tag-text: var(--tag-text);
 
 }
-
-
 
 body.day header, body.day footer {
-  background-color: #F4F5F7;
-  color: #343a40;
-  transition: background 0.3s, color 0.3s;
+background-color: #FFFFFF;
+color: #343a40;
+transition: background 0.3s, color 0.3s;
 }
 
-body.day a, body.day button {
-  color: var(--dropdown-text);
 
-}
+body.day a, body.day button { color: var(--dropdown-text); }
 
-/* ======== Estilos para Modo Noche ======== */
+
+/* ======== Estilos para Modo Noche (rojo + negro) ======== */
 body.night {
-  background: linear-gradient(135deg, #1d1d1d, #0f0f0f, #0c0c0c);
-  background-size: 200% 200%;
-  color: #e0e0e0;
-  transition: background 0.3s ease, color 0.3s ease;
-  animation: backgroundShift 15s infinite alternate ease-in-out;
-  --dropdown-bg: #2b2b2b;
-  --dropdown-text: #e0e0e0;
-  --dropdown-hover-bg: rgba(255, 255, 255, 0.1);
-  --dropdown-hover-color: #00a6cf;
-  --dropdown-arrow: #dbdbdb;
-  --divider-color: #e9e9e975;
-  --bg-dark: #1a1a1a;
+background: linear-gradient(135deg, #121212, #0d0d0d 45%, #000000);
+background-size: 200% 200%;
+color: #e7e7e7;
+transition: background 0.3s ease, color 0.3s ease;
+animation: backgroundShift 15s infinite alternate ease-in-out;
 
-  
-  --card-background: #2c2c2e;
-  --color-bg-card: rgba(255, 255, 255, 0.06);
-  --color-border-card: rgba(255, 255, 255, 0.1);
-  --color-text-main: #fff;
-  --color-text-secondary: #ccc;
 
-  --color-tag-bg: rgba(255, 153, 0, 0.15);
-  --color-tag-border: rgba(255, 153, 0, 0.4);
-  --color-tag-text: #ffcc80;
-  --color-btn-bg: #ffb74d;
+/* Core brand */
+--primary-color: #ff5252; /* rojo vibrante sobre negro */
+--primary-color-strong: #ff1744; /* acento más brillante */
+--primary-color-soft: #ff8a80; /* suavizado para hover/focus */
+--primary-contrast: #0e0e0e; /* texto oscuro sobre rojo en dark (rojo+negro) */
 
-  --dot-color-inactive: #666;
-  --dot-color-active: #ffb74d;
 
-  --bg-section: #121212;
-  --card-bg: rgba(255, 255, 255, 0.05);
-  --card-blur-bg: rgba(255, 255, 255, 0.15);
-  --card-border: rgba(255, 255, 255, 0.1);
-  --card-glow: rgba(255, 153, 0, 0.4);
-  --text-main: #fff;
-  --text-secondary: #bbb;
-  --accent-color: #ffb74d;
-  --caca: #1b1129;
-  --shine-gradient: linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.4) 50%, /* blanco suave */
-    rgba(255, 255, 255, 0) 100%
-  );
-    --card-dark: #2a2a2a;
-  --text-dark: #eee;
+/* Gradientes y superficies */
+--brand-gradient: linear-gradient(135deg, #2a0000, #7a1212 35%, #ff1744 70%, #101010);
+--brand-gradient-soft: linear-gradient(135deg, #1e1e1e, #2a2a2a);
+--surface-0: #171717;
+--surface-1: #121212;
+--surface-2: #242424;
 
-  --bg-light: var(--bg-dark);
-  --text-light: var(--text-dark);
-  --card-light: var(--card-dark);
-  --input-border: #020202;
-  --input-focus: #888;
-  --primary-color: #ff5252;
 
-}
+/* Tipografía */
+--text-main: #ffffff;
+--text-secondary: #cfcfcf;
+--text-muted: #9a9a9a;
 
-body.night header, body.night footer {
-  background-color: rgba(20, 20, 20, 0.9);
-  color: #e9ecef;
-  transition: background 0.3s, color 0.3s;
-}
 
-body.night a, body.night button {
-  color: inherit;
+/* Bordes y sombras */
+--border-soft: rgba(255,255,255,0.08);
+--shadow-soft: 0 10px 30px rgba(255, 23, 68, 0.12);
+--glow: 0 0 0 6px rgba(255, 23, 68, 0.16);
+
+
+/* Dropdown/menus */
+--dropdown-bg: #202020;
+--dropdown-text: #e7e7e7;
+--dropdown-hover-bg: rgba(255,255,255,0.06);
+--dropdown-arrow: #e7e7e7;
+--dropdown-hover-color: var(--primary-color-soft);
+
+
+/* Tags / chips */
+--tag-bg: rgba(255, 82, 82, 0.14);
+
+/* ---- Mapeo y brillo de tarjetas (NOCHE) ---- */
+--color-bg-card: #141414;                 /* un poco más claro que el fondo */
+--color-border-card: rgba(255,255,255,0.06);
+--color-text-main: var(--text-main);
+--color-text-secondary: var(--text-secondary);
+
+/* Glow rojo en dark */
+--card-glow: rgba(255, 23, 68, 0.22);
+
+/* Tags / chips en modo noche (mejor contraste) */
+--tag-bg: rgba(255, 82, 82, 0.14);
+--tag-border: rgba(255, 82, 82, 0.35);
+--tag-text: #ff8a80;
+
+/* Mantener coherencia con Home.css */
+--color-tag-bg: var(--tag-bg);
+--color-tag-border: var(--tag-border);
+--color-tag-text: var(--tag-text);
+
 }
 
 @keyframes backgroundShift {
@@ -165,7 +307,6 @@ body.night a, body.night button {
 body {
   font-family: 'DM Sans', sans-serif;
   transition: background 0.3s, color 0.3s;
- 
 }
 
 header {
@@ -180,9 +321,9 @@ nav {
   font-size: 0.8em;
   font-weight: 100;
 }
-a {
-  font-weight: 100;
-}
+
+a { font-weight: 100; }
+
 nav a {
   margin: 0 15px;
   text-decoration: none;
@@ -220,24 +361,126 @@ small {
   font-weight: 300;
 }
 
-footer h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 400;
+footer h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 400; }
+footer p { font-family: 'Lexend', sans-serif; font-weight: 300; }
+button { font-family: 'Lexend', sans-serif; font-weight: 100; }
+
+/* ======== Componentes de marca (nuevos utilitarios) ======== */
+
+/* ======== Componentes de marca ======== */
+
+
+/* Botón primario mejorado: borde → relleno en hover */
+.btn-brand {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: .5rem;
+background: transparent;
+color: var(--primary-color);
+border: 2px solid var(--primary-color);
+padding: .75rem 1.4rem;
+border-radius: 50px;
+font-weight: 400; /* más delgado */
+letter-spacing: .3px;
+box-shadow: none;
+transition: all .25s ease;
 }
 
-footer p {
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
+
+.btn-brand:hover {
+background: var(--primary-color);
+color: var(--primary-contrast);
+transform: translateY(-2px);
+box-shadow: 0 6px 18px var(--card-glow);
 }
 
-button {
-  font-family: 'Lexend', sans-serif;
-  font-weight: 100;
+
+.btn-brand:active {
+transform: translateY(0);
+box-shadow: none;
 }
 
 
+.btn-brand:focus-visible {
+outline: none;
+box-shadow: var(--glow);
+}
+
+
+/* Botón fantasma (opcional, mantiene estilo pero refinado) */
+.btn-ghost-brand {
+background: transparent;
+color: var(--text-main);
+border: 2px solid var(--primary-color);
+padding: .7rem 1.3rem;
+border-radius: 50px;
+font-weight: 400;
+transition: all .25s ease;
+}
+.btn-ghost-brand:hover {
+background: var(--tag-bg);
+color: var(--primary-color);
+}
+
+/* Texto destacado en rojo */
+.text-brand { color: var(--primary-color); }
+
+/* Gradiente de fondo reutilizable */
+.bg-brand-gradient { background: var(--brand-gradient); }
+.bg-brand-gradient-soft { background: var(--brand-gradient-soft); }
+
+/* Tarjetas con borde suave */
+.card-brand {
+  background: var(--card-bg);
+  backdrop-filter: saturate(1.1) blur(10px);
+  -webkit-backdrop-filter: saturate(1.1) blur(10px);
+  border: 1px solid var(--card-border);
+  border-radius: 18px;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Chips / etiquetas */
+.tag-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .35rem .6rem;
+  border-radius: 999px;
+  background: var(--color-tag-bg);
+  border: 1px solid var(--color-tag-border);
+  color: var(--color-tag-text);
+  font-size: .85rem;
+}
+
+/* Inputs alineados al brand */
+.input-brand {
+  background: var(--surface-0);
+  color: var(--text-main);
+  border: 1px solid var(--input-border);
+  border-radius: 12px;
+  padding: .85rem 1rem;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.input-brand:focus { outline: none; border-color: var(--primary-color); box-shadow: var(--glow); }
+
+/* Divisores */
+.hr-brand { height:1px; border:0; background: linear-gradient(90deg, transparent, var(--border-soft), transparent); }
+
+/* Links accesibles con underline animado */
+.link-brand {
+  color: var(--text-main);
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size .2s ease, color .2s ease;
+}
+.link-brand:hover { color: var(--primary-color); background-size: 100% 1px; }
+
+/* ======== Compatibilidad widgets flotantes ======== */
 /* Oculta widgets si el header está activo */
-/* Oculta ambos widgets cuando el header está activo */
 .header-active #launch-widget-btn,
 .header-active .whatsapp-widget {
   display: none !important;
@@ -251,19 +494,13 @@ button {
 
 /* Mostrar solo en móviles y tablets */
 @media (max-width: 768px) {
-  #mobile-contact-widget {
-    display: block;
-  }
-
+  #mobile-contact-widget { display: block; }
   /* Ocultar los widgets flotantes individuales en mobile */
   #launch-widget-btn,
   #amazon-connect-open-widget-button,
   #amazon-connect-close-widget-button,
-  .whatsapp-widget {
-    display: none !important;
-  }
+  .whatsapp-widget { display: none !important; }
 }
-
 
 /* ======== Responsividad ======== */
 @media (max-width: 768px) {
@@ -275,7 +512,7 @@ button {
   footer h3 { font-size: 1.5rem; }
   footer p { font-size: 1rem; }
   button { font-size: 1rem; }
-  a { color: var(--text-color); }
+  a { color: var(--text-main); }
 }
 
 @media (max-width: 480px) {
@@ -286,4 +523,38 @@ button {
   small { font-size: 0.7em; }
 }
 
-
+/* ======== Mobile Touch Target & Accessibility ======== */
+@media (max-width: 768px) {
+  /* Minimum touch target size (44px as per WCAG) */
+  button,
+  a,
+  input[type="submit"],
+  input[type="button"],
+  .clickable {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve tap feedback */
+  button:active,
+  a:active {
+    opacity: 0.85;
+    transform: scale(0.98);
+  }
+  
+  /* Prevent text selection on interactive elements */
+  button,
+  .nav-drawer-link,
+  .hamburger-btn {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Safe area padding for devices with notch */
+  .home-intro,
+  .nav-drawer {
+    padding-left: max(5%, env(safe-area-inset-left));
+    padding-right: max(5%, env(safe-area-inset-right));
+  }
+}

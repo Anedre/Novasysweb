@@ -1,0 +1,396 @@
+/* ============================================
+   WhyAmazonNew.css - Sección Why AWS
+   Diseño: Cards 3D con gradientes AWS
+   ============================================ */
+
+.wa-section {
+  padding: 100px 20px;
+  background: linear-gradient(180deg, #f8fafc 0%, #fff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.night .wa-section {
+  background: linear-gradient(180deg, #0a1929 0%, #051221 100%);
+}
+
+.wa-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+.wa-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.wa-badge {
+  display: inline-block;
+  padding: 10px 24px;
+  background: linear-gradient(135deg, rgba(255, 153, 0, 0.1) 0%, rgba(236, 114, 17, 0.1) 100%);
+  border: 1px solid rgba(255, 153, 0, 0.2);
+  border-radius: 50px;
+  font-size: 0.95rem;
+  color: #ff9900;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.wa-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 15px;
+}
+
+.night .wa-title {
+  color: #fff;
+}
+
+.wa-subtitle {
+  font-size: 1.15rem;
+  color: #64748b;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.night .wa-subtitle {
+  color: #94a3b8;
+}
+
+/* Benefits Grid */
+.wa-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
+  margin-bottom: 80px;
+}
+
+.wa-benefit-card {
+  position: relative;
+  background: #fff;
+  padding: 35px;
+  border-radius: 24px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.35s ease;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.night .wa-benefit-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.wa-benefit-card:hover {
+  border-color: rgba(255, 153, 0, 0.3);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(255, 153, 0, 0.15);
+}
+
+.night .wa-benefit-card:hover {
+  border-color: rgba(255, 153, 0, 0.4);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 153, 0, 0.2);
+}
+
+.wa-card-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--card-gradient);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.wa-benefit-card:hover .wa-card-glow {
+  opacity: 1;
+}
+
+.wa-card-icon {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, rgba(255, 153, 0, 0.1) 0%, rgba(236, 114, 17, 0.1) 100%);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.wa-benefit-card:hover .wa-card-icon {
+  background: var(--card-gradient);
+  box-shadow: 0 10px 30px rgba(255, 153, 0, 0.2);
+}
+
+.wa-card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 12px;
+}
+
+.night .wa-card-title {
+  color: #fff;
+}
+
+.wa-card-desc {
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.night .wa-card-desc {
+  color: #94a3b8;
+}
+
+.wa-card-stats {
+  margin-top: auto;
+}
+
+.wa-stats-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, rgba(255, 153, 0, 0.1) 0%, rgba(236, 114, 17, 0.1) 100%);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ff9900;
+}
+
+/* Leadership Section */
+.wa-leadership {
+  background: linear-gradient(135deg, #232f3e 0%, #1a242f 100%);
+  border-radius: 30px;
+  padding: 50px;
+  margin-bottom: 60px;
+  overflow: hidden;
+  position: relative;
+}
+
+.wa-leadership::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(255, 153, 0, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(236, 114, 17, 0.1) 0%, transparent 50%);
+}
+
+.wa-leadership-content {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.wa-leadership-text h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.wa-leadership-text p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.7;
+  margin-bottom: 25px;
+}
+
+.wa-leadership-badges {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.wa-lb-item {
+  display: inline-block;
+  padding: 10px 18px;
+  background: rgba(255, 153, 0, 0.15);
+  border: 1px solid rgba(255, 153, 0, 0.3);
+  border-radius: 10px;
+  color: #ff9900;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.wa-lb-item:hover {
+  background: rgba(255, 153, 0, 0.25);
+}
+
+/* Comparison Table */
+.wa-comparison-table {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.wa-table-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  padding: 18px 25px;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.wa-th-aws {
+  color: #ff9900;
+}
+
+.wa-table-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  padding: 16px 25px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+}
+
+.wa-table-row:last-child {
+  border-bottom: none;
+}
+
+.wa-tr-metric {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.wa-tr-aws {
+  color: #ff9900;
+  font-weight: 700;
+}
+
+.wa-tr-others {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Partner CTA */
+.wa-partner-cta {
+  text-align: center;
+  background: linear-gradient(135deg, rgba(255, 153, 0, 0.05) 0%, rgba(236, 114, 17, 0.05) 100%);
+  border: 2px solid rgba(255, 153, 0, 0.15);
+  border-radius: 30px;
+  padding: 60px 40px;
+}
+
+.night .wa-partner-cta {
+  background: rgba(255, 153, 0, 0.03);
+}
+
+.wa-partner-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.wa-partner-cta h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 15px;
+}
+
+.night .wa-partner-cta h3 {
+  color: #fff;
+}
+
+.wa-partner-cta p {
+  font-size: 1.05rem;
+  color: #64748b;
+  max-width: 600px;
+  margin: 0 auto 35px;
+  line-height: 1.7;
+}
+
+.night .wa-partner-cta p {
+  color: #94a3b8;
+}
+
+.wa-partner-stats {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.wa-ps-item {
+  text-align: center;
+}
+
+.wa-ps-value {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ff9900 0%, #ec7211 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.wa-ps-label {
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.night .wa-ps-label {
+  color: #94a3b8;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .wa-leadership-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .wa-section {
+    padding: 60px 15px;
+  }
+
+  .wa-benefits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wa-leadership {
+    padding: 35px 25px;
+    border-radius: 20px;
+  }
+
+  .wa-leadership-badges {
+    justify-content: center;
+  }
+
+  .wa-partner-cta {
+    padding: 40px 25px;
+  }
+
+  .wa-partner-stats {
+    gap: 30px;
+  }
+
+  .wa-ps-value {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .wa-ps-item {
+    flex: 1 1 100%;
+  }
+}

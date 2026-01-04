@@ -1,0 +1,269 @@
+/* ============================================
+   NOVASYS - Badge Component
+   ============================================ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2-5);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-normal);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+/* Tamaños */
+.badge-sm {
+  padding: var(--space-0-5) var(--space-2);
+  font-size: 10px;
+}
+
+.badge-md {
+  padding: var(--space-1) var(--space-2-5);
+  font-size: var(--text-xs);
+}
+
+.badge-lg {
+  padding: var(--space-1-5) var(--space-3);
+  font-size: var(--text-sm);
+}
+
+/* Variante Solid - Default */
+.badge-default {
+  background: var(--gray-100);
+  color: var(--gray-700);
+}
+
+.badge-primary {
+  background: var(--primary-600);
+  color: white;
+}
+
+.badge-accent {
+  background: var(--accent-500);
+  color: white;
+}
+
+.badge-success {
+  background: var(--success-500);
+  color: white;
+}
+
+.badge-warning {
+  background: var(--warning-500);
+  color: var(--gray-900);
+}
+
+.badge-error {
+  background: var(--error-500);
+  color: white;
+}
+
+.badge-info {
+  background: var(--info-500);
+  color: white;
+}
+
+/* Variante Soft (colores claros) */
+.badge-soft-default {
+  background: var(--gray-100);
+  color: var(--gray-700);
+}
+
+.badge-soft-primary {
+  background: var(--primary-100);
+  color: var(--primary-700);
+}
+
+.badge-soft-accent {
+  background: var(--accent-100);
+  color: var(--accent-700);
+}
+
+.badge-soft-success {
+  background: var(--success-100);
+  color: var(--success-600);
+}
+
+.badge-soft-warning {
+  background: var(--warning-100);
+  color: var(--warning-600);
+}
+
+.badge-soft-error {
+  background: var(--error-100);
+  color: var(--error-600);
+}
+
+.badge-soft-info {
+  background: var(--info-100);
+  color: var(--info-600);
+}
+
+/* Variante Outline */
+.badge-outline-default {
+  background: transparent;
+  color: var(--gray-600);
+  box-shadow: inset 0 0 0 1px var(--gray-300);
+}
+
+.badge-outline-primary {
+  background: transparent;
+  color: var(--primary-600);
+  box-shadow: inset 0 0 0 1px var(--primary-300);
+}
+
+.badge-outline-accent {
+  background: transparent;
+  color: var(--accent-600);
+  box-shadow: inset 0 0 0 1px var(--accent-300);
+}
+
+.badge-outline-success {
+  background: transparent;
+  color: var(--success-600);
+  box-shadow: inset 0 0 0 1px var(--success-400);
+}
+
+.badge-outline-warning {
+  background: transparent;
+  color: var(--warning-600);
+  box-shadow: inset 0 0 0 1px var(--warning-400);
+}
+
+.badge-outline-error {
+  background: transparent;
+  color: var(--error-600);
+  box-shadow: inset 0 0 0 1px var(--error-400);
+}
+
+/* Badges especiales para Partners */
+.badge-aws {
+  background: var(--aws-orange);
+  color: var(--aws-dark);
+}
+
+.badge-oracle {
+  background: var(--oracle-red);
+  color: white;
+}
+
+.badge-hp {
+  background: var(--hp-blue);
+  color: white;
+}
+
+.badge-microsoft {
+  background: var(--microsoft-blue);
+  color: white;
+}
+
+/* Badges de tipo de evento */
+.badge-webinar {
+  background: linear-gradient(135deg, var(--accent-500), var(--accent-600));
+  color: white;
+}
+
+.badge-presencial {
+  background: linear-gradient(135deg, var(--success-500), var(--success-600));
+  color: white;
+}
+
+.badge-hibrido {
+  background: linear-gradient(135deg, var(--warning-400), var(--warning-500));
+  color: var(--gray-900);
+}
+
+.badge-virtual {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: white;
+}
+
+/* Badge con punto indicador */
+.badge-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1-5);
+}
+
+.badge-dot::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* Badge con animación de pulso */
+.badge-pulse::before {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Badge removible */
+.badge-removable {
+  padding-right: var(--space-1);
+}
+
+.badge-remove-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin-left: var(--space-1);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.badge-remove-btn:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.badge-remove-btn svg {
+  width: 10px;
+  height: 10px;
+}
+
+/* Dark mode adjustments */
+body.night .badge-default {
+  background: var(--gray-700);
+  color: var(--gray-200);
+}
+
+body.night .badge-soft-default {
+  background: var(--gray-800);
+  color: var(--gray-300);
+}
+
+body.night .badge-soft-primary {
+  background: rgba(198, 40, 40, 0.2);
+  color: var(--primary-400);
+}
+
+body.night .badge-soft-accent {
+  background: rgba(59, 130, 246, 0.2);
+  color: var(--accent-400);
+}
+
+body.night .badge-soft-success {
+  background: rgba(34, 197, 94, 0.2);
+  color: var(--success-400);
+}
+
+body.night .badge-soft-warning {
+  background: rgba(245, 158, 11, 0.2);
+  color: var(--warning-400);
+}
+
+body.night .badge-soft-error {
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--error-400);
+}

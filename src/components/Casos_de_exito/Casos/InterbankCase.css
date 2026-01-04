@@ -1,0 +1,683 @@
+/* ============================================
+   INTERBANK - DISEÑO ÚNICO
+   Estilo: Glassmorphism, Banking Premium
+============================================ */
+
+/* === VARIABLES === */
+.ibk-page {
+  --ibk-primary: #00897b;
+  --ibk-primary-light: #4db6ac;
+  --ibk-primary-dark: #00695c;
+  --ibk-primary-alpha: rgba(0, 137, 123, 0.1);
+  --ibk-primary-glow: rgba(0, 137, 123, 0.3);
+  --ibk-gold: #ffc107;
+  
+  background: var(--surface-ground);
+  min-height: 100vh;
+}
+
+.ibk-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* === HERO === */
+.ibk-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 6rem 0;
+}
+
+.ibk-hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.ibk-gradient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+}
+
+.ibk-orb-1 {
+  width: 600px;
+  height: 600px;
+  background: var(--ibk-primary-glow);
+  top: -200px;
+  right: -100px;
+}
+
+.ibk-orb-2 {
+  width: 400px;
+  height: 400px;
+  background: rgba(255, 193, 7, 0.15);
+  bottom: -100px;
+  left: -100px;
+}
+
+.ibk-orb-3 {
+  width: 300px;
+  height: 300px;
+  background: var(--ibk-primary-alpha);
+  top: 50%;
+  left: 30%;
+}
+
+.ibk-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.ibk-hero-logo {
+  height: 50px;
+  margin-bottom: 1.5rem;
+}
+
+body.night .ibk-hero-logo {
+  filter: brightness(1.1);
+}
+
+.ibk-hero h1 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.ibk-text-accent {
+  color: var(--ibk-primary);
+}
+
+.ibk-hero-lead {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  max-width: 500px;
+}
+
+.ibk-hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.ibk-htag {
+  background: var(--ibk-primary-alpha);
+  color: var(--ibk-primary);
+  padding: 0.35rem 0.85rem;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.ibk-hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ibk-btn-primary {
+  background: linear-gradient(135deg, var(--ibk-primary-dark), var(--ibk-primary));
+  color: white;
+  padding: 0.875rem 2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 20px var(--ibk-primary-glow);
+  transition: all 0.3s;
+}
+
+.ibk-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px var(--ibk-primary-glow);
+}
+
+.ibk-btn-ghost {
+  color: var(--text-secondary);
+  padding: 0.875rem 1.5rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.ibk-btn-ghost:hover {
+  color: var(--ibk-primary);
+}
+
+/* Hero Cards Stack */
+.ibk-hero-cards {
+  position: relative;
+  height: 450px;
+}
+
+.ibk-glass-stack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.ibk-glass-card {
+  position: absolute;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ibk-glass-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ibk-gc-1 {
+  width: 280px;
+  height: 200px;
+  top: 0;
+  right: 0;
+  z-index: 3;
+}
+
+.ibk-gc-2 {
+  width: 240px;
+  height: 180px;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.ibk-gc-3 {
+  width: 200px;
+  height: 150px;
+  bottom: 0;
+  right: 60px;
+  z-index: 1;
+}
+
+.ibk-float-badge {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--surface-primary);
+  border: 2px solid var(--ibk-primary);
+  border-radius: 16px;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 10px 40px var(--ibk-primary-glow);
+  z-index: 10;
+}
+
+.ibk-fb-value {
+  display: block;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--ibk-primary);
+}
+
+.ibk-fb-label {
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* === SECTION INTRO === */
+.ibk-section-intro {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+}
+
+.ibk-label {
+  display: inline-block;
+  background: var(--ibk-primary-alpha);
+  color: var(--ibk-primary);
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.ibk-section-intro h2 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.ibk-section-intro p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* === SOLUTIONS === */
+.ibk-solutions {
+  padding: 6rem 0;
+  background: var(--surface-secondary);
+}
+
+.ibk-solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.ibk-sol-card {
+  background: var(--surface-primary);
+  border: 1px solid var(--border-default);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.ibk-sol-card:hover {
+  border-color: var(--ibk-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 137, 123, 0.1);
+}
+
+.ibk-sol-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ibk-sol-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.ibk-sol-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.ibk-sol-sub {
+  font-size: 0.75rem;
+  color: var(--ibk-primary);
+  font-weight: 500;
+}
+
+.ibk-sol-card > p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.ibk-sol-metric {
+  background: var(--ibk-primary-alpha);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.ibk-sol-metric strong {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--ibk-primary);
+}
+
+.ibk-sol-metric span {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* === JOURNEY === */
+.ibk-journey {
+  padding: 6rem 0;
+}
+
+.ibk-journey-track {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.ibk-journey-step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  padding: 0 1rem;
+}
+
+.ibk-step-connector {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--ibk-primary-alpha), var(--ibk-primary), var(--ibk-primary-alpha));
+}
+
+.ibk-journey-step:last-child .ibk-step-connector {
+  display: none;
+}
+
+.ibk-step-icon {
+  width: 60px;
+  height: 60px;
+  background: var(--surface-primary);
+  border: 2px solid var(--ibk-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin: 0 auto 1rem;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 4px 20px var(--ibk-primary-glow);
+}
+
+.ibk-journey-step h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.ibk-journey-step p {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+/* === BENEFITS === */
+.ibk-benefits {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, var(--ibk-primary-dark), var(--ibk-primary));
+}
+
+.ibk-benefits-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.ibk-benefits-content {
+  color: white;
+}
+
+.ibk-benefits-content .ibk-label {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+.ibk-benefits-content h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.ibk-benefits-content p {
+  opacity: 0.9;
+  line-height: 1.7;
+}
+
+.ibk-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.ibk-benefit-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  color: white;
+  transition: all 0.3s;
+}
+
+.ibk-benefit-card:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-4px);
+}
+
+.ibk-ben-icon {
+  font-size: 1.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.ibk-ben-value {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.ibk-ben-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.ibk-ben-desc {
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+/* === BANNER === */
+.ibk-banner {
+  padding: 0;
+}
+
+.ibk-banner-content {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+}
+
+.ibk-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ibk-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.7), transparent);
+  display: flex;
+  align-items: center;
+  padding: 4rem;
+}
+
+.ibk-banner-text {
+  color: white;
+  max-width: 400px;
+}
+
+.ibk-banner-text h3 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.ibk-banner-text p {
+  opacity: 0.9;
+}
+
+/* === TECH === */
+.ibk-tech {
+  padding: 5rem 0;
+  background: var(--surface-secondary);
+}
+
+.ibk-tech-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.ibk-tech-pill {
+  background: var(--surface-primary);
+  border: 1px solid var(--border-default);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: default;
+  transition: all 0.3s;
+}
+
+.ibk-tech-pill:hover {
+  border-color: var(--ibk-primary);
+  color: var(--ibk-primary);
+}
+
+/* === CTA === */
+.ibk-cta {
+  padding: 6rem 0;
+}
+
+.ibk-cta-card {
+  text-align: center;
+  background: var(--surface-primary);
+  border: 1px solid var(--border-default);
+  border-radius: 24px;
+  padding: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.ibk-cta-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--ibk-primary), var(--ibk-gold));
+}
+
+.ibk-cta-card h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.ibk-cta-card > p {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.ibk-cta-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ibk-btn-outline {
+  padding: 0.875rem 2rem;
+  border: 2px solid var(--border-default);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.ibk-btn-outline:hover {
+  border-color: var(--ibk-primary);
+  color: var(--ibk-primary);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 1024px) {
+  .ibk-hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .ibk-hero-lead {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .ibk-hero-tags {
+    justify-content: center;
+  }
+  
+  .ibk-hero-cta {
+    justify-content: center;
+  }
+  
+  .ibk-hero-cards {
+    height: 350px;
+    max-width: 400px;
+    margin: 2rem auto 0;
+  }
+  
+  .ibk-solutions-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .ibk-journey-track {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .ibk-step-connector {
+    display: none;
+  }
+  
+  .ibk-benefits-layout {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .ibk-hero-cards {
+    display: none;
+  }
+  
+  .ibk-benefits-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .ibk-banner-content {
+    height: 300px;
+  }
+  
+  .ibk-banner-overlay {
+    padding: 2rem;
+  }
+  
+  .ibk-cta-card {
+    padding: 2rem;
+  }
+}

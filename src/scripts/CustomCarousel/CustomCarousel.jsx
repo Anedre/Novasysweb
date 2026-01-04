@@ -59,7 +59,7 @@ const SwiperCarousel = () => {
     if (img.includes('elo')) navigate('/Elo');
     else if (img.includes('Bluekai_logo_color')) navigate('/Soluciones_Novasys/oracle-bluekai');
     else if (img.includes('Ocloud')) navigate('/Soluciones_Novasys/oracle-paas');
-    else if (img.includes('Amazon_Connect')) navigate('/Soluciones_AmazonConnect');
+    else if (img.includes('Amazon_Connect')) navigate('/Amazon_Web_Services/Amazon_Connect');
   };
 
   return (

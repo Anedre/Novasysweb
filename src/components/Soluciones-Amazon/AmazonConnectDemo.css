@@ -1,0 +1,629 @@
+/* ============================================
+   AmazonConnectDemo - Estilos
+   Fase 4 del Plan de Modernización
+   ============================================ */
+
+.amazon-connect-demo {
+  --aws-orange: #ff9900;
+  --aws-dark: #232f3e;
+  
+  padding: 80px 5%;
+  background: var(--surface-ground);
+}
+
+body.night .amazon-connect-demo {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+
+.demo-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+.demo-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.demo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(255, 153, 0, 0.1);
+  border: 1px solid rgba(255, 153, 0, 0.3);
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--aws-orange);
+  margin-bottom: 16px;
+}
+
+.demo-title {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+body.night .demo-title {
+  color: #f8fafc;
+}
+
+.demo-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+body.night .demo-subtitle {
+  color: #94a3b8;
+}
+
+/* Content Grid */
+.demo-content {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* Phone Panel */
+.phone-panel {
+  position: sticky;
+  top: 100px;
+}
+
+.phone-screen {
+  background: var(--aws-dark);
+  border-radius: 36px;
+  padding: 12px;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.25),
+    inset 0 0 0 3px #3a3f4b;
+}
+
+.phone-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 16px;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.phone-state {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: 24px;
+}
+
+/* Idle State */
+.phone-state.idle .idle-icon {
+  font-size: 4rem;
+  margin-bottom: 16px;
+}
+
+.phone-state.idle p {
+  font-size: 1.1rem;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.phone-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 32px;
+}
+
+.call-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.call-btn.start {
+  background: #22c55e;
+  color: white;
+}
+
+.call-btn.start:hover {
+  background: #16a34a;
+  transform: scale(1.05);
+}
+
+.call-btn.restart {
+  background: var(--aws-orange);
+  color: white;
+}
+
+.call-btn.restart:hover {
+  background: #e88a00;
+}
+
+/* Ringing State */
+.phone-state.ringing .ringing-icon {
+  font-size: 5rem;
+  margin-bottom: 20px;
+}
+
+.phone-state.ringing p {
+  font-size: 1.25rem;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.connecting-dots {
+  display: flex;
+  gap: 8px;
+  font-size: 1.5rem;
+  color: var(--aws-orange);
+}
+
+/* IVR State */
+.phone-state.ivr {
+  justify-content: flex-start;
+  padding-top: 32px;
+}
+
+.ivr-message {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.ivr-message .ivr-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.ivr-message p {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-style: italic;
+}
+
+.ivr-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.ivr-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ivr-option:hover:not(:disabled) {
+  background: rgba(255, 153, 0, 0.1);
+  border-color: var(--aws-orange);
+}
+
+.ivr-option.selected {
+  background: rgba(255, 153, 0, 0.2);
+  border-color: var(--aws-orange);
+}
+
+.ivr-option:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ivr-key {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--aws-orange);
+  color: white;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.ivr-icon-small {
+  font-size: 1.25rem;
+}
+
+.ivr-label {
+  flex: 1;
+  color: white;
+  font-size: 0.95rem;
+}
+
+/* Bot State */
+.phone-state.bot {
+  justify-content: flex-start;
+  padding-top: 32px;
+}
+
+.bot-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.bot-avatar {
+  font-size: 2.5rem;
+}
+
+.bot-name {
+  color: white;
+  font-weight: 600;
+}
+
+.bot-message {
+  background: rgba(255, 153, 0, 0.1);
+  border-radius: 16px 16px 16px 4px;
+  padding: 16px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.bot-message p {
+  color: white;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.bot-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.bot-option {
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bot-option:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: white;
+}
+
+/* Queue State */
+.queue-info {
+  text-align: center;
+}
+
+.queue-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.queue-info > p {
+  font-size: 1.1rem;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.queue-details {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 24px;
+}
+
+.queue-stat {
+  text-align: center;
+}
+
+.queue-stat .stat-value {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--aws-orange);
+}
+
+.queue-stat .stat-label {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.queue-music {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Connected State */
+.phone-state.connected {
+  justify-content: space-between;
+}
+
+.connected-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.agent-avatar {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border-radius: 50%;
+  font-size: 1.75rem;
+}
+
+.agent-info {
+  text-align: left;
+}
+
+.agent-name {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+}
+
+.agent-role {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.call-timer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.timer-icon {
+  font-size: 0.8rem;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.timer-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  font-variant-numeric: tabular-nums;
+}
+
+.call-actions {
+  display: flex;
+  gap: 20px;
+}
+
+.action-btn {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-btn.mute,
+.action-btn.hold {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.action-btn.mute:hover,
+.action-btn.hold:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.action-btn.end {
+  background: #ef4444;
+  transform: rotate(135deg);
+}
+
+.action-btn.end:hover {
+  background: #dc2626;
+}
+
+/* Ended State */
+.phone-state.ended .ended-icon {
+  font-size: 4rem;
+  margin-bottom: 16px;
+}
+
+.phone-state.ended p {
+  font-size: 1.25rem;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.call-summary {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 32px;
+}
+
+/* Info Panel */
+.info-panel {
+  background: var(--surface-primary);
+  border: 1px solid var(--border-default);
+  border-radius: 20px;
+  padding: 32px;
+}
+
+body.night .info-panel {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(71, 85, 105, 0.4);
+}
+
+.info-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+body.night .info-title {
+  color: #f8fafc;
+}
+
+/* Flow Steps */
+.flow-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.flow-step {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  background: var(--surface-secondary);
+  border-radius: 12px;
+  border-left: 3px solid var(--border-default);
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+body.night .flow-step {
+  background: rgba(51, 65, 85, 0.3);
+  border-left-color: rgba(71, 85, 105, 0.4);
+}
+
+.flow-step.active {
+  opacity: 1;
+  border-left-color: var(--aws-orange);
+  background: rgba(255, 153, 0, 0.05);
+}
+
+.flow-step.completed {
+  opacity: 0.8;
+  border-left-color: #22c55e;
+}
+
+.step-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.step-content h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+body.night .step-content h4 {
+  color: #f8fafc;
+}
+
+.step-content p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+body.night .step-content p {
+  color: #94a3b8;
+}
+
+/* Demo Features */
+.demo-features {
+  background: rgba(255, 153, 0, 0.05);
+  border: 1px solid rgba(255, 153, 0, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.demo-features h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+body.night .demo-features h4 {
+  color: #f8fafc;
+}
+
+.demo-features ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.demo-features li {
+  padding: 6px 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+body.night .demo-features li {
+  color: #94a3b8;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .demo-content {
+    grid-template-columns: 1fr;
+  }
+
+  .phone-panel {
+    position: static;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .amazon-connect-demo {
+    padding: 60px 5%;
+  }
+
+  .phone-screen {
+    border-radius: 28px;
+  }
+
+  .phone-state {
+    min-height: 350px;
+    padding: 20px;
+  }
+
+  .info-panel {
+    padding: 24px;
+  }
+}

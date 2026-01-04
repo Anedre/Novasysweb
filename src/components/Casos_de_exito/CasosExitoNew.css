@@ -1,0 +1,828 @@
+/* =========================================
+   CASOS DE ÉXITO - MODERN DESIGN SYSTEM
+   ========================================= */
+
+/* Main Layout */
+.casos-page {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  overflow-x: hidden;
+}
+
+body.night .casos-page {
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+}
+
+/* =========================================
+   FLOATING ELEMENTS & BACKGROUNDS
+   ========================================= */
+.casos-floating-elements {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.floating-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.4;
+}
+
+.floating-shape.shape-1 {
+  top: 10%;
+  left: 10%;
+  width: 500px;
+  height: 500px;
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+}
+
+.floating-shape.shape-2 {
+  top: 50%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+}
+
+.floating-shape.shape-3 {
+  bottom: 10%;
+  left: 30%;
+  width: 350px;
+  height: 350px;
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+}
+
+body.night .floating-shape {
+  opacity: 0.2;
+}
+
+/* Grid Pattern */
+.casos-grid-pattern {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background-image: 
+    linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+body.night .casos-grid-pattern {
+  background-image: 
+    linear-gradient(rgba(148, 163, 184, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.03) 1px, transparent 1px);
+}
+
+/* =========================================
+   HERO SECTION
+   ========================================= */
+.casos-hero {
+  position: relative;
+  z-index: 1;
+  padding: 140px 1.5rem 80px;
+}
+
+.casos-hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.casos-hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.casos-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 100px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #3b82f6;
+  margin-bottom: 1.5rem;
+}
+
+body.night .casos-badge {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+  border-color: rgba(59, 130, 246, 0.3);
+  color: #60a5fa;
+}
+
+.casos-title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+body.night .casos-title {
+  color: #f8fafc;
+}
+
+.casos-subtitle {
+  font-size: 1.25rem;
+  color: #64748b;
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+}
+
+body.night .casos-subtitle {
+  color: #94a3b8;
+}
+
+/* Stats */
+.casos-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+body.night .stat-label {
+  color: #94a3b8;
+}
+
+/* =========================================
+   FILTERS SECTION
+   ========================================= */
+.casos-filters-section {
+  position: relative;
+  z-index: 1;
+  padding: 0 1.5rem 2rem;
+}
+
+.casos-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.casos-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+/* Search */
+.casos-search {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+}
+
+.casos-search .search-icon {
+  position: absolute;
+  left: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  font-size: 1.25rem;
+}
+
+.casos-search input {
+  width: 100%;
+  padding: 1rem 1rem 1rem 3.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  font-size: 1rem;
+  color: #1e293b;
+  transition: all 0.3s ease;
+}
+
+.casos-search input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+body.night .casos-search input {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: #334155;
+  color: #f8fafc;
+}
+
+body.night .casos-search input:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.15);
+}
+
+/* Industry Filters */
+.casos-industry-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.industry-chip {
+  padding: 0.625rem 1.25rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.industry-chip:hover {
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.industry-chip.active {
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  border-color: transparent;
+  color: #fff;
+}
+
+body.night .industry-chip {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: #334155;
+  color: #94a3b8;
+}
+
+body.night .industry-chip:hover {
+  border-color: #60a5fa;
+  color: #60a5fa;
+}
+
+body.night .industry-chip.active {
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  color: #fff;
+}
+
+/* =========================================
+   CASES GRID SECTION
+   ========================================= */
+.casos-grid-section {
+  position: relative;
+  z-index: 1;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.casos-featured,
+.casos-others {
+  margin-bottom: 4rem;
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 2rem;
+}
+
+body.night .section-label {
+  color: #94a3b8;
+}
+
+.label-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #3b82f6;
+}
+
+.label-dot.featured {
+  background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+}
+
+/* Featured Grid */
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+/* Others Grid */
+.others-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+/* =========================================
+   CASE CARDS
+   ========================================= */
+.caso-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  backdrop-filter: blur(12px);
+  text-decoration: none;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.caso-card:hover {
+  border-color: var(--caso-color, #3b82f6);
+  box-shadow: 
+    0 20px 40px -10px rgba(0, 0, 0, 0.1),
+    0 0 0 1px var(--caso-color, #3b82f6);
+}
+
+body.night .caso-card {
+  background: rgba(30, 41, 59, 0.9);
+  border-color: #334155;
+}
+
+body.night .caso-card:hover {
+  border-color: var(--caso-color, #60a5fa);
+  box-shadow: 
+    0 20px 40px -10px rgba(0, 0, 0, 0.4),
+    0 0 0 1px var(--caso-color, #60a5fa);
+}
+
+/* Featured Card Extras */
+.caso-card.featured {
+  padding: 2.5rem;
+}
+
+.caso-card.featured .card-glow {
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, var(--caso-color, #3b82f6) 0%, transparent 70%);
+  opacity: 0;
+  filter: blur(60px);
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.caso-card.featured:hover .card-glow {
+  opacity: 0.15;
+}
+
+body.night .caso-card.featured:hover .card-glow {
+  opacity: 0.25;
+}
+
+/* Card Header */
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.card-logo {
+  max-width: 120px;
+  max-height: 48px;
+  object-fit: contain;
+}
+
+.card-industry {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--caso-color, #3b82f6);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+  padding: 0.375rem 0.75rem;
+  border-radius: 100px;
+}
+
+/* Card Content */
+.card-content {
+  flex: 1;
+  margin-bottom: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.75rem;
+}
+
+body.night .card-title {
+  color: #f8fafc;
+}
+
+.card-description {
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+body.night .card-description {
+  color: #94a3b8;
+}
+
+/* Card Tags */
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.card-tags .tag {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.625rem;
+  background: #f1f5f9;
+  border-radius: 6px;
+  color: #475569;
+}
+
+body.night .card-tags .tag {
+  background: #1e293b;
+  color: #94a3b8;
+}
+
+/* Card KPIs */
+.card-kpis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 1.25rem;
+  background: #f8fafc;
+  border-radius: 16px;
+  margin-bottom: 1.5rem;
+}
+
+body.night .card-kpis {
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.kpi-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.kpi-icon {
+  font-size: 1.25rem;
+  color: var(--caso-color, #3b82f6);
+  margin-bottom: 0.25rem;
+}
+
+.kpi-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+body.night .kpi-value {
+  color: #f8fafc;
+}
+
+.kpi-label {
+  font-size: 0.75rem;
+  color: #64748b;
+  text-align: center;
+}
+
+body.night .kpi-label {
+  color: #94a3b8;
+}
+
+/* Card KPIs Mini (for non-featured) */
+.card-kpis-mini {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.kpi-mini {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--caso-color, #3b82f6);
+}
+
+/* Card CTA */
+.card-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.25rem;
+  border-top: 1px solid #e2e8f0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--caso-color, #3b82f6);
+}
+
+body.night .card-cta {
+  border-color: #334155;
+}
+
+.card-cta svg {
+  transition: transform 0.3s ease;
+}
+
+.caso-card:hover .card-cta svg {
+  transform: translateX(4px);
+}
+
+/* Card Arrow (non-featured) */
+.card-arrow {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #f1f5f9;
+  color: #64748b;
+  transition: all 0.3s ease;
+}
+
+.caso-card:hover .card-arrow {
+  background: var(--caso-color, #3b82f6);
+  color: #fff;
+}
+
+body.night .card-arrow {
+  background: #1e293b;
+  color: #94a3b8;
+}
+
+/* =========================================
+   EMPTY STATE
+   ========================================= */
+.casos-empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  border: 1px dashed #e2e8f0;
+}
+
+body.night .casos-empty {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: #334155;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.casos-empty h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+body.night .casos-empty h3 {
+  color: #f8fafc;
+}
+
+.casos-empty p {
+  color: #64748b;
+  margin-bottom: 1.5rem;
+}
+
+body.night .casos-empty p {
+  color: #94a3b8;
+}
+
+.casos-empty button {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  border: none;
+  border-radius: 100px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.casos-empty button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -4px rgba(59, 130, 246, 0.4);
+}
+
+/* =========================================
+   CTA SECTION
+   ========================================= */
+.casos-cta-section {
+  position: relative;
+  z-index: 1;
+  padding: 0 1.5rem 6rem;
+}
+
+.casos-cta {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 4rem 3rem;
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  border-radius: 32px;
+  box-shadow: 
+    0 25px 50px -12px rgba(59, 130, 246, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.casos-cta h2 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.casos-cta p {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: #fff;
+  border-radius: 100px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #3b82f6;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button svg {
+  transition: transform 0.3s ease;
+}
+
+.cta-button:hover svg {
+  transform: translateX(4px);
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+@media (max-width: 1024px) {
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .casos-stats {
+    gap: 2rem;
+  }
+
+  .stat-value {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .casos-hero {
+    padding: 120px 1rem 60px;
+  }
+
+  .casos-filters-section,
+  .casos-grid-section,
+  .casos-cta-section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .casos-search input {
+    font-size: 0.95rem;
+  }
+
+  .industry-chip {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .others-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .caso-card {
+    padding: 1.5rem;
+  }
+
+  .card-kpis {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .kpi-item {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .kpi-item:last-child {
+    border-bottom: none;
+  }
+
+  body.night .kpi-item {
+    border-color: #334155;
+  }
+
+  .casos-cta {
+    padding: 3rem 1.5rem;
+    border-radius: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .casos-stats {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .stat-item {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .stat-value {
+    font-size: 1.75rem;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .card-kpis-mini {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .cta-button {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}

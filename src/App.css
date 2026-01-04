@@ -2,30 +2,94 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
+  --header-height: 88px;
 }
 
 .content {
   position: relative;
   z-index: 1;
-  /* Otros estilos que necesites para tu contenido */
 }
-
 
 main {
-  width: 100%;  /* Asegura que el contenido principal ocupe todo el ancho */
+  width: 100%;
 }
 
-/* Ejemplo de media query para móviles (ajusta según necesites) */
+/* ============================================
+   PAGE WRAPPER - Transiciones optimizadas
+============================================ */
+.page-wrapper {
+  width: 100%;
+  min-height: 100%;
+  will-change: opacity, transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
 
+/* ============================================
+   PAGE LOADER - Skeleton de carga
+============================================ */
+.page-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  width: 100%;
+}
 
+.page-loader-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--surface-2, #e5e7eb);
+  border-top-color: var(--primary-color, #c62828);
+  border-radius: 50%;
+  animation: page-spin 0.8s linear infinite;
+}
+
+@keyframes page-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   PERFORMANCE - Optimizaciones GPU
+============================================ */
+.hero,
+.hero-media,
+.hero-particles,
+.hero-orbs,
+[class*="motion"],
+[class*="animate"] {
+  will-change: auto;
+  transform: translateZ(0);
+}
+
+/* Reducir movimiento para accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .page-wrapper,
+  .hero-particles,
+  .hero-orbs,
+  .particle,
+  .orb {
+    animation: none !important;
+    transition: opacity 0.2s ease !important;
+  }
+  
+  .page-loader-spinner {
+    animation-duration: 1.5s;
+  }
+}
+
+/* ============================================
+   BACKGROUND
+============================================ */
 .background {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1; /* Para que quede detrás del contenido */
-  /* Opcional: Si quieres que el SVG se escale */
+  z-index: -1;
 }
 
 

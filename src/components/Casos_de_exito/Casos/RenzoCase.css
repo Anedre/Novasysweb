@@ -1,0 +1,711 @@
+/* ============================================
+   RENZO COSTA - LUXURY EDITORIAL DESIGN
+   Estilo: Revista de Moda, Minimalista, Premium
+============================================ */
+
+/* === VARIABLES === */
+.renzo-page {
+  --renzo-brown: #8b4513;
+  --renzo-brown-dark: #6b3410;
+  --renzo-gold: #d4a574;
+  --renzo-cream: #f8f5f0;
+  --renzo-black: #1a1a1a;
+  
+  background: var(--surface-ground);
+  min-height: 100vh;
+  font-family: var(--font-family);
+}
+
+.renzo-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* === HERO EDITORIAL === */
+.renzo-hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.renzo-hero-image {
+  position: absolute;
+  inset: 0;
+}
+
+.renzo-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.renzo-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.2) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+}
+
+.renzo-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  padding-bottom: 8rem;
+}
+
+.renzo-hero-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  opacity: 0.8;
+  margin-bottom: 1rem;
+}
+
+.renzo-hero-line {
+  width: 60px;
+  height: 1px;
+  background: var(--renzo-gold);
+  margin: 0 auto 1.5rem;
+}
+
+.renzo-hero-logo {
+  max-width: 280px;
+  height: auto;
+  margin: 0 auto 1.5rem;
+  display: block;
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s ease;
+}
+
+.renzo-hero-logo:hover {
+  transform: scale(1.05);
+}
+
+.renzo-hero h1 {
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 300;
+  letter-spacing: 12px;
+  margin-bottom: 1rem;
+}
+
+.renzo-hero-subtitle {
+  font-size: 1.1rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+  opacity: 0.9;
+}
+
+.renzo-scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.renzo-scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, white, transparent);
+}
+
+/* === INTRO === */
+.renzo-intro {
+  padding: 8rem 0;
+  background: var(--surface-primary);
+}
+
+.renzo-intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.renzo-intro-quote blockquote {
+  font-size: 1.75rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--text-primary);
+  position: relative;
+}
+
+.renzo-intro-quote blockquote::before {
+  content: '"';
+  font-size: 6rem;
+  font-family: Georgia, serif;
+  color: var(--renzo-gold);
+  opacity: 0.3;
+  position: absolute;
+  top: -2rem;
+  left: -1rem;
+  line-height: 1;
+}
+
+.renzo-intro-text {
+  padding-left: 2rem;
+}
+
+.renzo-intro-line {
+  width: 40px;
+  height: 2px;
+  background: var(--renzo-brown);
+  margin-bottom: 1.5rem;
+}
+
+.renzo-intro-text p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+/* === SHOWCASE === */
+.renzo-showcase {
+  padding: 6rem 0;
+  background: var(--renzo-cream);
+}
+
+body.night .renzo-showcase {
+  background: var(--surface-secondary);
+}
+
+.renzo-showcase-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 0.8fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.renzo-showcase-img {
+  overflow: hidden;
+}
+
+.renzo-showcase-img img {
+  width: 100%;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.renzo-showcase-img:hover img {
+  transform: scale(1.05);
+}
+
+.renzo-img-1 {
+  margin-top: -4rem;
+}
+
+.renzo-img-2 {
+  margin-top: 4rem;
+}
+
+.renzo-showcase-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.renzo-stat-item {
+  text-align: center;
+}
+
+.renzo-stat-num {
+  display: block;
+  font-size: 3rem;
+  font-weight: 200;
+  color: var(--renzo-brown);
+  line-height: 1;
+}
+
+.renzo-stat-label {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.renzo-stat-divider {
+  width: 30px;
+  height: 1px;
+  background: var(--border-default);
+  margin: 0 auto;
+}
+
+/* === SECTION HEADER === */
+.renzo-section-header {
+  margin-bottom: 3rem;
+}
+
+.renzo-header-center {
+  text-align: center;
+}
+
+.renzo-label {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--renzo-brown);
+  margin-bottom: 0.75rem;
+}
+
+.renzo-section-header h2 {
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--text-primary);
+  letter-spacing: 1px;
+}
+
+/* === SERVICES LIST === */
+.renzo-services {
+  padding: 6rem 0;
+  background: var(--surface-primary);
+}
+
+.renzo-services-list {
+  border-top: 1px solid var(--border-default);
+}
+
+.renzo-service-item {
+  border-bottom: 1px solid var(--border-default);
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.renzo-service-item:hover {
+  background: var(--surface-secondary);
+}
+
+.renzo-service-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  gap: 2rem;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+.renzo-service-num {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--renzo-gold);
+  font-family: Georgia, serif;
+}
+
+.renzo-service-line {
+  height: 1px;
+  background: var(--border-default);
+}
+
+.renzo-service-info h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.renzo-service-info span {
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+}
+
+.renzo-service-arrow {
+  font-size: 1.25rem;
+  color: var(--renzo-brown);
+  transition: transform 0.3s;
+}
+
+.renzo-service-item:hover .renzo-service-arrow {
+  transform: translateX(4px);
+}
+
+.renzo-service-item.active .renzo-service-arrow {
+  transform: rotate(90deg);
+}
+
+.renzo-service-detail {
+  padding: 0 1rem 2rem 6rem;
+  overflow: hidden;
+}
+
+.renzo-service-detail p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 600px;
+}
+
+/* === TIMELINE === */
+.renzo-timeline {
+  padding: 6rem 0;
+  background: var(--renzo-cream);
+}
+
+body.night .renzo-timeline {
+  background: var(--surface-secondary);
+}
+
+.renzo-timeline-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.renzo-timeline-header h2 {
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--text-primary);
+}
+
+.renzo-timeline-track {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding: 0 2rem;
+}
+
+.renzo-timeline-line {
+  position: absolute;
+  top: 50%;
+  left: 2rem;
+  right: 2rem;
+  height: 1px;
+  background: var(--border-default);
+  transform: translateY(-50%);
+}
+
+.renzo-timeline-item {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  background: var(--surface-primary);
+  padding: 1.5rem;
+  border: 1px solid var(--border-default);
+}
+
+.renzo-tl-phase {
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.renzo-tl-duration {
+  font-size: 0.75rem;
+  color: var(--renzo-brown);
+  letter-spacing: 1px;
+}
+
+/* === RESULTS === */
+.renzo-results {
+  padding: 6rem 0;
+  background: var(--surface-primary);
+}
+
+.renzo-results-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+
+.renzo-result-card {
+  padding: 3rem 2rem;
+  text-align: center;
+  border: 1px solid var(--border-default);
+  margin-left: -1px;
+  margin-top: -1px;
+  transition: all 0.3s;
+}
+
+.renzo-result-card:hover {
+  background: var(--renzo-cream);
+  z-index: 1;
+}
+
+body.night .renzo-result-card:hover {
+  background: var(--surface-secondary);
+}
+
+.renzo-result-value {
+  display: block;
+  font-size: 3rem;
+  font-weight: 200;
+  color: var(--renzo-brown);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.renzo-result-divider {
+  width: 30px;
+  height: 1px;
+  background: var(--renzo-gold);
+  margin: 0 auto 1rem;
+}
+
+.renzo-result-card strong {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.renzo-result-sublabel {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+/* === TESTIMONIAL === */
+.renzo-testimonial {
+  padding: 6rem 0;
+  background: var(--renzo-cream);
+}
+
+body.night .renzo-testimonial {
+  background: var(--surface-secondary);
+}
+
+.renzo-testimonial-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.renzo-testimonial-image {
+  overflow: hidden;
+}
+
+.renzo-testimonial-image img {
+  width: 100%;
+  display: block;
+}
+
+.renzo-testimonial-content {
+  position: relative;
+}
+
+.renzo-quote-mark {
+  font-size: 8rem;
+  font-family: Georgia, serif;
+  color: var(--renzo-gold);
+  opacity: 0.2;
+  line-height: 0.5;
+  margin-bottom: 1rem;
+}
+
+.renzo-testimonial-content blockquote {
+  font-size: 1.35rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+}
+
+.renzo-author {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.renzo-author-line {
+  width: 40px;
+  height: 1px;
+  background: var(--renzo-brown);
+}
+
+.renzo-author strong {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.renzo-author span {
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+}
+
+/* === CTA === */
+.renzo-cta {
+  padding: 8rem 0;
+  background: var(--renzo-brown);
+  color: white;
+}
+
+.renzo-cta-content {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.renzo-cta h2 {
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.renzo-cta p {
+  opacity: 0.85;
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+}
+
+.renzo-cta-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.renzo-btn-primary {
+  display: inline-block;
+  background: white;
+  color: var(--renzo-brown);
+  padding: 1rem 2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.renzo-btn-primary:hover {
+  background: var(--renzo-gold);
+  color: white;
+}
+
+.renzo-btn-outline {
+  display: inline-block;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: white;
+  padding: 1rem 2rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.renzo-btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: white;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 1024px) {
+  .renzo-intro-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .renzo-intro-text {
+    padding-left: 0;
+  }
+  
+  .renzo-showcase-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .renzo-showcase-stats {
+    grid-column: span 2;
+    flex-direction: row;
+    justify-content: center;
+    gap: 3rem;
+    padding-top: 2rem;
+  }
+  
+  .renzo-img-1,
+  .renzo-img-2 {
+    margin-top: 0;
+  }
+  
+  .renzo-timeline-track {
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+  
+  .renzo-timeline-line {
+    display: none;
+  }
+  
+  .renzo-results-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .renzo-testimonial-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .renzo-hero h1 {
+    font-size: 2.5rem;
+    letter-spacing: 6px;
+  }
+  
+  .renzo-intro-quote blockquote {
+    font-size: 1.25rem;
+  }
+  
+  .renzo-showcase-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .renzo-showcase-stats {
+    grid-column: span 1;
+  }
+  
+  .renzo-service-header {
+    grid-template-columns: auto 1fr auto;
+    gap: 1rem;
+  }
+  
+  .renzo-service-line {
+    display: none;
+  }
+  
+  .renzo-service-detail {
+    padding-left: 1rem;
+  }
+  
+  .renzo-results-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .renzo-result-value {
+    font-size: 2.5rem;
+  }
+  
+  .renzo-cta h2 {
+    font-size: 1.5rem;
+  }
+  
+  .renzo-cta-actions {
+    flex-direction: column;
+  }
+}

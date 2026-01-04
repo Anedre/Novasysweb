@@ -1,0 +1,28 @@
+/* ============================================
+   PageTransition - Estilos optimizados GPU
+   ============================================ */
+
+.page-transition {
+  width: 100%;
+  min-height: 100%;
+  will-change: opacity, transform;
+  transform: translateZ(0); /* Force GPU layer */
+  backface-visibility: hidden;
+}
+
+/* Overlay de transición global (opcional) */
+.page-transition-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--surface-0, #fff);
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* Reducir movimiento para accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .page-transition {
+    animation: none !important;
+    transition: opacity 0.2s ease !important;
+  }
+}

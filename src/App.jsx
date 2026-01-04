@@ -1,11 +1,16 @@
 import React from 'react';
 import { RouterProvider } from "react-router-dom";
-import { router } from "./router.jsx"; // Asegúrate de que este data router esté configurado correctamente
+import { HelmetProvider } from "react-helmet-async";
+import { router } from "./router.jsx";
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary.jsx";
 
 function App() {
- 
   return (
-    <RouterProvider router={router} />
+    <HelmetProvider>
+      <ErrorBoundary>
+        <RouterProvider router={router} />
+      </ErrorBoundary>
+    </HelmetProvider>
   );
 }
 

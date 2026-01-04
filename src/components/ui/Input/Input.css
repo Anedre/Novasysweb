@@ -1,0 +1,347 @@
+/* ============================================
+   Input Component - Estilos
+   Fase 5 del Plan de Modernización
+   ============================================ */
+
+/* Base Wrapper */
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 4px);
+  width: 100%;
+}
+
+/* Label */
+.input-label {
+  font-size: var(--font-sm, 0.875rem);
+  font-weight: var(--font-medium, 500);
+  color: var(--text-secondary, #475569);
+  margin-bottom: 4px;
+}
+
+body.night .input-label {
+  color: #cbd5e1;
+}
+
+.input-required {
+  color: var(--error, #ef4444);
+  margin-left: 2px;
+}
+
+/* Input Container */
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Input Field Base */
+.input-field {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--gray-300, #d4d4d4);
+  border-radius: var(--radius-lg, 8px);
+  background: var(--surface-primary, #ffffff);
+  color: var(--text-primary, #0f172a);
+  font-size: var(--font-base, 1rem);
+  font-family: inherit;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+body.night .input-field {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(71, 85, 105, 0.6);
+  color: #f8fafc;
+}
+
+.input-field::placeholder {
+  color: var(--text-tertiary, #94a3b8);
+}
+
+body.night .input-field::placeholder {
+  color: #64748b;
+}
+
+/* Focus States */
+.input-field:focus,
+.input-focused .input-field {
+  border-color: var(--primary-600, #c62828);
+  box-shadow: 0 0 0 4px rgba(198, 40, 40, 0.1);
+}
+
+body.night .input-field:focus,
+body.night .input-focused .input-field {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15);
+}
+
+/* Size Variants */
+.input-sm .input-field {
+  padding: 8px 12px;
+  font-size: var(--font-sm, 0.875rem);
+}
+
+.input-lg .input-field {
+  padding: 16px 20px;
+  font-size: var(--font-lg, 1.125rem);
+}
+
+/* ============================================
+   Floating Label Variant
+   ============================================ */
+
+.input-floating .input-container {
+  position: relative;
+}
+
+.input-floating .input-field {
+  padding-top: 20px;
+  padding-bottom: 8px;
+}
+
+.input-label-floating {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-tertiary, #94a3b8);
+  font-size: var(--font-base, 1rem);
+  pointer-events: none;
+  transition: all 0.2s ease;
+  background: transparent;
+  padding: 0 4px;
+}
+
+/* Floating label activo */
+.input-floating .input-field:focus + .input-label-floating,
+.input-floating.input-has-value .input-label-floating,
+.input-floating .input-field:not(:placeholder-shown) + .input-label-floating {
+  top: 8px;
+  transform: translateY(0);
+  font-size: var(--font-xs, 0.75rem);
+  color: var(--primary-600, #c62828);
+}
+
+body.night .input-floating .input-field:focus + .input-label-floating,
+body.night .input-floating.input-has-value .input-label-floating {
+  color: #ef4444;
+}
+
+/* ============================================
+   Filled Variant
+   ============================================ */
+
+.input-filled .input-field {
+  border: none;
+  border-bottom: 2px solid var(--gray-300, #d4d4d4);
+  border-radius: var(--radius-md, 6px) var(--radius-md, 6px) 0 0;
+  background: var(--surface-secondary, #f8fafc);
+}
+
+body.night .input-filled .input-field {
+  background: rgba(51, 65, 85, 0.4);
+  border-bottom-color: rgba(71, 85, 105, 0.6);
+}
+
+.input-filled .input-field:focus {
+  border-bottom-color: var(--primary-600, #c62828);
+  box-shadow: none;
+}
+
+/* ============================================
+   Outlined Variant
+   ============================================ */
+
+.input-outlined .input-field {
+  background: transparent;
+  border: 2px solid var(--gray-400, #a3a3a3);
+}
+
+/* ============================================
+   With Icons
+   ============================================ */
+
+.input-with-left-icon .input-field {
+  padding-left: 44px;
+}
+
+.input-with-right-icon .input-field {
+  padding-right: 44px;
+}
+
+.input-icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-tertiary, #94a3b8);
+}
+
+.input-icon-left {
+  left: 14px;
+}
+
+.input-icon-right {
+  right: 14px;
+}
+
+/* Password Toggle */
+.input-password-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border: none;
+  background: none;
+  color: var(--text-tertiary, #94a3b8);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.input-password-toggle:hover {
+  color: var(--text-secondary, #475569);
+}
+
+/* Status Icons */
+.input-status-icon {
+  font-size: 1.1rem;
+}
+
+.input-status-icon.error {
+  color: var(--error, #ef4444);
+}
+
+.input-status-icon.success {
+  color: var(--success, #22c55e);
+}
+
+/* ============================================
+   States
+   ============================================ */
+
+/* Error State */
+.input-error .input-field {
+  border-color: var(--error, #ef4444);
+}
+
+.input-error .input-field:focus {
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+}
+
+/* Success State */
+.input-success .input-field {
+  border-color: var(--success, #22c55e);
+}
+
+.input-success .input-field:focus {
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
+}
+
+/* Disabled State */
+.input-disabled .input-field {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--gray-100, #f5f5f5);
+}
+
+body.night .input-disabled .input-field {
+  background: rgba(51, 65, 85, 0.2);
+}
+
+/* ============================================
+   Messages
+   ============================================ */
+
+.input-message {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--font-sm, 0.875rem);
+  margin-top: 4px;
+}
+
+.input-error-message {
+  color: var(--error, #ef4444);
+}
+
+.input-helper-message {
+  color: var(--text-tertiary, #94a3b8);
+}
+
+/* ============================================
+   Textarea
+   ============================================ */
+
+.textarea-container {
+  display: block;
+}
+
+.textarea-field {
+  min-height: 100px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.textarea-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 4px;
+}
+
+.textarea-count {
+  font-size: var(--font-xs, 0.75rem);
+  color: var(--text-tertiary, #94a3b8);
+  margin-left: auto;
+}
+
+/* ============================================
+   Select
+   ============================================ */
+
+.select-container {
+  position: relative;
+}
+
+.select-field {
+  appearance: none;
+  cursor: pointer;
+  padding-right: 40px;
+}
+
+.select-arrow {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-tertiary, #94a3b8);
+  pointer-events: none;
+  font-size: 0.8rem;
+}
+
+.select-field:focus + .select-arrow {
+  color: var(--primary-600, #c62828);
+}
+
+/* Select options */
+.select-field option {
+  padding: 12px;
+  background: var(--surface-primary, #ffffff);
+  color: var(--text-primary, #0f172a);
+}
+
+body.night .select-field option {
+  background: #1e293b;
+  color: #f8fafc;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media (max-width: 480px) {
+  .input-field {
+    font-size: 16px; /* Prevenir zoom en iOS */
+  }
+}

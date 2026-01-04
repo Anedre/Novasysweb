@@ -1,0 +1,345 @@
+/* ============================================
+   WhyHP - Beneficios de elegir HP
+   ============================================ */
+
+.why-hp {
+  position: relative;
+  padding: 100px 20px;
+  overflow: hidden;
+}
+
+/* Background */
+.why-hp-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  z-index: 0;
+}
+
+.night .why-hp-bg {
+  background: linear-gradient(180deg, #0d1b2a 0%, #0a1628 100%);
+}
+
+.why-hp-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(0, 150, 214, 0.08) 1px, transparent 0);
+  background-size: 40px 40px;
+}
+
+/* Content */
+.why-hp-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+.why-hp-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.why-hp-badge {
+  display: inline-block;
+  padding: 8px 20px;
+  background: rgba(0, 150, 214, 0.1);
+  border: 1px solid rgba(0, 150, 214, 0.3);
+  border-radius: 30px;
+  color: #0096d6;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.why-hp-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
+.why-hp-title-main {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.night .why-hp-title-main {
+  color: #fff;
+}
+
+.why-hp-title-highlight {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #0096d6;
+}
+
+.why-hp-subtitle {
+  font-size: 1.1rem;
+  color: #64748b;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.night .why-hp-subtitle {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* Logos HP */
+.why-hp-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 60px;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  border: 1px solid rgba(0, 150, 214, 0.1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+}
+
+.night .why-hp-logos {
+  background: rgba(15, 25, 45, 0.6);
+  border-color: rgba(0, 150, 214, 0.2);
+}
+
+.why-hp-logo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  max-width: 300px;
+}
+
+.why-hp-logo-item img {
+  height: 50px;
+  object-fit: contain;
+}
+
+.night .why-hp-logo-item img {
+  filter: brightness(0) invert(1);
+}
+
+.why-hp-logo-item span {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.night .why-hp-logo-item span {
+  color: #fff;
+}
+
+.why-hp-logo-item p {
+  font-size: 0.85rem;
+  color: #64748b;
+  text-align: center;
+}
+
+.night .why-hp-logo-item p {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.why-hp-logo-divider {
+  width: 1px;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, rgba(0, 150, 214, 0.3), transparent);
+}
+
+/* Benefits Grid */
+.why-hp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  margin-bottom: 60px;
+}
+
+/* Card */
+.why-hp-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.night .why-hp-card {
+  background: rgba(15, 25, 45, 0.7);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.why-hp-card:hover {
+  box-shadow: 0 15px 40px rgba(0, 150, 214, 0.12);
+  border-color: rgba(0, 150, 214, 0.2);
+}
+
+.night .why-hp-card:hover {
+  border-color: rgba(0, 150, 214, 0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.why-hp-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.why-hp-card-icon {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(0, 150, 214, 0.1), rgba(0, 150, 214, 0.05));
+  border-radius: 16px;
+  font-size: 1.8rem;
+}
+
+.why-hp-card-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.why-hp-stat-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0096d6;
+}
+
+.why-hp-stat-label {
+  font-size: 0.75rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.night .why-hp-stat-label {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.why-hp-card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 12px;
+}
+
+.night .why-hp-card-title {
+  color: #fff;
+}
+
+.why-hp-card-desc {
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.night .why-hp-card-desc {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* CTA */
+.why-hp-cta {
+  text-align: center;
+  padding: 40px;
+  background: linear-gradient(135deg, rgba(0, 150, 214, 0.08), rgba(1, 169, 130, 0.05));
+  border-radius: 20px;
+  border: 1px solid rgba(0, 150, 214, 0.15);
+}
+
+.night .why-hp-cta {
+  background: linear-gradient(135deg, rgba(0, 150, 214, 0.15), rgba(1, 169, 130, 0.1));
+}
+
+.why-hp-cta p {
+  font-size: 1.1rem;
+  color: #475569;
+  margin-bottom: 20px;
+}
+
+.night .why-hp-cta p {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.why-hp-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 30px;
+  background: linear-gradient(135deg, #0096d6 0%, #0077b5 100%);
+  color: #fff;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 150, 214, 0.3);
+}
+
+.why-hp-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(0, 150, 214, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .why-hp-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .why-hp {
+    padding: 80px 15px;
+  }
+
+  .why-hp-title-main {
+    font-size: 2.2rem;
+  }
+
+  .why-hp-title-highlight {
+    font-size: 1.6rem;
+  }
+
+  .why-hp-logos {
+    flex-direction: column;
+    gap: 25px;
+    padding: 25px;
+  }
+
+  .why-hp-logo-divider {
+    width: 80%;
+    height: 1px;
+  }
+
+  .why-hp-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .why-hp-card {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .why-hp-cta {
+    padding: 25px;
+  }
+
+  .why-hp-card-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+}
