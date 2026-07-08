@@ -13,13 +13,28 @@ export default defineConfig({
         manualChunks(id) {
           // Vendor chunks
           if (id.includes('node_modules')) {
-            if (id.includes('react-dom') || id.includes('react-router')) return 'vendor-react';
+            // Todo el runtime de React (+ react-helmet, que se acopla a React vía
+            // context) DEBE ir junto y cargarse primero. Fragmentarlo en chunks
+            // separados rompe el orden de init en producción:
+            //  - 'react' core sin chunk → "Cannot set properties of undefined (setting 'Children')"
+            //  - react-helmet en su propio chunk → "Cannot access 'a' before initialization" (TDZ)
+            if (
+              id.includes('node_modules/react/') ||
+              id.includes('node_modules/react-dom/') ||
+              id.includes('node_modules/react-router') ||
+              id.includes('node_modules/scheduler/') ||
+              id.includes('node_modules/react-is/') ||
+              id.includes('node_modules/use-sync-external-store/') ||
+              id.includes('node_modules/react-helmet-async/') ||
+              id.includes('node_modules/react-fast-compare/') ||
+              id.includes('node_modules/invariant/') ||
+              id.includes('node_modules/shallowequal/')
+            ) return 'vendor-react';
             if (id.includes('framer-motion') || id.includes('gsap')) return 'vendor-animation';
             if (id.includes('chart.js') || id.includes('react-chartjs')) return 'vendor-charts';
             if (id.includes('leaflet') || id.includes('react-leaflet')) return 'vendor-maps';
             if (id.includes('swiper') || id.includes('keen-slider') || id.includes('react-slick')) return 'vendor-ui';
             if (id.includes('react-icons')) return 'vendor-icons';
-            if (id.includes('react-helmet')) return 'vendor-helmet';
           }
           // Design system as shared chunk
           if (id.includes('src/design-system/')) return 'design-system';
