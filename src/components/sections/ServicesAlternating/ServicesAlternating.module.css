@@ -1,0 +1,153 @@
+/* ServicesAlternating — Zigzag text-image rows */
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.row.reversed {
+  direction: rtl;
+}
+.row.reversed > * {
+  direction: ltr;
+}
+
+/* Text Side */
+.textSide {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.serviceBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  width: fit-content;
+}
+
+.serviceTitle {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: var(--font-extrabold);
+  color: var(--text-heading);
+  line-height: var(--leading-tight);
+}
+
+.serviceDesc {
+  font-size: var(--text-base);
+  color: var(--text-muted);
+  line-height: var(--leading-relaxed);
+  max-width: 460px;
+}
+
+.featureList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.checkIcon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+}
+
+.featureLink {
+  font-size: var(--text-base);
+  color: var(--text-body);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-default);
+}
+.featureLink:hover {
+  color: var(--text-heading);
+}
+
+.serviceLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: var(--font-semibold);
+  font-size: var(--text-base);
+  text-decoration: none;
+  padding-top: var(--space-4);
+  transition: gap var(--duration-normal) var(--ease-default);
+}
+.serviceLink:hover {
+  gap: var(--space-3);
+}
+
+/* Image Side */
+.imageSide {
+  position: relative;
+}
+
+.imageWrapper {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.serviceImage {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius-xl);
+  transition: transform var(--duration-slow) var(--ease-default);
+}
+.imageWrapper:hover .serviceImage {
+  transform: scale(1.03);
+}
+
+.imageGlow {
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .row {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .row.reversed {
+    direction: ltr;
+  }
+
+  .serviceTitle {
+    font-size: var(--text-2xl);
+  }
+
+  .serviceDesc {
+    max-width: 100%;
+  }
+
+  .rows {
+    gap: var(--space-16);
+  }
+}

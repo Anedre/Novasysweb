@@ -1,0 +1,260 @@
+/* ContactoPage — cuerpo editorial (theme-aware). El hero lo aporta <ContactoConsola/>. */
+
+.formSection,
+.proceso,
+.faqSection {
+  --bg: #FBFAF7;
+  --bg-alt: #F1ECE1;
+  --ink: #0E0E12;
+  --muted: #6B6B74;
+  --line: rgba(14, 14, 18, 0.12);
+  --hair: rgba(14, 14, 18, 0.08);
+  --card: #FFFFFF;
+  --card-border: rgba(14, 14, 18, 0.10);
+  --card-shadow: 0 4px 14px rgba(14, 14, 18, 0.06), 0 34px 60px -34px rgba(14, 14, 18, 0.30);
+}
+[data-theme='dark'] .formSection,
+[data-theme='dark'] .proceso,
+[data-theme='dark'] .faqSection {
+  --bg: #0A0A0F;
+  --bg-alt: #0E0E14;
+  --ink: #FAFAFA;
+  --muted: #A1A1AA;
+  --line: rgba(255, 255, 255, 0.12);
+  --hair: rgba(255, 255, 255, 0.08);
+  --card: #121219;
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-shadow: 0 40px 80px -34px rgba(0, 0, 0, 0.7);
+}
+
+.formSection { background: var(--bg); color: var(--ink); padding: 100px 40px; }
+.proceso { background: var(--bg-alt); color: var(--ink); padding: 100px 40px; }
+.faqSection { background: var(--bg); color: var(--ink); padding: 100px 40px; }
+
+.wrap { max-width: 1200px; margin: 0 auto; }
+.wrapNarrow { max-width: 820px; margin: 0 auto; }
+
+/* ===== Section head (compartido) ===== */
+.head { margin-bottom: 48px; }
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #E11D2A;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.eyebrow::before {
+  content: '§';
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--ink);
+}
+.headTitle {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(30px, 3.6vw, 52px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 0;
+  color: var(--ink);
+}
+.headTitle em { font-style: italic; color: #E11D2A; font-weight: 400; }
+.headLede {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--muted);
+  max-width: 46ch;
+  margin: 18px 0 0;
+}
+
+/* ===== Form + info ===== */
+.layout {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 48px;
+  align-items: start;
+}
+.formCard {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 34px;
+  box-shadow: var(--card-shadow);
+}
+.formCardTitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 22px;
+}
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+.formFull { grid-column: 1 / -1; }
+
+/* Bloque demo (cuestionario técnico) */
+.demoBlock {
+  padding: 20px 22px 22px;
+  background: rgba(245, 166, 35, 0.07);
+  border: 1px dashed rgba(245, 166, 35, 0.5);
+  border-radius: 12px;
+}
+.demoBlockKicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #9A6A00;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+[data-theme='dark'] .demoBlockKicker { color: #FBBF24; }
+.demoBlockHint {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Info column */
+.info { display: flex; flex-direction: column; gap: 30px; }
+.infoBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--hair);
+}
+.infoBlock:last-child { border-bottom: none; padding-bottom: 0; }
+.infoLabel {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #E11D2A;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.infoLink,
+.infoItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.infoLink:hover { color: #E11D2A; }
+.infoIcon { font-size: 17px; color: #E11D2A; flex-shrink: 0; }
+.infoText {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0 0 4px;
+}
+
+/* ===== Proceso ===== */
+.procesoGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.procesoStep {
+  padding-top: 22px;
+  border-top: 2px solid var(--ink);
+}
+.procesoNum {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-size: 40px;
+  line-height: 1;
+  color: #E11D2A;
+  display: block;
+  margin-bottom: 16px;
+}
+.procesoTitle {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 21px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  color: var(--ink);
+  margin: 0 0 8px;
+}
+.procesoDesc {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ===== FAQ ===== */
+.faqList { border-top: 1px solid var(--line); }
+.faqItem { border-bottom: 1px solid var(--line); }
+.faqTrigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 24px 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  color: var(--ink);
+}
+.faqTrigger span {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+.faqIcon {
+  font-size: 22px;
+  color: #E11D2A;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+.faqOpen .faqIcon { transform: rotate(180deg); }
+.faqContent { overflow: hidden; }
+.faqAnswer {
+  padding: 0 4px 26px;
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: var(--muted);
+  max-width: 62ch;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .layout { grid-template-columns: 1fr; gap: 40px; }
+  .procesoGrid { grid-template-columns: repeat(2, 1fr); gap: 32px 24px; }
+}
+@media (max-width: 640px) {
+  .formSection, .proceso, .faqSection { padding: 72px 20px; }
+  .formGrid { grid-template-columns: 1fr; }
+  .formCard { padding: 24px; }
+  .procesoGrid { grid-template-columns: 1fr; }
+  .head { margin-bottom: 36px; }
+}

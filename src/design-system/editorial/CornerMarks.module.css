@@ -1,0 +1,8 @@
+/* CornerMarks — absolute L-shaped editorial markers */
+
+.mark {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+  box-sizing: border-box;
+}

@@ -1,0 +1,187 @@
+/* FAQNova — Capítulo 05 · editorial FAQ with sticky head */
+
+.faq {
+  padding: var(--space-32) var(--space-10);
+  background: #FBFAF7;
+  color: #0E0E12;
+}
+
+[data-theme="dark"] .faq {
+  background: #0A0A0F;
+  color: #FAFAFA;
+}
+
+.inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: var(--space-16);
+  align-items: start;
+}
+
+.head {
+  position: sticky;
+  top: 100px;
+}
+
+.label {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.6875rem;
+  color: #E11D2A;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+.label::before {
+  content: '§';
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.25rem;
+  font-style: italic;
+  color: #0E0E12;
+  font-weight: 400;
+}
+
+[data-theme="dark"] .label::before {
+  color: #FAFAFA;
+}
+
+.title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  color: #0E0E12;
+  margin: 0 0 var(--space-4);
+}
+.title em {
+  font-style: italic;
+  color: #E11D2A;
+  font-weight: 400;
+}
+
+[data-theme="dark"] .title {
+  color: #FAFAFA;
+}
+
+.dek {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.0625rem;
+  color: #6B6B74;
+  line-height: 1.55;
+  margin: 0;
+  font-style: italic;
+  max-width: 340px;
+}
+
+[data-theme="dark"] .dek {
+  color: #A1A1AA;
+}
+
+/* List */
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  border-bottom: 1px solid rgba(14, 14, 18, 0.12);
+}
+.item:first-child {
+  border-top: 1px solid rgba(14, 14, 18, 0.12);
+}
+
+[data-theme="dark"] .item {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+[data-theme="dark"] .item:first-child {
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+.q {
+  width: 100%;
+  padding: var(--space-6) 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-6);
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #0E0E12;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  line-height: 1.3;
+  transition: color 0.2s ease;
+}
+
+[data-theme="dark"] .q {
+  color: #FAFAFA;
+}
+
+.q:hover {
+  color: #E11D2A;
+}
+
+.plus {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(14, 14, 18, 0.15);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #0E0E12;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.plus svg {
+  width: 14px;
+  height: 14px;
+}
+
+[data-theme="dark"] .plus {
+  border-color: rgba(255, 255, 255, 0.18);
+  color: #FAFAFA;
+}
+
+.itemOpen .plus {
+  background: #E11D2A;
+  border-color: #E11D2A;
+  color: #fff;
+  transform: rotate(45deg);
+}
+
+.a {
+  overflow: hidden;
+}
+
+.aIn {
+  padding: 0 0 28px;
+  font-size: 1rem;
+  color: #6B6B74;
+  line-height: 1.65;
+  max-width: 560px;
+}
+
+[data-theme="dark"] .aIn {
+  color: #A1A1AA;
+}
+
+@media (max-width: 1024px) {
+  .inner { grid-template-columns: 1fr; gap: var(--space-10); }
+  .head { position: static; }
+}
+
+@media (max-width: 640px) {
+  .faq { padding: var(--space-20) var(--space-4); }
+  .q { font-size: 1.0625rem; }
+}

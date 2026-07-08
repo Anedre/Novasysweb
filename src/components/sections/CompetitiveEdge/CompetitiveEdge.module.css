@@ -1,0 +1,60 @@
+/* CompetitiveEdge — Comparison table */
+.table {
+  width: 100%;
+  max-width: var(--container-narrow);
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--border-default);
+}
+
+.table thead th {
+  padding: var(--space-5) var(--space-6);
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+  text-align: left;
+  background-color: var(--bg-subtle);
+  color: var(--text-heading);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.table thead th:first-child {
+  width: 40%;
+}
+
+.highlight {
+  background-color: var(--brand-primary) !important;
+  color: var(--text-inverse) !important;
+}
+
+.table tbody td {
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--text-sm);
+  color: var(--text-body);
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: top;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.check {
+  color: var(--color-success);
+  font-size: var(--text-lg);
+}
+
+.cross {
+  color: var(--text-subtle);
+  font-size: var(--text-lg);
+}
+
+@media (max-width: 640px) {
+  .table thead th,
+  .table tbody td {
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--text-xs);
+  }
+}

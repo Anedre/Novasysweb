@@ -1,0 +1,181 @@
+/* PillButton — v3-nova pill with gradient hover pseudo-element */
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 0;
+  font-weight: 600;
+  font-family: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              color 0.2s ease,
+              border-color 0.25s ease,
+              background-color 0.25s ease;
+  white-space: nowrap;
+  background: transparent;
+  color: inherit;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+/* Size variants */
+.size-sm { padding: 10px 18px; font-size: 13px; }
+.size-md { padding: 16px 28px; font-size: 15px; }
+.size-lg { padding: 18px 32px; font-size: 16px; }
+
+/* Primary — ink bg → red gradient on hover */
+.primary {
+  background: #0E0E12;
+  color: #FBFAF7;
+}
+
+.primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #E11D2A, #B8141F);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  border-radius: inherit;
+}
+
+.primary:hover {
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px -12px rgba(225, 29, 42, 0.5);
+}
+
+.primary:hover::before { opacity: 1; }
+.primary:hover .arrow { transform: translateX(4px); }
+
+[data-theme="dark"] .primary {
+  background: #FAFAFA;
+  color: #0A0A0F;
+}
+[data-theme="dark"] .primary:hover {
+  color: #fff;
+}
+
+/* Secondary — outline subtle */
+.secondary {
+  background: transparent;
+  color: #0E0E12;
+  border: 1px solid rgba(14, 14, 18, 0.22);
+}
+
+.secondary:hover {
+  border-color: #0E0E12;
+  background: #F2EFE8;
+}
+
+.secondary:hover .arrow { transform: translateX(4px); }
+
+[data-theme="dark"] .secondary {
+  color: #FAFAFA;
+  border-color: rgba(255, 255, 255, 0.22);
+}
+[data-theme="dark"] .secondary:hover {
+  border-color: #FAFAFA;
+  background: #161620;
+}
+
+/* Ghost — minimal */
+.ghost {
+  background: transparent;
+  color: #0E0E12;
+}
+
+.ghost:hover {
+  color: #E11D2A;
+}
+
+.ghost:hover .arrow { transform: translateX(4px); }
+
+[data-theme="dark"] .ghost {
+  color: #FAFAFA;
+}
+
+/* Accent — warm gradient static */
+.accent {
+  background: linear-gradient(135deg, #F97316, #DC2626);
+  color: #fff;
+  box-shadow: 0 10px 30px -10px rgba(225, 29, 42, 0.45);
+}
+
+.accent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px -12px rgba(225, 29, 42, 0.65);
+}
+
+.accent:hover .arrow { transform: translateX(4px); }
+
+/* ============================================================
+   .inverse — fuerza estilos dark-surface independiente de [data-theme]
+   ============================================================
+   Se aplica sobre cualquier variant cuando el botón vive sobre fondo
+   oscuro permanente (EditorialCta, hero dark, ctaFinal, etc.).
+   Las reglas son idénticas a las que ya existen para
+   [data-theme="dark"] .variant — pero forzadas vía clase modifier.
+*/
+
+/* Primary inverse — pill blanco sobre dark, hover red gradient */
+.primary.inverse {
+  background: #FAFAFA;
+  color: #0A0A0F;
+}
+
+.primary.inverse:hover {
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px -12px rgba(225, 29, 42, 0.55);
+}
+
+/* Reuse primary::before red gradient on hover (heredado de .primary) */
+.primary.inverse:hover::before { opacity: 1; }
+.primary.inverse:hover .arrow { transform: translateX(4px); }
+
+/* Secondary inverse — outline claro sobre dark */
+.secondary.inverse {
+  color: #FAFAFA;
+  border-color: rgba(255, 255, 255, 0.28);
+  background: transparent;
+}
+
+.secondary.inverse:hover {
+  color: #FAFAFA;
+  border-color: #FAFAFA;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.secondary.inverse:hover .arrow { transform: translateX(4px); }
+
+/* Ghost inverse — texto claro sobre dark, hover amber */
+.ghost.inverse {
+  color: #FAFAFA;
+  background: transparent;
+}
+
+.ghost.inverse:hover {
+  color: #F5A623;
+}
+
+.ghost.inverse:hover .arrow { transform: translateX(4px); }

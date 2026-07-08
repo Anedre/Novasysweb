@@ -1,0 +1,33 @@
+/* ShinyText — highlight que barre el texto (React Bits style). Solo activa el clip
+   si el navegador lo soporta, para no dejar el texto invisible en fallback. */
+.shiny {
+  display: inline-block;
+}
+
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .shiny {
+    background-image: linear-gradient(
+      120deg,
+      currentColor 35%,
+      color-mix(in srgb, currentColor 30%, #ffffff) 50%,
+      currentColor 65%
+    );
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation-name: shineSweep;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes shineSweep {
+  0% { background-position: 220% 0; }
+  100% { background-position: -120% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shiny { animation: none; }
+}

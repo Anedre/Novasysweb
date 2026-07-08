@@ -1,0 +1,128 @@
+/* IndustriesServed — Industry grid with ripple + animated clients */
+
+.sectionBg {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--border-default) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-default);
+  transition:
+    box-shadow 0.4s ease,
+    transform 0.3s ease,
+    border-color 0.3s ease;
+  cursor: default;
+  overflow: hidden;
+}
+
+.card:hover {
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+  border-color: var(--brand-primary-glow);
+}
+
+/* Ripple effect on hover */
+.card::after {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--brand-primary-glow) 0%, transparent 70%);
+  top: var(--ripple-y, 50%);
+  left: var(--ripple-x, 50%);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.card:hover::after {
+  transform: translate(-50%, -50%) scale(2);
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--brand-primary-light), rgba(239, 68, 68, 0.05));
+  color: var(--brand-primary);
+  font-size: var(--text-xl);
+  position: relative;
+  z-index: 1;
+}
+
+.name {
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--text-heading);
+  position: relative;
+  z-index: 1;
+}
+
+.desc {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: var(--leading-relaxed);
+  position: relative;
+  z-index: 1;
+}
+
+/* Clients animate in on hover */
+.clients {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-top: auto;
+  position: relative;
+  z-index: 1;
+  opacity: 0.6;
+  transform: translateY(4px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.card:hover .clients {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.client {
+  font-size: var(--text-xs);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-full);
+  background-color: var(--bg-subtle);
+  color: var(--text-subtle);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card:hover .client {
+  background-color: var(--brand-primary-light);
+  color: var(--brand-primary);
+}
+
+@media (max-width: 1024px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; }
+}

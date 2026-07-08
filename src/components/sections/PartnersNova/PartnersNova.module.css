@@ -1,0 +1,102 @@
+/* PartnersNova — v3-nova dark partner strip with inverted white logos */
+
+.partners {
+  padding: 56px 40px;
+  background: #0E0E12;
+  color: #FBFAF7;
+  position: relative;
+}
+
+[data-theme="dark"] .partners {
+  background: #1A1A24;
+}
+
+.inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.label {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.5);
+  max-width: 260px;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.label b {
+  color: #FFFFFF;
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+.logos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.partner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 24px;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  transition: opacity 0.2s ease;
+}
+
+.partner:first-child {
+  border-left: 0;
+  padding-left: 0;
+}
+
+.partner img {
+  height: 28px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.partner:hover img {
+  opacity: 1;
+}
+
+.txt {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.625rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  line-height: 1.3;
+}
+
+.txt b {
+  display: block;
+  color: #FFFFFF;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+@media (max-width: 1024px) {
+  .inner { grid-template-columns: 1fr; gap: var(--space-6); }
+  .logos { justify-content: flex-start; }
+}
+
+@media (max-width: 640px) {
+  .partners { padding: var(--space-10) var(--space-4); }
+  .logos { gap: var(--space-4); }
+  .partner { padding: 0 var(--space-4); }
+  .partner img { height: 22px; }
+}

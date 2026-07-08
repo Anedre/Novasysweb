@@ -1,0 +1,104 @@
+/* TrustBar — Infinite Marquee */
+
+.wrapper {
+  position: relative;
+  padding: var(--space-8) 0;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-default);
+  overflow: hidden;
+}
+
+/* Top accent line */
+.wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: var(--gradient-accent);
+  opacity: 0.6;
+}
+
+.label {
+  display: block;
+  text-align: center;
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  color: var(--text-subtle);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  margin-bottom: var(--space-6);
+}
+
+/* Marquee container with fade masks */
+.marqueeWrapper {
+  overflow: hidden;
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+.marqueeTrack {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  width: max-content;
+  animation: marquee 35s linear infinite;
+  will-change: transform;
+}
+
+.marqueeTrack:hover {
+  animation-play-state: paused;
+}
+
+.logo {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(0.5) opacity(0.6);
+  transition: filter 0.4s ease, transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.logo:hover {
+  filter: grayscale(0) opacity(1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.1));
+  transform: scale(1.08);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .marqueeTrack {
+    gap: var(--space-8);
+  }
+  .logo {
+    height: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marqueeTrack {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: auto;
+    gap: var(--space-8);
+    padding: 0 var(--gutter);
+  }
+}

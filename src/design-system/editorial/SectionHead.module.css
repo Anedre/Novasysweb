@@ -1,0 +1,49 @@
+/* SectionHead — composition of ChapterLabel + EditorialTitle + optional dek */
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.align-center {
+  text-align: center;
+  align-items: center;
+}
+
+.align-right {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.rule {
+  padding-bottom: 32px;
+  border-bottom: 2px solid #0E0E12;
+}
+
+.inverse.rule {
+  border-bottom-color: #FAFAFA;
+}
+
+.dek {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 18px;
+  color: #6B6B74;
+  line-height: 1.55;
+  margin: 0;
+  font-style: italic;
+  max-width: 640px;
+}
+
+.inverse .dek {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="dark"] .dek {
+  color: #A1A1AA;
+}
+
+[data-theme="dark"] .rule {
+  border-bottom-color: #FAFAFA;
+}

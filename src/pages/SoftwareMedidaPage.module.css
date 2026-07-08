@@ -1,0 +1,104 @@
+/* Software a Medida — bespoke. Editor de código animado + configurador de stack. Acento rojo. */
+
+.hero, .builderSection, .craft {
+  --accent: #E11D2A;
+  --amber: #F5A623;
+  --bg: #FBFAF7;
+  --bg-alt: #F1ECE1;
+  --ink: #0E0E12;
+  --muted: #6B6B74;
+  --card: #FFFFFF;
+  --line: rgba(14, 14, 18, 0.12);
+  --card-shadow: 0 6px 20px rgba(14, 14, 18, 0.05), 0 40px 70px -40px rgba(14, 14, 18, 0.3);
+}
+[data-theme='dark'] .hero, [data-theme='dark'] .builderSection, [data-theme='dark'] .craft {
+  --bg: #0A0A0F; --bg-alt: #0E0E14; --ink: #FAFAFA; --muted: #A1A1AA; --card: #121219; --line: rgba(255, 255, 255, 0.1);
+  --card-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.7);
+}
+
+.wrap { max-width: 1180px; margin: 0 auto; }
+.head { max-width: 660px; margin-bottom: 40px; }
+.sectionEyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); font-weight: 600; display: inline-flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.sectionEyebrow::before { content: '§'; font-family: 'Fraunces', Georgia, serif; font-size: 1.2rem; font-style: italic; color: var(--ink); }
+.headTitle { font-family: 'Fraunces', Georgia, serif; font-size: clamp(28px, 3.6vw, 46px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.02; margin: 0; color: var(--ink); text-wrap: balance; }
+.headTitle em, .heroTitle em { font-style: italic; color: var(--accent); font-weight: 400; }
+.headLede { font-size: 15.5px; line-height: 1.6; color: var(--muted); margin: 18px 0 0; }
+
+/* ===== Hero (editor izq + texto der) ===== */
+.hero { background: var(--bg); color: var(--ink); padding: calc(var(--header-height, 72px) + 48px) 40px 64px; overflow: hidden; }
+.heroInner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1.12fr 1fr; gap: 48px; align-items: center; }
+.editorWrap { min-width: 0; }
+.editor { background: #0E0E12; border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; overflow: hidden; box-shadow: 0 50px 90px -40px rgba(14,14,18,0.5); }
+.edBar { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.06); }
+.edDots { display: flex; gap: 6px; }
+.edDots i { width: 11px; height: 11px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+.edDots i:nth-child(1) { background: #FF5F56; } .edDots i:nth-child(2) { background: #FFBD2E; } .edDots i:nth-child(3) { background: #27C93F; }
+.edTabActive { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #FAFAFA; padding: 5px 11px; border-radius: 6px; background: rgba(255,255,255,0.06); }
+.edTab { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #71717A; }
+.edCode { margin: 0; padding: 18px 14px; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.75; color: #C9C6C0; overflow-x: auto; }
+.edLine { white-space: pre; }
+.num { display: inline-block; width: 22px; color: #4B4B52; user-select: none; }
+.kw { color: #FF7B72; }
+.fn { color: #F5A623; }
+.cm { color: #6B6B74; font-style: italic; }
+.typeLine { display: inline-block; overflow: hidden; white-space: nowrap; vertical-align: bottom; color: #7EE787; animation: type 4s steps(31) infinite alternate; }
+@keyframes type { 0%, 8% { width: 0; } 92%, 100% { width: 32ch; } }
+.cursor { display: inline-block; width: 8px; height: 16px; background: var(--amber); margin-left: 1px; vertical-align: text-bottom; animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.edStatus { display: flex; align-items: center; justify-content: space-between; padding: 9px 16px; background: var(--accent); color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.02em; }
+.edOk { display: inline-flex; align-items: center; gap: 7px; }
+.edOk i { width: 7px; height: 7px; border-radius: 50%; background: #7EE787; box-shadow: 0 0 6px #7EE787; }
+.badge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(225,29,42,0.3); background: rgba(225,29,42,0.06); font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); font-weight: 600; margin-bottom: 20px; }
+.heroTitle { font-family: 'Fraunces', Georgia, serif; font-size: clamp(34px, 4.4vw, 60px); font-weight: 500; letter-spacing: -0.035em; line-height: 1; margin: 0; color: var(--ink); text-wrap: balance; }
+.heroLede { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: clamp(16px, 1.7vw, 19px); line-height: 1.5; color: var(--muted); margin: 22px 0 30px; max-width: 46ch; }
+.heroCtas { display: flex; flex-wrap: wrap; gap: 14px; }
+
+/* ===== Stack builder ===== */
+.builderSection { background: var(--bg-alt); color: var(--ink); padding: 90px 40px; }
+.builder { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 32px; margin-top: 44px; align-items: start; }
+.layers { display: flex; flex-direction: column; gap: 22px; }
+.layerLabel { display: block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 10px; }
+.layerOpts { display: flex; flex-wrap: wrap; gap: 8px; }
+.optBtn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 16px; border-radius: 10px; border: 1px solid var(--line); background: var(--card); color: var(--ink); font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.25s cubic-bezier(0.22,1,0.36,1); }
+.optBtn svg { font-size: 17px; }
+.optBtn:hover { border-color: var(--accent); }
+.optBtnOn { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 10px 24px -10px rgba(225,29,42,0.6); }
+.stackResult { background: #0E0E12; border-radius: 16px; padding: 26px; box-shadow: var(--card-shadow); }
+.stackResultLabel { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amber); font-weight: 600; }
+.stackAssembled { margin: 18px 0; }
+.stackNode { display: flex; align-items: center; gap: 13px; padding: 10px 0; position: relative; }
+.stackNodeIcon { width: 42px; height: 42px; border-radius: 11px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); display: grid; place-items: center; font-size: 21px; color: var(--amber); flex-shrink: 0; }
+.stackNodeText { display: flex; flex-direction: column; }
+.stackNodeText b { color: #FAFAFA; font-size: 14px; }
+.stackNodeText small { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.04em; text-transform: uppercase; color: #71717A; }
+.stackNodeConn { position: absolute; left: 20px; top: 52px; width: 2px; height: 14px; background: rgba(255,255,255,0.12); }
+.stackFoot { display: block; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.06em; color: #71717A; }
+
+/* ===== Craft (equipo + proceso) ===== */
+.craft { background: var(--bg); color: var(--ink); padding: 90px 40px; }
+.craftInner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px; align-items: center; }
+.craftVisual { position: relative; }
+.craftImgA { display: block; width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 18px; border: 1px solid var(--line); }
+.craftImgB { position: absolute; bottom: -26px; left: -18px; width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 6px solid var(--bg); box-shadow: var(--card-shadow); }
+.craftList { display: flex; flex-direction: column; gap: 22px; margin-top: 24px; }
+.craftItem { display: flex; gap: 16px; }
+.craftIcon { font-size: 28px; color: var(--accent); flex-shrink: 0; }
+.craftItemTitle { font-family: 'Fraunces', Georgia, serif; font-size: 20px; font-weight: 500; color: var(--ink); margin: 0 0 6px; }
+.craftItemDesc { font-size: 14.5px; line-height: 1.55; color: var(--muted); margin: 0; }
+
+/* ===== Responsive ===== */
+@media (max-width: 960px) {
+  .heroInner { grid-template-columns: 1fr; gap: 36px; }
+  .editorWrap { order: 2; }
+  .builder { grid-template-columns: 1fr; }
+  .craftInner { grid-template-columns: 1fr; gap: 60px; }
+}
+@media (max-width: 560px) {
+  .hero { padding: calc(var(--header-height, 72px) + 40px) 20px 52px; }
+  .builderSection, .craft { padding-left: 20px; padding-right: 20px; }
+  .edCode { font-size: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .typeLine { animation: none; width: 32ch; }
+  .cursor { animation: none; }
+}

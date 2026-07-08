@@ -1,0 +1,129 @@
+/* ============================================================
+   Editorial toolkit — global utility classes + keyframes
+   Used by icons.jsx (LiveDot, PlayCircle) and v3-nova sections.
+   ============================================================ */
+
+/* ===== Keyframes (global, used across editorial components) ===== */
+
+@keyframes liveDotBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+@keyframes editorialFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 0.92; transform: none; }
+}
+
+@keyframes editorialRiseUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes editorialTermIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes editorialTick {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ===== Utility classes (prefixed .ed-) ===== */
+
+/* Editorial em — italic red (can be applied to inline <em>) */
+.ed-em {
+  font-style: italic;
+  color: #E11D2A;
+  font-weight: 400;
+}
+.ed-em-amber { color: #F5A623; }
+.ed-em-blue { color: #3B82F6; }
+
+/* Mono uppercase label */
+.ed-mono-label {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  color: #6B6B74;
+}
+
+[data-theme="dark"] .ed-mono-label {
+  color: #A1A1AA;
+}
+
+.ed-mono-label-tight { letter-spacing: 0.12em; }
+.ed-mono-label-wide { letter-spacing: 0.22em; }
+
+/* Serif italic lead / dek */
+.ed-dek {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 18px;
+  color: #6B6B74;
+  line-height: 1.55;
+  font-style: italic;
+}
+
+[data-theme="dark"] .ed-dek {
+  color: #A1A1AA;
+}
+
+/* Bottom rule used on section heads */
+.ed-rule-bottom {
+  padding-bottom: 32px;
+  border-bottom: 2px solid #0E0E12;
+}
+
+[data-theme="dark"] .ed-rule-bottom {
+  border-bottom-color: #FAFAFA;
+}
+
+/* Editorial grid background pattern */
+.ed-grid-bg {
+  background-image:
+    linear-gradient(rgba(14, 14, 18, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 14, 18, 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
+
+[data-theme="dark"] .ed-grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
+/* Editorial glow — radial red blob, absolute positioning */
+.ed-glow-red {
+  position: absolute;
+  pointer-events: none;
+  background: radial-gradient(ellipse, rgba(225, 29, 42, 0.18), transparent 65%);
+}
+
+.ed-glow-amber {
+  position: absolute;
+  pointer-events: none;
+  background: radial-gradient(ellipse, rgba(245, 166, 35, 0.18), transparent 65%);
+}
+
+/* Arrow animate on hover — wrap any element that contains .ed-arrow */
+.ed-arrow {
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+.ed-arrow-hover:hover .ed-arrow {
+  transform: translateX(4px);
+}
+
+/* Respect reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .ed-arrow,
+  [class*="liveDot"],
+  [class*="editorial"] {
+    animation: none !important;
+    transition: none !important;
+  }
+}

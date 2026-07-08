@@ -1,0 +1,206 @@
+/* ProcesoSteps — v3-nova Capítulo 04 · 4 cards with connector + circle numbers */
+
+.proceso {
+  padding: 140px 40px;
+  background: #F2EFE8;
+  color: #0E0E12;
+  position: relative;
+  border-top: 1px solid rgba(14, 14, 18, 0.12);
+  border-bottom: 1px solid rgba(14, 14, 18, 0.12);
+}
+
+[data-theme="dark"] .proceso {
+  background: #0F0F16;
+  color: #FAFAFA;
+  border-top-color: rgba(255, 255, 255, 0.08);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.inner {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.head {
+  margin-bottom: 56px;
+  padding-bottom: 32px;
+  border-bottom: 2px solid #0E0E12;
+}
+
+[data-theme="dark"] .head {
+  border-bottom-color: #FAFAFA;
+}
+
+.label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: #E11D2A;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.label::before {
+  content: '§';
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.25rem;
+  font-style: italic;
+  color: #0E0E12;
+  font-weight: 400;
+}
+
+[data-theme="dark"] .label::before {
+  color: #FAFAFA;
+}
+
+.title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: #0E0E12;
+  margin: 0;
+}
+.title em {
+  font-style: italic;
+  color: #E11D2A;
+  font-weight: 400;
+}
+
+[data-theme="dark"] .title {
+  color: #FAFAFA;
+}
+
+/* 4 cards with horizontal connector line across the top */
+.pasos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  position: relative;
+}
+
+.pasos::before {
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 5%;
+  right: 5%;
+  height: 1px;
+  background: linear-gradient(90deg, #E11D2A, #F5A623);
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.paso {
+  position: relative;
+  z-index: 1;
+  padding: 32px 28px;
+  background: #FFFFFF;
+  border: 1px solid rgba(14, 14, 18, 0.12);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+[data-theme="dark"] .paso {
+  background: #121219;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.paso:hover {
+  transform: translateY(-6px);
+  border-color: #E11D2A;
+  box-shadow: 0 20px 60px -20px rgba(14, 14, 18, 0.12);
+}
+
+[data-theme="dark"] .paso:hover {
+  box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.6);
+}
+
+/* Circle number 56×56 ink bg, white text, serif italic */
+.num {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #0E0E12;
+  color: #FBFAF7;
+  display: grid;
+  place-items: center;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 24px;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0;
+  transition: background 0.35s ease, color 0.35s ease, transform 0.35s ease;
+}
+
+[data-theme="dark"] .num {
+  background: #FAFAFA;
+  color: #0A0A0F;
+}
+
+.paso:hover .num {
+  background: #E11D2A;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.pasoTitle {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  color: #0E0E12;
+  margin: 0;
+}
+
+[data-theme="dark"] .pasoTitle {
+  color: #FAFAFA;
+}
+
+.pasoDesc {
+  font-size: 14px;
+  color: #6B6B74;
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+
+[data-theme="dark"] .pasoDesc {
+  color: #A1A1AA;
+}
+
+/* Duration: mono 10px RED per spec */
+.dur {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #E11D2A;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid rgba(14, 14, 18, 0.08);
+  font-weight: 600;
+}
+
+[data-theme="dark"] .dur {
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 1024px) {
+  .pasos { grid-template-columns: repeat(2, 1fr); }
+  .pasos::before { display: none; }
+}
+
+@media (max-width: 640px) {
+  .proceso { padding: 80px 20px; }
+  .pasos { grid-template-columns: 1fr; gap: 16px; }
+  .paso { padding: 28px 24px; }
+}

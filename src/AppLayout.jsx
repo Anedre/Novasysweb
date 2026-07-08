@@ -1,36 +1,35 @@
-// AppLayout.jsx
-import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Header from './components/Header/Header.jsx';
-import Footer from './components/Footer/Footer.jsx';
+import Header from './components/layout/Header/Header';
+import Footer from './components/layout/Footer/Footer';
+import SeasonalBanner from './components/sections/SeasonalBanner/SeasonalBanner';
 import ScrollToTop from './scripts/ScrollToTop.jsx';
-import AmazonConnectChat from './components/AmazonConnectChat/AmazonConnectChat.jsx';
-import WhatsAppWidget from './components/WhatsAppWidget/WhatsAppWidget.jsx';
 import Canonical from './hooks/Canonical.jsx';
+import WhatsAppWidget from './components/WhatsAppWidget/WhatsAppWidget.jsx';
 import ContactFloatingMenu from './components/ContactFloatingMenu/ContactFloatingMenu';
-import RouteReload from './hooks/RouteReload.jsx';
-// Accesibilidad (Fase 5)
-import { SkipLink } from './components/ui';
-import './index.css';
-import "./App.css";
+import ExitIntentModal from './components/sections/ExitIntentModal/ExitIntentModal';
+
+// Design system styles
+import './design-system/tokens.css';
+import './design-system/reset.css';
+import './design-system/utilities.css';
 
 function AppLayout() {
   return (
     <div className="App">
-      {/* Skip Link para accesibilidad - WCAG 2.4.1 */}
-      <SkipLink targetId="main-content" />
+      <a href="#main-content" className="sr-only" style={{ position: 'absolute', top: '-40px', left: 0, background: 'var(--brand-primary)', color: '#fff', padding: '8px 16px', zIndex: 9999, transition: 'top 0.2s' }} onFocus={(e) => e.target.style.top = '0'} onBlur={(e) => e.target.style.top = '-40px'}>
+        Ir al contenido principal
+      </a>
+      <SeasonalBanner />
       <Header />
-      <RouteReload />
       <Canonical />
       <ScrollToTop />
-      <main id="main-content" className="content" role="main">
+      <main id="main-content" role="main">
         <Outlet />
       </main>
-
       <Footer />
-      <AmazonConnectChat />
       <WhatsAppWidget />
       <ContactFloatingMenu />
+      <ExitIntentModal />
     </div>
   );
 }

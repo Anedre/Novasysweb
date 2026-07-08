@@ -1,0 +1,115 @@
+/* Gestión Documental (ECM) — bespoke. Scanner animado + workflow vertical + filmstrip. Acento rojo. */
+
+.hero, .flowSection, .compliance, .filmSection {
+  --accent: #E11D2A;
+  --bg: #FBFAF7;
+  --bg-alt: #F1ECE1;
+  --ink: #0E0E12;
+  --muted: #6B6B74;
+  --card: #FFFFFF;
+  --line: rgba(14, 14, 18, 0.12);
+  --card-shadow: 0 6px 20px rgba(14, 14, 18, 0.05), 0 40px 70px -40px rgba(14, 14, 18, 0.3);
+}
+[data-theme='dark'] .hero, [data-theme='dark'] .flowSection, [data-theme='dark'] .compliance, [data-theme='dark'] .filmSection {
+  --bg: #0A0A0F; --bg-alt: #0E0E14; --ink: #FAFAFA; --muted: #A1A1AA;
+  --card: #121219; --line: rgba(255, 255, 255, 0.1);
+  --card-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.7);
+}
+
+.wrap { max-width: 1180px; margin: 0 auto; }
+.head { max-width: 660px; margin-bottom: 40px; }
+.sectionEyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); font-weight: 600; display: inline-flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.sectionEyebrow::before { content: '§'; font-family: 'Fraunces', Georgia, serif; font-size: 1.2rem; font-style: italic; color: var(--ink); }
+.headTitle { font-family: 'Fraunces', Georgia, serif; font-size: clamp(28px, 3.6vw, 46px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.02; margin: 0; color: var(--ink); text-wrap: balance; }
+.headTitle em, .heroTitle em { font-style: italic; color: var(--accent); font-weight: 400; }
+.headLede { font-size: 15.5px; line-height: 1.6; color: var(--muted); margin: 18px 0 0; }
+
+/* ===== Hero (stacked: texto + scanner ancho) ===== */
+.hero { background: var(--bg); color: var(--ink); padding: calc(var(--header-height, 72px) + 56px) 40px 72px; overflow: hidden; }
+.heroInner { max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: 48px; }
+.heroTop { max-width: 700px; }
+.badge { display: inline-flex; align-items: center; gap: 9px; padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(225,29,42,0.3); background: rgba(225,29,42,0.06); font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); font-weight: 600; margin-bottom: 20px; }
+.badge svg { font-size: 15px; }
+.heroTitle { font-family: 'Fraunces', Georgia, serif; font-size: clamp(38px, 5.4vw, 72px); font-weight: 500; letter-spacing: -0.035em; line-height: 1; margin: 0; color: var(--ink); text-wrap: balance; }
+.heroLede { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: clamp(16px, 1.8vw, 20px); line-height: 1.5; color: var(--muted); margin: 22px 0 30px; max-width: 56ch; }
+.heroCtas { display: flex; flex-wrap: wrap; gap: 14px; }
+
+/* ===== Scanner animado ===== */
+.scanner { background: #0E0E12; border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 30px; display: grid; grid-template-columns: 0.8fr 1fr; gap: 34px; align-items: center; box-shadow: 0 50px 90px -40px rgba(14,14,18,0.5); }
+.scanPaper { position: relative; background: #FBFAF7; border-radius: 8px; padding: 28px 26px 32px; overflow: hidden; box-shadow: 0 14px 34px rgba(0,0,0,0.35); }
+.scanBadge { position: absolute; top: 14px; right: 14px; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: #9A9AA2; }
+.scanHeadline { height: 15px; width: 52%; background: #0E0E12; border-radius: 3px; margin-bottom: 20px; }
+.scanTxt { height: 7px; background: #D8D3C7; border-radius: 3px; margin-bottom: 11px; }
+.scanBeam { position: absolute; left: 0; right: 0; height: 44px; background: linear-gradient(180deg, transparent, rgba(225,29,42,0.28), transparent); border-top: 1px solid rgba(225,29,42,0.7); box-shadow: 0 0 18px rgba(225,29,42,0.5); animation: scanMove 3.4s cubic-bezier(0.6,0,0.4,1) infinite; }
+@keyframes scanMove { 0% { top: -44px; } 60%, 100% { top: 100%; } }
+.scanFields { display: flex; flex-direction: column; gap: 4px; }
+.scanFieldsLabel { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 10px; }
+.scanField { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 11px 4px; border-bottom: 1px solid rgba(255,255,255,0.08); animation: fieldPulse 3.4s ease-in-out infinite; }
+@keyframes fieldPulse { 0%, 100% { opacity: 0.45; } 30%, 70% { opacity: 1; } }
+.scanFieldK { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #71717A; }
+.scanFieldV { font-size: 13px; color: #E4E4E7; font-weight: 500; }
+
+/* ===== Workflow vertical acordeón ===== */
+.flowSection { background: var(--bg-alt); color: var(--ink); padding: 90px 40px; }
+.flow { max-width: 820px; margin: 44px auto 0; }
+.stage { display: grid; grid-template-columns: 54px 1fr; gap: 20px; }
+.stageRail { display: flex; flex-direction: column; align-items: center; }
+.stageNode { width: 52px; height: 52px; border-radius: 50%; border: 2px solid var(--line); background: var(--card); color: var(--muted); display: grid; place-items: center; font-size: 22px; cursor: pointer; flex-shrink: 0; transition: all 0.35s cubic-bezier(0.22,1,0.36,1); }
+.stageNode:hover { border-color: var(--accent); color: var(--accent); }
+.stageDone .stageNode { border-color: var(--accent); color: var(--accent); }
+.stageActive .stageNode { background: var(--accent); border-color: var(--accent); color: #fff; transform: scale(1.08); box-shadow: 0 12px 28px -8px rgba(225,29,42,0.6); }
+.stageLine { flex: 1; width: 2px; min-height: 22px; background: var(--line); margin: 8px 0; transition: background 0.4s ease; }
+.stageDone .stageLine { background: var(--accent); }
+.stageBody { padding-bottom: 20px; }
+.stageHead { display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; background: none; border: none; cursor: pointer; padding: 13px 0; font: inherit; }
+.stageNum { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: var(--muted); }
+.stageActive .stageNum { color: var(--accent); }
+.stageTitle { font-family: 'Fraunces', Georgia, serif; font-size: 22px; color: var(--ink); }
+.stageActive .stageTitle { color: var(--accent); }
+.stageDur { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.stageDetail { animation: detailIn 0.4s cubic-bezier(0.22,1,0.36,1); padding-bottom: 6px; }
+@keyframes detailIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+.stageDesc { font-size: 15px; line-height: 1.6; color: var(--muted); margin: 0 0 16px; max-width: 60ch; }
+.stageTools { display: flex; flex-wrap: wrap; gap: 8px; }
+.stageTool { font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--ink); font-weight: 600; }
+
+/* ===== Compliance + integraciones ===== */
+.compliance { background: var(--bg); color: var(--ink); padding: 90px 40px; }
+.compGrid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 52px; align-items: center; }
+.compDesc { font-size: 16px; line-height: 1.6; color: var(--muted); margin: 18px 0 0; }
+.integra { margin-top: 30px; }
+.integraLabel { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; display: block; margin-bottom: 12px; }
+.integraLogos { display: flex; flex-wrap: wrap; gap: 10px; }
+.integraItem { display: inline-flex; align-items: center; gap: 9px; padding: 10px 16px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg-alt); font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--ink); font-weight: 600; }
+.integraItem svg { font-size: 19px; color: var(--accent); }
+.compList { list-style: none; margin: 0; padding: 30px; border-radius: 16px; border: 1px solid var(--line); background: var(--card); box-shadow: var(--card-shadow); display: flex; flex-direction: column; gap: 16px; }
+.compItem { display: flex; align-items: flex-start; gap: 14px; font-size: 14.5px; line-height: 1.5; color: var(--ink); }
+.compCheck { flex-shrink: 0; margin-top: 2px; width: 20px; height: 20px; border-radius: 50%; background: rgba(225,29,42,0.12); position: relative; }
+.compCheck::after { content: ''; position: absolute; left: 7px; top: 4px; width: 5px; height: 9px; border: solid var(--accent); border-width: 0 2px 2px 0; transform: rotate(45deg); }
+
+/* ===== Filmstrip horizontal ===== */
+.filmSection { background: var(--bg-alt); color: var(--ink); padding: 90px 0; }
+.filmSection .head { padding: 0 40px; max-width: 1180px; margin-left: auto; margin-right: auto; }
+.film { display: flex; gap: 20px; overflow-x: auto; padding: 8px 40px 24px; scroll-snap-type: x mandatory; scrollbar-width: thin; }
+.frame { flex: 0 0 auto; width: min(78vw, 380px); scroll-snap-align: center; margin: 0; border-radius: 16px; overflow: hidden; position: relative; border: 1px solid var(--line); }
+.frame img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; filter: grayscale(0.12) contrast(1.03); transition: transform 0.6s cubic-bezier(0.22,1,0.36,1); }
+.frame:hover img { transform: scale(1.05); }
+.frame figcaption { position: absolute; left: 16px; right: 16px; bottom: 14px; z-index: 1; font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 15px; line-height: 1.35; color: #FFF; text-shadow: 0 2px 14px rgba(0,0,0,0.6); }
+.frame::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(8,8,12,0.75)); pointer-events: none; }
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .scanner { grid-template-columns: 1fr; gap: 24px; }
+  .compGrid { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 560px) {
+  .hero { padding: calc(var(--header-height, 72px) + 40px) 20px 56px; }
+  .flowSection, .compliance { padding-left: 20px; padding-right: 20px; }
+  .filmSection .head { padding-left: 20px; padding-right: 20px; }
+  .film { padding: 8px 20px 24px; }
+  .stageTitle { font-size: 19px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scanBeam, .scanField { animation: none; }
+  .scanField { opacity: 1; }
+}

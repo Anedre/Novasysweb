@@ -1,0 +1,37 @@
+/* Grid Design System Component */
+.grid {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.cols2 { grid-template-columns: repeat(2, 1fr); }
+.cols3 { grid-template-columns: repeat(3, 1fr); }
+.cols4 { grid-template-columns: repeat(4, 1fr); }
+.cols6 { grid-template-columns: repeat(6, 1fr); }
+
+.autoFit {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* Gaps */
+.gapSm { gap: var(--space-4); }
+.gapMd { gap: var(--space-6); }
+.gapLg { gap: var(--space-8); }
+.gapXl { gap: var(--space-12); }
+
+/* Alignment */
+.alignCenter { align-items: center; }
+.alignStart { align-items: start; }
+.alignStretch { align-items: stretch; }
+
+@media (max-width: 1024px) {
+  .cols4 { grid-template-columns: repeat(2, 1fr); }
+  .cols3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .cols2, .cols3, .cols4 {
+    grid-template-columns: 1fr;
+  }
+  .cols6 { grid-template-columns: repeat(2, 1fr); }
+}

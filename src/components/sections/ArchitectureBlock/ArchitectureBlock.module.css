@@ -1,0 +1,256 @@
+/* ArchitectureBlock — Reference architecture diagram + tech stack sidebar */
+
+.section {
+  padding: 120px 40px;
+  background: #F2EFE8;
+  color: #0E0E12;
+  border-top: 1px solid rgba(14, 14, 18, 0.08);
+  border-bottom: 1px solid rgba(14, 14, 18, 0.08);
+}
+
+[data-theme="dark"] .section {
+  background: #0F0F16;
+  color: #FAFAFA;
+  border-top-color: rgba(255, 255, 255, 0.08);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.inner {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 48px;
+  align-items: stretch;
+}
+
+/* Diagram frame */
+.frameWrap {
+  position: relative;
+}
+
+.frame {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: #FFFFFF;
+  border: 1px solid rgba(14, 14, 18, 0.12);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px -25px rgba(14, 14, 18, 0.15);
+}
+
+[data-theme="dark"] .frame {
+  background: #121219;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+/* Placeholder when no image provided */
+.placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px;
+}
+
+.placeholderTag {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  color: #E11D2A;
+  padding: 6px 12px;
+  background: rgba(225, 29, 42, 0.08);
+  border: 1px solid rgba(225, 29, 42, 0.22);
+  border-radius: 3px;
+  position: relative;
+  z-index: 1;
+}
+
+.placeholderGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(14, 14, 18, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 14, 18, 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at center, black 50%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 50%, transparent 85%);
+}
+
+[data-theme="dark"] .placeholderGrid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+.placeholderText {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 14px;
+  font-style: italic;
+  color: #8A8A93;
+  position: relative;
+  z-index: 1;
+}
+
+/* Esquema abstracto animado (cuando no hay imagen de diagrama) */
+.schematic {
+  position: relative;
+  z-index: 1;
+  width: 72%;
+  max-width: 420px;
+  height: auto;
+}
+.schematicLine {
+  stroke: rgba(225, 29, 42, 0.3);
+  stroke-width: 1.5;
+}
+.schematicNode,
+.schematicHub {
+  fill: #E11D2A;
+  animation: schemPulse 2.6s ease-in-out infinite;
+}
+.schematicNode { opacity: 0.55; }
+.schematicHub { opacity: 0.95; }
+@keyframes schemPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+[data-theme="dark"] .schematicLine { stroke: rgba(245, 166, 35, 0.35); }
+[data-theme="dark"] .schematicNode,
+[data-theme="dark"] .schematicHub { fill: #F5A623; }
+@media (prefers-reduced-motion: reduce) {
+  .schematicNode, .schematicHub { animation: none; opacity: 0.7; }
+}
+
+/* Sidebar */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.sidebarBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sidebarLabel {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  color: #6B6B74;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(14, 14, 18, 0.1);
+}
+
+[data-theme="dark"] .sidebarLabel {
+  color: #A1A1AA;
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Stack chips */
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid rgba(14, 14, 18, 0.12);
+  background: #FFFFFF;
+  border-radius: 9999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: #0E0E12;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.chip:hover {
+  border-color: var(--chip-color, #E11D2A);
+  background: #F2EFE8;
+}
+
+[data-theme="dark"] .chip {
+  background: #121219;
+  color: #FAFAFA;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+[data-theme="dark"] .chip:hover {
+  background: #161620;
+}
+
+.chipDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--chip-color, #E11D2A);
+  box-shadow: 0 0 8px var(--chip-color, #E11D2A);
+  flex-shrink: 0;
+}
+
+/* Notes */
+.notes {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.noteItem {
+  display: flex;
+  gap: 10px;
+  font-size: 14px;
+  color: #2A2A31;
+  line-height: 1.5;
+  padding-left: 14px;
+  position: relative;
+}
+.noteItem::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 6px;
+  height: 1px;
+  background: #E11D2A;
+}
+
+[data-theme="dark"] .noteItem {
+  color: #D4D4D8;
+}
+
+@media (max-width: 1024px) {
+  .grid { grid-template-columns: 1fr; gap: 32px; }
+}
+
+@media (max-width: 640px) {
+  .section { padding: 80px 20px; }
+  .frame { aspect-ratio: 4 / 3; }
+}

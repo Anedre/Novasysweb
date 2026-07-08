@@ -1,0 +1,96 @@
+/* EditorialCta — dark editorial CTA section · sin formulario */
+
+.section {
+  position: relative;
+  padding: 120px 40px;
+  background: #0A0A0F;
+  color: #FAFAFA;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .section {
+  background: #06060A;
+}
+
+.glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 900px;
+  height: 500px;
+  background: radial-gradient(ellipse, rgba(245, 166, 35, 0.16), transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Fondo de partículas (canvas 2D) — detrás del contenido */
+.particles {
+  z-index: 0;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.subtitle {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 19px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.55;
+  font-style: italic;
+  margin: 0;
+  max-width: 600px;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.trust {
+  margin-top: 16px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 600;
+  width: 100%;
+}
+
+.trustItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.trustItem::before {
+  content: '◆';
+  color: #F5A623;
+  font-size: 10px;
+}
+
+@media (max-width: 640px) {
+  .section { padding: 80px 20px; }
+  .actions { flex-direction: column; width: 100%; }
+  .actions > * { width: 100%; justify-content: center; }
+  .trust { gap: 12px; }
+}

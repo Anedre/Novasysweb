@@ -1,0 +1,39 @@
+/* SectionHeader Design System Component */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--space-16);
+}
+
+.top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-6);
+}
+
+/* Alignment */
+.left .top { justify-content: flex-start; }
+.center {
+  align-items: center;
+  text-align: center;
+}
+.center .top {
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.action {
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .wrapper { margin-bottom: var(--space-8); }
+  .top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+  .center .top { align-items: center; }
+}

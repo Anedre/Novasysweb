@@ -1,0 +1,199 @@
+/* ============================================
+   PARTNERS SHOWCASE — Premium Dark Section
+   ============================================ */
+
+.section {
+  position: relative;
+  padding: var(--section-gap) 0;
+  background: var(--bg-inverse);
+  overflow: hidden;
+  color: var(--text-body);
+}
+
+[data-theme="dark"] .section {
+  background: #0A0A0F;
+}
+
+/* Subtle particles */
+.bgParticles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bgDot {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  animation: drift 20s linear infinite;
+}
+
+.bgDot:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+.bgDot:nth-child(2) { left: 30%; top: 60%; animation-delay: -5s; }
+.bgDot:nth-child(3) { left: 50%; top: 30%; animation-delay: -10s; }
+.bgDot:nth-child(4) { left: 70%; top: 70%; animation-delay: -3s; }
+.bgDot:nth-child(5) { left: 90%; top: 40%; animation-delay: -8s; }
+.bgDot:nth-child(6) { left: 20%; top: 80%; animation-delay: -13s; }
+
+@keyframes drift {
+  0%   { transform: translateY(0) translateX(0); opacity: 0; }
+  10%  { opacity: 0.3; }
+  90%  { opacity: 0.3; }
+  100% { transform: translateY(-60vh) translateX(15px); opacity: 0; }
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space-12);
+}
+
+.eyebrow {
+  font-family: var(--font-accent);
+  font-weight: 700;
+  font-size: var(--text-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: var(--space-3);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-h2);
+  color: var(--text-inverse);
+}
+
+/* ---- Cards Grid ---- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+.card {
+  position: relative;
+  padding: var(--space-10) var(--space-8);
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-5);
+  transition: all 0.4s var(--ease-spring);
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* Brand colors per partner */
+.card[data-partner="aws"]::before { background: #FF9900; }
+.card[data-partner="hp"]::before { background: #0096D6; }
+.card[data-partner="oracle"]::before { background: #C74634; }
+
+.card[data-partner="aws"]:hover {
+  box-shadow: 0 8px 30px rgba(255, 153, 0, 0.15);
+}
+.card[data-partner="hp"]:hover {
+  box-shadow: 0 8px 30px rgba(0, 150, 214, 0.15);
+}
+.card[data-partner="oracle"]:hover {
+  box-shadow: 0 8px 30px rgba(199, 70, 52, 0.15);
+}
+
+/* ---- Card Content ---- */
+.cardLogo {
+  max-height: 48px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .cardLogo {
+  opacity: 1;
+}
+
+.cardLevel {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.card[data-partner="aws"] .cardLevel { color: #FF9900; }
+.card[data-partner="hp"] .cardLevel { color: #0096D6; }
+.card[data-partner="oracle"] .cardLevel { color: #C74634; }
+
+.cardDesc {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.6);
+  line-height: var(--leading-normal);
+}
+
+.cardCta {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-top: auto;
+  transition: all 0.3s ease;
+}
+
+.card:hover .cardCta {
+  color: #fff;
+  gap: var(--space-3);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+}

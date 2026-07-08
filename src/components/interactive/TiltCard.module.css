@@ -1,0 +1,31 @@
+.tilt {
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Empuja el contenido hacia adelante en el eje Z para dar profundidad real al tilt */
+.inner {
+  transform: translateZ(0.01px);
+  height: 100%;
+}
+
+.glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background: radial-gradient(
+    circle at var(--gx, 50%) var(--gy, 50%),
+    rgba(255, 255, 255, 0.28),
+    transparent 42%
+  );
+  mix-blend-mode: soft-light;
+}
+
+.tilt:hover .glare {
+  opacity: 1;
+}

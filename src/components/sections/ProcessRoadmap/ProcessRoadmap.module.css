@@ -1,0 +1,72 @@
+/* ProcessRoadmap — What happens next */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+  position: relative;
+}
+
+.grid::before {
+  content: '';
+  position: absolute;
+  top: 32px;
+  left: 12.5%;
+  right: 12.5%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+  opacity: 0.15;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-4);
+  position: relative;
+  z-index: 1;
+}
+
+.stepNum {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background-color: var(--brand-primary);
+  color: var(--text-inverse);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+  box-shadow: 0 0 0 4px var(--bg-page);
+}
+
+.stepTitle {
+  font-size: var(--text-base);
+  font-weight: var(--font-bold);
+  color: var(--text-heading);
+}
+
+.stepDesc {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: var(--leading-relaxed);
+  max-width: 200px;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+  .grid::before { display: none; }
+  .step {
+    flex-direction: row;
+    text-align: left;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+  .stepNum { flex-shrink: 0; }
+  .stepDesc { max-width: none; }
+}

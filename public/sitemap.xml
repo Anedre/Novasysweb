@@ -1,46 +1,246 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- ===== Pillars (Tier 1 · prioridad 0.9-1.0) ===== -->
   <url>
     <loc>https://www.novasys.com.pe/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <lastmod>2026-04-24</lastmod>
   </url>
   <url>
     <loc>https://www.novasys.com.pe/nosotros</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-04-24</lastmod>
   </url>
   <url>
     <loc>https://www.novasys.com.pe/contacto</loc>
-  </url>
-  <url>
-    <loc>https://www.novasys.com.pe/marketing</loc>
-  </url>
-  <url>
-    <loc>https://www.novasys.com.pe/ventas</loc>
-  </url>
-  <url>
-    <loc>https://www.novasys.com.pe/Business_Intelligence</loc>
-  </url>
-  <url>
-    <loc>https://www.novasys.com.pe/Soluciones_Novasys</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-04-24</lastmod>
   </url>
   <url>
     <loc>https://www.novasys.com.pe/eventos</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+
+  <!-- ===== Soluciones · hub + 5 fichas WF1 ===== -->
+  <url>
+    <loc>https://www.novasys.com.pe/soluciones</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-04-24</lastmod>
   </url>
   <url>
-    <loc>https://www.novasys.com.pe/SolucionesHPmain</loc>
+    <loc>https://www.novasys.com.pe/soluciones/software-a-medida</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-04-24</lastmod>
   </url>
   <url>
-    <loc>https://www.novasys.com.pe/Elo</loc>
+    <loc>https://www.novasys.com.pe/soluciones/crm-ventas</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-04-24</lastmod>
   </url>
   <url>
-    <loc>https://www.novasys.com.pe/SolucionesHPEnterprise</loc>
+    <loc>https://www.novasys.com.pe/soluciones/business-intelligence</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-04-24</lastmod>
   </url>
   <url>
-    <loc>https://www.novasys.com.pe/SolucionesHP</loc>
+    <loc>https://www.novasys.com.pe/soluciones/marketing-automation</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-04-24</lastmod>
   </url>
   <url>
-    <loc>https://www.novasys.com.pe/Casos_de_exito</loc>
+    <loc>https://www.novasys.com.pe/soluciones/gestion-documental</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+
+  <!-- ===== Partner hubs ===== -->
+  <url>
+    <loc>https://www.novasys.com.pe/soluciones/novasys</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-04-24</lastmod>
   </url>
   <url>
-    <loc>https://www.novasys.com.pe/Contacto</loc>
+    <loc>https://www.novasys.com.pe/soluciones/hp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-04-24</lastmod>
   </url>
+  <url>
+    <loc>https://www.novasys.com.pe/soluciones/amazon</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+
+  <!-- ===== Infraestructura HP · hub + 3 fichas dinámicas ===== -->
+  <url>
+    <loc>https://www.novasys.com.pe/infraestructura</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.novasys.com.pe/infraestructura/computo</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.novasys.com.pe/infraestructura/servidores</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.novasys.com.pe/infraestructura/almacenamiento</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+
+  <!-- ===== Cloud AWS · hub + 3 fichas dinámicas ===== -->
+  <url>
+    <loc>https://www.novasys.com.pe/cloud</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.novasys.com.pe/cloud/amazon-connect</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.novasys.com.pe/cloud/connect-dialer</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.novasys.com.pe/cloud/migracion</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+
+  <!-- ===== Tecnologías · hub + 9 fichas Oracle (long-tail SEO) ===== -->
+  <url>
+    <loc>https://www.novasys.com.pe/tecnologias</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.novasys.com.pe/tecnologias/oracle-sales-cloud</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.novasys.com.pe/tecnologias/oracle-service-cloud</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.novasys.com.pe/tecnologias/oracle-siebel</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.novasys.com.pe/tecnologias/oracle-cpq</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.novasys.com.pe/tecnologias/oracle-eloqua</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.novasys.com.pe/tecnologias/oracle-responsys</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.novasys.com.pe/tecnologias/oracle-bluekai</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.novasys.com.pe/tecnologias/oracle-business-intelligence</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.novasys.com.pe/tecnologias/oracle-paas</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+
+  <!-- ===== Casos de éxito · hub + 6 detalles ===== -->
+  <url>
+    <loc>https://www.novasys.com.pe/casos-de-exito</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.novasys.com.pe/casos-de-exito/entel</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.novasys.com.pe/casos-de-exito/renzo-costa</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.novasys.com.pe/casos-de-exito/pacifico</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.novasys.com.pe/casos-de-exito/interbank</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.novasys.com.pe/casos-de-exito/americatel</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.novasys.com.pe/casos-de-exito/centrum</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-04-24</lastmod>
+  </url>
+
 </urlset>

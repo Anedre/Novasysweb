@@ -1,0 +1,543 @@
+/* TimelineDeck — TL4 acordeón horizontal · port de nosotros.css del design pack */
+
+.section {
+  padding: 140px 40px 120px;
+  background: #F2EFE8;
+  color: #0E0E12;
+  border-top: 1px solid rgba(14, 14, 18, 0.08);
+  border-bottom: 1px solid rgba(14, 14, 18, 0.08);
+  overflow: hidden;
+}
+
+[data-theme="dark"] .section {
+  background: #0F0F16;
+  color: #FAFAFA;
+  border-top-color: rgba(255, 255, 255, 0.08);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.inner {
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   Head
+   ============================================================ */
+.head {
+  margin-bottom: 56px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid #0E0E12;
+}
+
+[data-theme="dark"] .head {
+  border-bottom-color: #FAFAFA;
+}
+
+.dek {
+  /* Spec exacto: font-size 20px · max-width 640px (.dek shared) */
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 20px;
+  font-style: italic;
+  color: #6B6B74;
+  line-height: 1.5;
+  margin: 12px 0 0;
+  max-width: 640px;
+}
+
+[data-theme="dark"] .dek {
+  color: #A1A1AA;
+}
+
+/* ============================================================
+   Deck (contenedor de paneles)
+   ============================================================ */
+.deck {
+  display: flex;
+  width: 100%;
+  height: 540px;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px -25px rgba(14, 14, 18, 0.35);
+  background: #0E0E12;
+  position: relative;
+}
+
+/* ============================================================
+   Panel
+   ============================================================ */
+.panel {
+  flex: 1 1 0;
+  position: relative;
+  background: linear-gradient(135deg, var(--bg, #E11D2A) 0%, var(--bgd, #B8141F) 100%);
+  cursor: pointer;
+  overflow: hidden;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  transition: flex 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 36px 0 32px;
+  color: #fff;
+  min-width: 96px;
+  outline: none;
+}
+
+.panel:last-child {
+  border-right: 0;
+}
+
+.panel:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -4px;
+}
+
+/* Panel destacado (último, ink dark) */
+.highlight {
+  background: linear-gradient(135deg, #0E0E12 0%, #000 100%);
+}
+
+/* Cuando hay un panel activo, los hermanos se contraen y el activo crece */
+.deck:has(.active) .panel:not(.active) {
+  flex: 1 1 0;
+}
+
+.panel.active {
+  flex: 6 1 0;
+  cursor: default;
+}
+
+/* Hover en colapsado: tint sutil */
+.panel:not(.active):hover {
+  filter: brightness(1.08);
+}
+
+.panel:not(.active):hover .year {
+  color: #fff;
+}
+
+/* ============================================================
+   Bar decorative line above year
+   ============================================================ */
+.bar {
+  width: 56px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.55);
+  margin-bottom: 18px;
+  position: relative;
+}
+
+.barLine {
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.85);
+  transition: width 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.panel.active .barLine {
+  width: 100%;
+}
+
+/* ============================================================
+   Year label
+   ============================================================ */
+.year {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.95);
+  writing-mode: horizontal-tb;
+  text-align: center;
+  position: relative;
+  transition:
+    color 0.35s,
+    font-size 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    letter-spacing 0.45s;
+}
+
+.panel.active .year {
+  font-size: 26px;
+  letter-spacing: 0.25em;
+}
+
+/* Live dot amber (panel "Hoy") */
+.yearLive::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -16px;
+  transform: translateY(-50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #F5A623;
+  box-shadow: 0 0 10px #F5A623;
+  animation: tldBlink 1.6s infinite;
+}
+
+@keyframes tldBlink {
+  0%, 60% { opacity: 1; }
+  80% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+/* En desktop con un panel activo, los inactivos rotan el year vertical */
+@media (min-width: 1101px) {
+  .deck:has(.active) .panel:not(.active) .year {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    margin-top: 12px;
+    font-size: 18px;
+  }
+}
+
+/* ============================================================
+   Content (oculto cuando colapsado, visible cuando activo)
+   ============================================================ */
+.content {
+  margin-top: 28px;
+  padding: 0 36px;
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s 0.15s, transform 0.4s 0.15s;
+  pointer-events: none;
+}
+
+.panel.active .content {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+/* Stagger animation al abrir */
+.content > * {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.panel.active .content > * {
+  opacity: 1;
+  transform: none;
+}
+
+.panel.active .content > *:nth-child(1) { transition-delay: 0.25s; }
+.panel.active .content > *:nth-child(2) { transition-delay: 0.35s; }
+.panel.active .content > *:nth-child(3) { transition-delay: 0.45s; }
+.panel.active .content > *:nth-child(4) { transition-delay: 0.55s; }
+.panel.active .content > *:nth-child(5) { transition-delay: 0.68s; }
+
+/* ============================================================
+   Tag (capítulo)
+   ============================================================ */
+.tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.7);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tagAmber {
+  color: #F5A623;
+}
+
+.tag::before {
+  content: '';
+  width: 24px;
+  height: 1.5px;
+  background: currentColor;
+  transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.35s;
+}
+
+.panel:not(.active) .tag::before {
+  width: 0;
+}
+
+/* ============================================================
+   H3 título del capítulo (con shimmer al abrir)
+   ============================================================ */
+.h3 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(24px, 2.4vw, 34px);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 0;
+}
+
+@keyframes tldShine {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.panel.active .h3 {
+  background: linear-gradient(
+    90deg,
+    #fff 0%,
+    #fff 40%,
+    rgba(255, 255, 255, 0.55) 50%,
+    #fff 60%,
+    #fff 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: tldShine 1.6s ease-out 0.35s 1 both;
+}
+
+.highlight .h3 em {
+  color: #F5A623;
+  font-style: italic;
+}
+
+/* ============================================================
+   Párrafo
+   ============================================================ */
+.p {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 15px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.85);
+  font-style: italic;
+  margin: 0;
+  max-width: 460px;
+}
+
+/* ============================================================
+   Facts list
+   ============================================================ */
+.facts {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 16px 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.facts li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 13px;
+  padding: 4px 0;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition:
+    opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.panel.active .facts li {
+  opacity: 1;
+  transform: none;
+}
+
+.panel.active .facts li:nth-child(1) { transition-delay: 0.60s; }
+.panel.active .facts li:nth-child(2) { transition-delay: 0.70s; }
+.panel.active .facts li:nth-child(3) { transition-delay: 0.80s; }
+
+.facts li span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+  align-self: center;
+}
+
+.facts li b {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 14px;
+  color: #fff;
+  font-weight: 600;
+  text-align: right;
+}
+
+/* ============================================================
+   Quote
+   ============================================================ */
+.quote {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 14px;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.95);
+  padding: 12px 0 0;
+  border-top: 1px dashed rgba(255, 255, 255, 0.18);
+  margin-top: 4px;
+  position: relative;
+  padding-left: 18px;
+}
+
+.quote::before {
+  content: '\201C';
+  position: absolute;
+  left: 0;
+  top: -4px;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 28px;
+  font-weight: 700;
+  font-style: normal;
+  color: #F5A623;
+  line-height: 1;
+}
+
+/* ============================================================
+   Foot (hint + dots)
+   ============================================================ */
+.foot {
+  margin-top: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #6B6B74;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+[data-theme="dark"] .foot {
+  color: #A1A1AA;
+}
+
+.hint::before {
+  content: '◆ ';
+  color: #E11D2A;
+}
+
+.dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 28px;
+  height: 4px;
+  background: rgba(14, 14, 18, 0.18);
+  border: 0;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.25s;
+  padding: 0;
+}
+
+[data-theme="dark"] .dot {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.dot:hover {
+  background: #0E0E12;
+}
+
+[data-theme="dark"] .dot:hover {
+  background: #FAFAFA;
+}
+
+.dotActive {
+  background: #E11D2A;
+  width: 56px;
+  box-shadow: 0 0 8px rgba(225, 29, 42, 0.4);
+}
+
+.dotActive:hover {
+  background: #E11D2A;
+}
+
+/* ============================================================
+   Responsive · stacked vertical accordion
+   ============================================================ */
+@media (max-width: 1100px) {
+  .deck {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .panel {
+    min-height: 80px;
+    padding: 22px 24px;
+    align-items: flex-start;
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .deck:has(.active) .panel:not(.active) {
+    flex: 0 0 auto;
+  }
+
+  .panel.active {
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 32px 24px;
+  }
+
+  .bar {
+    display: none;
+  }
+
+  .content {
+    padding: 0;
+    margin-top: 0;
+    max-width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1), margin-top 0.3s, opacity 0.3s;
+  }
+
+  .panel.active .content {
+    max-height: 800px;
+    margin-top: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 80px 20px;
+  }
+
+  .foot {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel,
+  .barLine,
+  .year,
+  .content,
+  .content > *,
+  .facts li {
+    transition: none;
+    animation: none;
+  }
+  .panel.active .h3 {
+    animation: none;
+    -webkit-text-fill-color: #fff;
+    background: none;
+  }
+}

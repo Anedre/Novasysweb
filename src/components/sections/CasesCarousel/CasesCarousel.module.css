@@ -1,0 +1,207 @@
+/* ============================================
+   CASES CAROUSEL — Infinite Marquee
+   ============================================ */
+
+.section {
+  padding: var(--section-gap) 0 var(--section-gap-sm);
+  background: var(--bg-subtle);
+  overflow: hidden;
+}
+
+.container {
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.header {
+  margin-bottom: var(--space-10);
+}
+
+.headerText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.eyebrow {
+  font-family: var(--font-accent);
+  font-weight: 700;
+  font-size: var(--text-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--brand-primary);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--text-heading);
+}
+
+/* ---- Infinite Marquee ---- */
+.marqueeWrapper {
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
+.marqueeTrack {
+  display: flex;
+  gap: var(--space-6);
+  width: max-content;
+  animation: marqueeScroll 40s linear infinite;
+}
+
+.marqueeTrack:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+/* ---- Card ---- */
+.card {
+  flex: 0 0 340px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6) var(--space-6) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  transition: all 0.4s var(--ease-spring);
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--border-hover);
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+/* ---- Card Content ---- */
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cardLogo {
+  max-height: 32px;
+  max-width: 120px;
+  width: auto;
+  object-fit: contain;
+}
+
+[data-theme="dark"] .cardLogo {
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+}
+
+.industryBadge {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  background: var(--bg-subtle);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+[data-theme="dark"] .industryBadge {
+  background: var(--bg-muted);
+}
+
+.cardTitle {
+  font-family: var(--font-subtitle);
+  font-weight: 600;
+  font-size: var(--text-base);
+  color: var(--text-heading);
+  line-height: var(--leading-snug);
+}
+
+.cardKpi {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--bg-subtle);
+}
+
+[data-theme="dark"] .cardKpi {
+  background: var(--bg-muted);
+}
+
+.kpiValue {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: var(--text-xl);
+  color: var(--brand-primary);
+}
+
+.kpiLabel {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.cardCta {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: var(--brand-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  transition: gap 0.3s ease;
+  margin-top: auto;
+}
+
+.card:hover .cardCta {
+  gap: var(--space-3);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 640px) {
+  .card {
+    flex: 0 0 280px;
+  }
+
+  .marqueeTrack {
+    animation-duration: 30s;
+  }
+}

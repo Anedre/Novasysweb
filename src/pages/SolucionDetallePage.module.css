@@ -1,0 +1,156 @@
+/* SolucionDetallePage — secciones específicas de soluciones (Proceso) */
+/* El resto del layout viene de ServiceDetailTemplate.module.css */
+
+/* ============================================================
+   06 · Proceso (steps) — capítulo específico de soluciones
+   ============================================================ */
+.process {
+  padding: 120px 40px;
+  background: #FFFFFF;
+  color: #0E0E12;
+  border-top: 1px solid rgba(14, 14, 18, 0.06);
+}
+
+[data-theme="dark"] .process {
+  background: #06060A;
+  color: #FAFAFA;
+  border-top-color: rgba(255, 255, 255, 0.06);
+}
+
+.processInner {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.processGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 16px;
+  position: relative;
+}
+
+/* Línea conectora horizontal entre cards (decorativa) */
+.processGrid::before {
+  content: '';
+  position: absolute;
+  top: 38px;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(14, 14, 18, 0.12) 12%,
+    rgba(14, 14, 18, 0.12) 88%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="dark"] .processGrid::before {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.12) 12%,
+    rgba(255, 255, 255, 0.12) 88%,
+    transparent 100%
+  );
+}
+
+.processCard {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 20px 24px 24px;
+  background: #FFFFFF;
+  border-radius: 14px;
+  transition: transform 0.3s ease;
+}
+
+[data-theme="dark"] .processCard {
+  background: #06060A;
+}
+
+.processCard:hover {
+  transform: translateY(-3px);
+}
+
+.processNum {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border: 2px solid;
+  border-radius: 50%;
+  background: #FFFFFF;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+[data-theme="dark"] .processNum {
+  background: #06060A;
+}
+
+.processCard:hover .processNum {
+  background: currentColor;
+  color: #FFFFFF;
+}
+
+.processTitle {
+  font-family: 'Fraunces', 'Playfair Display', Georgia, serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  color: #0E0E12;
+  margin: 0;
+}
+
+[data-theme="dark"] .processTitle {
+  color: #FAFAFA;
+}
+
+.processDesc {
+  font-size: 14px;
+  color: #6B6B74;
+  line-height: 1.6;
+  margin: 0;
+}
+
+[data-theme="dark"] .processDesc {
+  color: #A1A1AA;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 1024px) {
+  .processGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .processGrid::before {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .process {
+    padding: 80px 20px;
+  }
+  .processGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .processCard {
+    padding: 16px 20px 20px;
+  }
+}

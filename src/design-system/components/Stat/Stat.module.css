@@ -1,0 +1,55 @@
+/* Stat Design System Component */
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.stat.center { align-items: center; text-align: center; }
+.stat.left { align-items: flex-start; text-align: left; }
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  background-color: var(--brand-primary-light);
+  color: var(--brand-primary);
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-2);
+}
+
+.value {
+  font-family: var(--font-sans);
+  font-size: var(--text-5xl);
+  font-weight: var(--font-extrabold);
+  color: var(--text-heading);
+  line-height: var(--leading-none);
+  letter-spacing: var(--tracking-tighter);
+}
+
+.label {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  font-weight: var(--font-medium);
+}
+
+/* Featured variant */
+.featured .value {
+  font-size: var(--text-5xl);
+}
+
+/* Inverted for dark backgrounds */
+.inverted .value { color: #F5F5F5; }
+.inverted .label { color: #A1A1AA; }
+.inverted .icon {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--brand-primary);
+}
+
+@media (max-width: 768px) {
+  .value { font-size: var(--text-3xl); }
+  .featured .value { font-size: var(--text-4xl); }
+}

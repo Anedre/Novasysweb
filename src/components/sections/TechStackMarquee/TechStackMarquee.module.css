@@ -1,0 +1,129 @@
+/* TechStackMarquee — Two infinite rows of tech chips, opposite directions */
+
+.stack {
+  position: relative;
+  padding: var(--space-24) 0 var(--space-28);
+  background: #07070C;
+  color: #fff;
+  overflow: hidden;
+}
+
+.head {
+  max-width: 880px;
+  margin: 0 auto var(--space-16);
+  text-align: center;
+  padding: 0 var(--space-6);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #F97316;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: var(--font-bold);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+.eyebrow::before,
+.eyebrow::after {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #F97316);
+}
+.eyebrow::after {
+  background: linear-gradient(90deg, #F97316, transparent);
+}
+
+.title {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: var(--font-extrabold);
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  color: #fafafa;
+  margin: 0 0 var(--space-4);
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #A1A1AA;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Rows */
+.rows {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.row {
+  display: flex;
+  gap: var(--space-4);
+  width: max-content;
+  animation: slide 40s linear infinite;
+}
+
+.row.rev {
+  animation: slideRev 46s linear infinite;
+}
+
+@keyframes slide {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes slideRev {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+/* Chip */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  background: rgba(24, 24, 36, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  color: #D4D4D8;
+  font-size: 0.9375rem;
+  font-weight: var(--font-medium);
+  font-family: var(--font-mono);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.chip:hover {
+  border-color: var(--dc);
+  color: #fff;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--dc);
+  box-shadow: 0 0 10px var(--dc);
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row, .row.rev { animation: none; }
+  .rows {
+    overflow-x: auto;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+}

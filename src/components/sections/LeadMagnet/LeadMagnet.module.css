@@ -1,0 +1,192 @@
+/* LeadMagnet — WF1 includes + amber lead magnet card (2-col) */
+
+.section {
+  padding: 120px 40px;
+  background: #FBFAF7;
+  color: #0E0E12;
+}
+
+[data-theme="dark"] .section {
+  background: #0A0A0F;
+  color: #FAFAFA;
+}
+
+.inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+/* Left: includes list */
+.includes {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(14, 14, 18, 0.08);
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 17px;
+  color: #2A2A31;
+  line-height: 1.5;
+}
+
+.item:last-child { border-bottom: 0; }
+
+[data-theme="dark"] .item {
+  color: #D4D4D8;
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.itemBullet {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #E11D2A;
+  margin-top: 8px;
+  box-shadow: 0 0 0 3px rgba(225, 29, 42, 0.15);
+}
+
+/* Right: amber lead magnet card */
+.magnet {
+  position: sticky;
+  top: 100px;
+}
+
+.magnetCard {
+  position: relative;
+  padding: 32px;
+  background: linear-gradient(135deg, #FFF7ED 0%, #FEF3C7 100%);
+  border: 1px solid rgba(245, 166, 35, 0.45);
+  border-radius: 16px;
+  box-shadow: 0 30px 60px -25px rgba(245, 166, 35, 0.3);
+  overflow: hidden;
+}
+
+.magnetCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #F5A623, #F97316, #E11D2A);
+}
+
+[data-theme="dark"] .magnetCard {
+  background: linear-gradient(135deg, rgba(245, 166, 35, 0.14) 0%, rgba(245, 166, 35, 0.06) 100%);
+  border-color: rgba(245, 166, 35, 0.3);
+}
+
+.magnetTag {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  color: #F97316;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(245, 166, 35, 0.35);
+  border-radius: 4px;
+  display: inline-block;
+  width: fit-content;
+  margin-bottom: 16px;
+}
+
+[data-theme="dark"] .magnetTag {
+  background: rgba(10, 10, 15, 0.4);
+}
+
+.magnetTitle {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: #0E0E12;
+  margin: 0 0 8px;
+  line-height: 1.2;
+}
+
+[data-theme="dark"] .magnetTitle {
+  color: #FAFAFA;
+}
+
+.magnetSubtitle {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 17px;
+  font-style: italic;
+  color: #5C4A1E;
+  line-height: 1.5;
+  margin: 0 0 16px;
+}
+
+[data-theme="dark"] .magnetSubtitle {
+  color: #F5A623;
+}
+
+.magnetDesc {
+  font-size: 14px;
+  color: #6B6B74;
+  line-height: 1.6;
+  margin: 0 0 24px;
+}
+
+[data-theme="dark"] .magnetDesc {
+  color: #A1A1AA;
+}
+
+.magnetActions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.magnetCta {
+  gap: 10px;
+}
+
+.magnetFoot {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(245, 166, 35, 0.25);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(92, 74, 30, 0.7);
+  font-weight: 500;
+}
+
+[data-theme="dark"] .magnetFoot {
+  color: rgba(245, 166, 35, 0.6);
+  border-top-color: rgba(245, 166, 35, 0.2);
+}
+
+@media (max-width: 1024px) {
+  .inner { grid-template-columns: 1fr; gap: 40px; }
+  .magnet { position: static; }
+}
+
+@media (max-width: 640px) {
+  .section { padding: 80px 20px; }
+  .magnetCard { padding: 24px 20px; }
+  .magnetTitle { font-size: 22px; }
+}

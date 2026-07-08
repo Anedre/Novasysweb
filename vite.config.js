@@ -10,13 +10,21 @@ export default defineConfig({
     // Code splitting por chunks
     rollupOptions: {
       output: {
-        manualChunks: {
-          // Vendor chunks - librerías externas
-          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-          'vendor-animation': ['framer-motion', 'gsap'],
-          'vendor-charts': ['chart.js', 'react-chartjs-2'],
-          'vendor-maps': ['leaflet', 'react-leaflet'],
-          'vendor-ui': ['swiper', 'keen-slider', 'react-slick'],
+        manualChunks(id) {
+          // Vendor chunks
+          if (id.includes('node_modules')) {
+            if (id.includes('react-dom') || id.includes('react-router')) return 'vendor-react';
+            if (id.includes('framer-motion') || id.includes('gsap')) return 'vendor-animation';
+            if (id.includes('chart.js') || id.includes('react-chartjs')) return 'vendor-charts';
+            if (id.includes('leaflet') || id.includes('react-leaflet')) return 'vendor-maps';
+            if (id.includes('swiper') || id.includes('keen-slider') || id.includes('react-slick')) return 'vendor-ui';
+            if (id.includes('react-icons')) return 'vendor-icons';
+            if (id.includes('react-helmet')) return 'vendor-helmet';
+          }
+          // Design system as shared chunk
+          if (id.includes('src/design-system/')) return 'design-system';
+          // Shared data files
+          if (id.includes('src/data/')) return 'app-data';
         },
         // Nombres de archivos con hash para cache busting
         chunkFileNames: 'assets/js/[name]-[hash].js',
@@ -57,7 +65,7 @@ export default defineConfig({
       clientFiles: [
         './src/App.jsx',
         './src/router.jsx',
-        './src/components/Home/Home.jsx',
+        './src/pages/HomePage.jsx',
       ],
     },
   },

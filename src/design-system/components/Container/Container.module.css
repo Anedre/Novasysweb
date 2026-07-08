@@ -1,0 +1,20 @@
+/* Container Design System Component */
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+.default { max-width: var(--container-max); }
+.narrow { max-width: var(--container-narrow); }
+.wide { max-width: var(--container-wide); }
+.full { max-width: 100%; }
+
+@media (max-width: 768px) {
+  .container {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+}

@@ -1,0 +1,222 @@
+/* ============================================
+   MANIFESTO — Editorial Tipográfico Grande
+   3 columnas: texto 55% | imagen 22% | stats 23%
+   ============================================ */
+
+.section {
+  padding: var(--section-gap-lg) 0;
+  background: var(--bg-subtle);
+  overflow: hidden;
+}
+
+.container {
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.eyebrow {
+  font-family: var(--font-accent);
+  font-weight: 700;
+  font-size: var(--text-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--brand-primary);
+  margin-bottom: var(--space-6);
+}
+
+/* ---- 3-Column Grid ---- */
+.grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.4fr 0.4fr;
+  gap: var(--space-12);
+  align-items: center;
+  min-height: 480px;
+}
+
+/* ---- Text Column (dominant) ---- */
+.textColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.manifestoLine {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.15;
+  color: var(--color-chrome);
+  overflow: hidden;
+  margin: 0;
+  padding: 0.1em 0;
+}
+
+[data-theme="dark"] .manifestoLine {
+  color: var(--color-chrome);
+}
+
+.manifestoLine.highlighted {
+  color: var(--text-heading);
+}
+
+.highlight {
+  color: var(--brand-primary);
+  font-weight: 800;
+  position: relative;
+}
+
+.highlight.blue {
+  color: var(--brand-secondary);
+}
+
+/* ---- Image Column ---- */
+.imageColumn {
+  position: relative;
+  align-self: stretch;
+  display: flex;
+}
+
+.manifestoImage {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  object-fit: cover;
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-elevated);
+}
+
+.imageAccent {
+  position: absolute;
+  bottom: -14px;
+  right: -14px;
+  width: 70%;
+  height: 70%;
+  border: 2px solid var(--brand-primary);
+  border-radius: var(--radius-2xl);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+/* ---- Stats Tower ---- */
+.statsTower {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-self: stretch;
+  justify-content: center;
+}
+
+.towerStat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-6) 0;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.towerStat:first-child {
+  padding-top: 0;
+}
+
+.towerStat:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.towerValue {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  color: var(--brand-primary);
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  line-height: 1;
+}
+
+.towerArrow {
+  font-size: var(--text-base);
+  color: var(--color-silver);
+}
+
+.towerLabel {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: var(--leading-normal);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: 1fr 0.45fr 0.45fr;
+    gap: var(--space-8);
+  }
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+    min-height: auto;
+  }
+
+  .textColumn {
+    grid-column: 1 / -1;
+  }
+
+  .manifestoLine {
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+  }
+
+  .manifestoImage {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: var(--section-gap) 0;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .manifestoLine {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+  }
+
+  .manifestoImage {
+    min-height: 220px;
+    aspect-ratio: 16 / 9;
+    height: auto;
+  }
+
+  .statsTower {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+
+  .towerStat {
+    flex: 1;
+    min-width: 130px;
+    border-bottom: none;
+    border-right: 1px solid var(--border-default);
+    padding: var(--space-3) var(--space-4) var(--space-3) 0;
+  }
+
+  .towerStat:first-child {
+    padding-top: var(--space-3);
+  }
+
+  .towerStat:last-child {
+    border-right: none;
+  }
+
+  .imageAccent {
+    display: none;
+  }
+}

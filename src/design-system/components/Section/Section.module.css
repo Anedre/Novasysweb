@@ -1,0 +1,73 @@
+/* Section Design System Component */
+.section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Spacing */
+.padDefault {
+  padding-top: var(--section-gap);
+  padding-bottom: var(--section-gap);
+}
+.padSm {
+  padding-top: var(--section-gap-sm);
+  padding-bottom: var(--section-gap-sm);
+}
+.padLg {
+  padding-top: var(--section-gap-lg);
+  padding-bottom: var(--section-gap-lg);
+}
+.padNone { padding: 0; }
+
+/* Backgrounds */
+.bgDefault { background-color: var(--bg-page); }
+.bgWhite { background-color: var(--bg-card); }
+.bgSubtle { background-color: var(--bg-subtle); }
+
+.bgDark {
+  background-color: #0B0F1A;
+  color: #D4D4D8;
+}
+.bgDark h1, .bgDark h2, .bgDark h3, .bgDark h4 {
+  color: #F5F5F5;
+}
+
+.bgDarkAlt {
+  background-color: #10101A;
+  color: #D4D4D8;
+}
+.bgDarkAlt h1, .bgDarkAlt h2, .bgDarkAlt h3, .bgDarkAlt h4 {
+  color: #F5F5F5;
+}
+
+.bgGradient {
+  background: var(--gradient-dark, linear-gradient(135deg, #0A0A0F 0%, #0F1420 50%, #0A0F1A 100%));
+  color: #D4D4D8;
+}
+.bgGradient h1, .bgGradient h2, .bgGradient h3, .bgGradient h4 {
+  color: #F5F5F5;
+}
+
+.bgBrand {
+  background-color: var(--brand-primary);
+  color: var(--text-inverse);
+}
+.bgBrand h1, .bgBrand h2, .bgBrand h3, .bgBrand h4 {
+  color: var(--text-inverse);
+}
+
+@media (max-width: 768px) {
+  .padDefault {
+    padding-top: var(--section-gap-sm);
+    padding-bottom: var(--section-gap-sm);
+  }
+  .padSm {
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-16);
+  }
+  .padLg {
+    padding-top: var(--section-gap);
+    padding-bottom: var(--section-gap);
+  }
+}

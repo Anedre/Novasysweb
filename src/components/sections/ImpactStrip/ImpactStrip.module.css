@@ -1,0 +1,116 @@
+/* ImpactStrip — Compact stats + logos */
+.strip {
+  padding: var(--space-12) var(--gutter);
+  background: var(--bg-subtle);
+}
+
+.statsRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-12);
+  max-width: var(--container-max);
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  position: relative;
+}
+
+/* Vertical separator between stats */
+.stat:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: calc(var(--space-6) * -1);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 40px;
+  background: var(--border-default);
+}
+
+.statValue {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-extrabold);
+  color: var(--text-heading);
+  line-height: var(--leading-none);
+  letter-spacing: var(--tracking-tight);
+}
+
+.statLabel {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  font-weight: var(--font-medium);
+}
+
+/* Divider */
+.divider {
+  width: 80px;
+  height: 2px;
+  background: var(--gradient-accent);
+  margin: var(--space-8) auto;
+  border-radius: var(--radius-full);
+}
+
+/* Logos */
+.logoSection {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.logoLabel {
+  font-size: var(--text-sm);
+  color: var(--text-subtle);
+  font-weight: var(--font-medium);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  margin-bottom: var(--space-6);
+}
+
+.marqueeWrapper {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marqueeTrack {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  width: max-content;
+}
+
+.clientLogo {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.5;
+  transition: filter var(--duration-normal) var(--ease-default),
+              opacity var(--duration-normal) var(--ease-default);
+}
+.clientLogo:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .statsRow {
+    gap: var(--space-8);
+  }
+
+  .stat:not(:last-child)::after {
+    display: none;
+  }
+
+  .statValue {
+    font-size: var(--text-2xl);
+  }
+}

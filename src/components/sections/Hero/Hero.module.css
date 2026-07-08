@@ -1,0 +1,424 @@
+/* Hero Section — Premium Dark with Mesh + Particles + Parallax */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--gradient-dark);
+  overflow: hidden;
+  padding-top: var(--header-height);
+}
+
+/* ---- Animated Mesh Background ---- */
+.meshBg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.meshOrb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  will-change: transform;
+}
+
+.meshOrb1 {
+  width: 700px;
+  height: 700px;
+  background: rgba(239, 68, 68, 0.2);
+  top: -15%;
+  right: -10%;
+  animation: meshDrift1 12s ease-in-out infinite;
+}
+
+.meshOrb2 {
+  width: 500px;
+  height: 500px;
+  background: rgba(37, 99, 235, 0.18);
+  bottom: -20%;
+  left: -8%;
+  animation: meshDrift2 15s ease-in-out infinite;
+}
+
+.meshOrb3 {
+  width: 400px;
+  height: 400px;
+  background: rgba(249, 115, 22, 0.12);
+  top: 50%;
+  left: 40%;
+  animation: meshDrift3 10s ease-in-out infinite;
+}
+
+.meshOrb4 {
+  width: 350px;
+  height: 350px;
+  background: rgba(139, 92, 246, 0.1);
+  top: 10%;
+  left: 20%;
+  animation: meshDrift2 18s ease-in-out infinite reverse;
+}
+
+/* ---- Grid Overlay ---- */
+.bgGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ---- Floating Particles ---- */
+.particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--particle-color);
+  animation: particleDrift var(--duration, 8s) ease-in-out infinite;
+}
+
+.particle:nth-child(3n) {
+  background: var(--particle-color-accent);
+}
+
+/* ---- Content ---- */
+.content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-16);
+  align-items: center;
+  width: 100%;
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: var(--space-24) var(--gutter);
+}
+
+.textCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+/* ---- Eyebrow ---- */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: #94A3B8;
+  letter-spacing: var(--tracking-wide);
+}
+
+.eyebrowDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--brand-primary);
+  box-shadow: 0 0 12px var(--glow-red), 0 0 4px var(--brand-primary);
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.eyebrowSep {
+  color: #334155;
+}
+
+/* ---- Title ---- */
+.title {
+  font-size: clamp(2.5rem, 5vw, 4.2rem);
+  font-weight: var(--font-extrabold);
+  line-height: 1.06;
+  letter-spacing: var(--tracking-tighter);
+  color: #FFFFFF;
+}
+
+.titleAccent {
+  background: var(--gradient-brand-text);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 4s ease infinite;
+}
+
+/* ---- Subtitle with rotating word ---- */
+.subtitle {
+  font-size: var(--text-xl);
+  color: #94A3B8;
+  line-height: var(--leading-relaxed);
+  max-width: 540px;
+}
+
+.rotatingWordWrapper {
+  display: inline;
+  position: relative;
+}
+
+.rotatingWord {
+  display: inline-block;
+  font-weight: var(--font-semibold);
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ---- Actions ---- */
+.actions {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.outlineBtn {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  color: #FFFFFF !important;
+}
+
+.outlineBtn:hover {
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* ---- Trust ---- */
+.trust {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.trustItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: #64748B;
+}
+
+.trustIcon {
+  color: #22C55E;
+  font-size: var(--text-base);
+}
+
+/* ---- Visual Column ---- */
+.visualCol {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.visualCard {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 32px 64px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.visualImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.visualOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 30%, rgba(15, 23, 42, 0.85) 100%);
+}
+
+/* ---- Glass Stat Cards ---- */
+.visualStats {
+  position: absolute;
+  bottom: var(--space-5);
+  left: var(--space-5);
+  right: var(--space-5);
+  display: flex;
+  gap: var(--space-3);
+}
+
+.glassStat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: var(--space-3) var(--space-2);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  background: var(--glass-bg-dark);
+  border: 1px solid var(--glass-border-dark);
+  border-radius: var(--radius-lg);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.glassStat:hover {
+  background: var(--glass-bg-dark-hover);
+  border-color: var(--glass-border-dark-hover);
+}
+
+.glassStatValue {
+  font-family: var(--font-mono);
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: #FFFFFF;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+}
+
+.glassStatLabel {
+  font-size: var(--text-xs);
+  color: #94A3B8;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+/* ---- Floating Badges with Glow + Shimmer ---- */
+.floatingBadge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  background: var(--glass-bg-dark);
+  border: 1px solid var(--glass-border-dark);
+  border-radius: var(--radius-xl);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: #E2E8F0;
+  white-space: nowrap;
+  overflow: hidden;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    var(--glow-md) var(--glow-red);
+  z-index: 3;
+}
+
+.floatingBadge1 {
+  top: -10px;
+  right: -24px;
+}
+
+.floatingBadge2 {
+  bottom: 20%;
+  left: -36px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    var(--glow-md) var(--glow-green);
+}
+
+.floatingBadgeIcon {
+  font-size: var(--text-lg);
+  flex-shrink: 0;
+}
+
+/* Shimmer sweep on badges */
+.badgeShimmer {
+  position: absolute;
+  inset: 0;
+  background: var(--shimmer-gradient);
+  animation: shimmer 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ---- Scroll Indicator ---- */
+.scrollIndicator {
+  position: absolute;
+  bottom: var(--space-8);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  color: #475569;
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  z-index: 5;
+}
+
+.scrollLine {
+  width: 1px;
+  height: 32px;
+  background: linear-gradient(180deg, #475569, transparent);
+  animation: scrollPulse 2s infinite;
+}
+
+/* ---- Local Keyframes ---- */
+@keyframes scrollPulse {
+  0% { opacity: 0; transform: scaleY(0); transform-origin: top; }
+  50% { opacity: 1; transform: scaleY(1); }
+  100% { opacity: 0; transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1024px) {
+  .content {
+    grid-template-columns: 1fr;
+    padding: var(--space-16) var(--gutter);
+    gap: var(--space-12);
+  }
+  .visualCol { order: -1; }
+  .floatingBadge { display: none; }
+  .meshOrb1 { width: 400px; height: 400px; }
+  .meshOrb2 { width: 300px; height: 300px; }
+  .meshOrb3, .meshOrb4 { display: none; }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding-bottom: var(--space-16);
+  }
+  .title { font-size: var(--text-3xl); }
+  .subtitle { font-size: var(--text-base); }
+  .trust {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+  .scrollIndicator { display: none; }
+  .visualCard { max-width: 100%; }
+  .glassStat { padding: var(--space-2); }
+  .glassStatValue { font-size: var(--text-lg); }
+}
+
+/* ---- Accessibility ---- */
+@media (prefers-reduced-motion: reduce) {
+  .meshOrb,
+  .particle,
+  .badgeShimmer,
+  .scrollLine {
+    animation: none !important;
+  }
+  .titleAccent {
+    animation: none;
+  }
+  .eyebrowDot {
+    animation: none;
+    opacity: 1;
+  }
+}

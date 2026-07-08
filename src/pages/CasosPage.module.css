@@ -1,0 +1,238 @@
+/* CasosHubPage — hero editorial theme-aware (día/noche) + foto corporativa enmarcada.
+   El archivo filtrable lo aporta <CasosDossier/>. */
+
+.hero {
+  --bg: #F1ECE1;
+  --ink: #0E0E12;
+  --muted: #6B6B74;
+  --grid: rgba(14, 14, 18, 0.05);
+  --line: rgba(14, 14, 18, 0.14);
+  --card-border: rgba(14, 14, 18, 0.12);
+  --card-shadow: 0 4px 12px rgba(14, 14, 18, 0.08), 0 34px 60px -30px rgba(14, 14, 18, 0.45);
+
+  position: relative;
+  background: var(--bg);
+  color: var(--ink);
+  padding: calc(var(--header-height, 72px) + 88px) 40px 88px;
+  overflow: hidden;
+}
+
+[data-theme='dark'] .hero {
+  --bg: #0A0A0F;
+  --ink: #FAFAFA;
+  --muted: #A1A1AA;
+  --grid: rgba(255, 255, 255, 0.045);
+  --line: rgba(255, 255, 255, 0.10);
+  --card-border: rgba(255, 255, 255, 0.10);
+  --card-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.75);
+}
+
+.heroGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 60px 60px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 32% 12%, #000 35%, transparent 82%);
+  mask-image: radial-gradient(ellipse 75% 65% at 32% 12%, #000 35%, transparent 82%);
+  pointer-events: none;
+}
+
+.heroGlow {
+  position: absolute;
+  width: 640px;
+  height: 640px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(225, 29, 42, 0.14), transparent 68%);
+  top: -170px;
+  right: -90px;
+  pointer-events: none;
+}
+
+.heroInner {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.ticker {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 26px;
+}
+
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #E11D2A;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.eyebrow::before {
+  content: '§';
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--ink);
+  font-weight: 400;
+}
+
+.title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(40px, 5.2vw, 82px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  margin: 0;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.title em {
+  font-style: italic;
+  color: #E11D2A;
+  font-weight: 400;
+}
+
+.lede {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(17px, 1.6vw, 21px);
+  line-height: 1.5;
+  color: var(--muted);
+  max-width: 44ch;
+  margin: 26px 0 0;
+}
+
+.industries {
+  list-style: none;
+  margin: 34px 0 0;
+  padding: 22px 0 0;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  width: 100%;
+}
+.industries li {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.industries li::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #E11D2A;
+  flex-shrink: 0;
+}
+
+/* ===== Foto corporativa enmarcada ===== */
+.heroPhoto {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 0 0 auto;
+  aspect-ratio: 4 / 5;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+}
+.heroPhoto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.35) contrast(1.06);
+  display: block;
+}
+[data-theme='dark'] .heroPhoto img {
+  filter: grayscale(0.5) contrast(0.95) brightness(0.72);
+}
+.photoCorner {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #E11D2A;
+  z-index: 2;
+  pointer-events: none;
+}
+.photoCorner[data-c='tl'] {
+  top: 16px;
+  left: 16px;
+  border-right: none;
+  border-bottom: none;
+}
+.photoCorner[data-c='br'] {
+  bottom: 16px;
+  right: 16px;
+  border-left: none;
+  border-top: none;
+}
+.photoCaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 44px 20px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #FBFAF7;
+  background: linear-gradient(transparent, rgba(10, 10, 15, 0.85));
+  z-index: 2;
+}
+
+@media (max-width: 900px) {
+  .heroInner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .heroPhoto {
+    max-width: 100%;
+    margin: 0;
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero {
+    padding: calc(var(--header-height, 72px) + 52px) 20px 60px;
+  }
+  .heroPhoto {
+    aspect-ratio: 16 / 11;
+  }
+  .industries {
+    gap: 9px 18px;
+  }
+}

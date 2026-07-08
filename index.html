@@ -1,27 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <!-- Google Fonts - Tipografías Premium -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-
-        <!-- Favicon para Google (usa ICO/PNG, no solo SVG) -->
-      <!-- Favicon principal para Google Search (PNG, cuadrado, ≥48px) -->
-    <link rel="icon" href="/favicon.png" type="image/png" />
-
-    <!-- Compatibilidad opcional -->
-    <link rel="shortcut icon" href="/favicon.ico" />
-
-    <!-- iOS -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <!-- PWA / Mobile -->
+    <meta name="theme-color" content="#0A1628" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Novasys" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- SEO -->
+    <title>Novasys del Perú — Soluciones Tecnológicas Enterprise</title>
+    <meta name="description" content="Novasys del Perú — Soluciones tecnológicas enterprise: CRM, BI, Cloud AWS, Infraestructura HP y transformación digital." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.novasys.com.pe/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Novasys del Perú" />
+    <meta property="og:title" content="Novasys del Perú — Soluciones Tecnológicas Enterprise" />
+    <meta property="og:description" content="Soluciones tecnológicas enterprise: CRM, BI, Cloud AWS, Infraestructura HP y transformación digital." />
+    <meta property="og:url" content="https://www.novasys.com.pe/" />
+    <meta property="og:image" content="https://www.novasys.com.pe/web-app-manifest-512x512.png" />
+    <meta property="og:locale" content="es_PE" />
+
+    <!-- Google Fonts - Design System v4 "Corporate Tech" -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+    <!-- DNS Prefetch for third-party resources -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Logo de marca (rich results) -->
+    <!-- Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -29,16 +51,21 @@
       "@id": "https://www.novasys.com.pe/#organization",
       "url": "https://www.novasys.com.pe/",
       "name": "Novasys del Perú",
-      "logo": "https://www.novasys.com.pe/web-app-manifest-512x512.png"
+      "description": "Soluciones tecnológicas enterprise: CRM, BI, Cloud AWS, Infraestructura HP y transformación digital.",
+      "logo": "https://www.novasys.com.pe/web-app-manifest-512x512.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "areaServed": "PE",
+        "availableLanguage": "Spanish"
+      }
     }
     </script>
-    <title>Novasys del peru</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&family=Manrope:wght@300;400&family=DM+Sans:wght@300;400&family=Urbanist:wght@300&family=Outfit:wght@300;400&family=Space+Grotesk:wght@400&family=Lexend:wght@300;400&display=swap" rel="stylesheet">
   </head>
-  <body>   
-    <div id="root"></div> 
+  <body>
+    <!-- No-JS fallback -->
+    <noscript>Para una mejor experiencia, activa JavaScript en tu navegador.</noscript>
+    <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

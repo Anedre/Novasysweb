@@ -1,0 +1,162 @@
+/* ============================================
+   INDUSTRIES BENTO — Asymmetric Grid
+   ============================================ */
+
+.section {
+  padding: var(--section-gap) 0;
+  background: var(--bg-page);
+}
+
+.container {
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space-12);
+}
+
+.eyebrow {
+  font-family: var(--font-accent);
+  font-weight: 700;
+  font-size: var(--text-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--brand-primary);
+  margin-bottom: var(--space-3);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-h2);
+  color: var(--text-heading);
+}
+
+/* ---- Bento Grid ---- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto;
+  gap: var(--space-4);
+}
+
+/* Large cells — span 2 columns */
+.cell:nth-child(1) { grid-column: span 2; }
+.cell:nth-child(2) { grid-column: span 2; }
+
+/* Medium and standard cells — 1 column each */
+.cell:nth-child(n+3) { grid-column: span 1; }
+
+.cell {
+  position: relative;
+  padding: var(--space-8);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-default);
+  background: var(--bg-card);
+  overflow: hidden;
+  cursor: default;
+  transition: all 0.4s var(--ease-spring);
+}
+
+.cell:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--border-hover);
+}
+
+/* Ripple effect overlay */
+.ripple {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.cell:hover .ripple {
+  opacity: 1;
+}
+
+/* ---- Cell Content ---- */
+.cellIcon {
+  font-size: 2rem;
+  color: var(--brand-primary);
+  margin-bottom: var(--space-4);
+  transition: transform 0.4s var(--ease-spring);
+}
+
+.cell:hover .cellIcon {
+  transform: rotate(-8deg) scale(1.1);
+}
+
+.cellName {
+  font-family: var(--font-subtitle);
+  font-weight: 600;
+  font-size: var(--text-h4);
+  color: var(--text-heading);
+  margin-bottom: var(--space-2);
+}
+
+.cellDesc {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: var(--leading-normal);
+  margin-bottom: var(--space-4);
+}
+
+.cellClients {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.clientTag {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  background: var(--bg-subtle);
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .clientTag {
+  background: var(--bg-muted);
+}
+
+/* Large cells get extra styling */
+.cell:nth-child(1) .cellIcon,
+.cell:nth-child(2) .cellIcon {
+  font-size: 2.5rem;
+}
+
+.cell:nth-child(1) .cellName,
+.cell:nth-child(2) .cellName {
+  font-size: var(--text-h3);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cell:nth-child(1),
+  .cell:nth-child(2) {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cell {
+    padding: var(--space-6);
+  }
+}

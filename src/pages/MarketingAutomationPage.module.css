@@ -1,0 +1,102 @@
+/* Marketing Automation — bespoke. Hero centrado + journey ribbon + segment builder + showcase. Acento rojo. */
+
+.hero, .segSection, .perso, .channels {
+  --accent: #E11D2A;
+  --amber: #F5A623;
+  --bg: #FBFAF7;
+  --bg-alt: #F1ECE1;
+  --ink: #0E0E12;
+  --muted: #6B6B74;
+  --card: #FFFFFF;
+  --line: rgba(14, 14, 18, 0.12);
+  --card-shadow: 0 6px 20px rgba(14, 14, 18, 0.05), 0 40px 70px -40px rgba(14, 14, 18, 0.3);
+}
+[data-theme='dark'] .hero, [data-theme='dark'] .segSection, [data-theme='dark'] .perso, [data-theme='dark'] .channels {
+  --bg: #0A0A0F; --bg-alt: #0E0E14; --ink: #FAFAFA; --muted: #A1A1AA; --card: #121219; --line: rgba(255, 255, 255, 0.1);
+  --card-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.7);
+}
+
+.wrap { max-width: 1180px; margin: 0 auto; }
+.head { max-width: 660px; margin-bottom: 40px; }
+.sectionEyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); font-weight: 600; display: inline-flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.sectionEyebrow::before { content: '§'; font-family: 'Fraunces', Georgia, serif; font-size: 1.2rem; font-style: italic; color: var(--ink); }
+.headTitle { font-family: 'Fraunces', Georgia, serif; font-size: clamp(28px, 3.6vw, 46px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.02; margin: 0; color: var(--ink); text-wrap: balance; }
+.headTitle em, .heroTitle em { font-style: italic; color: var(--accent); font-weight: 400; }
+.headLede { font-size: 15.5px; line-height: 1.6; color: var(--muted); margin: 18px 0 0; }
+
+/* ===== Hero centrado ===== */
+.hero { background: var(--bg); color: var(--ink); text-align: center; padding: calc(var(--header-height, 72px) + 52px) 40px 0; overflow: hidden; }
+.heroText { max-width: 760px; margin: 0 auto; }
+.badge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(225,29,42,0.3); background: rgba(225,29,42,0.06); font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); font-weight: 600; margin-bottom: 22px; }
+.heroTitle { font-family: 'Fraunces', Georgia, serif; font-size: clamp(38px, 5.4vw, 74px); font-weight: 500; letter-spacing: -0.035em; line-height: 1; margin: 0; color: var(--ink); text-wrap: balance; }
+.heroLede { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: clamp(16px, 1.8vw, 20px); line-height: 1.5; color: var(--muted); margin: 24px auto 32px; max-width: 54ch; }
+.heroCtas { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+
+/* ===== Journey ribbon ===== */
+.ribbon { max-width: 1080px; margin: 56px auto 0; padding: 44px 0 76px; }
+.ribbonTrack { display: flex; align-items: flex-start; justify-content: space-between; position: relative; }
+.ribbonStep { display: flex; flex-direction: column; align-items: center; gap: 7px; position: relative; flex: 1; }
+.ribbonConn { position: absolute; top: 27px; left: 50%; width: 100%; height: 2px; background: var(--line); z-index: 0; }
+.ribbonStep:last-child .ribbonConn { display: none; }
+.ribbonNode { position: relative; z-index: 1; width: 56px; height: 56px; border-radius: 16px; background: var(--card); border: 1px solid var(--line); display: grid; place-items: center; font-size: 24px; color: var(--accent); box-shadow: var(--card-shadow); }
+.ribbonStep:last-child .ribbonNode { background: var(--accent); border-color: var(--accent); color: #fff; }
+.ribbonLabel { font-size: 13px; font-weight: 700; color: var(--ink); }
+.ribbonSub { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.04em; color: var(--muted); }
+.ribbonContact { position: absolute; top: 21px; left: 0; width: 14px; height: 14px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 12px var(--amber); z-index: 2; animation: contactMove 6s cubic-bezier(0.6,0,0.4,1) infinite; }
+@keyframes contactMove { 0% { left: 0; opacity: 0; } 8% { opacity: 1; } 92% { opacity: 1; } 100% { left: calc(100% - 14px); opacity: 0; } }
+
+/* ===== Segment builder ===== */
+.segSection { background: var(--bg-alt); color: var(--ink); padding: 90px 40px; }
+.segment { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 30px; margin-top: 44px; align-items: stretch; }
+.segCriteria { display: flex; flex-wrap: wrap; gap: 10px; align-content: flex-start; }
+.segCriteriaLabel { width: 100%; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 4px; }
+.segChip { display: inline-flex; align-items: center; gap: 9px; padding: 12px 18px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--ink); font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.25s cubic-bezier(0.22,1,0.36,1); }
+.segChipMark { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--muted); transition: color 0.2s ease; }
+.segChip:hover { border-color: var(--accent); }
+.segChipOn { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 10px 24px -10px rgba(225,29,42,0.6); }
+.segChipOn .segChipMark { color: #fff; }
+.segResult { background: #0E0E12; border-radius: 18px; padding: 30px; display: flex; flex-direction: column; align-items: center; text-align: center; box-shadow: var(--card-shadow); }
+.segLabel { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amber); font-weight: 600; }
+.segCount { font-family: 'JetBrains Mono', monospace; font-size: clamp(38px, 5vw, 56px); font-weight: 700; color: #FAFAFA; letter-spacing: -0.03em; line-height: 1; margin: 12px 0 4px; animation: countIn 0.4s ease; }
+@keyframes countIn { from { opacity: 0.35; transform: scale(0.94); } to { opacity: 1; transform: none; } }
+.segSub { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #71717A; }
+.segDots { display: grid; grid-template-columns: repeat(20, 1fr); gap: 5px; margin-top: 24px; width: 100%; }
+.segDot { aspect-ratio: 1; border-radius: 50%; background: rgba(255,255,255,0.08); transition: background 0.4s ease; }
+.segDotOn { background: var(--accent); }
+
+/* ===== Personalización showcase ===== */
+.perso { background: var(--bg); color: var(--ink); padding: 90px 40px; }
+.persoInner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 52px; align-items: center; }
+.persoVisual { position: relative; min-height: 400px; }
+.persoImgA { display: block; width: 76%; aspect-ratio: 3/4; object-fit: cover; border-radius: 18px; position: relative; z-index: 1; border: 1px solid var(--line); }
+.persoImgB { position: absolute; bottom: -18px; right: 0; width: 44%; aspect-ratio: 3/4; object-fit: cover; border-radius: 14px; z-index: 2; border: 5px solid var(--bg); box-shadow: var(--card-shadow); }
+.persoCards { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+.persoCard { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; box-shadow: var(--card-shadow); }
+.persoCardCh { display: inline-flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 6px; }
+.persoCardTxt { display: block; font-size: 14.5px; line-height: 1.45; color: var(--ink); }
+
+/* ===== Canales + stack ===== */
+.channels { background: var(--bg-alt); color: var(--ink); padding: 80px 40px; }
+.chGrid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 44px; }
+.chList { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.chItem { display: inline-flex; align-items: center; gap: 9px; padding: 11px 18px; border-radius: 10px; border: 1px solid var(--line); background: var(--card); font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--ink); font-weight: 600; }
+.chItem svg { font-size: 18px; color: var(--accent); }
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .segment { grid-template-columns: 1fr; }
+  .persoInner { grid-template-columns: 1fr; gap: 60px; }
+  .chGrid { grid-template-columns: 1fr; gap: 28px; }
+}
+@media (max-width: 640px) {
+  .hero { padding: calc(var(--header-height, 72px) + 40px) 20px 0; }
+  .segSection, .perso, .channels { padding-left: 20px; padding-right: 20px; }
+  .ribbon { overflow-x: auto; }
+  .ribbonTrack { min-width: 560px; }
+  .ribbonLabel { font-size: 11px; }
+  .segDots { grid-template-columns: repeat(15, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ribbonContact { animation: none; opacity: 0; }
+  .segCount { animation: none; }
+}

@@ -1,0 +1,85 @@
+/* ResultsShowcase — KPIs on dark with animated grid */
+
+/* Animated background grid */
+.bgGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Scanning line effect */
+.scanLine {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(239, 68, 68, 0.04),
+    rgba(37, 99, 235, 0.04),
+    transparent
+  );
+  animation: scanLine 8s linear infinite;
+  pointer-events: none;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-2);
+  position: relative;
+}
+
+.statWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6) var(--space-4);
+  border-radius: var(--radius-lg);
+  transition: background 0.3s ease;
+}
+
+.statWrapper:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Glowing vertical dividers */
+.divider {
+  position: absolute;
+  left: 0;
+  top: 20%;
+  bottom: 20%;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(239, 68, 68, 0.3),
+    rgba(37, 99, 235, 0.3),
+    transparent
+  );
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.15);
+}
+
+@media (max-width: 768px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+  .divider {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scanLine {
+    animation: none;
+    display: none;
+  }
+}

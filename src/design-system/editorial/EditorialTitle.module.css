@@ -1,0 +1,51 @@
+/* EditorialTitle — Fraunces serif with italic em accent */
+
+.title {
+  font-family: 'Fraunces', 'Playfair Display', Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: #0E0E12;
+  margin: 0;
+}
+
+.title em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.inverse {
+  color: #FAFAFA;
+}
+
+/* Size variants */
+.size-hero {
+  font-size: clamp(56px, 7.2vw, 120px);
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+}
+.size-xl {
+  font-size: clamp(48px, 5.5vw, 84px);
+  line-height: 0.95;
+}
+.size-lg {
+  font-size: clamp(40px, 5vw, 72px);
+}
+.size-md {
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1.05;
+}
+.size-sm {
+  font-size: clamp(24px, 2.6vw, 32px);
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+/* Accent colors applied to <em> */
+.accent-red em { color: #E11D2A; }
+.accent-amber em { color: #F5A623; }
+.accent-blue em { color: #3B82F6; }
+
+[data-theme="dark"] .title {
+  color: #FAFAFA;
+}

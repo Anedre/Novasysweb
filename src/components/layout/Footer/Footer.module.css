@@ -1,0 +1,379 @@
+/* Footer · v3-nova editorial */
+
+.footer {
+  position: relative;
+  background: #0A0A0F;
+  color: #A1A1AA;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+[data-theme="dark"] .footer {
+  background: #06060A;
+}
+
+/* Glow amber sutil top-right (continuidad con CTAs editoriales) */
+.glow {
+  position: absolute;
+  top: -120px;
+  right: -180px;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(245, 166, 35, 0.08), transparent 65%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================================
+   01 · Manifesto strip — fragmento editorial superior
+   ============================================================ */
+.manifestoStrip {
+  position: relative;
+  z-index: 1;
+  padding: 64px 40px 56px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.manifestoInner {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 880px;
+}
+
+.manifestoLabel {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #F5A623;
+  font-weight: 700;
+}
+
+.manifesto {
+  font-family: 'Fraunces', 'Playfair Display', Georgia, serif;
+  font-size: clamp(28px, 3.4vw, 44px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: #FAFAFA;
+  margin: 0;
+  max-width: 820px;
+}
+
+.manifesto em {
+  font-style: italic;
+  color: #F5A623;
+  font-weight: 400;
+}
+
+/* ============================================================
+   02 · Divider hairline
+   ============================================================ */
+.divider {
+  position: relative;
+  z-index: 1;
+  height: 1px;
+  margin: 0 40px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.12) 18%,
+    rgba(255, 255, 255, 0.12) 82%,
+    transparent 100%
+  );
+}
+
+/* ============================================================
+   03 · Main grid (brand + 3 link cols)
+   ============================================================ */
+.footerInner {
+  position: relative;
+  z-index: 1;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 56px 40px 32px;
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 56px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Brand column */
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  max-width: 340px;
+}
+
+.brandLogo {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+}
+
+.brandTagline {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.brandTagline em {
+  color: #E11D2A;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.contactLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.contactLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  color: #D4D4D8;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contactLink:hover {
+  color: #FAFAFA;
+}
+
+.contactLinkIcon {
+  font-size: 16px;
+  color: #71717A;
+  flex-shrink: 0;
+}
+
+.partnersBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.partnersLabel {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #71717A;
+  font-weight: 700;
+}
+
+.partners {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.partnerLogo {
+  height: 40px;
+  width: auto;
+  padding: 8px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  object-fit: contain;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.partnerLogo:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* ============================================================
+   04 · Link columns
+   ============================================================ */
+.linkColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.linkColumnTitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #FAFAFA;
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.linkColumnTitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 22px;
+  height: 1px;
+  background: #E11D2A;
+}
+
+.linkColumnItems {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.footerLink {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  color: #A1A1AA;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+  width: fit-content;
+}
+
+.footerLink:hover {
+  color: #FAFAFA;
+  transform: translateX(2px);
+}
+
+.footerLinkEmphasis {
+  color: #F5A623;
+  font-weight: 600;
+  margin-top: 4px;
+  letter-spacing: 0.01em;
+}
+
+.footerLinkEmphasis:hover {
+  color: #FBBF24;
+}
+
+/* ============================================================
+   05 · Bottom bar
+   ============================================================ */
+.bottomBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 28px;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.bottomLeft {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.copyright {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: #71717A;
+}
+
+.madeIn {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 13px;
+  font-style: italic;
+  color: #71717A;
+  letter-spacing: -0.01em;
+}
+
+.madeIn em {
+  color: #E11D2A;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 10px;
+}
+
+.socialLink {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #A1A1AA;
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+  font-size: 14px;
+}
+
+.socialLink:hover {
+  color: #FAFAFA;
+  border-color: #F5A623;
+  background: rgba(245, 166, 35, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 1200px) {
+  .footerGrid {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .footerGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px 40px;
+  }
+  .brand {
+    grid-column: 1 / -1;
+    max-width: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .manifestoStrip {
+    padding: 48px 22px 40px;
+  }
+  .divider {
+    margin: 0 22px;
+  }
+  .footerInner {
+    padding: 48px 22px 28px;
+  }
+  .footerGrid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding-bottom: 36px;
+  }
+  .bottomBar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+  .bottomLeft {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

@@ -1,0 +1,118 @@
+/* Methodology — Process timeline with animated line + active steps */
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-4);
+  position: relative;
+}
+
+/* Animated progress line */
+.progressLine {
+  position: absolute;
+  top: 40px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary), var(--brand-primary));
+  opacity: 0.5;
+  transform-origin: left;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.stepNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-full);
+  background-color: var(--bg-card);
+  border: 2px solid rgba(220, 38, 38, 0.3);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  box-shadow: 0 0 0 4px var(--bg-subtle);
+  transition:
+    background 0.4s ease,
+    border-color 0.4s ease,
+    color 0.4s ease,
+    box-shadow 0.4s ease,
+    transform 0.3s ease;
+}
+
+/* Active step state */
+.stepNumber.active {
+  background: var(--gradient-brand);
+  border-color: transparent;
+  color: #FFFFFF;
+  box-shadow:
+    0 0 0 4px var(--bg-subtle),
+    0 0 20px var(--glow-red);
+  transform: scale(1.1);
+}
+
+.stepIcon {
+  font-size: var(--text-xl);
+}
+
+.stepTitle {
+  font-size: var(--text-base);
+  font-weight: var(--font-bold);
+  color: var(--text-heading);
+  transition: color 0.3s ease;
+}
+
+.step:hover .stepNumber {
+  border-color: var(--brand-primary);
+  transform: scale(1.05);
+}
+
+.step:hover .stepTitle {
+  color: var(--brand-primary);
+}
+
+.stepDesc {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: var(--leading-relaxed);
+  max-width: 180px;
+}
+
+/* Responsive — vertical timeline */
+@media (max-width: 1024px) {
+  .timeline {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+  .progressLine {
+    top: 0;
+    bottom: 0;
+    left: 29px;
+    right: auto;
+    width: 2px;
+    height: auto;
+  }
+  .step {
+    flex-direction: row;
+    text-align: left;
+    align-items: flex-start;
+    gap: var(--space-5);
+  }
+  .stepNumber {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+  }
+  .stepDesc { max-width: none; }
+}

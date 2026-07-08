@@ -8,7 +8,16 @@ const Canonical = () => {
   useEffect(() => {
     const canonicalLink = document.querySelector("link[rel='canonical']");
 
-    const fullUrl = `https://www.novasys.com.pe${location.pathname}`;
+    // Rutas alias que comparten componente con su página de línea → canonical a la canónica,
+    // para evitar duplicate-content: /soluciones/amazon≡/cloud, /hp≡/infraestructura,
+    // /novasys≡/soluciones (los tres renderizan el mismo componente que su página de línea).
+    const CANONICAL_ALIASES = {
+      "/soluciones/amazon": "/cloud",
+      "/soluciones/hp": "/infraestructura",
+      "/soluciones/novasys": "/soluciones",
+    };
+    const path = CANONICAL_ALIASES[location.pathname] || location.pathname;
+    const fullUrl = `https://www.novasys.com.pe${path}`;
 
     if (canonicalLink) {
       canonicalLink.setAttribute("href", fullUrl);

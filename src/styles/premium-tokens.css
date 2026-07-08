@@ -1,0 +1,58 @@
+/* ============================================
+   NOVASYS Premium Tokens v3
+   Glass, Glow, Gradient, Particle variables
+   ============================================ */
+
+:root {
+  /* Glass morphism */
+  --glass-blur: 16px;
+  --glass-blur-sm: 8px;
+  --glass-blur-lg: 24px;
+  --glass-bg-dark: rgba(255, 255, 255, 0.06);
+  --glass-bg-dark-hover: rgba(255, 255, 255, 0.1);
+  --glass-border-dark: rgba(255, 255, 255, 0.12);
+  --glass-border-dark-hover: rgba(255, 255, 255, 0.2);
+  --glass-bg-light: rgba(255, 255, 255, 0.7);
+  --glass-bg-light-hover: rgba(255, 255, 255, 0.85);
+  --glass-border-light: rgba(255, 255, 255, 0.3);
+
+  /* Glow effects */
+  --glow-red: rgba(220, 38, 38, 0.2);
+  --glow-red-strong: rgba(220, 38, 38, 0.4);
+  --glow-blue: rgba(59, 130, 246, 0.2);
+  --glow-blue-strong: rgba(59, 130, 246, 0.4);
+  --glow-orange: rgba(249, 115, 22, 0.2);
+  --glow-orange-strong: rgba(249, 115, 22, 0.4);
+  --glow-green: rgba(34, 197, 94, 0.2);
+  --glow-sm: 0 0 12px;
+  --glow-md: 0 0 24px;
+  --glow-lg: 0 0 48px;
+  --glow-xl: 0 0 80px;
+
+  /* Brand gradients */
+  --gradient-brand: linear-gradient(135deg, #DC2626, #3B82F6);
+  --gradient-brand-wide: linear-gradient(135deg, #DC2626 0%, #3B82F6 50%, #DC2626 100%);
+  --gradient-brand-text: linear-gradient(135deg, #EF4444 0%, #F97316 40%, #3B82F6 100%);
+  --gradient-blue: linear-gradient(135deg, #3B82F6, #06B6D4);
+  --gradient-dark: linear-gradient(180deg, #0A0A0F 0%, #0F1420 50%, #0A0F1A 100%);
+  --gradient-mesh-1: radial-gradient(ellipse at 20% 50%, rgba(220, 38, 38, 0.14) 0%, transparent 60%);
+  --gradient-mesh-2: radial-gradient(ellipse at 80% 20%, rgba(59, 130, 246, 0.12) 0%, transparent 60%);
+  --gradient-mesh-3: radial-gradient(ellipse at 60% 80%, rgba(249, 115, 22, 0.10) 0%, transparent 50%);
+  --gradient-mesh-4: radial-gradient(ellipse at 30% 10%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+
+  /* Particle system */
+  --particle-color: rgba(255, 255, 255, 0.12);
+  --particle-color-accent: rgba(220, 38, 38, 0.25);
+
+  /* Section transitions */
+  --section-transition-duration: 0.8s;
+  --section-transition-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  /* Shimmer */
+  --shimmer-gradient: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 60%
+  );
+}

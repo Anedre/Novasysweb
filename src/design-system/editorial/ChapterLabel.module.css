@@ -1,0 +1,32 @@
+/* ChapterLabel — v3-nova editorial §-prefixed mono label */
+
+.label {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.label::before {
+  content: '§';
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 400;
+  color: #0E0E12;
+}
+
+[data-theme="dark"] .label::before {
+  color: #FAFAFA;
+}
+
+/* Tone variants */
+.red { color: #E11D2A; }
+.amber { color: #F5A623; }
+.inverse { color: #E11D2A; }
+.inverse::before { color: #FAFAFA; }

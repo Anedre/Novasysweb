@@ -20,7 +20,6 @@ function ScrollToTop() {
 
     return () => clearTimeout(timer);
   }, [pathname]);
-  console.log("scroll reset")
   return null;
 }
 
