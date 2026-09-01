@@ -32,6 +32,15 @@ const CasosHubPage = lazy(() => import('./pages/CasosHubPage.jsx'));
 const CasoDetallePage = lazy(() => import('./pages/CasoDetallePage.jsx'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage.jsx'));
 
+// Páginas v4 (rediseño 2026 — hubs con el nuevo sistema visual)
+const HomeV4 = lazy(() => import('./v4/pages/HomeV4.jsx'));
+const SolucionesV4 = lazy(() => import('./v4/pages/SolucionesV4.jsx'));
+const CloudV4 = lazy(() => import('./v4/pages/CloudV4.jsx'));
+const InfraV4 = lazy(() => import('./v4/pages/InfraV4.jsx'));
+const CasosV4 = lazy(() => import('./v4/pages/CasosV4.jsx'));
+const NosotrosV4 = lazy(() => import('./v4/pages/NosotrosV4.jsx'));
+const ContactoV4 = lazy(() => import('./v4/pages/ContactoV4.jsx'));
+
 // NOTE (C4): SolucionesHP/SolucionesHP_Enterprise/AlmacenamientoHP/AmazonConnect/
 // AmazonDialer/CloudMigration ya no están ruteados — sus slugs ahora caen en
 // /infraestructura/:slug y /cloud/:slug resueltos por InfraDetallePage y
@@ -49,20 +58,20 @@ export const router = createBrowserRouter([
     element: <AppLayout />,
     children: [
       // ===== NEW PAGES (v3) =====
-      { path: "/", element: <L><HomePage /></L> },
+      { path: "/", element: <L><HomeV4 /></L> },
       { path: "/home-legacy", element: <L><HomeLegacyPage /></L> },
-      { path: "/nosotros", element: <L><NosotrosPage /></L> },
-      { path: "/contacto", element: <L><ContactoPage /></L> },
+      { path: "/nosotros", element: <L><NosotrosV4 /></L> },
+      { path: "/contacto", element: <L><ContactoV4 /></L> },
       { path: "/eventos", element: <L><EventosPage /></L> },
 
       // Solutions
-      { path: "/soluciones", element: <L><SolucionesHubPage /></L> },
+      { path: "/soluciones", element: <L><SolucionesV4 /></L> },
       // Partner hubs (canonical v3 routes — specific paths matched before dynamic :slug)
-      { path: "/soluciones/amazon", element: <L><CloudPage /></L> },
-      { path: "/soluciones/hp", element: <L><InfraestructuraPage /></L> },
+      { path: "/soluciones/amazon", element: <L><CloudV4 /></L> },
+      { path: "/soluciones/hp", element: <L><InfraV4 /></L> },
       // Consolidado: /soluciones/novasys usa la misma hub de software (bento) que /soluciones,
       // igual que /soluciones/amazon=Cloud y /soluciones/hp=Infra. Canonical → /soluciones.
-      { path: "/soluciones/novasys", element: <L><SolucionesHubPage /></L> },
+      { path: "/soluciones/novasys", element: <L><SolucionesV4 /></L> },
       { path: "/soluciones/crm-ventas", element: <L><CRMVentasPage /></L> }, // bespoke, antes del :slug
       { path: "/soluciones/gestion-documental", element: <L><GestionDocumentalPage /></L> }, // bespoke, antes del :slug
       { path: "/soluciones/business-intelligence", element: <L><BusinessIntelligencePage /></L> }, // bespoke, antes del :slug
@@ -76,14 +85,14 @@ export const router = createBrowserRouter([
       { path: "/elo", element: <Navigate to="/soluciones/gestion-documental" replace /> },
 
       // Infrastructure HP — v3 dynamic template (C4)
-      { path: "/infraestructura", element: <L><InfraestructuraPage /></L> },
+      { path: "/infraestructura", element: <L><InfraV4 /></L> },
       { path: "/infraestructura/computo", element: <L><InfraProductPage /></L> }, // bespoke datasheet, antes del :slug
       { path: "/infraestructura/servidores", element: <L><InfraProductPage /></L> }, // bespoke datasheet, antes del :slug
       { path: "/infraestructura/almacenamiento", element: <L><InfraProductPage /></L> }, // bespoke datasheet, antes del :slug
       { path: "/infraestructura/:slug", element: <L><InfraDetallePage /></L> },
 
       // Cloud AWS — v3 dynamic template (C4)
-      { path: "/cloud", element: <L><CloudPage /></L> },
+      { path: "/cloud", element: <L><CloudV4 /></L> },
       { path: "/cloud/amazon-connect", element: <L><AmazonConnectPage /></L> }, // bespoke, antes del :slug
       { path: "/cloud/connect-dialer", element: <L><ConnectDialerPage /></L> }, // bespoke, antes del :slug
       { path: "/cloud/sagemaker", element: <L><SageMakerPage /></L> }, // bespoke, antes del :slug
@@ -95,7 +104,7 @@ export const router = createBrowserRouter([
       { path: "/tecnologias/:slug", element: <L><TecnologiaPage /></L> }, // bespoke ficha software (Oracle)
 
       // Cases
-      { path: "/casos-de-exito", element: <L><CasosHubPage /></L> },
+      { path: "/casos-de-exito", element: <L><CasosV4 /></L> },
       { path: "/casos-de-exito/:slug", element: <L><CasoDetallePage /></L> },
 
       // 404

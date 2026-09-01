@@ -1,0 +1,125 @@
+/* Contacto v4 — hero asistente. Editable a mano. */
+
+.v4 .wiz{position:relative;text-align:center;padding-top:clamp(40px,6vh,64px)}
+.v4 .hero.wiz .wrap{display:block}
+.v4 .wiz .deco-ring{position:absolute;right:-90px;top:-40px;width:300px;height:300px;border-radius:50%;border:1px solid color-mix(in srgb,var(--ink) 10%,transparent);pointer-events:none}
+.v4 .wiz .deco-dash{position:absolute;left:-70px;bottom:-40px;width:170px;height:170px;border-radius:50%;border:8px dashed color-mix(in srgb,var(--red) 45%,transparent);pointer-events:none}
+html.js:not(.static) .v4 .wiz .deco-dash{animation:v4spin 48s linear infinite}
+.v4 .wiz .deco-dot{position:absolute;left:16%;top:36px;width:11px;height:11px;border-radius:50%;background:var(--red);pointer-events:none}
+
+/* riel de progreso */
+.v4 .wiz-rail{display:flex;justify-content:center;gap:clamp(14px,3vw,34px);margin-bottom:clamp(28px,4vw,40px)}
+.v4 .wiz-rail button{
+  background:none;border:0;cursor:pointer;padding:0;
+  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-3);display:flex;flex-direction:column;align-items:center;gap:8px;
+}
+.v4 .wiz-rail button:disabled{cursor:default}
+.v4 .wiz-rail i{display:block;width:clamp(54px,8vw,90px);height:3px;background:var(--line);transition:background .3s}
+.v4 .wiz-rail button.done i,.v4 .wiz-rail button.act i{background:var(--red)}
+.v4 .wiz-rail button.act{color:var(--ink)}
+
+/* paso con entrada animada */
+html.js:not(.static) .v4 .wstep{animation:v4wstep .5s cubic-bezier(.2,.6,.2,1)}
+@keyframes v4wstep{from{opacity:0;transform:translateY(18px)}}
+.v4 .wiz h1{
+  font-family:"Inter Tight",Inter,sans-serif;font-weight:700;
+  font-size:clamp(34px,5vw,62px);letter-spacing:-.03em;line-height:1.04;
+  margin:0 auto 14px;max-width:18ch;text-wrap:balance;
+}
+.v4 .wiz .wsub{color:var(--ink-2);font-size:clamp(15px,1.3vw,17px);max-width:52ch;margin:0 auto}
+
+/* opciones grandes (paso 1) */
+.v4 .opts{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+  max-width:1040px;margin:clamp(30px,4vw,44px) auto 0;
+}
+.v4 .opt{
+  background:var(--paper);border:1.5px solid var(--line);border-radius:18px;
+  box-shadow:var(--sh-soft);padding:26px 20px 24px;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;
+  font:inherit;color:inherit;
+  transition:transform .25s,border-color .25s,box-shadow .3s;
+}
+.v4 .opt:hover{transform:translateY(-5px);border-color:color-mix(in srgb,var(--red) 45%,var(--line));box-shadow:0 4px 8px rgba(11,11,14,.05),0 28px 60px -26px rgba(11,11,14,.3)}
+.v4 .opt .oi{
+  width:54px;height:54px;border-radius:14px;
+  background:color-mix(in srgb,var(--red) 9%,transparent);color:var(--red);
+  display:grid;place-items:center;margin-bottom:8px;transition:background .25s,color .25s;
+}
+.v4 .opt:hover .oi{background:var(--grad);color:#fff}
+.v4 .opt .oi .ic{width:24px;height:24px}
+.v4 .opt b{font-family:"Inter Tight",Inter,sans-serif;font-size:17px;font-weight:600;letter-spacing:-.01em}
+.v4 .opt small{font-size:12.5px;color:var(--ink-3);line-height:1.45}
+@media (max-width:980px){.v4 .opts{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.v4 .opts{grid-template-columns:1fr}}
+
+/* campos grandes (pasos 2-3) */
+.v4 .wfields{max-width:620px;margin:clamp(28px,4vw,40px) auto 0;display:flex;flex-direction:column;gap:14px;text-align:left}
+.v4 .wfields .frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:560px){.v4 .wfields .frow{grid-template-columns:1fr}}
+.v4 .wfields label{display:block;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:7px}
+.v4 .wfields label b{color:var(--red)}
+.v4 .wfields input,.v4 .wfields textarea{
+  width:100%;background:var(--paper);border:1.5px solid var(--line);border-radius:12px;
+  padding:15px 16px;font:inherit;font-size:15.5px;color:var(--ink);transition:border-color .2s;
+}
+.v4 .wfields textarea{min-height:130px;resize:vertical}
+.v4 .wfields input:focus,.v4 .wfields textarea:focus{outline:none;border-color:var(--red)}
+.v4 .wnav{display:flex;justify-content:center;align-items:center;gap:22px;margin-top:26px}
+.v4 .wback{
+  background:none;border:0;cursor:pointer;font:inherit;font-size:14px;font-weight:600;
+  color:var(--ink-3);border-bottom:1.5px solid var(--line);padding-bottom:2px;
+  transition:color .2s,border-color .2s;
+}
+.v4 .wback:hover{color:var(--ink);border-color:var(--ink)}
+.v4 .btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+.v4 .wpick{
+  display:inline-flex;align-items:center;gap:9px;margin-bottom:18px;
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--red);border:1px solid color-mix(in srgb,var(--red) 35%,var(--line));
+  border-radius:999px;padding:7px 14px;background:color-mix(in srgb,var(--red) 6%,transparent);
+}
+.v4 .wpick .ic{width:14px;height:14px}
+
+/* error de envío */
+.v4 .wfail{
+  margin-top:16px;font-size:13.5px;color:var(--ink-2);
+  background:color-mix(in srgb,var(--red) 7%,transparent);
+  border:1px solid color-mix(in srgb,var(--red) 30%,var(--line));
+  border-radius:10px;padding:10px 16px;display:inline-block;
+}
+.v4 .wfail a{color:var(--red);font-weight:600;border-bottom:1px solid currentColor}
+
+/* estado enviado */
+.v4 .wdone{
+  max-width:560px;margin:clamp(30px,4vw,44px) auto 0;
+  background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--red);
+  border-radius:18px;box-shadow:var(--sh-soft);padding:clamp(26px,4vw,38px);
+}
+.v4 .wdone .wcheck{
+  width:52px;height:52px;border-radius:50%;background:var(--grad);color:#fff;
+  display:grid;place-items:center;font-size:22px;margin:0 auto 16px;
+}
+.v4 .wdone h2{font-family:"Inter Tight",Inter,sans-serif;font-size:24px;font-weight:700;letter-spacing:-.02em;margin-bottom:8px}
+.v4 .wdone p{color:var(--ink-2);font-size:14.5px}
+.v4 .wdone .fnote2{margin-top:14px;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+
+/* contacto directo — siempre visible */
+.v4 .wdirect{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:10px 14px;
+  margin-top:clamp(34px,5vw,52px);padding-bottom:clamp(44px,6vh,64px);
+}
+.v4 .wdirect .lbl-d{
+  width:100%;text-align:center;
+  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
+  margin-bottom:2px;
+}
+.v4 .wdirect a,.v4 .wdirect span:not(.lbl-d){
+  display:inline-flex;align-items:center;gap:9px;
+  background:var(--paper);border:1px solid var(--line);border-radius:999px;
+  padding:10px 18px;font-size:13.5px;font-weight:600;color:var(--ink-2);
+  box-shadow:var(--sh-soft);transition:color .2s,border-color .2s,transform .2s;
+}
+.v4 .wdirect a:hover{color:var(--ink);border-color:color-mix(in srgb,var(--red) 40%,var(--line));transform:translateY(-2px)}
+.v4 .wdirect .ic{width:15px;height:15px;color:var(--red)}

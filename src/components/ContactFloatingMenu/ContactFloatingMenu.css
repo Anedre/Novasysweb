@@ -10,12 +10,12 @@
   
   /* Botón principal */
   #main-contact-btn {
-    background-color: #f28c28; /* Naranja suave */
+    background-color: #EC2026; /* Naranja suave */
     transition: transform 0.3s ease, background-color 0.3s ease;
   }
   
   #main-contact-btn:hover {
-    background-color: #cc6f1f;
+    background-color: #C4141F;
     transform: translateY(-6px);
   }
   
@@ -65,10 +65,10 @@
   }
   
   .contact-btn.amazon {
-    background-color: #e2653b;
+    background-color: #EC2026;
   }
   .contact-btn.amazon:hover {
-    background-color: #b94e2e;
+    background-color: #C4141F;
   }
   
  

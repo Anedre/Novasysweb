@@ -1,0 +1,10 @@
+/* Generado desde design-lab/concept-05-hibrido — no editar a mano: regenerar con port_css.py */
+.v4 .tchips{display:flex;flex-wrap:wrap;gap:8px}
+.v4 .tc{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  border:1px solid var(--line);background:var(--paper-2);color:var(--ink-2);
+  padding:9px 14px;border-radius:999px;cursor:pointer;
+  transition:background .2s,color .2s,border-color .2s;
+}
+.v4 .tc:hover{border-color:var(--red);color:var(--ink)}
+.v4 .tc.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}

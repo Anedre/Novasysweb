@@ -1,0 +1,32 @@
+/* Fotografía A COLOR por defecto en v4 (pedido del 2026-08-31).
+   Criterio: el B/N solo se queda donde COMUNICA ESTADO con intención —
+   coverflow de Soluciones (.dcard .dphoto) y pila 3D de Cloud (.pcardx .pph),
+   donde la carta activa «enciende» a color. Todo lo demás, color siempre:
+   los estados inactivos ya se comunican con opacity/escala/rotación. */
+
+/* .v4.v4 sube la especificidad: los CSS por página (nosotros-extra, casos…)
+   se inyectan después de esta capa al cargar el chunk lazy, y a igual
+   especificidad ganarían ellos. */
+.v4.v4 .cl img,
+.v4.v4 .svc-ph img,
+.v4.v4 .photo-band img,
+.v4.v4 .mq-seq img,
+.v4.v4 .prin .ph img,
+.v4.v4 .hero-photos img,
+.v4.v4 .ccard .ph img,
+.v4.v4 .bento img,
+.v4.v4 .foto-panel img,
+.v4.v4 .feat .ph img,
+.v4.v4 .omed img,
+.v4.v4 .hero-cover .hc-bg {
+  filter: none;
+}
+
+/* el «lit» aleatorio del hero orbital ahora pulsa con aro rojo (ya no hay B/N que encender) */
+.v4 .omed .okeep-fix {
+  transition: scale 0.35s ease, box-shadow 0.35s ease;
+}
+.v4 .omed.lit .okeep-fix {
+  scale: 1.14;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--red) 60%, transparent), var(--sh-soft);
+}

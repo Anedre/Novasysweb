@@ -1,0 +1,116 @@
+/* Cloud v4 — extras de la página (stack 3D de pilares, iconos AWS). Editable a mano. */
+
+/* iconos AWS en nodos del diagrama */
+.v4 .node .nico{display:block;width:32px;height:32px;margin:0 auto 8px;border-radius:7px}
+
+/* chips con icono */
+.v4 .ichip{display:inline-flex;align-items:center;gap:7px}
+.v4 .ichip img{width:15px;height:15px;border-radius:3px;flex:none}
+
+/* ===== stack 3D de pilares (referencia: card stack lateral) ===== */
+.v4 .pstack{position:relative;height:560px;perspective:1300px}
+.v4 .pcardx{
+  position:absolute;left:0;top:50%;
+  width:min(400px,86%);
+  display:flex;flex-direction:column;
+  background:var(--paper);border:1px solid var(--line);border-radius:18px;
+  box-shadow:var(--sh-soft);overflow:hidden;
+  cursor:pointer;text-decoration:none;color:inherit;
+  transform-origin:left center;
+  transform:translateY(-50%) translateX(var(--dx,0%)) rotateY(var(--ry,0deg)) rotate(var(--rz,0deg)) scale(var(--sc,1));
+  opacity:var(--op,1);z-index:var(--z,1);
+  transition:transform .6s cubic-bezier(.2,.65,.25,1),opacity .45s,border-color .25s,box-shadow .3s;
+}
+.v4 .pcardx[data-pos="0"]{--dx:0%;--rz:-3.5deg;--sc:1;--op:1;--z:8;
+  border-color:color-mix(in srgb,var(--red) 30%,var(--line));
+  box-shadow:0 6px 10px rgba(11,11,14,.05),0 34px 70px -28px rgba(11,11,14,.38);
+}
+.v4 .pcardx[data-pos="1"]{--dx:56%;--ry:-14deg;--sc:.94;--op:.92;--z:6}
+.v4 .pcardx[data-pos="2"]{--dx:104%;--ry:-20deg;--sc:.88;--op:.68;--z:4}
+.v4 .pcardx[data-pos="3"]{--dx:144%;--ry:-24deg;--sc:.82;--op:.42;--z:2}
+@media (hover:hover) and (pointer:fine){
+  .v4 .pcardx:not([data-pos="0"]):hover{--op:.96}
+}
+.v4 .pcardx .pph{height:132px;overflow:hidden;flex:none}
+.v4 .pcardx .pph img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);transform:scale(1.03);transition:filter .5s,transform .9s}
+.v4 .pcardx[data-pos="0"] .pph img{filter:none;transform:scale(1)}
+.v4 .pcardx .pbd{padding:0 22px 24px;display:flex;flex-direction:column;flex:1}
+.v4 .pcardx .aico{
+  width:48px;height:48px;border-radius:12px;margin-top:-24px;position:relative;z-index:2;
+  border:3px solid var(--paper);box-sizing:content-box;background:var(--paper);
+  box-shadow:var(--sh-soft);
+}
+.v4 .pcardx .plabel{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin-top:10px}
+.v4 .pcardx h3{font-family:"Inter Tight",Inter,sans-serif;font-size:21px;font-weight:600;letter-spacing:-.015em;margin:3px 0 5px}
+.v4 .pcardx p{color:var(--ink-2);font-size:13.5px;line-height:1.5;margin:0 0 12px}
+.v4 .pcardx .feats{list-style:none;margin:0 0 14px;padding:0;display:flex;flex-direction:column;gap:6px}
+.v4 .pcardx .feats li{font-size:12.5px;color:var(--ink-2);display:flex;gap:8px;line-height:1.45}
+.v4 .pcardx .feats li::before{content:"—";color:var(--red);flex:none}
+.v4 .pcardx .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.v4 .pcardx .go{margin-top:auto;font-size:13.5px;font-weight:600;color:var(--red);opacity:0;transition:opacity .25s}
+.v4 .pcardx[data-pos="0"] .go{opacity:1}
+/* en las lejanas solo icono + título */
+.v4 .pcardx p,.v4 .pcardx .feats,.v4 .pcardx .tags,.v4 .pcardx .plabel{transition:opacity .35s}
+.v4 .pcardx[data-pos="2"] p,.v4 .pcardx[data-pos="3"] p,
+.v4 .pcardx[data-pos="2"] .feats,.v4 .pcardx[data-pos="3"] .feats,
+.v4 .pcardx[data-pos="2"] .tags,.v4 .pcardx[data-pos="3"] .tags{opacity:0}
+.v4 .pstack-dots{position:absolute;left:6px;bottom:-2px;display:flex;gap:8px;z-index:10}
+.v4 .pstack-dots i{width:22px;height:3px;background:var(--line);cursor:pointer;transition:background .25s}
+.v4 .pstack-dots i.on{background:var(--red)}
+@media (max-width:820px){
+  .v4 .pstack{height:600px}
+  .v4 .pcardx{width:92%}
+  .v4 .pcardx[data-pos="1"]{--dx:16%}
+  .v4 .pcardx[data-pos="2"]{--dx:28%}
+  .v4 .pcardx[data-pos="3"]{--dx:38%}
+}
+
+/* ===== ventajas con icono AWS ===== */
+.v4 .step{position:relative}
+.v4 .step .sico{width:40px;height:40px;border-radius:10px;display:block;margin-bottom:12px;box-shadow:var(--sh-soft)}
+.v4 .step .n-abs{position:absolute;top:20px;right:20px}
+
+/* ===== arquitectura por capas (hero, al costado) ===== */
+.v4 .hero-cloud .wrap{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(28px,4vw,56px);align-items:center}
+.v4 .hero-cloud .hc-top{max-width:none}
+.v4 .archi{position:relative;width:100%;max-width:700px;justify-self:end;aspect-ratio:660/620;margin-top:0}
+.v4 .archi svg.wires{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.v4 .archi .wire{fill:none;stroke:color-mix(in srgb,var(--ink-3) 55%,transparent);stroke-width:1.6}
+.v4 .archi .wire.dash{stroke-dasharray:5 5;opacity:.75}
+.v4 .archi .flowdot{fill:var(--red)}
+.v4 .alayer{position:absolute;border:1.5px dashed color-mix(in srgb,var(--ink-3) 45%,transparent);border-radius:14px;z-index:0}
+.v4 .alayer.vpc{border-style:solid;border-color:color-mix(in srgb,var(--red) 38%,var(--line))}
+.v4 .alayer .ltag{
+  position:absolute;top:-11px;left:14px;
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+  background:var(--paper);color:var(--ink-2);padding:3px 9px;border:1px solid var(--line);border-radius:999px;
+}
+.v4 .alayer .ltag img{width:13px;height:13px;border-radius:3px}
+.v4 .alayer.vpc .ltag{color:var(--red);border-color:color-mix(in srgb,var(--red) 38%,var(--line))}
+.v4 .anode{
+  position:absolute;z-index:2;transform:translate(-50%,-50%);
+  width:116px;text-align:center;
+  background:var(--paper);border:1px solid var(--line);border-radius:12px;
+  padding:10px 8px 9px;box-shadow:var(--sh-soft);cursor:default;
+  transition:transform .25s,border-color .25s;
+}
+.v4 .anode:hover{transform:translate(-50%,-50%) translateY(-4px);border-color:color-mix(in srgb,var(--red) 45%,var(--line))}
+.v4 .anode img{display:block;width:30px;height:30px;margin:0 auto 6px;border-radius:7px}
+.v4 .anode b{display:block;font-size:12px;font-weight:600;letter-spacing:-.01em;line-height:1.15}
+.v4 .anode span{font-family:"IBM Plex Mono",monospace;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.v4 .anode.ghost{background:transparent;border:0;box-shadow:none}
+.v4 .anode.ghost:hover{transform:translate(-50%,-50%) translateY(-4px)}
+.v4 .obs-label{
+  position:absolute;z-index:2;transform:translate(-50%,-50%);
+  font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap;
+}
+/* el lineal queda como fallback móvil */
+@media (min-width:761px){.v4 .archero.solo-movil{display:none}}
+@media (max-width:900px){
+  .v4 .hero-cloud .wrap{grid-template-columns:1fr}
+  .v4 .archi{justify-self:stretch;max-width:560px}
+}
+@media (max-width:760px){
+  .v4 .archi{display:none}
+}

@@ -1,0 +1,69 @@
+/* Infraestructura v4 — extras de página. Editable a mano. */
+
+/* ===== líneas de producto como fichas-fila ===== */
+.v4 .lrows{display:flex;flex-direction:column;gap:18px}
+.v4 .lrow{
+  display:grid;grid-template-columns:230px 1fr auto;gap:clamp(18px,3vw,40px);align-items:center;
+  background:var(--paper);border:1px solid var(--line);border-radius:18px;
+  box-shadow:var(--sh-soft);padding:clamp(18px,2.5vw,28px);
+  text-decoration:none;color:inherit;
+  transition:transform .25s,border-color .25s,box-shadow .3s;
+}
+.v4 .lrow:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--red) 35%,var(--line));box-shadow:0 4px 8px rgba(11,11,14,.05),0 30px 64px -26px rgba(11,11,14,.3)}
+.v4 .lrow .lph{
+  height:150px;border-radius:14px;background:var(--paper-2);
+  display:grid;place-items:center;padding:14px;
+}
+.v4 .lrow .lph img{max-height:100%;max-width:92%;object-fit:contain;filter:drop-shadow(0 14px 20px rgba(11,11,14,.22));transition:transform .4s}
+.v4 .lrow:hover .lph img{transform:scale(1.05)}
+.v4 .lrow .n{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+.v4 .lrow h3{font-family:"Inter Tight",Inter,sans-serif;font-size:21px;font-weight:600;letter-spacing:-.015em;margin:6px 0 5px}
+.v4 .lrow p{color:var(--ink-2);font-size:14px;margin:0 0 12px;max-width:56ch}
+.v4 .lrow .feats{list-style:none;margin:0 0 14px;padding:0;display:flex;flex-direction:column;gap:6px}
+.v4 .lrow .feats li{font-size:13px;color:var(--ink-2);display:flex;gap:9px;line-height:1.45}
+.v4 .lrow .feats li::before{content:"—";color:var(--red);flex:none}
+.v4 .lrow .tags{display:flex;flex-wrap:wrap;gap:7px}
+.v4 .lrow .go{font-size:14px;font-weight:600;color:var(--red);white-space:nowrap;align-self:center}
+.v4 .lrow .go .ar{display:inline-block;transition:transform .25s}
+.v4 .lrow:hover .go .ar{transform:translateX(4px)}
+@media (max-width:860px){
+  .v4 .lrow{grid-template-columns:1fr}
+  .v4 .lrow .lph{height:170px}
+  .v4 .lrow .go{justify-self:start}
+}
+
+/* chips con mini-producto */
+.v4 .pchip{display:inline-flex;align-items:center;gap:7px}
+.v4 .pchip img{height:15px;width:auto;max-width:26px;object-fit:contain;flex:none}
+
+/* ===== panel fotográfico de instalación ===== */
+.v4 .foto-panel{
+  position:relative;border-radius:18px;overflow:hidden;
+  box-shadow:var(--sh-soft);margin-top:26px;
+}
+.v4 .foto-panel img{width:100%;height:clamp(220px,30vw,300px);object-fit:cover;filter:grayscale(1) contrast(1.05);transition:filter .6s;display:block}
+.v4 .foto-panel:hover img{filter:grayscale(0)}
+.v4 .foto-panel::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(10,10,14,.55));pointer-events:none}
+.v4 .foto-panel .fp-cap{
+  position:absolute;left:18px;bottom:16px;z-index:2;
+  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#fff;
+}
+.v4 .foto-panel .fp-chips{position:absolute;right:16px;bottom:14px;z-index:2;display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+.v4 .foto-panel .fp-chips span{
+  display:inline-flex;align-items:center;gap:7px;
+  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#fff;
+  border:1px solid rgba(255,255,255,.5);background:rgba(10,10,14,.55);backdrop-filter:blur(3px);
+  padding:7px 12px;border-radius:999px;
+}
+.v4 .foto-panel .fp-chips i{width:6px;height:6px;border-radius:50%;background:var(--red);flex:none}
+@media (max-width:700px){.v4 .foto-panel .fp-chips{display:none}}
+
+/* ===== ventajas con icono de la casa ===== */
+.v4 .step{position:relative}
+.v4 .step .n-abs{position:absolute;top:20px;right:20px}
+.v4 .sico-chip{
+  width:42px;height:42px;border-radius:11px;
+  background:color-mix(in srgb,var(--red) 9%,transparent);color:var(--red);
+  display:grid;place-items:center;margin-bottom:12px;
+}
+.v4 .sico-chip .ic{width:20px;height:20px}

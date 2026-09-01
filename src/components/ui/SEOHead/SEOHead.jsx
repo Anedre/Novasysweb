@@ -94,13 +94,15 @@ function SEOHead({
     },
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+51-1-213-0500",
+      "telephone": "+51-1-643-3467",
       "contactType": "customer service",
       "availableLanguage": ["Spanish", "English"]
     },
     "sameAs": [
-      "https://www.linkedin.com/company/novasys",
-      "https://www.facebook.com/novasys"
+      "https://www.linkedin.com/company/novasyspe/",
+      "https://www.instagram.com/novasysperu/",
+      "https://www.facebook.com/Miguelavsm/",
+      "https://x.com/novasysperu"
     ]
   };
 
@@ -268,13 +270,12 @@ export function LocalBusinessJsonLd() {
     "name": "Novasys",
     "image": `${DEFAULT_SEO.siteUrl}/images/logo.png`,
     "url": DEFAULT_SEO.siteUrl,
-    "telephone": "+51-1-213-0500",
+    "telephone": "+51-1-643-3467",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Av. Javier Prado Este",
-      "addressLocality": "San Isidro",
+      "streetAddress": "Narciso de la Colina 421",
+      "addressLocality": "Miraflores",
       "addressRegion": "Lima",
-      "postalCode": "15036",
       "addressCountry": "PE"
     },
     "geo": {

@@ -44,3 +44,16 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
+
+# Material de trabajo del rediseño v4 (no forma parte del build)
+design-lab/
+ui_kits/
+wireframes/
+tools/
+.playwright-mcp/
+.superpowers/
+partners-strip-hp-fix.png
+
+# Config local de Claude Code (solo se versiona CLAUDE.md)
+.claude/*
+!.claude/CLAUDE.md
