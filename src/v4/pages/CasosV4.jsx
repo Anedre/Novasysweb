@@ -10,12 +10,12 @@ const SECTORES = [
 ];
 
 const CASOS = [
-  { exp: 'EXP-01', img: '021-callcenter.jpg', sector: 'telco', sectorLabel: 'Telecomunicaciones', title: 'Entel: contact center cloud', text: 'Migración a Amazon Connect con mejor experiencia y costos bajo control.', pill: '<b>−40%</b> costos operativos' },
-  { exp: 'EXP-02', img: '002-building.jpg', sector: 'banca', sectorLabel: 'Banca', title: 'Interbank: BI en tiempo real', text: 'Plataforma que centraliza datos de múltiples fuentes para decisiones estratégicas al instante.', pill: '<b>5×</b> velocidad de análisis' },
-  { exp: 'EXP-03', img: '057-office.jpg', sector: 'seguros', sectorLabel: 'Seguros', title: 'Pacífico: procesos core automatizados', text: 'Transformación del negocio asegurador con gestión documental y automatización.', pill: '<b>−50%</b> tiempo en procesos' },
-  { exp: 'EXP-04', img: '041-industry.jpg', sector: 'retail', sectorLabel: 'Retail', title: 'Renzo Costa: CRM y BI integrados', text: 'Gestión comercial optimizada con analítica para decisiones basadas en datos.', pill: '<b>+60%</b> eficiencia comercial' },
-  { exp: 'EXP-05', img: '029-city.jpg', sector: 'telco', sectorLabel: 'Telecomunicaciones', title: 'Americatel: migración cloud completa', text: 'Modernización de infraestructura on-premise a AWS con arquitectura cloud-native.', pill: '<b>−45%</b> costos de infraestructura' },
-  { exp: 'EXP-06', img: '050-meeting.jpg', sector: 'educacion', sectorLabel: 'Educación', title: 'Centrum PUCP: plataforma analítica', text: 'Dashboard de BI para gestión académica y seguimiento de KPIs de la escuela de negocios.', pill: '<b>+90%</b> visibilidad de KPIs' },
+  { exp: 'EXP-01', slug: 'entel', img: '021-callcenter.jpg', sector: 'telco', sectorLabel: 'Telecomunicaciones', title: 'Entel: contact center cloud', text: 'Migración a Amazon Connect con mejor experiencia y costos bajo control.', pill: '<b>−40%</b> costos operativos' },
+  { exp: 'EXP-02', slug: 'interbank', img: '002-building.jpg', sector: 'banca', sectorLabel: 'Banca', title: 'Interbank: BI en tiempo real', text: 'Plataforma que centraliza datos de múltiples fuentes para decisiones estratégicas al instante.', pill: '<b>5×</b> velocidad de análisis' },
+  { exp: 'EXP-03', slug: 'pacifico', img: '057-office.jpg', sector: 'seguros', sectorLabel: 'Seguros', title: 'Pacífico: procesos core automatizados', text: 'Transformación del negocio asegurador con gestión documental y automatización.', pill: '<b>−50%</b> tiempo en procesos' },
+  { exp: 'EXP-04', slug: 'renzo-costa', img: '041-industry.jpg', sector: 'retail', sectorLabel: 'Retail', title: 'Renzo Costa: CRM y BI integrados', text: 'Gestión comercial optimizada con analítica para decisiones basadas en datos.', pill: '<b>+60%</b> eficiencia comercial' },
+  { exp: 'EXP-05', slug: 'americatel', img: '029-city.jpg', sector: 'telco', sectorLabel: 'Telecomunicaciones', title: 'Americatel: migración cloud completa', text: 'Modernización de infraestructura on-premise a AWS con arquitectura cloud-native.', pill: '<b>−45%</b> costos de infraestructura' },
+  { exp: 'EXP-06', slug: 'centrum', img: '050-meeting.jpg', sector: 'educacion', sectorLabel: 'Educación', title: 'Centrum PUCP: plataforma analítica', text: 'Dashboard de BI para gestión académica y seguimiento de KPIs de la escuela de negocios.', pill: '<b>+90%</b> visibilidad de KPIs' },
 ];
 
 export default function CasosV4() {
@@ -48,7 +48,7 @@ export default function CasosV4() {
             <div className="hc-k"><span className="v"><span className="num" data-n="99.9" data-dec="1">0</span><i>%</i></span><span className="lbl">Disponibilidad</span></div>
           </div>
           <div className="hero-ctas rv d3" style={{ marginTop: 0 }}>
-            <Link className="btn-red" to="/contacto">Quiero un caso así</Link>
+            <Link className="btn-red" to="/casos-de-exito/entel">Leer el expediente</Link>
             <a className="link" href="#archivo">Ver todo el archivo <span className="ar">→</span></a>
           </div>
         </div>
@@ -88,7 +88,7 @@ export default function CasosV4() {
                   <span className="sec">{c.sectorLabel}</span>
                   <h3>{c.title}</h3>
                   <p>{c.text}</p>
-                  <Link className="go" to="/contacto">Conversemos sobre tu caso →</Link>
+                  <Link className="go" to={`/casos-de-exito/${c.slug}`}>Leer el expediente →</Link>
                 </div>
               </div>
             ))}

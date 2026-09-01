@@ -1,0 +1,65 @@
+/* IA & ML v4 — hero: laboratorio de entrenamiento. Editable. */
+
+.v4 .hero-ia .wrap{grid-template-columns:.95fr 1.05fr}
+
+.v4 .ial{min-width:0}
+.v4 .ial .fchips{margin-bottom:14px}
+.v4 .iaj{background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:var(--sh-soft);overflow:hidden}
+.v4 .iaj-bar{display:flex;align-items:center;gap:9px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--paper-2)}
+.v4 .iaj-bar img{width:22px;height:22px;border-radius:6px}
+.v4 .iaj-bar span{font-size:12px;font-weight:600;color:var(--ink-3)}
+.v4 .iaj-st{
+  margin-left:auto;display:inline-flex;align-items:center;gap:7px;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+}
+.v4 .iaj-st.run{color:var(--coral)}
+.v4 .iaj-st.ok{color:#12A150}
+.v4 .iaj-st i{width:7px;height:7px;border-radius:50%;background:currentColor}
+html.js:not(.static) .v4 .iaj-st.run i{animation:v4blink2 1.2s ease-in-out infinite}
+@keyframes v4blink2{0%,100%{opacity:1}50%{opacity:.25}}
+.v4 .iaj-body{padding:15px 16px 16px}
+.v4 .ia-curve{border:1px solid var(--line);border-radius:12px;padding:12px 14px 8px;background:var(--paper)}
+.v4 .ia-curve .t{font-size:12px;font-weight:700;margin-bottom:6px}
+.v4 .ia-curve svg{width:100%;height:118px;display:block}
+.v4 .ia-curve .grid{stroke:var(--line);stroke-width:1}
+.v4 .ia-curve .area{fill:color-mix(in srgb,var(--red) 8%,transparent)}
+.v4 .ia-curve polyline.loss{fill:none;stroke:var(--red);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+html.js:not(.static) .v4 .ia-curve polyline.loss{stroke-dasharray:460;stroke-dashoffset:460;animation:v4iadraw 1.6s ease forwards}
+@keyframes v4iadraw{to{stroke-dashoffset:0}}
+.v4 .ia-mets{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+.v4 .iam{border:1px solid var(--line);border-radius:12px;background:var(--paper-2);padding:10px 13px}
+.v4 .iam .k{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);display:block}
+.v4 .iam .n{font-family:"Inter Tight",Inter,sans-serif;font-size:20px;font-weight:700;letter-spacing:-.02em;margin-top:3px;font-variant-numeric:tabular-nums}
+.v4 .ia-sub{display:flex;gap:10px;margin-top:10px}
+.v4 .ias{
+  flex:1;display:flex;align-items:center;gap:9px;
+  border:1px solid var(--line);border-radius:12px;padding:10px 13px;
+  font-size:12px;font-weight:600;
+}
+.v4 .ias i{width:8px;height:8px;border-radius:50%;background:#12A150;flex:none}
+.v4 .ias small{display:block;font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:400;font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.v4 .ia-stack{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+@media (max-width:900px){.v4 .hero-ia .wrap{grid-template-columns:1fr}}
+@media (max-width:520px){.v4 .ia-mets{grid-template-columns:1fr 1fr}.v4 .ia-sub{flex-direction:column}}
+
+/* SageMaker vs Bedrock */
+.v4 .ia-two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.v4 .iat{
+  background:var(--paper);border:1px solid var(--line);border-radius:16px;
+  box-shadow:var(--sh-soft);padding:26px 26px 24px;
+  transition:transform .25s,border-color .25s;
+}
+.v4 .iat:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--red) 35%,var(--line))}
+.v4 .iat img{width:46px;height:46px;border-radius:12px;margin-bottom:14px;box-shadow:var(--sh-soft)}
+.v4 .iat .plabel{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:6px}
+.v4 .iat h3{font-family:"Inter Tight",Inter,sans-serif;font-size:21px;font-weight:600;letter-spacing:-.015em;margin-bottom:8px}
+.v4 .iat > p{color:var(--ink-2);font-size:14px;margin-bottom:16px}
+@media (max-width:760px){.v4 .ia-two{grid-template-columns:1fr}}
+
+/* sin humo (eco del patrón medimos) */
+.v4 .ia-hon{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,44px)}
+.v4 .ia-hon .m{border-top:1px solid var(--ink);padding-top:16px}
+.v4 .ia-hon .rn{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.14em;color:var(--red)}
+.v4 .ia-hon h3{font-family:"Inter Tight",Inter,sans-serif;font-size:19.5px;font-weight:600;letter-spacing:-.015em;margin:10px 0 7px}
+.v4 .ia-hon p{color:var(--ink-2);font-size:14px;max-width:38ch}
+@media (max-width:700px){.v4 .ia-hon{grid-template-columns:1fr}}

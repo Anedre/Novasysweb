@@ -1,0 +1,72 @@
+/* Migración Cloud v4 — hero: tablero de olas. Editable. */
+
+.v4 .hero-mig .wrap{grid-template-columns:.95fr 1.05fr}
+
+.v4 .mig{
+  background:var(--paper);border:1px solid var(--line);border-radius:18px;
+  box-shadow:var(--sh-soft);overflow:hidden;min-width:0;
+}
+.v4 .mig-bar{display:flex;align-items:center;gap:9px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--paper-2)}
+.v4 .mig-bar img{width:22px;height:22px;border-radius:6px}
+.v4 .mig-bar span{font-size:12px;font-weight:600;color:var(--ink-3)}
+
+/* ruta on-prem → AWS */
+.v4 .mig-route{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:18px 18px 6px}
+.v4 .mig-end{display:flex;flex-direction:column;align-items:center;gap:7px;min-width:86px}
+.v4 .mig-end .bx{
+  width:56px;height:56px;border:1px solid var(--line);border-radius:13px;background:var(--paper-2);
+  display:grid;place-items:center;box-shadow:var(--sh-soft);
+}
+.v4 .mig-end .bx img{width:34px;height:34px;border-radius:8px}
+.v4 .mig-rack{display:flex;flex-direction:column;gap:4px}
+.v4 .mig-rack i{width:30px;height:7px;border-radius:2.5px;background:var(--ink-3);position:relative}
+.v4 .mig-rack i::after{content:"";position:absolute;right:2.5px;top:2.5px;width:2.5px;height:2.5px;border-radius:50%;background:var(--paper)}
+.v4 .mig-end small{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:8.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);text-align:center}
+.v4 .mig-line{position:relative;height:2px;background:var(--line)}
+.v4 .mig-line::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,var(--ink-3) 0 5px,transparent 5px 10px);opacity:.35}
+.v4 .mig-line .pk{position:absolute;top:-3.5px;left:0;width:9px;height:9px;border-radius:3px;background:var(--red)}
+html.js:not(.static) .v4 .mig-line .pk{animation:v4pk 2.6s linear infinite}
+.v4 .mig-line .pk.p2{animation-delay:.85s;background:var(--coral)}
+.v4 .mig-line .pk.p3{animation-delay:1.7s}
+html.static .v4 .mig-line .pk{left:45%}
+@keyframes v4pk{from{left:-2%}to{left:100%}}
+
+/* olas */
+.v4 .mig-waves{display:flex;flex-direction:column;gap:9px;padding:14px 16px 16px}
+.v4 .mgw{border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:11px 13px}
+.v4 .mgw-h{display:flex;align-items:center;gap:10px;font-size:12.5px;font-weight:600}
+.v4 .mgw-h .st{
+  margin-left:auto;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:9px;
+  letter-spacing:.09em;text-transform:uppercase;border-radius:999px;padding:4px 9px;white-space:nowrap;
+}
+.v4 .mgw-h .st.done{background:color-mix(in srgb,#12A150 13%,transparent);color:#12A150}
+.v4 .mgw-h .st.run{background:color-mix(in srgb,var(--coral) 15%,transparent);color:var(--coral)}
+.v4 .mgw-h .st.plan{background:color-mix(in srgb,var(--ink-3) 14%,transparent);color:var(--ink-2)}
+.v4 .mgw-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.v4 .mgw-chips .chip{font-size:9.5px;padding:3px 8px}
+.v4 .mgw-bar{height:5px;border-radius:999px;background:var(--paper-2);border:1px solid var(--line);margin-top:9px;overflow:hidden}
+.v4 .mgw-bar i{display:block;height:100%;background:var(--grad);border-radius:999px;transition:width .9s cubic-bezier(.2,.6,.2,1)}
+.v4 .mig-foot{
+  border-top:1px solid var(--line);padding:10px 16px;display:flex;flex-wrap:wrap;gap:6px 18px;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:9.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);
+}
+.v4 .mig-foot b{color:var(--red);font-weight:500}
+@media (max-width:900px){.v4 .hero-mig .wrap{grid-template-columns:1fr}}
+
+/* panel 6R */
+.v4 .r6p{
+  background:var(--paper);border:1px solid var(--line);border-radius:16px;
+  box-shadow:var(--sh-soft);padding:24px 26px;max-width:760px;
+}
+html.js:not(.static) .v4 .r6p{animation:v4r6in .35s ease}
+@keyframes v4r6in{from{opacity:0;transform:translateY(8px)}}
+.v4 .r6p h3{font-family:"Inter Tight",Inter,sans-serif;font-size:21px;font-weight:600;letter-spacing:-.015em;margin-bottom:8px}
+.v4 .r6p h3 b{color:var(--red);font-weight:600}
+.v4 .r6p > p{color:var(--ink-2);font-size:14.5px;margin-bottom:12px}
+.v4 .r6p .cu{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;line-height:1.6;
+  color:var(--ink-2);background:var(--paper-2);border:1px solid var(--line);
+  border-radius:10px;padding:10px 13px;
+}
+.v4 .r6p .cu b{color:var(--red);font-weight:600}

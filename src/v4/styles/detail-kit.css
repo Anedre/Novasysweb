@@ -1,0 +1,49 @@
+/* Kit compartido de páginas de detalle v4 — editable a mano.
+   Solo átomos transversales (miga, fila de KPIs, checklist "incluye").
+   Los gadgets/heros de cada página viven en su propio CSS. */
+
+/* miga de pan mono sobre el hero */
+.v4 .dt-crumb{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.v4 .dt-crumb a{color:var(--ink-3);transition:color .2s}
+.v4 .dt-crumb a:hover{color:var(--red)}
+.v4 .dt-crumb b{color:var(--red);font-weight:500}
+.v4 .dt-crumb .sep{opacity:.45}
+
+/* fila de 3 KPIs (usa .stat del kit base adentro) */
+.v4 .kpis3{display:grid;grid-template-columns:repeat(3,1fr);gap:0 clamp(20px,3vw,44px)}
+@media (max-width:640px){.v4 .kpis3{grid-template-columns:1fr 1fr}}
+
+/* checklist "qué incluye" en dos columnas */
+.v4 .inc-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px 30px}
+.v4 .inc-it{display:flex;gap:11px;align-items:flex-start;font-size:14.5px;color:var(--ink-2);line-height:1.5}
+.v4 .inc-it .ic{width:17px;height:17px;color:var(--red);margin-top:3px}
+@media (max-width:700px){.v4 .inc-grid{grid-template-columns:1fr}}
+
+/* chip de icono + número esquinado para .step (duplicado consciente de
+   infra-extra.css/cloud-extra.css: los CSS por página no se comparten) */
+.v4 .step{position:relative}
+.v4 .step .n-abs{position:absolute;top:20px;right:20px}
+.v4 .sico-chip{
+  width:42px;height:42px;border-radius:11px;
+  background:color-mix(in srgb,var(--red) 9%,transparent);color:var(--red);
+  display:grid;place-items:center;margin-bottom:12px;
+}
+.v4 .sico-chip .ic{width:20px;height:20px}
+
+/* dos casos lado a lado (duplicado consciente de cloud.css/infraestructura.css:
+   los CSS por página no se comparten entre chunks) */
+.v4 .ccards.two{grid-template-columns:repeat(2,minmax(280px,1fr))}
+@media (max-width:700px){.v4 .ccards.two{grid-template-columns:1fr}}
+
+/* helpers de iconos AWS (duplicado consciente de cloud-extra.css) */
+.v4 .step .sico{width:40px;height:40px;border-radius:10px;display:block;margin-bottom:12px;box-shadow:var(--sh-soft)}
+.v4 .ichip{display:inline-flex;align-items:center;gap:7px}
+.v4 .ichip img{width:15px;height:15px;border-radius:3px;flex:none}
+.v4 .node .nico{display:block;width:32px;height:32px;margin:0 auto 8px;border-radius:7px}
+
+/* nota mono de panel ilustrativo (patrón de honestidad de la casa) */
+.v4 .demo-note{
+  text-align:center;margin-top:14px;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);
+}
+.v4 .demo-note b{color:var(--red)}

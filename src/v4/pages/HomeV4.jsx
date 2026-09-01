@@ -66,7 +66,7 @@ export default function HomeV4() {
       <div className="partners">
         <div className="wrap rv">
           <span><b>AWS</b> Advanced Partner</span>
-          <span><b>HP · HPE</b> Gold Partner</span>
+          <span><b>HP · HPE</b> Distribuidor</span>
           <span><b>Oracle</b> Partner</span>
           <span><b>ELO</b> ECM Certified</span>
         </div>

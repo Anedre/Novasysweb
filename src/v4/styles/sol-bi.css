@@ -1,0 +1,47 @@
+/* Business Intelligence v4 — hero: consola de preguntas + dashboard que se redibuja. Editable. */
+
+.v4 .hero-bi .wrap{grid-template-columns:1fr;justify-items:center;text-align:center}
+.v4 .hero-bi .dt-crumb{justify-content:center}
+.v4 .hero-bi .hero-sub{margin-inline:auto}
+.v4 .hero-bi .hero-ctas{justify-content:center}
+.v4 .hero-bi .fchips{justify-content:center;margin-bottom:16px}
+
+.v4 .biq{width:100%;max-width:980px;margin-top:clamp(26px,3.5vw,42px)}
+.v4 .bqp{
+  background:var(--paper);border:1px solid var(--line);border-radius:18px;
+  box-shadow:var(--sh-soft);padding:clamp(14px,2vw,20px);text-align:left;
+}
+.v4 .bq-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.v4 .bq-kpi{border:1px solid var(--line);border-radius:12px;padding:12px 15px;background:var(--paper-2)}
+.v4 .bq-kpi .k{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);display:block}
+.v4 .bq-kpi .n{font-family:"Inter Tight",Inter,sans-serif;font-size:clamp(19px,2vw,25px);font-weight:700;letter-spacing:-.02em;margin-top:4px;line-height:1.1}
+.v4 .bq-kpi .d{display:block;font-size:11px;font-weight:600;color:#12A150;margin-top:4px}
+.v4 .bq-viz{display:grid;grid-template-columns:1.55fr 1fr;gap:12px;margin-top:12px}
+.v4 .bq-chart,.v4 .bq-don{border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:14px 15px}
+.v4 .bq-chart .t,.v4 .bq-don .t{font-size:12.5px;font-weight:700;margin-bottom:10px}
+.v4 .bq-chart svg{width:100%;height:150px;display:block}
+.v4 .bq-chart rect{fill:color-mix(in srgb,var(--red) 78%,var(--coral));transform-box:fill-box;transform-origin:bottom}
+html.js:not(.static) .v4 .bq-chart rect{transform:scaleY(0);animation:v4bigrow .7s cubic-bezier(.2,.6,.2,1) forwards}
+@keyframes v4bigrow{to{transform:scaleY(1)}}
+.v4 .bq-chart polyline{fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+html.js:not(.static) .v4 .bq-chart polyline{stroke-dasharray:420;stroke-dashoffset:420;animation:v4bidraw 1.2s .25s ease forwards}
+@keyframes v4bidraw{to{stroke-dashoffset:0}}
+.v4 .bq-don{display:flex;flex-direction:column}
+.v4 .bq-don .dwrap{position:relative;flex:1;display:grid;place-items:center;padding:6px 0 2px}
+.v4 .bq-don svg{width:118px;height:118px;transform:rotate(-90deg)}
+.v4 .bq-don .bgc{fill:none;stroke:var(--line);stroke-width:10}
+.v4 .bq-don .fgc{fill:none;stroke:var(--red);stroke-width:10;stroke-linecap:round}
+html.js:not(.static) .v4 .bq-don .fgc{animation:v4bidon 1s cubic-bezier(.2,.6,.2,1) both}
+@keyframes v4bidon{from{stroke-dashoffset:188.5}}
+.v4 .bq-don .dval{
+  position:absolute;font-family:"Inter Tight",Inter,sans-serif;
+  font-size:24px;font-weight:700;letter-spacing:-.02em;
+}
+.v4 .bq-don .dlbl{
+  text-align:center;font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);margin-top:6px;
+}
+@media (max-width:720px){
+  .v4 .bq-kpis{grid-template-columns:1fr}
+  .v4 .bq-viz{grid-template-columns:1fr}
+}

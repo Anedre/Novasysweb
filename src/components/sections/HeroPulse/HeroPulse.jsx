@@ -94,7 +94,7 @@ export default function HeroPulse() {
         >
           <span className={styles.liveDot} aria-hidden="true" />
           <HiOutlineShieldCheck />
-          <span>AWS Advanced Partner · HP Gold · Oracle</span>
+          <span>AWS Advanced Partner · HP · Oracle</span>
         </motion.div>
 
         <motion.h1

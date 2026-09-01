@@ -1,0 +1,59 @@
+/* Marketing Automation v4 — hero: lienzo de journey con ramas. Editable. */
+
+.v4 .hero-mkt .wrap{grid-template-columns:1.06fr .94fr}
+
+.v4 .mk-wrap{min-width:0}
+.v4 .mk-wrap .fchips{margin-bottom:14px}
+.v4 .mkc{position:relative;width:100%;max-width:640px;aspect-ratio:620/560}
+.v4 .mkw{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.v4 .mkw path{fill:none;stroke:color-mix(in srgb,var(--ink-3) 55%,transparent);stroke-width:1.6}
+.v4 .mkw path.no{stroke-dasharray:5 5;opacity:.8}
+.v4 .mkw .mkdot{fill:var(--red)}
+.v4 .mkn{
+  position:absolute;z-index:2;transform:translate(-50%,-50%);
+  width:170px;display:flex;gap:10px;align-items:center;
+  background:var(--paper);border:1px solid var(--line);border-radius:13px;
+  padding:10px 12px;box-shadow:var(--sh-soft);
+  transition:border-color .25s,transform .25s;
+}
+.v4 .mkn:hover{border-color:color-mix(in srgb,var(--red) 42%,var(--line));transform:translate(-50%,-50%) translateY(-3px)}
+.v4 .mkn .mi{width:30px;height:30px;border-radius:9px;background:color-mix(in srgb,var(--red) 9%,transparent);color:var(--red);display:grid;place-items:center;flex:none}
+.v4 .mkn .mi .ic{width:15px;height:15px}
+.v4 .mkn b{display:block;font-size:11.5px;font-weight:600;line-height:1.25;letter-spacing:-.01em}
+.v4 .mkn small{display:block;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:8.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);margin-top:2px}
+.v4 .mkn.dec{border-style:dashed;border-color:color-mix(in srgb,var(--red) 50%,var(--line))}
+.v4 .mkn.win .mi{background:var(--grad);color:#fff}
+.v4 .mkbl{
+  position:absolute;z-index:2;transform:translate(-50%,-50%);
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:9px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-2);background:var(--paper);padding:2px 7px;
+  border:1px solid var(--line);border-radius:999px;
+}
+html.js:not(.static) .v4 .mkc .mkn{opacity:0;animation:v4mknin .5s cubic-bezier(.2,.6,.2,1) forwards}
+@keyframes v4mknin{from{opacity:0;transform:translate(-50%,-50%) translateY(10px)}to{opacity:1;transform:translate(-50%,-50%)}}
+
+@media (max-width:900px){
+  .v4 .hero-mkt .wrap{grid-template-columns:1fr}
+  .v4 .mk-wrap{order:2;justify-self:center;width:100%}
+  .v4 .mkc{margin-inline:auto}
+}
+@media (max-width:560px){
+  .v4 .mkn{width:132px;padding:8px 9px;gap:7px}
+  .v4 .mkn b{font-size:10px}
+  .v4 .mkn small{font-size:7.5px}
+  .v4 .mkn .mi{width:24px;height:24px}
+}
+
+/* franja de canales */
+.v4 .mk-chan{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.v4 .mk-chan span{
+  display:inline-flex;align-items:center;gap:9px;
+  border:1px solid var(--line);border-radius:999px;background:var(--paper);
+  padding:9px 16px;font-size:13.5px;font-weight:600;box-shadow:0 1px 2px rgba(11,11,14,.04);
+}
+.v4 .mk-chan .ic{width:15px;height:15px;color:var(--red)}
+
+/* capacidades en 3 columnas (usa .steps del kit) */
+.v4 .steps.cols3{grid-template-columns:repeat(3,1fr)}
+@media (max-width:900px){.v4 .steps.cols3{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.v4 .steps.cols3{grid-template-columns:1fr}}

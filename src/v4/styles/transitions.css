@@ -1,0 +1,22 @@
+/* Transiciones v4 — cambio de página + entrada del contenido. Editable a mano.
+   La cortina cubre el swap de ruta al instante (useLayoutEffect, antes del paint)
+   y se retira hacia arriba; el <main> entra con fade+lift debajo de ella.
+   Todo gateado con html.js:not(.static) → reduced-motion = swap instantáneo. */
+
+.v4 .pt-veil{
+  position:fixed;inset:0;z-index:90;pointer-events:none;
+  background:var(--ink);display:none;will-change:transform;
+}
+.v4 .pt-veil::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--red);
+}
+html.js:not(.static) .v4 .pt-veil{
+  display:block;
+  animation:v4veil .6s cubic-bezier(.72,0,.3,1) .07s forwards;
+}
+@keyframes v4veil{to{transform:translateY(-101%)}}
+
+html.js:not(.static) .v4 main.pt-go{
+  animation:v4pgin .68s cubic-bezier(.2,.6,.2,1) .12s both;
+}
+@keyframes v4pgin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}

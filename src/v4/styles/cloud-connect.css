@@ -1,0 +1,49 @@
+/* Amazon Connect v4 — hero: consola del supervisor en vivo. Editable. */
+
+.v4 .hero-acx .wrap{grid-template-columns:.92fr 1.08fr}
+
+.v4 .acx{
+  background:var(--paper);border:1px solid var(--line);border-radius:18px;
+  box-shadow:var(--sh-soft);overflow:hidden;
+}
+.v4 .acx-bar{display:flex;align-items:center;gap:9px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--paper-2)}
+.v4 .acx-bar img{width:22px;height:22px;border-radius:6px}
+.v4 .acx-bar span{font-size:12px;font-weight:600;color:var(--ink-3)}
+.v4 .acx-live{
+  margin-left:auto;display:inline-flex;align-items:center;gap:7px;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--red);
+}
+.v4 .acx-live i{width:7px;height:7px;border-radius:50%;background:var(--red)}
+html.js:not(.static) .v4 .acx-live i{animation:v4blink 1.4s ease-in-out infinite}
+@keyframes v4blink{0%,100%{opacity:1}50%{opacity:.25}}
+.v4 .acx-mets{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:14px 16px 0}
+.v4 .acxm{border:1px solid var(--line);border-radius:12px;background:var(--paper-2);padding:10px 13px}
+.v4 .acxm .k{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);display:block}
+.v4 .acxm .n{font-family:"Inter Tight",Inter,sans-serif;font-size:22px;font-weight:700;letter-spacing:-.02em;margin-top:3px;font-variant-numeric:tabular-nums}
+.v4 .acxm .n i{font-style:normal;font-size:12px;color:#12A150;vertical-align:.25em;margin-left:4px}
+.v4 .acx-q{padding:12px 16px 14px;display:flex;flex-direction:column;gap:8px}
+.v4 .acx-row{
+  display:flex;align-items:center;gap:11px;
+  border:1px solid var(--line);border-radius:11px;background:var(--paper);
+  padding:9px 12px;font-size:12px;font-weight:600;
+}
+html.js:not(.static) .v4 .acx-row.new{animation:v4rowin .4s cubic-bezier(.2,.6,.2,1)}
+@keyframes v4rowin{from{opacity:0;transform:translateY(-8px)}}
+.v4 .acx-row .ci{width:26px;height:26px;border-radius:8px;background:color-mix(in srgb,var(--red) 9%,transparent);color:var(--red);display:grid;place-items:center;flex:none}
+.v4 .acx-row .ci .ic{width:13px;height:13px}
+.v4 .acx-row small{display:block;font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:400;font-size:9px;letter-spacing:.05em;color:var(--ink-3);margin-top:2px}
+.v4 .acx-st{
+  margin-left:auto;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:9px;
+  letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:4px 9px;white-space:nowrap;
+}
+.v4 .acx-st.q{background:color-mix(in srgb,var(--coral) 14%,transparent);color:var(--coral)}
+.v4 .acx-st.a{background:color-mix(in srgb,#12A150 13%,transparent);color:#12A150}
+.v4 .acx-st.b{background:color-mix(in srgb,var(--ink-3) 14%,transparent);color:var(--ink-2)}
+.v4 .acx-foot{
+  border-top:1px solid var(--line);padding:10px 16px;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:9.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:6px 18px;
+}
+@media (max-width:900px){.v4 .hero-acx .wrap{grid-template-columns:1fr}}
+@media (max-width:520px){.v4 .acx-mets{grid-template-columns:1fr 1fr}.v4 .acxm:last-child{display:none}}

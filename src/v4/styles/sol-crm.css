@@ -1,0 +1,77 @@
+/* CRM & Ventas v4 — hero: tablero de pipeline vivo. Editable a mano. */
+
+.v4 .hero-crm .wrap{grid-template-columns:.92fr 1.08fr}
+
+/* tablero */
+.v4 .crmb{
+  background:var(--paper);border:1px solid var(--line);border-radius:18px;
+  box-shadow:var(--sh-soft);overflow:hidden;
+}
+.v4 .crmb-bar{
+  display:flex;align-items:center;gap:8px;
+  padding:12px 16px;border-bottom:1px solid var(--line);background:var(--paper-2);
+}
+.v4 .crmb-bar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.v4 .crmb-bar span{margin-left:8px;font-size:12px;font-weight:600;color:var(--ink-3)}
+.v4 .crmb-fc{
+  margin-left:auto;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;
+  letter-spacing:.08em;color:var(--red);background:color-mix(in srgb,var(--red) 9%,transparent);
+  border-radius:999px;padding:5px 11px;white-space:nowrap;
+}
+.v4 .crmb-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:14px}
+.v4 .crmc{
+  background:var(--paper-2);border:1px solid var(--line);border-radius:12px;
+  padding:10px 10px 12px;min-height:200px;cursor:pointer;
+  transition:border-color .25s,background .25s;
+}
+.v4 .crmc:hover,.v4 .crmc.sel{border-color:color-mix(in srgb,var(--red) 40%,var(--line))}
+.v4 .crmc-h{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:9.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3);
+}
+.v4 .crmc-h b{
+  font-size:9.5px;font-weight:500;color:var(--ink-2);
+  background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:2px 7px;
+}
+.v4 .crmc.sel .crmc-h,.v4 .crmc:hover .crmc-h{color:var(--red)}
+.v4 .deal{
+  background:var(--paper);border:1px solid var(--line);border-radius:9px;
+  padding:8px 10px;font-size:11.5px;font-weight:600;margin-top:8px;line-height:1.3;
+  box-shadow:0 1px 2px rgba(11,11,14,.05);
+}
+.v4 .deal small{
+  display:block;font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:400;
+  font-size:9.5px;color:var(--ink-3);margin-top:3px;letter-spacing:.03em;
+}
+.v4 .deal.live{
+  border-color:color-mix(in srgb,var(--red) 55%,var(--line));
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--red) 14%,transparent),0 10px 22px -12px rgba(11,11,14,.3);
+}
+html.js:not(.static) .v4 .deal.live{animation:v4dealin .38s cubic-bezier(.2,.6,.2,1)}
+@keyframes v4dealin{from{opacity:0;transform:translateY(-7px) scale(.96)}}
+.v4 .deal.won{border-color:#12A150;box-shadow:0 0 0 3px color-mix(in srgb,#12A150 16%,transparent)}
+.v4 .deal .wk{color:#12A150;font-weight:700;margin-left:5px}
+.v4 .crmb-foot{padding:13px 16px 15px;border-top:1px solid var(--line)}
+.v4 .crm-track{display:flex;gap:4px;height:6px;border-radius:999px;overflow:hidden}
+.v4 .crm-track i{height:100%}
+.v4 .crm-track .t1{width:34%;background:var(--line)}
+.v4 .crm-track .t2{width:26%;background:color-mix(in srgb,var(--ink-3) 55%,var(--line))}
+.v4 .crm-track .t3{width:22%;background:var(--coral)}
+.v4 .crm-track .t4{width:18%;background:var(--red)}
+.v4 .crm-info{
+  margin-top:16px;font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:12px;line-height:1.55;color:var(--ink-2);min-height:2.9em;max-width:56ch;
+}
+.v4 .crm-info b{color:var(--red);font-weight:600}
+@media (max-width:900px){
+  .v4 .hero-crm .wrap{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .v4 .crmb-cols{grid-template-columns:1fr 1fr}
+  .v4 .crmc{min-height:150px}
+  .v4 .crmb-fc{display:none}
+}
+
+/* flujo comercial (arch) — sub-etiqueta de flujo */
+.v4 .crm-flowcap{margin-bottom:18px}

@@ -28,7 +28,7 @@ export const technologyPartners = [
   {
     name: 'HP / HPE',
     logo: HPLogo,
-    level: 'Gold Partner',
+    level: 'Distribuidor',
     path: '/infraestructura/computo',
     color: '#0096D6',
   },

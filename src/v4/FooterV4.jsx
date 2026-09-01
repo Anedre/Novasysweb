@@ -54,6 +54,7 @@ export default function FooterV4() {
             <li><Link to="/cloud">Cloud AWS</Link></li>
             <li><Link to="/infraestructura">Infraestructura HP</Link></li>
             <li><Link to="/soluciones/software-a-medida">Desarrollo a medida</Link></li>
+            <li><Link to="/tecnologias">Tecnologías Oracle</Link></li>
           </ul>
         </div>
         <div>
@@ -70,8 +71,8 @@ export default function FooterV4() {
           <h4>Partners</h4>
           <ul>
             <li><Link to="/cloud">AWS Advanced</Link></li>
-            <li><Link to="/infraestructura">HP · HPE Gold</Link></li>
-            <li><Link to="/soluciones">Oracle Partner</Link></li>
+            <li><Link to="/infraestructura">HP · HPE Distribuidor</Link></li>
+            <li><Link to="/tecnologias">Oracle Partner</Link></li>
             <li><Link to="/soluciones/gestion-documental">ELO ECM</Link></li>
           </ul>
         </div>

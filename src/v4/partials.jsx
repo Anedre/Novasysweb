@@ -57,7 +57,7 @@ export function CtaBand({ title, text, btnLabel, extraAction, id }) {
   );
 }
 
-export function CaseCard({ img, exp, sector, title, text, pill, d = '', dataSector }) {
+export function CaseCard({ img, exp, sector, title, text, pill, d = '', dataSector, to = '/casos-de-exito', linkLabel = 'Ver el expediente completo →' }) {
   return (
     <div className={`ccard rv ${d}`} data-sector={dataSector}>
       <div className="ph">
@@ -69,7 +69,7 @@ export function CaseCard({ img, exp, sector, title, text, pill, d = '', dataSect
         <span className="sec">{sector}</span>
         <h3>{title}</h3>
         <p>{text}</p>
-        <Link className="go" to="/casos-de-exito">Ver el expediente completo →</Link>
+        <Link className="go" to={to}>{linkLabel}</Link>
       </div>
     </div>
   );

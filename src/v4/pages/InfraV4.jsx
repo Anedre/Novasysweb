@@ -71,7 +71,7 @@ export default function InfraV4() {
     <div ref={ref}>
       <Helmet>
         <title>Infraestructura HP / HPE — Novasys del Perú</title>
-        <meta name="description" content="Cómputo HP, servidores HPE ProLiant y almacenamiento enterprise — dimensionados sobre carga real, con stock en Lima, entrega 48–72 h y soporte on-site de HP Gold Partner." />
+        <meta name="description" content="Cómputo HP, servidores HPE ProLiant y almacenamiento enterprise — dimensionados sobre carga real, con stock en Lima, entrega 48–72 h y soporte on-site como distribuidores HP / HPE." />
       </Helmet>
 
       {/* HERO — vitrina de producto */}
@@ -82,7 +82,7 @@ export default function InfraV4() {
           <div>
             <div className="lbl rv">Soluciones — <b>Infraestructura HP / HPE</b></div>
             <h1 className="rv d1" style={{ fontSize: 'clamp(38px,5.4vw,72px)' }}>Infraestructura que sostiene el core<span style={{ color: 'var(--red)' }}>.</span></h1>
-            <p className="hero-sub rv d2">Cómputo, servidores HPE y almacenamiento enterprise — dimensionados sobre carga real, con soporte on-site en Lima y respaldo de HP Gold Partner.</p>
+            <p className="hero-sub rv d2">Cómputo, servidores HPE y almacenamiento enterprise — dimensionados sobre carga real, con soporte on-site en Lima y el respaldo de nuestra alianza con HP / HPE.</p>
             <div className="hero-ctas rv d3">
               <Link className="btn" to="/contacto">Cotizar equipos</Link>
               <a className="link" href="#lineas">Ver líneas <span className="ar">→</span></a>
@@ -191,7 +191,7 @@ export default function InfraV4() {
             <div className="step rv">
               <span className="sico-chip"><Icon id="i-target" /></span>
               <span className="n n-abs">01</span>
-              <h3>HP Gold Partner</h3><p>Certificación que garantiza expertise y acceso directo al soporte de HP.</p>
+              <h3>Alianza HP / HPE</h3><p>Somos distribuidores, con acceso directo a stock, precios y soporte del fabricante.</p>
             </div>
             <div className="step rv d1">
               <span className="sico-chip"><Icon id="i-zap" /></span>

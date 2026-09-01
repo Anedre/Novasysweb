@@ -1,0 +1,66 @@
+/* Tecnologías hub v4 — índice editorial con preview. Editable. */
+
+.v4 .hero-tec .wrap{grid-template-columns:1fr;padding-bottom:clamp(30px,4vw,48px)}
+.v4 .hero-tec .hero-sub{max-width:62ch}
+
+.v4 .toc-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:clamp(22px,3vw,40px);align-items:start}
+.v4 .toc{border-top:1px solid var(--ink)}
+.v4 .toc-row{
+  display:grid;grid-template-columns:56px 1fr auto auto;gap:clamp(12px,2vw,20px);align-items:center;
+  padding:15px 0;border-bottom:1px solid var(--line);position:relative;
+  color:inherit;transition:background .25s;
+}
+.v4 .toc-row::before{
+  content:"";position:absolute;left:calc(-1 * var(--pad));top:0;bottom:0;width:3px;
+  background:var(--red);transform:scaleY(0);transition:transform .25s;
+}
+.v4 .toc-row:hover{background:var(--paper-2)}
+.v4 .toc-row:hover::before{transform:scaleY(1)}
+.v4 .toc-num{font-family:"Inter Tight",Inter,sans-serif;font-size:clamp(20px,2.2vw,28px);font-weight:600;color:var(--ink-3);transition:color .25s;line-height:1}
+.v4 .toc-row:hover .toc-num{color:var(--red)}
+.v4 .toc-name{font-family:"Inter Tight",Inter,sans-serif;font-size:clamp(17px,1.9vw,23px);font-weight:600;letter-spacing:-.015em;line-height:1.2}
+.v4 .toc-name small{display:block;font-family:Inter,sans-serif;font-size:12.5px;font-weight:400;color:var(--ink-3);margin-top:2px;letter-spacing:0}
+.v4 .toc-cat{white-space:nowrap}
+.v4 .toc-ar{color:var(--red);font-weight:600;font-size:15px;opacity:0;transform:translateX(-4px);transition:opacity .25s,transform .25s}
+.v4 .toc-row:hover .toc-ar{opacity:1;transform:none}
+
+.v4 .tocp{
+  position:sticky;top:96px;
+  background:var(--paper);border:1px solid var(--line);border-radius:16px;
+  box-shadow:var(--sh-soft);padding:24px 26px;
+}
+.v4 .tocp .cat{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:8px}
+.v4 .tocp h3{font-family:"Inter Tight",Inter,sans-serif;font-size:23px;font-weight:600;letter-spacing:-.02em;margin-bottom:6px}
+.v4 .tocp > p{color:var(--ink-2);font-size:13.5px}
+.v4 .tocp .kgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+.v4 .tocp .kx{border:1px solid var(--line);border-radius:11px;background:var(--paper-2);padding:9px 11px}
+.v4 .tocp .kx b{display:block;font-family:"Inter Tight",Inter,sans-serif;font-size:16px;font-weight:700;letter-spacing:-.01em;line-height:1.15}
+.v4 .tocp .kx small{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:8px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);display:block;margin-top:3px}
+.v4 .tocp .tier{
+  display:inline-block;margin-top:16px;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--ink-2);border:1px solid var(--line);border-radius:999px;padding:6px 12px;
+}
+.v4 .tocp .go{display:inline-block;margin-top:16px;font-size:14px;font-weight:600;color:var(--red)}
+@media (max-width:900px){
+  .v4 .toc-grid{grid-template-columns:1fr}
+  .v4 .tocp{display:none}
+  .v4 .toc-row{grid-template-columns:44px 1fr auto}
+  .v4 .toc-cat{display:none}
+}
+
+/* cruce a soluciones */
+.v4 .tec-x{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.v4 .tec-xi{
+  display:flex;align-items:center;gap:11px;
+  border:1px solid var(--line);border-radius:13px;background:var(--paper);
+  padding:14px 16px;box-shadow:0 1px 2px rgba(11,11,14,.04);
+  transition:border-color .25s,transform .2s;color:inherit;
+}
+.v4 .tec-xi:hover{border-color:color-mix(in srgb,var(--red) 38%,var(--line));transform:translateY(-2px)}
+.v4 .tec-xi .mi{width:34px;height:34px;border-radius:10px;background:color-mix(in srgb,var(--red) 9%,transparent);color:var(--red);display:grid;place-items:center;flex:none}
+.v4 .tec-xi .mi .ic{width:16px;height:16px}
+.v4 .tec-xi b{display:block;font-size:13px;font-weight:600;letter-spacing:-.01em}
+.v4 .tec-xi small{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+@media (max-width:900px){.v4 .tec-x{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.v4 .tec-x{grid-template-columns:1fr}}

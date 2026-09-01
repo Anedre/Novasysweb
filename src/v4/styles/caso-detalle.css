@@ -1,0 +1,85 @@
+/* Caso detalle v4 — informe de expediente. Editable. */
+
+.v4 .cdo-hero{border-bottom:1px solid var(--line);position:relative}
+.v4 .cdo-hero .wrap{display:block;padding-top:clamp(40px,6vh,72px);padding-bottom:0}
+.v4 .cdo-meta{
+  display:flex;flex-wrap:wrap;gap:10px 26px;align-items:center;
+  border-block:1px solid var(--line);padding:13px 0;margin-top:22px;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);
+}
+.v4 .cdo-meta b{color:var(--red);font-weight:500}
+.v4 .cdo-meta .st{display:inline-flex;align-items:center;gap:7px;color:#12A150}
+.v4 .cdo-meta .st i{width:7px;height:7px;border-radius:50%;background:#12A150}
+.v4 .cdo-hero h1{
+  font-family:"Inter Tight",Inter,sans-serif;font-weight:700;
+  font-size:clamp(36px,5.4vw,76px);line-height:1;letter-spacing:-.035em;
+  margin:26px 0 18px;max-width:20ch;text-wrap:balance;
+}
+.v4 .cdo-lede{color:var(--ink-2);font-size:clamp(15.5px,1.4vw,18px);max-width:62ch;margin-bottom:clamp(28px,4vw,44px)}
+
+.v4 .cdo-band{position:relative;border-radius:18px 18px 0 0;overflow:hidden}
+.v4 .cdo-band img{width:100%;height:clamp(260px,38vw,440px);object-fit:cover;display:block;will-change:transform}
+.v4 .cdo-band::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(10,10,14,.45));pointer-events:none}
+.v4 .cdo-band .cap{
+  position:absolute;left:18px;bottom:16px;z-index:2;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#fff;
+}
+.v4 .cdo-band .pill{
+  position:absolute;right:16px;bottom:14px;z-index:2;
+  background:rgba(11,11,14,.85);color:#fff;backdrop-filter:blur(4px);
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;
+  border-radius:999px;padding:7px 14px;
+}
+.v4 .cdo-band .pill b{color:var(--coral)}
+
+.v4 .cdo-grid{display:grid;grid-template-columns:1fr 330px;gap:clamp(28px,4.5vw,70px);align-items:start}
+.v4 .cdo-sec{margin-bottom:clamp(28px,3.5vw,42px)}
+.v4 .cdo-sec .rn{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.14em;color:var(--red)}
+.v4 .cdo-sec h2{font-family:"Inter Tight",Inter,sans-serif;font-size:clamp(21px,2.4vw,28px);font-weight:600;letter-spacing:-.02em;margin:10px 0 10px}
+.v4 .cdo-sec p{color:var(--ink-2);font-size:15.5px;max-width:62ch}
+.v4 .cdo-quote{
+  border-left:3px solid var(--red);padding:6px 0 6px 24px;margin:10px 0 0;
+  font-family:"Inter Tight",Inter,sans-serif;font-size:clamp(19px,2.2vw,25px);
+  font-weight:600;letter-spacing:-.02em;line-height:1.35;
+}
+.v4 .cdo-quote footer{
+  margin-top:12px;font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:400;
+}
+.v4 .cdo-sols{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.v4 .cdo-sols a{transition:color .2s,border-color .2s}
+.v4 .cdo-sols a:hover{color:var(--red);border-color:var(--red)}
+
+.v4 .cdl{position:sticky;top:96px}
+.v4 .cdl-card{
+  background:var(--paper);border:1px solid var(--line);border-radius:16px;
+  box-shadow:var(--sh-soft);padding:22px 24px;
+}
+.v4 .cdl-logo{
+  background:#fff;border:1px solid var(--line);border-radius:12px;
+  display:grid;place-items:center;height:74px;padding:14px;margin-bottom:18px;
+}
+.v4 .cdl-logo img{max-height:100%;max-width:70%;object-fit:contain}
+.v4 .cdl-k{border-top:1px solid var(--line);padding:13px 0 15px}
+.v4 .cdl-k:first-of-type{border-top:1px solid var(--ink)}
+.v4 .cdl-k .v{
+  font-family:"Inter Tight",Inter,sans-serif;font-size:clamp(26px,2.6vw,34px);
+  font-weight:700;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums;
+}
+.v4 .cdl-k .v i{font-style:normal;color:var(--red)}
+.v4 .cdl-k .lbl{display:block;margin-top:5px}
+.v4 .cdl-card .btn-red{display:block;text-align:center;margin-top:16px;padding:13px 20px;font-size:14px}
+@media (max-width:900px){
+  .v4 .cdo-grid{grid-template-columns:1fr}
+  .v4 .cdl{position:static}
+}
+
+.v4 .cdo-nav{
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;
+  border-top:1px solid var(--ink);padding-top:20px;
+}
+.v4 .cdo-nav a{display:block;color:inherit;transition:color .2s}
+.v4 .cdo-nav a:hover{color:var(--red)}
+.v4 .cdo-nav .k{display:block;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+.v4 .cdo-nav b{font-family:"Inter Tight",Inter,sans-serif;font-size:18px;font-weight:600;letter-spacing:-.015em}
+.v4 .cdo-nav .nx{text-align:right}

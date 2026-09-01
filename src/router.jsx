@@ -1,38 +1,13 @@
-// router.js — Novasys v3 Router (Lazy loaded)
+// router.jsx — Novasys Router (Lazy loaded) · rediseño v4 completo
 import { lazy, Suspense } from 'react';
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import AppLayout from "./AppLayout.jsx";
 import RouteLoader from './components/layout/RouteLoader.jsx';
 
-// Lazy-loaded pages (v3 redesign)
-const HomePage = lazy(() => import('./pages/HomePage.jsx'));
+// Referencia histórica (home anterior al rediseño; sin enlaces entrantes)
 const HomeLegacyPage = lazy(() => import('./pages/HomeLegacyPage.jsx'));
-const NosotrosPage = lazy(() => import('./pages/NosotrosPage.jsx'));
-const ContactoPage = lazy(() => import('./pages/ContactoPage.jsx'));
-const EventosPage = lazy(() => import('./pages/EventosPage.jsx'));
-const SolucionesHubPage = lazy(() => import('./pages/SolucionesHubPage.jsx'));
-const SolucionDetallePage = lazy(() => import('./pages/SolucionDetallePage.jsx'));
-const CRMVentasPage = lazy(() => import('./pages/CRMVentasPage.jsx'));
-const GestionDocumentalPage = lazy(() => import('./pages/GestionDocumentalPage.jsx'));
-const BusinessIntelligencePage = lazy(() => import('./pages/BusinessIntelligencePage.jsx'));
-const MarketingAutomationPage = lazy(() => import('./pages/MarketingAutomationPage.jsx'));
-const SoftwareMedidaPage = lazy(() => import('./pages/SoftwareMedidaPage.jsx'));
-const InfraestructuraPage = lazy(() => import('./pages/InfraestructuraPage.jsx'));
-const InfraProductPage = lazy(() => import('./pages/InfraProductPage.jsx'));
-const InfraDetallePage = lazy(() => import('./pages/InfraDetallePage.jsx'));
-const CloudPage = lazy(() => import('./pages/CloudPage.jsx'));
-const CloudDetallePage = lazy(() => import('./pages/CloudDetallePage.jsx'));
-const AmazonConnectPage = lazy(() => import('./pages/AmazonConnectPage.jsx'));
-const ConnectDialerPage = lazy(() => import('./pages/ConnectDialerPage.jsx'));
-const SageMakerPage = lazy(() => import('./pages/SageMakerPage.jsx'));
-const MigracionCloudPage = lazy(() => import('./pages/MigracionCloudPage.jsx'));
-const TecnologiasHubPage = lazy(() => import('./pages/TecnologiasHubPage.jsx'));
-const TecnologiaPage = lazy(() => import('./pages/TecnologiaPage.jsx')); // bespoke ficha software (reemplaza TecnologiaDetallePage)
-const CasosHubPage = lazy(() => import('./pages/CasosHubPage.jsx'));
-const CasoDetallePage = lazy(() => import('./pages/CasoDetallePage.jsx'));
-const NotFoundPage = lazy(() => import('./pages/NotFoundPage.jsx'));
 
-// Páginas v4 (rediseño 2026 — hubs con el nuevo sistema visual)
+// Páginas v4 — hubs (rediseño 2026)
 const HomeV4 = lazy(() => import('./v4/pages/HomeV4.jsx'));
 const SolucionesV4 = lazy(() => import('./v4/pages/SolucionesV4.jsx'));
 const CloudV4 = lazy(() => import('./v4/pages/CloudV4.jsx'));
@@ -41,102 +16,105 @@ const CasosV4 = lazy(() => import('./v4/pages/CasosV4.jsx'));
 const NosotrosV4 = lazy(() => import('./v4/pages/NosotrosV4.jsx'));
 const ContactoV4 = lazy(() => import('./v4/pages/ContactoV4.jsx'));
 
-// NOTE (C4): SolucionesHP/SolucionesHP_Enterprise/AlmacenamientoHP/AmazonConnect/
-// AmazonDialer/CloudMigration ya no están ruteados — sus slugs ahora caen en
-// /infraestructura/:slug y /cloud/:slug resueltos por InfraDetallePage y
-// CloudDetallePage contra data/infrastructure.jsx y data/cloud.jsx.
-// NOTE (T1.2): /ventas, /marketing, /elo, /business-intelligence ya no se sirven
-// desde componentes legacy — ahora redirigen 301 a sus equivalentes v3 en /soluciones/*.
-// Los componentes legacy (Ventas, Marketing, ELO, BusinessIntelligence) quedan en disco
-// como referencia para una posible limpieza posterior.
+// Páginas v4 — detalle (rediseño 2026, reemplazan a las bespoke v3)
+const CrmVentasV4 = lazy(() => import('./v4/pages/CrmVentasV4.jsx'));
+const BusinessIntelligenceV4 = lazy(() => import('./v4/pages/BusinessIntelligenceV4.jsx'));
+const MarketingAutomationV4 = lazy(() => import('./v4/pages/MarketingAutomationV4.jsx'));
+const GestionDocumentalV4 = lazy(() => import('./v4/pages/GestionDocumentalV4.jsx'));
+const SoftwareMedidaV4 = lazy(() => import('./v4/pages/SoftwareMedidaV4.jsx'));
+const AmazonConnectV4 = lazy(() => import('./v4/pages/AmazonConnectV4.jsx'));
+const ConnectDialerV4 = lazy(() => import('./v4/pages/ConnectDialerV4.jsx'));
+const SageMakerV4 = lazy(() => import('./v4/pages/SageMakerV4.jsx'));
+const MigracionCloudV4 = lazy(() => import('./v4/pages/MigracionCloudV4.jsx'));
+const InfraProductV4 = lazy(() => import('./v4/pages/InfraProductV4.jsx'));
+const TecnologiasHubV4 = lazy(() => import('./v4/pages/TecnologiasHubV4.jsx'));
+const TecnologiaV4 = lazy(() => import('./v4/pages/TecnologiaV4.jsx'));
+const CasoDetalleV4 = lazy(() => import('./v4/pages/CasoDetalleV4.jsx'));
+const EventosV4 = lazy(() => import('./v4/pages/EventosV4.jsx'));
+const NotFoundV4 = lazy(() => import('./v4/pages/NotFoundV4.jsx'));
+
+// NOTE: los slugs reales de soluciones/cloud/infraestructura tienen ruta estática
+// bespoke, así que los :slug de esas familias solo reciben rutas inválidas → 404.
+// Los componentes v3 reemplazados quedan en disco como referencia (sin importar).
 
 // Suspense wrapper
 const L = ({ children }) => <Suspense fallback={<RouteLoader />}>{children}</Suspense>;
+
+// Slugs Oracle que vivieron bajo /Soluciones_Novasys y /solucion — hoy en /tecnologias
+const ORACLE_SLUGS = [
+  'oracle-business-intelligence', 'oracle-paas', 'oracle-bluekai', 'oracle-eloqua',
+  'oracle-responsys', 'oracle-service-cloud', 'oracle-sales-cloud', 'oracle-siebel', 'oracle-cpq',
+];
+const oracleRedirects = (prefix) => ORACLE_SLUGS.map((slug) => ({
+  path: `${prefix}/${slug}`,
+  element: <Navigate to={`/tecnologias/${slug}`} replace />,
+}));
 
 export const router = createBrowserRouter([
   {
     element: <AppLayout />,
     children: [
-      // ===== NEW PAGES (v3) =====
+      // ===== HUBS v4 =====
       { path: "/", element: <L><HomeV4 /></L> },
       { path: "/home-legacy", element: <L><HomeLegacyPage /></L> },
       { path: "/nosotros", element: <L><NosotrosV4 /></L> },
       { path: "/contacto", element: <L><ContactoV4 /></L> },
-      { path: "/eventos", element: <L><EventosPage /></L> },
+      { path: "/eventos", element: <L><EventosV4 /></L> },
 
-      // Solutions
+      // ===== SOLUCIONES (software) =====
       { path: "/soluciones", element: <L><SolucionesV4 /></L> },
-      // Partner hubs (canonical v3 routes — specific paths matched before dynamic :slug)
+      // Partner hubs (alias canónicos — rutas específicas antes del :slug)
       { path: "/soluciones/amazon", element: <L><CloudV4 /></L> },
       { path: "/soluciones/hp", element: <L><InfraV4 /></L> },
-      // Consolidado: /soluciones/novasys usa la misma hub de software (bento) que /soluciones,
-      // igual que /soluciones/amazon=Cloud y /soluciones/hp=Infra. Canonical → /soluciones.
       { path: "/soluciones/novasys", element: <L><SolucionesV4 /></L> },
-      { path: "/soluciones/crm-ventas", element: <L><CRMVentasPage /></L> }, // bespoke, antes del :slug
-      { path: "/soluciones/gestion-documental", element: <L><GestionDocumentalPage /></L> }, // bespoke, antes del :slug
-      { path: "/soluciones/business-intelligence", element: <L><BusinessIntelligencePage /></L> }, // bespoke, antes del :slug
-      { path: "/soluciones/marketing-automation", element: <L><MarketingAutomationPage /></L> }, // bespoke, antes del :slug
-      { path: "/soluciones/software-a-medida", element: <L><SoftwareMedidaPage /></L> }, // bespoke, antes del :slug
-      { path: "/soluciones/:slug", element: <L><SolucionDetallePage /></L> },
-      // T1.2 · Legacy slugs sueltos → v3 (redirect 301)
+      { path: "/soluciones/crm-ventas", element: <L><CrmVentasV4 /></L> },
+      { path: "/soluciones/gestion-documental", element: <L><GestionDocumentalV4 /></L> },
+      { path: "/soluciones/business-intelligence", element: <L><BusinessIntelligenceV4 /></L> },
+      { path: "/soluciones/marketing-automation", element: <L><MarketingAutomationV4 /></L> },
+      { path: "/soluciones/software-a-medida", element: <L><SoftwareMedidaV4 /></L> },
+      // Backlinks antiguos a productos Oracle bajo /soluciones → ficha técnica
+      ...oracleRedirects('/soluciones'),
+      { path: "/soluciones/:slug", element: <L><NotFoundV4 /></L> },
+      // T1.2 · Legacy slugs sueltos → v4 (redirect)
       { path: "/ventas", element: <Navigate to="/soluciones/crm-ventas" replace /> },
       { path: "/marketing", element: <Navigate to="/soluciones/marketing-automation" replace /> },
       { path: "/business-intelligence", element: <Navigate to="/soluciones/business-intelligence" replace /> },
       { path: "/elo", element: <Navigate to="/soluciones/gestion-documental" replace /> },
 
-      // Infrastructure HP — v3 dynamic template (C4)
+      // ===== INFRAESTRUCTURA HP / HPE =====
       { path: "/infraestructura", element: <L><InfraV4 /></L> },
-      { path: "/infraestructura/computo", element: <L><InfraProductPage /></L> }, // bespoke datasheet, antes del :slug
-      { path: "/infraestructura/servidores", element: <L><InfraProductPage /></L> }, // bespoke datasheet, antes del :slug
-      { path: "/infraestructura/almacenamiento", element: <L><InfraProductPage /></L> }, // bespoke datasheet, antes del :slug
-      { path: "/infraestructura/:slug", element: <L><InfraDetallePage /></L> },
+      { path: "/infraestructura/computo", element: <L><InfraProductV4 /></L> },
+      { path: "/infraestructura/servidores", element: <L><InfraProductV4 /></L> },
+      { path: "/infraestructura/almacenamiento", element: <L><InfraProductV4 /></L> },
+      { path: "/infraestructura/:slug", element: <L><NotFoundV4 /></L> },
 
-      // Cloud AWS — v3 dynamic template (C4)
+      // ===== CLOUD AWS =====
       { path: "/cloud", element: <L><CloudV4 /></L> },
-      { path: "/cloud/amazon-connect", element: <L><AmazonConnectPage /></L> }, // bespoke, antes del :slug
-      { path: "/cloud/connect-dialer", element: <L><ConnectDialerPage /></L> }, // bespoke, antes del :slug
-      { path: "/cloud/sagemaker", element: <L><SageMakerPage /></L> }, // bespoke, antes del :slug
-      { path: "/cloud/migracion", element: <L><MigracionCloudPage /></L> }, // bespoke, antes del :slug
-      { path: "/cloud/:slug", element: <L><CloudDetallePage /></L> },
+      { path: "/cloud/amazon-connect", element: <L><AmazonConnectV4 /></L> },
+      { path: "/cloud/connect-dialer", element: <L><ConnectDialerV4 /></L> },
+      { path: "/cloud/sagemaker", element: <L><SageMakerV4 /></L> },
+      { path: "/cloud/migracion", element: <L><MigracionCloudV4 /></L> },
+      { path: "/cloud/:slug", element: <L><NotFoundV4 /></L> },
 
-      // Tecnologías — fichas técnicas de productos (C5 · opción B del roadmap)
-      { path: "/tecnologias", element: <L><TecnologiasHubPage /></L> },
-      { path: "/tecnologias/:slug", element: <L><TecnologiaPage /></L> }, // bespoke ficha software (Oracle)
+      // ===== TECNOLOGÍAS (fichas Oracle) =====
+      { path: "/tecnologias", element: <L><TecnologiasHubV4 /></L> },
+      { path: "/tecnologias/:slug", element: <L><TecnologiaV4 /></L> },
 
-      // Cases
+      // ===== CASOS =====
       { path: "/casos-de-exito", element: <L><CasosV4 /></L> },
-      { path: "/casos-de-exito/:slug", element: <L><CasoDetallePage /></L> },
+      { path: "/casos-de-exito/:slug", element: <L><CasoDetalleV4 /></L> },
 
       // 404
-      { path: "*", element: <L><NotFoundPage /></L> },
+      { path: "*", element: <L><NotFoundV4 /></L> },
 
       // ===== LEGACY REDIRECTS =====
 
-      // --- Oracle legacy slugs (from deprecated SolucionDetalle component) ---
-      // C5 update: ahora redirigen a /tecnologias/:slug (opción B del roadmap del UX package).
-      // Cada producto Oracle conserva su SEO long-tail propio en su ficha técnica.
-      { path: "/Soluciones_Novasys/oracle-business-intelligence", element: <Navigate to="/tecnologias/oracle-business-intelligence" replace /> },
-      { path: "/Soluciones_Novasys/oracle-paas", element: <Navigate to="/tecnologias/oracle-paas" replace /> },
-      { path: "/Soluciones_Novasys/oracle-bluekai", element: <Navigate to="/tecnologias/oracle-bluekai" replace /> },
-      { path: "/Soluciones_Novasys/oracle-eloqua", element: <Navigate to="/tecnologias/oracle-eloqua" replace /> },
-      { path: "/Soluciones_Novasys/oracle-responsys", element: <Navigate to="/tecnologias/oracle-responsys" replace /> },
-      { path: "/Soluciones_Novasys/oracle-service-cloud", element: <Navigate to="/tecnologias/oracle-service-cloud" replace /> },
-      { path: "/Soluciones_Novasys/oracle-sales-cloud", element: <Navigate to="/tecnologias/oracle-sales-cloud" replace /> },
-      { path: "/Soluciones_Novasys/oracle-siebel", element: <Navigate to="/tecnologias/oracle-siebel" replace /> },
-      { path: "/Soluciones_Novasys/oracle-cpq", element: <Navigate to="/tecnologias/oracle-cpq" replace /> },
-      // Singular lowercase variant (from handoff CONSOLIDACION.md — may exist in old backlinks)
-      { path: "/solucion/oracle-business-intelligence", element: <Navigate to="/tecnologias/oracle-business-intelligence" replace /> },
-      { path: "/solucion/oracle-paas", element: <Navigate to="/tecnologias/oracle-paas" replace /> },
-      { path: "/solucion/oracle-bluekai", element: <Navigate to="/tecnologias/oracle-bluekai" replace /> },
-      { path: "/solucion/oracle-eloqua", element: <Navigate to="/tecnologias/oracle-eloqua" replace /> },
-      { path: "/solucion/oracle-responsys", element: <Navigate to="/tecnologias/oracle-responsys" replace /> },
-      { path: "/solucion/oracle-service-cloud", element: <Navigate to="/tecnologias/oracle-service-cloud" replace /> },
-      { path: "/solucion/oracle-sales-cloud", element: <Navigate to="/tecnologias/oracle-sales-cloud" replace /> },
-      { path: "/solucion/oracle-siebel", element: <Navigate to="/tecnologias/oracle-siebel" replace /> },
-      { path: "/solucion/oracle-cpq", element: <Navigate to="/tecnologias/oracle-cpq" replace /> },
+      // --- Oracle legacy slugs (sitio anterior) → /tecnologias/:slug ---
+      ...oracleRedirects('/Soluciones_Novasys'),
+      ...oracleRedirects('/solucion'),
 
       { path: "/Soluciones_Novasys", element: <Navigate to="/soluciones" replace /> },
-      { path: "/Soluciones_Novasys/:slug", element: <Navigate to="/soluciones/:slug" replace /> },
+      { path: "/Soluciones_Novasys/:slug", element: <Navigate to="/soluciones" replace /> },
       { path: "/Ventas", element: <Navigate to="/soluciones/crm-ventas" replace /> },
       { path: "/Marketing", element: <Navigate to="/soluciones/marketing-automation" replace /> },
       { path: "/Business_Intelligence", element: <Navigate to="/soluciones/business-intelligence" replace /> },

@@ -153,12 +153,12 @@ export default function NosotrosV4() {
       {/* ALIANZAS */}
       <section>
         <div className="wrap">
-          <Shead label="04 — Alianzas" title="Partners certificados, operados desde Lima." />
+          <Shead label="04 — Alianzas" title="Alianzas tecnológicas, operadas desde Lima." />
         </div>
         <div className="partners" style={{ borderTop: '1px solid var(--line)' }}>
           <div className="wrap rv">
             <span><b>AWS</b> Advanced Partner</span>
-            <span><b>HP · HPE</b> Gold Partner</span>
+            <span><b>HP · HPE</b> Distribuidor</span>
             <span><b>Oracle</b> Partner</span>
             <span><b>ELO</b> ECM Certified</span>
           </div>

@@ -59,19 +59,30 @@ export function useV4Page() {
 
     const io = new IntersectionObserver((entries) => {
       entries.forEach((en) => {
+        const el = en.target;
+        el.dataset.vis = en.isIntersecting ? '1' : '0';
         if (en.isIntersecting) {
-          en.target.classList.add('in');
-          en.target.querySelectorAll('.num[data-n]').forEach((el) => animateNum(el, false));
-          io.unobserve(en.target);
+          el.classList.add('in');
+          el.querySelectorAll('.num[data-n]').forEach((n) => animateNum(n, false));
+          // set-pieces (.wp/.collage/.archero) son one-shot; los .rv quedan
+          // observados en modo ESPEJO: salen al abandonar el viewport y
+          // vuelven a entrar animando al regresar.
+          if (!el.classList.contains('rv')) io.unobserve(el);
+        } else {
+          el.classList.remove('in');
         }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
     els.forEach((el) => io.observe(el));
 
-    // settle: nada queda invisible pase lo que pase
+    // settle: nada queda invisible pase lo que pase — pero si el IO ya reportó
+    // al elemento fuera del viewport (vis='0'), se respeta: revelará al scrollear.
     const settle = setTimeout(() => {
-      els.forEach((el) => el.classList.add('in'));
-      nums.forEach((el) => animateNum(el, false));
+      els.forEach((el) => { if (el.dataset.vis !== '0') el.classList.add('in'); });
+      nums.forEach((el) => {
+        const host = el.closest('.rv,.wp,.collage,.archero');
+        if (!host || host.dataset.vis !== '0') animateNum(el, false);
+      });
     }, 2500);
 
     // parallax sutil en fotos anchas

@@ -22,7 +22,7 @@ export const infrastructure = [
     title: 'Equipos de Cómputo HP',
     tagline: 'Workstations y laptops empresariales',
     description: 'PCs, laptops y workstations HP para productividad empresarial. Equipos diseñados para trabajo profesional: arquitectura, ingeniería, finanzas, diseño.',
-    partnerTier: 'HP Gold Partner',
+    partnerTier: 'Distribuidor HP',
     color: '#0096D6',
     kpis: [
       { value: '72h', label: 'Stock en Lima' },
@@ -82,7 +82,7 @@ export const infrastructure = [
     title: 'Servidores HPE ProLiant',
     tagline: 'Servidores enterprise para cargas críticas',
     description: 'Servidores ProLiant y soluciones HPE Synergy para data center. Rendimiento y confiabilidad de clase mundial para workloads de misión crítica.',
-    partnerTier: 'HPE Gold Partner',
+    partnerTier: 'Distribuidor HPE',
     color: '#01A982',
     kpis: [
       { value: '99.999%', label: 'Disponibilidad validada' },
@@ -142,7 +142,7 @@ export const infrastructure = [
     title: 'Almacenamiento HPE Alletra',
     tagline: 'Storage enterprise para datos críticos',
     description: 'Soluciones de storage enterprise HPE Alletra y Nimble para datos críticos de negocio. Alta disponibilidad, replicación activa y deduplicación nativa.',
-    partnerTier: 'HPE Gold Partner',
+    partnerTier: 'Distribuidor HPE',
     color: '#01A982',
     kpis: [
       { value: '100%', label: 'Disponibilidad garantizada' },
