@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { useV4Page } from '../hooks';
-import { IMG, Shead, CtaBand, CaseCard } from '../partials';
+import { IMG, Shead, CtaBand, CaseCard, AriaBand } from '../partials';
 import '../styles/cloud.css';
 import '../styles/cloud-extra.css';
 
@@ -246,6 +246,9 @@ export default function CloudV4() {
         <div className="wrap">
           <Shead label="01 — Servicios" title="Cuatro pilares cloud." text="Del contact center al machine learning — haz clic en una tarjeta para traerla al frente, o entra al servicio desde la activa." />
           <PillarStack />
+          <div style={{ marginTop: 'clamp(28px,4vw,48px)' }}>
+            <AriaBand eyebrow="Producto propio · corre sobre AWS" />
+          </div>
         </div>
       </section>
 

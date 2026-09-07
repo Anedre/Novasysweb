@@ -21,6 +21,7 @@ import './design-system/utilities.css';
 import './v4/styles/base.css';
 import './v4/styles/kit.css';
 import './v4/styles/color.css';
+import './v4/styles/shell.css';
 import './v4/styles/transitions.css';
 
 /** Scroll a anclas tipo /#metodo tras el cambio de ruta. */

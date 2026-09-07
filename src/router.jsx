@@ -22,6 +22,8 @@ const BusinessIntelligenceV4 = lazy(() => import('./v4/pages/BusinessIntelligenc
 const MarketingAutomationV4 = lazy(() => import('./v4/pages/MarketingAutomationV4.jsx'));
 const GestionDocumentalV4 = lazy(() => import('./v4/pages/GestionDocumentalV4.jsx'));
 const SoftwareMedidaV4 = lazy(() => import('./v4/pages/SoftwareMedidaV4.jsx'));
+const AriaV4 = lazy(() => import('./v4/pages/AriaV4.jsx'));
+const LegalV4 = lazy(() => import('./v4/pages/LegalV4.jsx'));
 const AmazonConnectV4 = lazy(() => import('./v4/pages/AmazonConnectV4.jsx'));
 const ConnectDialerV4 = lazy(() => import('./v4/pages/ConnectDialerV4.jsx'));
 const SageMakerV4 = lazy(() => import('./v4/pages/SageMakerV4.jsx'));
@@ -72,6 +74,8 @@ export const router = createBrowserRouter([
       { path: "/soluciones/business-intelligence", element: <L><BusinessIntelligenceV4 /></L> },
       { path: "/soluciones/marketing-automation", element: <L><MarketingAutomationV4 /></L> },
       { path: "/soluciones/software-a-medida", element: <L><SoftwareMedidaV4 /></L> },
+      // ARIA — producto propio (URL pública que revisa Meta en la verificación)
+      { path: "/soluciones/aria", element: <L><AriaV4 /></L> },
       // Backlinks antiguos a productos Oracle bajo /soluciones → ficha técnica
       ...oracleRedirects('/soluciones'),
       { path: "/soluciones/:slug", element: <L><NotFoundV4 /></L> },
@@ -94,11 +98,21 @@ export const router = createBrowserRouter([
       { path: "/cloud/connect-dialer", element: <L><ConnectDialerV4 /></L> },
       { path: "/cloud/sagemaker", element: <L><SageMakerV4 /></L> },
       { path: "/cloud/migracion", element: <L><MigracionCloudV4 /></L> },
+      // ARIA corre sobre AWS: la ficha canónica vive en /soluciones/aria
+      { path: "/cloud/aria", element: <Navigate to="/soluciones/aria" replace /> },
       { path: "/cloud/:slug", element: <L><NotFoundV4 /></L> },
 
       // ===== TECNOLOGÍAS (fichas Oracle) =====
       { path: "/tecnologias", element: <L><TecnologiasHubV4 /></L> },
       { path: "/tecnologias/:slug", element: <L><TecnologiaV4 /></L> },
+
+      // ===== LEGAL (URLs públicas que se cargan en la App de Meta) =====
+      // Privacidad y eliminación de datos son de empresa (sirven a todos los
+      // productos); los términos son por producto → /legal/terminos/:producto.
+      { path: "/legal", element: <Navigate to="/legal/privacidad" replace /> },
+      { path: "/legal/terminos", element: <L><LegalV4 /></L> },
+      { path: "/legal/terminos/:producto", element: <L><LegalV4 /></L> },
+      { path: "/legal/:slug", element: <L><LegalV4 /></L> },
 
       // ===== CASOS =====
       { path: "/casos-de-exito", element: <L><CasosV4 /></L> },

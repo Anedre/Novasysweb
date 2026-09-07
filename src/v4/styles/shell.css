@@ -1,0 +1,157 @@
+/* Shell v4 — ajustes editables del header/footer que no viven en base.css
+   (base.css y kit.css se regeneran desde design-lab: no se tocan a mano). */
+
+/* fila legal del pie: privacidad · términos · eliminación de datos.
+   Son URLs públicas obligatorias para la App de Meta, así que deben estar
+   enlazadas desde todas las páginas. */
+.v4 .ft-legal{display:flex;flex-wrap:wrap;gap:6px 20px;align-items:center}
+.v4 .ft-legal a{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3);transition:color .2s;
+}
+.v4 .ft-legal a:hover{color:var(--red)}
+@media (max-width:820px){
+  .v4 .ft-bot{gap:12px 20px}
+  .v4 .ft-legal{order:3;width:100%}
+}
+
+/* ── banda de entrada a ARIA (Home · Soluciones · Cloud) ──────────────
+   Global porque la usan tres páginas con chunks de CSS distintos. Lleva el
+   acento propio del producto (navy→teal de la marca ARIA); el rojo Novasys
+   se mantiene como acento del sitio. */
+.v4 .aria-band{
+  --aria:#2C5698;--aria-2:#158A8C;
+  display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(24px,4vw,48px);align-items:center;
+  border:1px solid var(--line);border-radius:18px;background:var(--paper);
+  box-shadow:var(--sh-soft);padding:clamp(24px,3.2vw,38px);position:relative;overflow:hidden;
+  transition:border-color .25s;
+}
+html[data-theme="dark"] .v4 .aria-band{--aria:#7FA6DE;--aria-2:#4FC6C7}
+.v4 .aria-band::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:3px;
+  background:linear-gradient(90deg,var(--aria),var(--aria-2));
+}
+.v4 .aria-band:hover{border-color:color-mix(in srgb,var(--aria) 40%,var(--line))}
+.v4 .aria-band .ab-l{display:flex;gap:clamp(14px,2vw,22px);align-items:flex-start;min-width:0}
+.v4 .aria-band .ab-mark{
+  width:52px;height:52px;border-radius:14px;flex:none;display:grid;place-items:center;
+  background:color-mix(in srgb,var(--aria) 10%,transparent);
+}
+.v4 .aria-band .ab-mark img{width:30px;height:30px;object-fit:contain}
+.v4 .aria-band h3{
+  font-family:"Inter Tight",Inter,sans-serif;font-size:clamp(20px,2.2vw,26px);
+  font-weight:700;letter-spacing:-.022em;line-height:1.14;margin:8px 0 9px;text-wrap:balance;
+}
+.v4 .aria-band p{color:var(--ink-2);font-size:14.5px;max-width:62ch}
+.v4 .aria-band .ab-r{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+.v4 .aria-band .ab-chips{display:flex;flex-wrap:wrap;gap:7px}
+.v4 .aria-band .ab-chips .chip{border-radius:999px;padding:6px 12px;font-size:10.5px}
+@media (max-width:900px){
+  .v4 .aria-band{grid-template-columns:1fr}
+  .v4 .aria-band .ab-r{flex-direction:row;flex-wrap:wrap;align-items:center;gap:16px}
+}
+@media (max-width:560px){
+  .v4 .aria-band .ab-l{flex-direction:column}
+}
+
+/* fila de producto dentro de una .svc-row del home */
+.v4 .svc-prod{
+  display:inline-flex;align-items:center;gap:11px;margin-top:16px;
+  border:1px solid var(--line);border-radius:999px;padding:7px 16px 7px 8px;
+  font-size:13.5px;color:var(--ink-2);
+  transition:border-color .22s,color .22s,transform .22s;
+}
+.v4 .svc-prod:hover{border-color:var(--red);color:var(--ink);transform:translateX(2px)}
+.v4 .svc-prod img{width:24px;height:24px;object-fit:contain;flex:none}
+.v4 .svc-prod b{color:var(--ink);font-weight:700;letter-spacing:.1em;font-size:12.5px}
+.v4 .svc-prod i{font-style:normal;color:var(--red)}
+
+/* ── bloques legales compartidos entre productos (partials.jsx) ───────
+   Los usan BloqueDatos y FichaNegocio: la banda «tus datos son tuyos» y la
+   ficha del negocio que revisa Meta. Global porque cualquier página de
+   producto los monta, y neutrales a propósito — el acento del producto vive
+   en sus secciones bespoke, estos bloques hablan por Novasys. */
+.v4 .pl-trust{
+  background:var(--ink);color:var(--paper);border-radius:18px;overflow:hidden;position:relative;
+  padding:clamp(26px,3.5vw,44px);
+  display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(26px,4vw,54px);align-items:center;
+}
+.v4 .pl-trust::before{
+  content:"";position:absolute;right:-90px;top:-120px;width:300px;height:300px;border-radius:50%;
+  border:1px solid color-mix(in srgb,var(--paper) 13%,transparent);pointer-events:none;
+}
+.v4 .pl-trust h3{
+  font-family:"Inter Tight",Inter,sans-serif;font-size:clamp(22px,2.6vw,30px);
+  font-weight:700;letter-spacing:-.02em;line-height:1.1;
+}
+.v4 .pl-items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:13px}
+.v4 .pl-items li{
+  display:flex;gap:11px;align-items:flex-start;
+  font-size:14.5px;line-height:1.5;color:var(--band-tx2);
+}
+.v4 .pl-items li .ic{width:17px;height:17px;color:var(--red);margin-top:3px;flex:none}
+
+.v4 .pl-flow{display:flex;align-items:stretch;flex-wrap:wrap;gap:0;row-gap:12px;margin-top:26px}
+.v4 .pl-flow .fn{
+  flex:1;min-width:118px;border:1px solid color-mix(in srgb,var(--paper) 16%,transparent);
+  border-radius:12px;padding:12px 14px;text-align:center;
+}
+.v4 .pl-flow .fn.mid{
+  border-color:color-mix(in srgb,var(--red) 62%,transparent);
+  background:color-mix(in srgb,var(--red) 12%,transparent);
+}
+.v4 .pl-flow .fn b{display:block;font-size:13.5px;font-weight:600;letter-spacing:-.01em;color:var(--paper)}
+.v4 .pl-flow .fn small{
+  display:block;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:8.5px;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--band-tx2);margin-top:4px;line-height:1.5;
+}
+.v4 .pl-flow .fa{
+  flex:none;width:34px;align-self:center;height:1px;position:relative;
+  background:color-mix(in srgb,var(--paper) 22%,transparent);
+}
+.v4 .pl-flow .fa i{position:absolute;top:-2px;left:0;width:5px;height:5px;border-radius:50%;background:var(--red)}
+html.js:not(.static) .v4 .pl-flow .fa i{animation:v4flow 2.8s linear infinite}
+@media (max-width:520px){
+  .v4 .pl-flow{flex-direction:column}
+  .v4 .pl-flow .fa{width:1px;height:18px;align-self:center}
+  .v4 .pl-flow .fa i{display:none}
+}
+
+.v4 .pl-rev{display:flex;align-items:flex-start;gap:10px;margin-top:20px;font-size:13.5px;color:var(--band-tx2)}
+.v4 .pl-rev .ic{width:16px;height:16px;color:var(--red);margin-top:2px;flex:none}
+
+.v4 .pl-legal{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
+.v4 .pl-legal a{
+  font-size:13px;font-weight:600;color:var(--paper);
+  border:1px solid color-mix(in srgb,var(--paper) 24%,transparent);border-radius:999px;
+  padding:9px 16px;transition:background .2s,border-color .2s,color .2s;
+}
+.v4 .pl-legal a:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+@media (max-width:880px){.v4 .pl-trust{grid-template-columns:1fr}}
+
+/* ficha del negocio */
+.v4 .pl-biz{
+  display:grid;grid-template-columns:1.35fr 1fr;gap:clamp(24px,4vw,48px);
+  border:1px solid var(--line);border-radius:18px;background:var(--paper);
+  box-shadow:var(--sh-soft);padding:clamp(24px,3.4vw,40px);
+}
+.v4 .pl-dl{display:grid;grid-template-columns:1fr 1fr;gap:20px 32px;margin:0}
+.v4 .pl-dl dt{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:6px;
+}
+.v4 .pl-dl dd{margin:0;font-size:15px;color:var(--ink);line-height:1.5}
+.v4 .pl-dl dd a{border-bottom:1px solid var(--line);transition:color .2s,border-color .2s}
+.v4 .pl-dl dd a:hover{color:var(--red);border-color:var(--red)}
+.v4 .pl-todo{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:13px;color:var(--red)}
+.v4 .pl-biz-side{
+  border-left:1px solid var(--line);padding-left:clamp(24px,3vw,40px);
+  display:flex;flex-direction:column;align-items:flex-start;gap:14px;
+}
+.v4 .pl-biz-side img{width:44px;height:44px;object-fit:contain}
+.v4 .pl-biz-side p{color:var(--ink-2);font-size:14px}
+@media (max-width:820px){
+  .v4 .pl-biz{grid-template-columns:1fr}
+  .v4 .pl-biz-side{border-left:0;border-top:1px solid var(--line);padding-left:0;padding-top:24px}
+}
+@media (max-width:520px){.v4 .pl-dl{grid-template-columns:1fr}}

@@ -35,6 +35,12 @@
     <lastmod>2026-04-24</lastmod>
   </url>
   <url>
+    <loc>https://www.novasys.com.pe/soluciones/aria</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-09-07</lastmod>
+  </url>
+  <url>
     <loc>https://www.novasys.com.pe/soluciones/software-a-medida</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -241,6 +247,32 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <lastmod>2026-04-24</lastmod>
+  </url>
+
+  <!-- ===== Legal (URLs públicas requeridas por la App de Meta) ===== -->
+  <url>
+    <loc>https://www.novasys.com.pe/legal/privacidad</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-09-07</lastmod>
+  </url>
+  <url>
+    <loc>https://www.novasys.com.pe/legal/terminos</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+    <lastmod>2026-09-07</lastmod>
+  </url>
+  <url>
+    <loc>https://www.novasys.com.pe/legal/terminos/aria</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-09-07</lastmod>
+  </url>
+  <url>
+    <loc>https://www.novasys.com.pe/legal/eliminacion-de-datos</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-09-07</lastmod>
   </url>
 
 </urlset>

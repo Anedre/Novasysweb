@@ -76,6 +76,10 @@ export default function HeaderV4() {
                   <span className="di"><Icon id="i-server" /></span>
                   <span><b>Infraestructura HP / HPE</b><small>Cómputo, ProLiant y storage con soporte on-site.</small></span>
                 </Link>
+                <Link to="/soluciones/aria">
+                  <span className="di"><Icon id="i-msg" /></span>
+                  <span><b>ARIA — atención al cliente</b><small>WhatsApp, Instagram, Messenger, correo y llamadas en una bandeja.</small></span>
+                </Link>
                 <Link className="d-foot" to="/contacto">¿No sabes cuál necesitas? Te ayudamos a elegir <Icon id="i-arrow" /></Link>
               </div>
             </div>
@@ -108,6 +112,7 @@ export default function HeaderV4() {
           <Link to="/soluciones" onClick={close}><span className="di"><Icon id="i-code" /></span>Software empresarial</Link>
           <Link to="/cloud" onClick={close}><span className="di"><Icon id="i-cloud" /></span>Cloud AWS</Link>
           <Link to="/infraestructura" onClick={close}><span className="di"><Icon id="i-server" /></span>Infraestructura HP / HPE</Link>
+          <Link to="/soluciones/aria" onClick={close}><span className="di"><Icon id="i-msg" /></span>ARIA — atención al cliente</Link>
         </div>
         <Link className="mm-link" to="/casos-de-exito" onClick={close}>Casos <Icon id="i-arrow" /></Link>
         <Link className="mm-link" to="/#metodo" onClick={close}>Método <Icon id="i-arrow" /></Link>

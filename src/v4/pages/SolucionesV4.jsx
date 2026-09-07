@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { useV4Page } from '../hooks';
 import { Icon } from '../Icons';
-import { IMG, Shead, CtaBand, CaseCard } from '../partials';
+import { IMG, Shead, CtaBand, CaseCard, AriaBand } from '../partials';
 import '../styles/soluciones.css';
 
 const MODULES = [
@@ -249,6 +249,9 @@ export default function SolucionesV4() {
                 <Link className="btn-red" to="/soluciones/software-a-medida">Cuéntanos tu caso</Link>
               </div>
             </div>
+          </div>
+          <div style={{ marginTop: 'clamp(24px,3vw,36px)' }}>
+            <AriaBand />
           </div>
         </div>
       </section>

@@ -102,6 +102,11 @@ export default function HomeV4() {
               <div className="svc-chips">
                 <span className="chip">Amazon Connect</span><span className="chip">Migración</span><span className="chip">SageMaker</span><span className="chip">Serverless</span>
               </div>
+              <Link className="svc-prod" to="/soluciones/aria">
+                <img className="only-light" src="/v4/aria/aria-mark.png" alt="" />
+                <img className="only-dark" src="/v4/aria/aria-mark-white.png" alt="" />
+                <span><b>ARIA</b> — nuestra plataforma de atención al cliente <i>→</i></span>
+              </Link>
             </div>
             <Link className="link svc-link" to="/cloud">Explorar <span className="ar">→</span></Link>
           </div>

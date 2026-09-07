@@ -51,6 +51,7 @@ export default function FooterV4() {
           <h4>Soluciones</h4>
           <ul>
             <li><Link to="/soluciones">Software empresarial</Link></li>
+            <li><Link to="/soluciones/aria">ARIA — atención al cliente</Link></li>
             <li><Link to="/cloud">Cloud AWS</Link></li>
             <li><Link to="/infraestructura">Infraestructura HP</Link></li>
             <li><Link to="/soluciones/software-a-medida">Desarrollo a medida</Link></li>
@@ -78,7 +79,12 @@ export default function FooterV4() {
         </div>
       </div>
       <div className="wrap ft-bot">
-        <span>© {new Date().getFullYear()} Novasys del Perú</span>
+        <span>© {new Date().getFullYear()} Novasys del Perú S.A.C.</span>
+        <nav className="ft-legal" aria-label="Legal">
+          <Link to="/legal/privacidad">Política de privacidad</Link>
+          <Link to="/legal/terminos/aria">Términos del servicio</Link>
+          <Link to="/legal/eliminacion-de-datos">Eliminación de datos</Link>
+        </nav>
         <span>Software · Cloud AWS · Infraestructura HP/HPE</span>
       </div>
     </footer>
