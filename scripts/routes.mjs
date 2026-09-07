@@ -172,8 +172,18 @@ export const REDIRECTS = [
   ['/legal', '/legal/privacidad'],
 ];
 
-/** Restos del WordPress/Joomla anterior: no tienen equivalente, deben dar 404. */
-export const GONE = ['/wp-content/<*>', '/wp-includes/<*>', '/wp-admin/<*>', '/wp-login.php'];
+/**
+ * Restos del WordPress/Joomla anterior. Están sin reglas A PROPÓSITO.
+ *
+ * Probado en producción el 2026-09-07: el status `404` de Amplify no devuelve un
+ * 404 de verdad — significa «redirige a la página 404», que después responde 200.
+ * Con target /index.html el resultado era 200, así que la regla era config muerta.
+ *
+ * Se resuelven por el otro lado: caen en el catch-all → NotFoundV4, que emite
+ * <meta name="robots" content="noindex">. Google renderiza JS, lee el noindex y
+ * las saca del índice, que es el objetivo real. No volver a añadir reglas 404.
+ */
+export const GONE = [];
 
 /**
  * Slugs Oracle que vivieron bajo tres prefijos distintos del sitio anterior y
