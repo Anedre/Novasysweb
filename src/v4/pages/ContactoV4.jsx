@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { useV4Page } from '../hooks';
 import { Icon } from '../Icons';
 import { Shead } from '../partials';
+import { sendAriaLead } from '../../lib/aria';
 import '../styles/contacto.css';
 import '../styles/contacto-extra.css';
 
@@ -15,10 +16,22 @@ const OPCIONES = [
 
 const PASOS = ['Necesidad', 'Tus datos', 'Mensaje'];
 
-// API del formulario: API Gateway → Lambda novasys-web-contacto → SES (us-east-1).
-// Envía a contacto@novasysperu.com + andre.alata@novasysperu.com desde web@novasys.com.pe.
-// Si se deja vacío, el wizard abre el correo del visitante (mailto) con todo prellenado.
+// Destino principal: ARIA (contact center) — el lead cae en la bandeja del equipo con
+// nombre, celular, correo, necesidad, mensaje y utm_* (ver src/lib/aria.js).
+// Copia por correo: API Gateway → Lambda novasys-web-contacto → SES (us-east-1),
+// a contacto@novasysperu.com + andre.alata@novasysperu.com desde web@novasys.com.pe.
+// Es best-effort: si el correo falla pero ARIA recibió el lead, el envío cuenta como OK.
+// Si ENDPOINT queda vacío, el wizard abre el correo del visitante (mailto) prellenado.
 const ENDPOINT = 'https://7lquw99pc9.execute-api.us-east-1.amazonaws.com/';
+const ARIA_FORM_ID = 'web-contacto';
+
+// Celular con código de país. Perú por defecto: 9 dígitos que empiezan en 9.
+const normalizarCelular = (raw) => {
+  const d = String(raw || '').replace(/\D/g, '');
+  if (d.length === 9 && d[0] === '9') return `+51${d}`;
+  if (d.length >= 10 && d.length <= 15) return `+${d}`;
+  return '';
+};
 const MAIL_DESTINO = 'contacto@novasysperu.com';
 
 const TITULOS = [
@@ -37,6 +50,7 @@ function WizardHero() {
   const [tipo, setTipo] = useState(null);
   const [nombre, setNombre] = useState('');
   const [email, setEmail] = useState('');
+  const [celular, setCelular] = useState('');
   const [msg, setMsg] = useState('');
   const [hp, setHp] = useState(''); // honeypot anti-bots
   const [sent, setSent] = useState(false);
@@ -45,7 +59,8 @@ function WizardHero() {
   const [error, setError] = useState(false);
 
   const emailOk = email.includes('@') && email.includes('.');
-  const paso2Ok = nombre.trim().length > 1 && emailOk;
+  const celularOk = normalizarCelular(celular) !== '';
+  const paso2Ok = nombre.trim().length > 1 && emailOk && celularOk;
 
   const elegir = (v) => { setTipo(v); setStep(1); };
 
@@ -55,7 +70,7 @@ function WizardHero() {
     if (!ENDPOINT) {
       // Fallback sin backend: abre el correo del visitante con todo prellenado.
       const asunto = encodeURIComponent(`Consulta web — ${tipo || 'General'} — ${nombre}`);
-      const cuerpo = encodeURIComponent(`Nombre: ${nombre}\nEmail: ${email}\nNecesidad: ${tipo || '—'}\n\n${msg}`);
+      const cuerpo = encodeURIComponent(`Nombre: ${nombre}\nEmail: ${email}\nCelular: ${celular}\nNecesidad: ${tipo || '—'}\n\n${msg}`);
       window.location.href = `mailto:${MAIL_DESTINO}?subject=${asunto}&body=${cuerpo}`;
       setVia('mailto');
       setSent(true);
@@ -63,17 +78,31 @@ function WizardHero() {
     }
     setSending(true);
     setError(false);
+    // Los bots llenan el honeypot: fingimos éxito sin tocar el contact center.
+    if (hp) { setVia('api'); setSent(true); setSending(false); return; }
+    const phone = normalizarCelular(celular);
+    const copiaCorreo = fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nombre, email, tipo, msg: `Celular: ${phone}\n\n${msg}`, web: hp }),
+    }).catch(() => null);
     try {
-      const r = await fetch(ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nombre, email, tipo, msg, web: hp }),
+      await sendAriaLead({
+        formId: ARIA_FORM_ID,
+        name: nombre.trim(),
+        phone,
+        email: email.trim(),
+        necesidad: tipo || 'General',
+        mensaje: msg.trim(),
+        pagina: 'Contacto',
       });
-      if (!r.ok) throw new Error(String(r.status));
       setVia('api');
       setSent(true);
     } catch {
-      setError(true);
+      // ARIA no recibió el lead: si al menos salió el correo, no perdemos la consulta.
+      const r = await copiaCorreo;
+      if (r && r.ok) { setVia('api'); setSent(true); }
+      else setError(true);
     }
     setSending(false);
   };
@@ -155,6 +184,17 @@ function WizardHero() {
                     <label>Email corporativo <b>*</b></label>
                     <input type="email" value={email} placeholder="nombre@empresa.com" onChange={(e) => setEmail(e.target.value)} />
                   </div>
+                </div>
+                <div>
+                  <label>Celular / WhatsApp <b>*</b></label>
+                  <input
+                    type="tel"
+                    inputMode="tel"
+                    autoComplete="tel"
+                    value={celular}
+                    placeholder="+51 999 999 999"
+                    onChange={(e) => setCelular(e.target.value)}
+                  />
                 </div>
               </div>
               <div className="wnav">
