@@ -110,7 +110,7 @@ export default function AmazonConnectV4() {
               <Link to="/cloud">Cloud AWS</Link><span className="sep">/</span>
               <b>Amazon Connect</b>
             </div>
-            <h1 className="rv d1" style={{ fontSize: 'clamp(38px,5.2vw,68px)' }}>El contact center que escala solo<span style={{ color: 'var(--red)' }}>.</span></h1>
+            <h1 className="rv d1" style={{ '--h1': 'clamp(38px,5.2vw,68px)' }}>El contact center que escala solo<span style={{ color: 'var(--red)' }}>.</span></h1>
             <p className="hero-sub rv d2">Amazon Connect: tu operación de atención completa en la nube — voz, chat y WhatsApp en un solo journey, IVR que entiende lenguaje natural y analytics en vivo. Sin hardware, pagando por uso.</p>
             <div className="hero-ctas rv d3">
               <Link className="btn" to="/contacto">Solicitar evaluación</Link>

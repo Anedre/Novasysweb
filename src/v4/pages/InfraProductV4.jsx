@@ -75,7 +75,7 @@ export default function InfraProductV4() {
               <Link to="/infraestructura">Infraestructura HP / HPE</Link><span className="sep">/</span>
               <b>{d.title}</b>
             </div>
-            <h1 className="rv d1" style={{ fontSize: 'clamp(36px,4.9vw,62px)' }}>{m.h1}</h1>
+            <h1 className="rv d1" style={{ '--h1': 'clamp(36px,4.9vw,62px)' }}>{m.h1}</h1>
             <p className="hero-sub rv d2">{d.description}</p>
             <div className="hero-ctas rv d3">
               <Link className="btn" to="/contacto">Solicitar cotización</Link>

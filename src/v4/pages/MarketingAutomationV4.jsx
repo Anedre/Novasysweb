@@ -123,7 +123,7 @@ export default function MarketingAutomationV4() {
               <Link to="/soluciones">Software empresarial</Link><span className="sep">/</span>
               <b>Marketing Automation</b>
             </div>
-            <h1 className="rv d1" style={{ fontSize: 'clamp(38px,5.2vw,68px)' }}>Campañas que caminan solas<span style={{ color: 'var(--red)' }}>.</span></h1>
+            <h1 className="rv d1" style={{ '--h1': 'clamp(38px,5.2vw,68px)' }}>Campañas que caminan solas<span style={{ color: 'var(--red)' }}>.</span></h1>
             <p className="hero-sub rv d2">Oracle Responsys y Eloqua: journeys multicanal —email, SMS, WhatsApp, push— que se disparan por el comportamiento de cada cliente y se miden de punta a punta.</p>
             <div className="hero-ctas rv d3">
               <Link className="btn" to="/contacto">Diseña tu primer journey</Link>

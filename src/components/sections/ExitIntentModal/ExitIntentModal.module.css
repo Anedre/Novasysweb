@@ -7,8 +7,21 @@
   display: grid;
   place-items: center;
   padding: 20px;
+  padding-top: calc(20px + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  overflow-y: auto;
   background: rgba(10, 10, 14, 0.55);
   backdrop-filter: blur(4px);
+}
+
+/* móvil apaisado: el modal es más alto que la pantalla → alineado arriba y con scroll */
+@media (max-height: 520px) {
+  .backdrop { align-items: start; }
+}
+
+/* plegable en postura laptop/mesa: el modal vive en la pantalla superior */
+@media (vertical-viewport-segments: 2) {
+  .backdrop { align-items: start; padding-top: 24px; }
 }
 
 .modal {

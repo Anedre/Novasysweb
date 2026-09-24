@@ -23,6 +23,7 @@ import './v4/styles/kit.css';
 import './v4/styles/color.css';
 import './v4/styles/shell.css';
 import './v4/styles/transitions.css';
+import './v4/styles/responsive.css'; // móviles, tablets, plegables, apaisado, táctil — va al final
 
 /** Scroll a anclas tipo /#metodo tras el cambio de ruta. */
 function HashScroll() {

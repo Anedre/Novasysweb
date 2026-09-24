@@ -96,7 +96,7 @@ export default function ConnectDialerV4() {
               <Link to="/cloud">Cloud AWS</Link><span className="sep">/</span>
               <b>Connect Dialer</b>
             </div>
-            <h1 className="rv d1" style={{ fontSize: 'clamp(38px,5.2vw,68px)' }}>Marcación masiva, sin cruzar la línea<span style={{ color: 'var(--red)' }}>.</span></h1>
+            <h1 className="rv d1" style={{ '--h1': 'clamp(38px,5.2vw,68px)' }}>Marcación masiva, sin cruzar la línea<span style={{ color: 'var(--red)' }}>.</span></h1>
             <p className="hero-sub rv d2">El marcador outbound nativo de Amazon Connect: campañas de cobranza, televentas y encuestas con el modo de marcación correcto para cada cartera — y compliance de fábrica.</p>
             <div className="hero-ctas rv d3">
               <Link className="btn" to="/contacto">Pedir análisis outbound</Link>

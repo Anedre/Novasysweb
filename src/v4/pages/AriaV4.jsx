@@ -260,7 +260,7 @@ export default function AriaV4() {
               <img className="only-dark" src={ARIA_IMG + 'aria-mark-white.png'} alt="" />
               <span className="tx"><b>ARIA</b><small>Producto de {EMPRESA.razon}</small></span>
             </div>
-            <h1 className="rv d1" style={{ fontSize: 'clamp(33px,4.3vw,56px)' }}>
+            <h1 className="rv d1" style={{ '--h1': 'clamp(33px,4.3vw,56px)' }}>
               Toda la conversación con tu cliente. En un solo lugar<span style={{ color: 'var(--red)' }}>.</span>
             </h1>
             <p className="hero-sub rv d2">

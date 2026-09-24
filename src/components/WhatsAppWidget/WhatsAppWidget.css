@@ -1,7 +1,11 @@
+/* Botón flotante de WhatsApp. Convive con .top-btn (volver arriba, v4) a su
+   derecha: 22px de margen + 46px de botón + 22px de hueco = 90px.
+   Las safe-areas (--safe-r/--safe-b, definidas en v4/styles/responsive.css)
+   lo sacan del notch y de la barra de gestos. */
 .whatsapp-widget {
   position: fixed;
-  bottom: 20px;
-  right: 90px;
+  bottom: calc(20px + var(--safe-b, 0px));
+  right: calc(90px + var(--safe-r, 0px));
   background-color: #25D366;
   color: white;
   border-radius: 50%;
@@ -11,31 +15,41 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  transition: transform 0.2s ease, background-color 0.2s ease, opacity 0.3s ease, visibility 0.3s;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   font-size: 22px;
   z-index: 9999;
   -webkit-box-reflect: below 0px linear-gradient(transparent, transparent, rgba(0, 0, 0, 0.2));
 }
 
-
-
-
-
 .whatsapp-widget:hover {
   transform: translateY(-10px);
   box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
 }
 
-@media only screen and (max-width: 900px) {
+/* con el menú móvil abierto no debe flotar sobre la navegación */
+html.menu-open .whatsapp-widget {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* móvil: .top-btn pasa a 44px en right/bottom 16px → 16 + 44 + 12 = 72px;
+   bottom 8px alinea los centros de ambos botones (30 vs 16 + 22) */
+@media only screen and (max-width: 640px) {
   .whatsapp-widget {
-    right: 86px !important; /* deja espacio entre ambos botones */
-    bottom: 16px !important;
+    right: calc(72px + var(--safe-r, 0px));
+    bottom: calc(8px + var(--safe-b, 0px));
+    width: 56px;
+    height: 56px;
   }
 }
-@media only screen and (max-width: 480px) {
-  .whatsapp-widget {
-    right: 78px !important;
-    bottom: 14px !important;
-  }
+
+/* en táctil el hover se queda pegado tras el tap */
+@media (hover: none) {
+  .whatsapp-widget:hover { transform: none; }
+}
+
+@media print {
+  .whatsapp-widget { display: none !important; }
 }

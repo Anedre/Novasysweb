@@ -113,7 +113,7 @@ export default function EventosV4() {
               <Link to="/nosotros">Empresa</Link><span className="sep">/</span>
               <b>Eventos & formación</b>
             </div>
-            <h1 className="rv d1" style={{ fontSize: 'clamp(40px,5.6vw,78px)' }}>Compartimos lo que implementamos<span style={{ color: 'var(--red)' }}>.</span></h1>
+            <h1 className="rv d1" style={{ '--h1': 'clamp(40px,5.6vw,78px)' }}>Compartimos lo que implementamos<span style={{ color: 'var(--red)' }}>.</span></h1>
             <p className="hero-sub rv d2">Webinars, talleres y encuentros presenciales — dictados por los mismos equipos que despliegan en producción, explicando cómo. Sin humo.</p>
             <div className="hero-ctas rv d3">
               <a className="btn" href="#newsletter">Avísame de la próxima</a>

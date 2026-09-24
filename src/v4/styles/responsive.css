@@ -1,0 +1,357 @@
+/* Responsive v4 — capa transversal de adaptación por dispositivo. Editable a mano.
+   Se carga DESPUÉS de base/kit/color/shell/transitions y ANTES de los CSS por
+   página (que llegan con el chunk lazy). Por eso, cuando una regla toca clases
+   de página se escribe con `.v4.v4` (sube la especificidad y gana el empate).
+
+   Lo que cubre, por bloques:
+     0. tokens de dispositivo (alto del header, safe-areas del notch)
+     1. higiene global (100dvh, safe-areas en .wrap, textos largos, min-width:0)
+     2. header + menú móvil (alturas reales, candado de scroll, tap en desplegable)
+     3. flotantes (volver arriba) fuera del notch y ocultos con el menú abierto
+     4. escalones de ancho:  ≤1180 · ≤1024 · ≤900 · ≤640 · ≤480 · ≤360 · ≤320
+        (laptop chico, tablet, plegable abierto, móvil grande, móvil, compacto,
+         Galaxy Fold cerrado 280px)
+     5. móvil apaisado (alto ≤ 520px)
+     6. puntero grueso / sin hover (áreas táctiles ≥ 44px, sin zoom iOS en inputs)
+     7. plegables: Viewport Segments (bisagra) y postura
+     8. pantallas grandes · alto contraste forzado · impresión */
+
+/* ── 0. Tokens de dispositivo ─────────────────────────────────────────── */
+:root{
+  --v4-hd-h:70px;
+  --v4-hd-h-sc:58px;
+  --safe-t:env(safe-area-inset-top,0px);
+  --safe-r:env(safe-area-inset-right,0px);
+  --safe-b:env(safe-area-inset-bottom,0px);
+  --safe-l:env(safe-area-inset-left,0px);
+  /* anclas (/#metodo, #modulos…) no quedan bajo el header pegajoso */
+  scroll-padding-top:calc(var(--v4-hd-h) + 16px);
+}
+@media (max-width:640px){
+  :root{--v4-hd-h:62px;--v4-hd-h-sc:56px}
+}
+.v4{--hd-h:var(--v4-hd-h)}
+
+/* ── 1. Higiene global ─────────────────────────────────────────────────── */
+/* 100vh en móvil incluye la barra del navegador; dvh es el alto real visible */
+.v4{min-height:100vh;min-height:100dvh}
+
+/* el contenido nunca cae bajo el notch en apaisado (viewport-fit=cover) */
+.v4 .wrap{
+  padding-left:max(var(--pad),var(--safe-l));
+  padding-right:max(var(--pad),var(--safe-r));
+}
+
+/* hijos de rejilla: sin min-width:0 un texto largo desborda la columna */
+.v4 .hero .wrap>*,.v4 .cta .wrap>*,.v4 .ft>*,.v4 .sb-grid>*,.v4 .steps>*,
+.v4 .prin>*,.v4 .pcards>*,.v4 .ccards>*,.v4 .prods>*,.v4 .hd-logo{min-width:0}
+
+/* correos, direcciones y URLs parten donde haga falta en pantallas de 280px */
+.v4 .ft-meta a,.v4 .ft-meta span,.v4 .mm-meta a,.v4 .cmeta a,.v4 .cmeta span,
+.v4 .cta-side .meta a,.v4 .pl-dl dd,.v4 .ft p{overflow-wrap:anywhere}
+
+/* Los heroes de detalle traen su tamaño de h1 desde el JSX como --h1 (un
+   style inline con font-size pisaría cualquier media query); aquí se aplica
+   y en los escalones ≤480 se le pone techo con min(). */
+.v4 .hero h1{font-size:var(--h1,clamp(42px,6.6vw,92px))}
+
+/* ── 2. Header + menú móvil ────────────────────────────────────────────── */
+.v4 header{padding-top:var(--safe-t)}
+.v4 .hd{height:var(--hd-h)}
+.v4 header.hd-sc .hd{height:var(--v4-hd-h-sc)}
+
+/* base.css fija el menú a 64px del borde: aquí sigue al alto real del header,
+   ocupa el alto visible (dvh) y respeta notch + barra de gestos */
+.v4 .m-menu{
+  inset:0;
+  height:100vh;height:100dvh;
+  padding-top:calc(var(--hd-h) + var(--safe-t) + 22px);
+  padding-bottom:calc(44px + var(--safe-b));
+  padding-left:max(var(--pad),var(--safe-l));
+  padding-right:max(var(--pad),var(--safe-r));
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+}
+/* candado de scroll del documento mientras el menú está abierto */
+html.menu-open{overflow:hidden}
+html.menu-open body{overflow:hidden;overscroll-behavior:none}
+
+/* desplegable «Soluciones»: en tablets con nav de escritorio (≥ 900px) el
+   hover no existe; HeaderV4 alterna .open al tocar el botón */
+.v4 .nav-item.open .drop{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0) scale(1)}
+@media (hover:none){
+  .v4 .nav-item:hover .drop,.v4 .nav-item:focus-within .drop{
+    opacity:0;visibility:hidden;transform:translateX(-50%) translateY(8px) scale(.985);
+  }
+  .v4 .nav-item.open .drop{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0) scale(1)}
+  .v4 .nav-item.open .nav-link{color:var(--ink)}
+  .v4 .nav-item.open .nav-link .ic{transform:rotate(180deg)}
+}
+
+/* ── 3. Flotantes ──────────────────────────────────────────────────────── */
+.v4 .top-btn{
+  right:calc(22px + var(--safe-r));
+  bottom:calc(22px + var(--safe-b));
+}
+html.menu-open .v4 .top-btn{opacity:0;visibility:hidden}
+
+/* ── 4. Escalones de ancho ─────────────────────────────────────────────── */
+
+/* ≤1180 · laptops chicos, iPad Pro apaisado: el nav de escritorio respira */
+@media (max-width:1180px){
+  .v4 .hd-nav{gap:22px}
+  .v4 .hd-right{gap:10px}
+}
+
+/* ≤1024 · iPad apaisado, Surface: aún nav de escritorio, más compacto */
+@media (max-width:1024px){
+  .v4 .hd-nav{gap:18px;font-size:13.5px}
+  .v4 .hd-cta{padding:9px 16px;font-size:13px}
+  .v4 .drop{width:min(350px,calc(100vw - 32px))}
+}
+
+/* ≤900 · tablet vertical y plegables abiertos (673–841px): ya hay burger
+   (base.css); el submenú aprovecha el ancho en dos columnas */
+@media (max-width:900px){
+  .v4 .m-menu .mm-sub{grid-template-columns:1fr 1fr}
+  .v4 .hero .wrap{padding-top:clamp(40px,7vh,72px)}
+}
+
+/* ≤640 · móviles grandes y phablets */
+@media (max-width:640px){
+  .v4 .m-menu .mm-sub{grid-template-columns:1fr}
+  .v4 .m-menu .mm-link{font-size:26px;padding:13px 0}
+  .v4 .hd-logo img{height:28px}
+
+  /* ritmo vertical más corto: las secciones no se separan con 100px en un móvil */
+  .v4 section{padding-top:clamp(52px,13vw,72px)}
+  .v4 .photo-band,.v4 .mq,.v4 .cta{margin-top:clamp(52px,13vw,72px)}
+  .v4 .sec-tight{padding-top:clamp(40px,10vw,56px)}
+
+  /* cabecera de sección: etiqueta arriba, título debajo (no compiten en fila) */
+  .v4 .shead{flex-direction:column;align-items:flex-start;gap:8px;margin-bottom:26px}
+  .v4 .shead .lbl{order:-1;padding-top:0}
+  .v4 .shead h2{max-width:none}
+
+  .v4 .hero h1{margin:16px 0 18px}
+  .v4 .hero-ctas{gap:16px 22px;margin-top:28px}
+  .v4 .photo-band img{height:clamp(240px,60vw,360px)}
+  .v4 .mq-seq figure{width:200px;height:130px}
+  .v4 .lg-row{padding:16px 0}
+  .v4 .ft{gap:26px 24px;padding-top:40px}
+  .v4 .ft-bot{padding-bottom:calc(22px + var(--safe-b))}
+  .v4 .top-btn{
+    width:44px;height:44px;
+    right:calc(16px + var(--safe-r));
+    bottom:calc(16px + var(--safe-b));
+  }
+}
+
+/* ≤480 · móviles (iPhone, Pixel, Galaxy S) */
+@media (max-width:480px){
+  /* titulares: clamp de base arranca en 42px, demasiado para 360–412px de ancho */
+  .v4 .hero h1{font-size:min(var(--h1,42px),clamp(32px,10vw,42px));line-height:1.02}
+  .v4.v4 .nos-h{font-size:clamp(32px,10vw,40px);max-width:none}
+  .v4.v4 .wiz h1,.v4.v4 .lg-hero h1,.v4.v4 .cdo-hero h1,.v4.v4 .hero-cover h1{font-size:clamp(30px,9vw,40px)}
+  .v4 .cta h2{font-size:clamp(28px,8.5vw,36px)}
+  .v4 .shead h2{font-size:clamp(26px,7.5vw,32px)}
+  .v4 .hero-sub{font-size:15px}
+  .v4 .stat .v{font-size:clamp(28px,8.5vw,34px)}
+
+  /* CTAs a todo el ancho: un botón de 15px de texto centrado se toca mejor */
+  .v4 .hero-ctas .btn,.v4 .cta-side .btn-red,.v4 .m-menu .mm-cta{width:100%;text-align:center}
+  .v4 .hero-ctas{gap:14px}
+  .v4 .cta-side{align-items:stretch}
+  .v4 .cta-side .meta{align-items:flex-start}
+
+  .v4 .sb-grid{padding-top:8px;padding-bottom:12px}
+  .v4 .partners .wrap{gap:8px}
+  .v4 .partners span{font-size:10.5px;padding:7px 12px}
+  .v4 .svc-num{font-size:22px}
+  .v4 .svc-t{font-size:21px}
+  .v4 .step{padding:18px 18px 20px}
+  .v4 .prin .bd{padding:18px 20px 22px}
+  .v4 .lg-client{font-size:17px}
+  .v4 .collage{gap:8px}
+  .v4 .faq summary{font-size:16px}
+
+  /* tarjetas grandes: menos padding, radios más suaves */
+  .v4 .formcard,.v4 .aria-band,.v4 .pl-trust,.v4 .pl-biz{padding:20px;border-radius:14px}
+  .v4 .m-menu{padding-top:calc(var(--hd-h) + var(--safe-t) + 14px)}
+}
+
+/* ≤360 · compactos: iPhone SE/mini, Galaxy Z Flip abierto, Z Fold cerrado (344px) */
+@media (max-width:360px){
+  .v4{--pad:16px}
+  .v4 .hero h1{font-size:min(var(--h1,42px),clamp(28px,9.5vw,34px))}
+  .v4.v4 .nos-h,.v4.v4 .wiz h1,.v4.v4 .lg-hero h1,.v4.v4 .cdo-hero h1,.v4.v4 .hero-cover h1{font-size:clamp(28px,9vw,34px)}
+  .v4 .hd-logo img{height:26px}
+  .v4 .m-menu .mm-link{font-size:22px}
+  .v4 .btn,.v4 .btn-red{padding:14px 20px;font-size:14.5px}
+  .v4 .hero-stats,.v4 .sb-grid{gap:0 16px}
+  .v4 .hero-photos{grid-template-columns:1fr}
+  .v4 .chip{font-size:10px;padding:4px 8px}
+  .v4 .step h3,.v4 .prin h3{font-size:19px}
+}
+
+/* ≤320 · Galaxy Fold cerrado (280px) y pantallas muy estrechas: una columna */
+@media (max-width:320px){
+  .v4{--pad:14px}
+  .v4 .hero-stats,.v4 .sb-grid,.v4 .ft,.v4 .steps,.v4 .m-menu .mm-sub{grid-template-columns:1fr}
+  .v4 .stat{padding:10px 0 14px}
+  .v4 .hero h1{font-size:min(var(--h1,42px),26px);hyphens:auto}
+  .v4 .stat .v{font-size:26px}
+  .v4 .hd-right{gap:6px}
+  .v4 .tbtn{width:36px;height:36px}
+  .v4 .partners span{white-space:normal;text-align:center}
+  .v4 .hero-ctas .link{font-size:14px}
+  .v4 .collage{max-width:none}
+  .v4.v4 .crmb-cols,.v4.v4 .acx-mets,.v4.v4 .ia-mets,.v4.v4 .kpis3,.v4.v4 .cdo-nav{grid-template-columns:1fr}
+  .v4.v4 .cdo-nav .nx{text-align:left}
+}
+
+/* ── 4b. Correcciones por página detectadas en la auditoría por viewport ── */
+
+/* rejillas auto-fill: minmax(280px) desborda cuando el viewport mide menos
+   (Galaxy Fold cerrado = 280px); min(280px,100%) es la forma canónica */
+.v4.v4 .ccards{grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr))}
+.v4.v4 .pcards{grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr))}
+
+/* /soluciones: único hero que no colapsaba a una columna en tablet, y el
+   coverflow quedaba sin ancho */
+@media (max-width:900px){
+  .v4.v4 .hero-sol .wrap{grid-template-columns:1fr}
+  /* con margin:auto un grid item encoge a su contenido, y el deck solo tiene
+     hijos absolutos → ancho 0; se le da ancho explícito (sigue centrado) */
+  .v4.v4 .hero-sol .deck{width:100%;margin-left:auto}
+}
+
+/* /eventos: el hero centrado se desplazaba porque el bloque de texto (con
+   max-width inline) encogía a su min-content, más ancho que la columna */
+.v4.v4 .hero-ev .wrap>*{min-width:0;width:100%}
+
+/* /nosotros: en móvil los medallones orbitales caían sobre el titular y el CTA */
+@media (max-width:640px){
+  .v4.v4 .oring .omed{display:none}
+}
+
+/* compactos ≤360: piezas que aún se apretaban */
+@media (max-width:360px){
+  .v4.v4 .lg-delta small{white-space:normal}
+  .v4.v4 .ifp-sibs{flex-wrap:wrap}
+  .v4.v4 .tfc-kpis{grid-template-columns:1fr 1fr}
+}
+
+/* Fold cerrado ≤320: una columna y etiquetas que pueden partir */
+@media (max-width:320px){
+  .v4.v4 .lg-row{grid-template-columns:1fr;grid-template-areas:"c" "s" "d" "p";gap:6px}
+  .v4.v4 .lg-delta{text-align:left;margin-top:4px}
+  .v4.v4 .lg-proj{margin-top:2px}
+  .v4.v4 .tfc-kpis{grid-template-columns:1fr}
+  .v4.v4 .chip,.v4.v4 .mgw-h .st{white-space:normal}
+}
+
+/* ── 5. Móvil apaisado (alto ≤ 520px) ──────────────────────────────────── */
+@media (max-height:520px) and (orientation:landscape){
+  .v4 .hero .wrap{padding-top:32px;padding-bottom:32px}
+  .v4 .hero h1{font-size:min(var(--h1,44px),clamp(28px,5.5vw,44px));margin:12px 0 14px}
+  .v4 .hero-ctas{margin-top:20px}
+  .v4 .collage{max-width:380px;margin-inline:auto}
+  .v4 section{padding-top:48px}
+  .v4 .photo-band img{height:min(320px,85vh)}
+  .v4.v4 .hero-nos2{min-height:0;padding:40px 0}
+
+  /* el menú cabe sin scroll: submenú en dos columnas y tipografía contenida */
+  .v4 .m-menu{
+    padding-top:calc(var(--hd-h) + var(--safe-t) + 12px);
+    padding-bottom:calc(20px + var(--safe-b));
+  }
+  .v4 .m-menu .mm-sub{grid-template-columns:1fr 1fr;padding:10px 0 6px}
+  .v4 .m-menu .mm-sub a{padding:8px 10px;font-size:14px}
+  .v4 .m-menu .mm-link{font-size:20px;padding:10px 0}
+  .v4 .m-menu .mm-cta{margin-top:14px;padding:12px}
+  .v4 .m-menu .mm-meta{flex-direction:row;flex-wrap:wrap;gap:10px 22px;margin-top:16px}
+}
+
+/* ── 6. Puntero grueso / sin hover ─────────────────────────────────────── */
+@media (pointer:coarse){
+  /* áreas táctiles ≥ 44px sin cambiar el dibujo */
+  .v4 .tbtn{width:44px;height:44px}
+  .v4 .burger{padding:10px;margin-right:-10px}
+  .v4 .hd-nav a,.v4 .nav-link{padding:10px 0}
+  .v4 .link{padding:6px 0 4px}
+  .v4 .ft-social a{width:42px;height:42px}
+  .v4 .ft li{margin-bottom:4px}
+  .v4 .ft li a{display:inline-block;padding:5px 0}
+  .v4 .ft-legal a{display:inline-block;padding:6px 0}
+  .v4 .m-menu .mm-sub a{padding:13px 12px}
+  .v4 .faq summary{padding:18px 2px}
+  .v4.v4 .fchips button{padding:11px 16px}
+  .v4.v4 .wiz-rail button{padding:6px 4px}
+  .v4.v4 .dk-prev,.v4.v4 .dk-next{width:46px;height:46px}
+  /* los puntos de carrusel miden 22×3px: se les da un área de toque invisible */
+  .v4.v4 .deck-dots i,.v4.v4 .pstack-dots i{position:relative}
+  .v4.v4 .deck-dots i::after,.v4.v4 .pstack-dots i::after{content:"";position:absolute;inset:-14px -4px}
+
+  /* iOS hace zoom al enfocar un input con letra < 16px */
+  .v4.v4 .field input,.v4.v4 .field select,.v4.v4 .field textarea,
+  .v4.v4 .wfields input,.v4.v4 .wfields textarea,
+  .v4.v4 .ev-nlf input{font-size:16px}
+}
+@media (hover:none){
+  /* en táctil el :hover se queda «pegado» tras el tap: sin elevaciones */
+  .v4 .btn:hover,.v4 .btn-red:hover,.v4 .step:hover,.v4 .pcard:hover,.v4 .ccard:hover,
+  .v4 .prod:hover,.v4 .prin .p:hover,.v4 .tbtn:hover,.v4 .ft-social a:hover,
+  .v4 .svc-prod:hover,.v4.v4 .opt:hover{transform:none}
+  .v4 .hero-photos figure:hover img,.v4 .svc-row:hover .svc-ph img,.v4 .ccard:hover .ph img,
+  .v4 .bento figure:hover img,.v4 .prin .p:hover .ph img,.v4 .feat:hover .ph img{transform:none}
+}
+
+/* ── 7. Plegables ──────────────────────────────────────────────────────── */
+/* Dos pantallas lado a lado (Surface Duo) o plegable en postura «libro»:
+   la bisagra parte el viewport en dos segmentos horizontales. Las rejillas de
+   dos columnas alinean cada columna con una pantalla, y el hueco entre ellas
+   absorbe la bisagra, así ningún titular queda partido. Navegadores sin
+   Viewport Segments ignoran el bloque completo. */
+@media (horizontal-viewport-segments:2){
+  .v4{
+    --seg-l:env(viewport-segment-right 0 0);
+    --seg-r:env(viewport-segment-left 1 0);
+    --hinge:calc(var(--seg-r) - var(--seg-l));
+  }
+  .v4 .wrap{max-width:none}
+  .v4.v4 .hero .wrap,.v4.v4 .cta .wrap,.v4.v4 .hi-grid,.v4.v4 .feat,.v4.v4 .aria-band,
+  .v4.v4 .pl-trust,.v4.v4 .pl-biz,.v4.v4 .ecm-dark,.v4.v4 .ev-nl{
+    grid-template-columns:calc(var(--seg-l) - var(--pad)) 1fr;
+    column-gap:calc(var(--hinge) + var(--pad) * 2);
+  }
+  /* heroes de una sola columna se quedan así */
+  .v4.v4 :is(.hero-bi,.hero-med,.hero-ev,.hero-tec,.hero-legal,.hero-nos,.wiz) .wrap{grid-template-columns:1fr}
+  .v4 .m-menu .mm-sub{
+    grid-template-columns:calc(var(--seg-l) - var(--pad)) 1fr;
+    column-gap:calc(var(--hinge) + var(--pad) * 2);
+  }
+  .v4 .hero-stats{grid-template-columns:1fr 1fr;column-gap:calc(var(--hinge) + var(--pad) * 2)}
+}
+/* Pantalla superior/inferior (postura «laptop» o «mesa»): el menú y los
+   controles viven en la mitad superior, que es la que se mira. */
+@media (vertical-viewport-segments:2){
+  .v4 .m-menu{height:env(viewport-segment-bottom 0 0)}
+  .v4 .top-btn{bottom:auto;top:calc(env(viewport-segment-bottom 0 0) - 68px)}
+}
+
+/* ── 8. Grandes · contraste forzado · impresión ────────────────────────── */
+@media (min-width:1680px){
+  .v4{--max:1400px}
+}
+@media (forced-colors:active){
+  .v4 .btn,.v4 .btn-red,.v4 .hd-cta,.v4 .mm-cta,.v4 .tbtn,.v4 .chip{border:1px solid ButtonText}
+  .v4 .progress,.v4 .deck-dots i.on,.v4 .pstack-dots i.on{background:Highlight}
+}
+@media print{
+  .v4 header,.v4 footer .ft-social,.v4 .top-btn,.v4 .whatsapp-widget,.v4 .m-menu,
+  .v4 .pt-veil,.v4 .s-hint,.v4 .hero-grid,.v4 .mq{display:none!important}
+  .v4 .rv,.v4 .wp,.v4 .collage .cl{opacity:1!important;transform:none!important;clip-path:none!important}
+  .v4 .hero .wrap,.v4 .cta .wrap{grid-template-columns:1fr}
+  .v4 .cta{background:none;color:inherit;border-top:1px solid #000}
+}

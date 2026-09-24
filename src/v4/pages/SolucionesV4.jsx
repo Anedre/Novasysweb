@@ -185,7 +185,7 @@ export default function SolucionesV4() {
         <div className="wrap">
           <div>
             <div className="lbl rv">Soluciones — <b>Software empresarial</b></div>
-            <h1 className="rv d1" style={{ fontSize: 'clamp(38px,5.6vw,76px)' }}>Software que piensa en tu <span style={{ color: 'var(--red)' }}>proceso</span>.</h1>
+            <h1 className="rv d1" style={{ '--h1': 'clamp(38px,5.6vw,76px)' }}>Software que piensa en tu <span style={{ color: 'var(--red)' }}>proceso</span>.</h1>
             <p className="hero-sub rv d2">CRM, analítica, marketing y gestión documental sobre Oracle y ELO — más desarrollo a medida cuando ningún producto encaja.</p>
             <div className="hero-ctas rv d3">
               <Link className="btn" to="/contacto">Consultoría gratuita</Link>

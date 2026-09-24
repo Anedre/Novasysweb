@@ -171,7 +171,7 @@ export default function CloudV4() {
         <div className="wrap">
           <div className="hc-top">
             <div className="lbl rv">Soluciones — <b>Cloud AWS</b></div>
-            <h1 className="rv d1" style={{ fontSize: 'clamp(38px,5.4vw,72px)' }}>La nube que sostiene tu operación<span style={{ color: 'var(--red)' }}>.</span></h1>
+            <h1 className="rv d1" style={{ '--h1': 'clamp(38px,5.4vw,72px)' }}>La nube que sostiene tu operación<span style={{ color: 'var(--red)' }}>.</span></h1>
             <p className="hero-sub rv d2">Contact centers con IA, migraciones sin interrupciones y arquitecturas serverless. Todo el poder de AWS, operado por un equipo local certificado.</p>
             <div className="hero-ctas rv d3">
               <Link className="btn" to="/contacto">Consultoría cloud</Link>

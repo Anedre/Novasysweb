@@ -37,7 +37,7 @@ export default function TecnologiasHubV4() {
               <Link to="/soluciones">Soluciones</Link><span className="sep">/</span>
               <b>Tecnologías Oracle</b>
             </div>
-            <h1 className="rv d1" style={{ fontSize: 'clamp(38px,5.2vw,72px)' }}>El catálogo Oracle, sin folletería<span style={{ color: 'var(--red)' }}>.</span></h1>
+            <h1 className="rv d1" style={{ '--h1': 'clamp(38px,5.2vw,72px)' }}>El catálogo Oracle, sin folletería<span style={{ color: 'var(--red)' }}>.</span></h1>
             <p className="hero-sub rv d2">Nueve plataformas Oracle que implementamos y operamos en el Perú — cada una con su ficha técnica: qué hace, con qué se integra y en qué solución nuestra vive.</p>
           </div>
         </div>

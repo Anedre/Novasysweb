@@ -81,7 +81,7 @@ export default function InfraV4() {
           <Showcase />
           <div>
             <div className="lbl rv">Soluciones — <b>Infraestructura HP / HPE</b></div>
-            <h1 className="rv d1" style={{ fontSize: 'clamp(38px,5.4vw,72px)' }}>Infraestructura que sostiene el core<span style={{ color: 'var(--red)' }}>.</span></h1>
+            <h1 className="rv d1" style={{ '--h1': 'clamp(38px,5.4vw,72px)' }}>Infraestructura que sostiene el core<span style={{ color: 'var(--red)' }}>.</span></h1>
             <p className="hero-sub rv d2">Cómputo, servidores HPE y almacenamiento enterprise — dimensionados sobre carga real, con soporte on-site en Lima y el respaldo de nuestra alianza con HP / HPE.</p>
             <div className="hero-ctas rv d3">
               <Link className="btn" to="/contacto">Cotizar equipos</Link>

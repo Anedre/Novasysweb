@@ -118,7 +118,7 @@ export default function SoftwareMedidaV4() {
               <Link to="/soluciones">Software empresarial</Link><span className="sep">/</span>
               <b>Software a Medida</b>
             </div>
-            <h1 className="rv d1" style={{ fontSize: 'clamp(38px,5.2vw,68px)' }}>Si no existe, lo construimos<span style={{ color: 'var(--red)' }}>.</span></h1>
+            <h1 className="rv d1" style={{ '--h1': 'clamp(38px,5.2vw,68px)' }}>Si no existe, lo construimos<span style={{ color: 'var(--red)' }}>.</span></h1>
             <p className="hero-sub rv d2">Cuando ningún producto encaja con tu proceso, el software se hace a medida: cloud-native sobre AWS, integrado con tus sistemas y con demos que ves funcionando cada dos semanas — del código al soporte, el mismo equipo.</p>
             <div className="hero-ctas rv d3">
               <Link className="btn" to="/contacto">Cuéntanos tu caso</Link>

@@ -113,7 +113,7 @@ export default function CrmVentasV4() {
               <Link to="/soluciones">Software empresarial</Link><span className="sep">/</span>
               <b>CRM & Ventas</b>
             </div>
-            <h1 className="rv d1" style={{ fontSize: 'clamp(38px,5.2vw,68px)' }}>Todo el pipeline en una sola vista<span style={{ color: 'var(--red)' }}>.</span></h1>
+            <h1 className="rv d1" style={{ '--h1': 'clamp(38px,5.2vw,68px)' }}>Todo el pipeline en una sola vista<span style={{ color: 'var(--red)' }}>.</span></h1>
             <p className="hero-sub rv d2">Implementamos Oracle Sales Cloud — o un CRM a tu medida — para que leads, oportunidades y cierres vivan en un solo lugar, integrado con tu email, ERP y BI desde el día uno.</p>
             <div className="hero-ctas rv d3">
               <Link className="btn" to="/contacto">Agenda una demo</Link>

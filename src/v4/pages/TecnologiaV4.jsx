@@ -50,7 +50,7 @@ export default function TecnologiaV4() {
               <Link to="/tecnologias">Oracle</Link><span className="sep">/</span>
               <b>{t.title}</b>
             </div>
-            <h1 className="rv d1" style={{ fontSize: 'clamp(34px,4.6vw,58px)' }}>{t.title}<span style={{ color: 'var(--red)' }}>.</span></h1>
+            <h1 className="rv d1" style={{ '--h1': 'clamp(34px,4.6vw,58px)' }}>{t.title}<span style={{ color: 'var(--red)' }}>.</span></h1>
             <p className="hero-sub rv d2">{t.description}</p>
             <div className="hero-ctas rv d3">
               <Link className="btn" to="/contacto">Solicitar una demo</Link>

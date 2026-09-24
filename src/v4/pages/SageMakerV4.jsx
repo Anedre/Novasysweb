@@ -126,7 +126,7 @@ export default function SageMakerV4() {
               <Link to="/cloud">Cloud AWS</Link><span className="sep">/</span>
               <b>IA & Machine Learning</b>
             </div>
-            <h1 className="rv d1" style={{ fontSize: 'clamp(38px,5.2vw,68px)' }}>Del notebook a producción<span style={{ color: 'var(--red)' }}>.</span></h1>
+            <h1 className="rv d1" style={{ '--h1': 'clamp(38px,5.2vw,68px)' }}>Del notebook a producción<span style={{ color: 'var(--red)' }}>.</span></h1>
             <p className="hero-sub rv d2">Amazon SageMaker para modelos propios, Amazon Bedrock para IA generativa — y MLOps para que el modelo siga vivo después del demo. Con tus datos, dentro de tu cuenta AWS.</p>
             <div className="hero-ctas rv d3">
               <Link className="btn" to="/contacto">Evaluar mi caso de uso</Link>

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { Icon } from './Icons';
 
@@ -8,9 +8,25 @@ const LOGO_DARK = '/v4/img/novasys-logo-dark.png';
 
 export default function HeaderV4() {
   const { toggleColorMode } = useTheme();
+  const { pathname } = useLocation();
   const hdRef = useRef(null);
   const pgRef = useRef(null);
+  const solRef = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  // desplegable «Soluciones» abierto por tap (tablets con nav de escritorio,
+  // donde no hay hover); en desktop el CSS lo abre por :hover / :focus-within
+  const [solOpen, setSolOpen] = useState(false);
+
+  // cualquier cambio de ruta cierra ambos menús (también con atrás/adelante)
+  useEffect(() => { setMenuOpen(false); setSolOpen(false); }, [pathname]);
+
+  // tap fuera del desplegable lo cierra
+  useEffect(() => {
+    if (!solOpen) return undefined;
+    const onDown = (e) => { if (solRef.current && !solRef.current.contains(e.target)) setSolOpen(false); };
+    document.addEventListener('pointerdown', onDown);
+    return () => document.removeEventListener('pointerdown', onDown);
+  }, [solOpen]);
 
   // hide-on-scroll + sombra + barra de progreso
   useEffect(() => {
@@ -59,8 +75,14 @@ export default function HeaderV4() {
             <img className="only-dark" src={LOGO_DARK} alt="Novasys" />
           </Link>
           <nav className="hd-nav" aria-label="Principal">
-            <div className="nav-item">
-              <button className="nav-link" type="button" aria-haspopup="true">
+            <div ref={solRef} className={solOpen ? 'nav-item open' : 'nav-item'}>
+              <button
+                className="nav-link"
+                type="button"
+                aria-haspopup="true"
+                aria-expanded={solOpen}
+                onClick={() => setSolOpen((v) => !v)}
+              >
                 Soluciones <Icon id="i-chev" />
               </button>
               <div className="drop">

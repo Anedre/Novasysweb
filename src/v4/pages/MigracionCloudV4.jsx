@@ -99,7 +99,7 @@ export default function MigracionCloudV4() {
               <Link to="/cloud">Cloud AWS</Link><span className="sep">/</span>
               <b>Migración Cloud</b>
             </div>
-            <h1 className="rv d1" style={{ fontSize: 'clamp(38px,5.2vw,68px)' }}>A la nube por olas, no de un salto<span style={{ color: 'var(--red)' }}>.</span></h1>
+            <h1 className="rv d1" style={{ '--h1': 'clamp(38px,5.2vw,68px)' }}>A la nube por olas, no de un salto<span style={{ color: 'var(--red)' }}>.</span></h1>
             <p className="hero-sub rv d2">Migramos tu infraestructura a AWS con un plan por olas: cada carga se replica, se valida y recién entonces se corta — con rollback listo y downtime bajo control.</p>
             <div className="hero-ctas rv d3">
               <Link className="btn" to="/contacto">Pedir TCO comparativo</Link>

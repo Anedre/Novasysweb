@@ -109,7 +109,7 @@ export default function GestionDocumentalV4() {
               <Link to="/soluciones">Software empresarial</Link><span className="sep">/</span>
               <b>Gestión Documental</b>
             </div>
-            <h1 className="rv d1" style={{ fontSize: 'clamp(38px,5.2vw,68px)' }}>Cada documento sabe dónde vive<span style={{ color: 'var(--red)' }}>.</span></h1>
+            <h1 className="rv d1" style={{ '--h1': 'clamp(38px,5.2vw,68px)' }}>Cada documento sabe dónde vive<span style={{ color: 'var(--red)' }}>.</span></h1>
             <p className="hero-sub rv d2">Implementamos ELO ECM: los documentos se capturan, se leen, se clasifican y se aprueban solos — con trazabilidad completa y retención legal que resiste cualquier auditoría.</p>
             <div className="hero-ctas rv d3">
               <Link className="btn" to="/contacto">Calcula tu ROI documental</Link>

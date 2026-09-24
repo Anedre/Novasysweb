@@ -107,7 +107,7 @@ export default function BusinessIntelligenceV4() {
               <Link to="/soluciones">Software empresarial</Link><span className="sep">/</span>
               <b>Business Intelligence</b>
             </div>
-            <h1 className="rv d1" style={{ fontSize: 'clamp(38px,5.2vw,68px)' }}>Pregúntale a tus datos<span style={{ color: 'var(--red)' }}>.</span></h1>
+            <h1 className="rv d1" style={{ '--h1': 'clamp(38px,5.2vw,68px)' }}>Pregúntale a tus datos<span style={{ color: 'var(--red)' }}>.</span></h1>
             <p className="hero-sub rv d2">Data warehouse y dashboards con Oracle Analytics: una sola verdad para ventas, finanzas y operaciones — que se actualiza sola y responde en segundos, no en reuniones.</p>
             <div className="hero-ctas rv d3">
               <Link className="btn" to="/contacto">Quiero un dashboard así</Link>
