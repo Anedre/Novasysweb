@@ -57,9 +57,12 @@
 }
 .v4 .cdl-logo{
   background:#fff;border:1px solid var(--line);border-radius:12px;
-  display:grid;place-items:center;height:74px;padding:14px;margin-bottom:18px;
+  display:flex;align-items:center;justify-content:center;height:112px;padding:16px 22px;margin-bottom:18px;
 }
-.v4 .cdl-logo img{max-height:100%;max-width:70%;object-fit:contain}
+/* los logos vienen normalizados a 2:1 (scripts/logos.mjs). El alto del <img>
+   se ata al de la caja (flex: el 100% resuelve contra un alto definido; en el
+   grid anterior la fila era auto y el logo se salía del recuadro). */
+.v4 .cdl-logo img{height:100%;width:auto;max-width:100%;object-fit:contain}
 .v4 .cdl-k{border-top:1px solid var(--line);padding:13px 0 15px}
 .v4 .cdl-k:first-of-type{border-top:1px solid var(--ink)}
 .v4 .cdl-k .v{

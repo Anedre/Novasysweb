@@ -19,7 +19,6 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   font-size: 22px;
   z-index: 9999;
-  -webkit-box-reflect: below 0px linear-gradient(transparent, transparent, rgba(0, 0, 0, 0.2));
 }
 
 .whatsapp-widget:hover {

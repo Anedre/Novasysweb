@@ -1,9 +1,10 @@
-import EntelLogo from '../img/entel.png';
-import RenzoLogo from '../img/RenzoC.png';
-import PacificoLogo from '../img/pacifico.svg';
-import InterbankLogo from '../img/Interbank_logo.png';
-import AmericatelLogo from '../img/americatel.png';
-import CentrumLogo from '../img/centrum.png';
+// Logos normalizados a una misma caja (640×320, sin aire): scripts/logos.mjs
+import EntelLogo from '../img/casos/entel.webp';
+import RenzoLogo from '../img/casos/renzo-costa.webp';
+import PacificoLogo from '../img/casos/pacifico.webp';
+import InterbankLogo from '../img/casos/interbank.webp';
+import AmericatelLogo from '../img/casos/americatel.webp';
+import CentrumLogo from '../img/casos/centrum.webp';
 
 export const featuredCases = [
   {
