@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useV4Page } from '../hooks';
 import { Icon } from '../Icons';
 import { Shead, CtaBand, BloqueDatos, FichaNegocio } from '../partials';
+import Photo from '../Photo';
 import { EMPRESA } from '../../data/empresa';
 import { getProductoLegal } from '../../data/legal.jsx';
 import '../styles/detail-kit.css';
@@ -120,11 +121,61 @@ const MODULOS = [
   },
 ];
 
-const PARA_QUIEN = [
-  { t: 'Universidades y centros de estudios', d: 'Postulantes que escriben por WhatsApp a toda hora, con seguimiento desde la consulta hasta la matrícula.' },
-  { t: 'Retail y comercio', d: 'Stock, envíos y postventa resueltos en el mismo canal donde el cliente ya está escribiendo.' },
-  { t: 'Servicios y cobranzas', d: 'Campañas de recordatorio y atención con evidencia completa de cada conversación.' },
+/* Para quién es: un escenario por sector. Cada uno trae la conversación de
+   ejemplo que se «actúa» en el teléfono (from: in = cliente, bot = ARIA,
+   out = asesor, sys = línea de sistema) y el paso del flujo que ilumina cada
+   mensaje. Las conversaciones son ilustrativas, como las del hero. */
+const ESCENARIOS = [
+  {
+    id: 'edu', icon: 'i-users', t: 'Universidades y centros de estudios',
+    d: 'Postulantes que escriben por WhatsApp a toda hora, con seguimiento desde la consulta hasta la matrícula.',
+    photo: '090-team.jpg', alt: 'Estudiantes conversando con sus laptops',
+    canal: { icon: 'i-msg', name: 'WhatsApp' }, av: 'VR', who: 'Valeria R.', when: '22:14', estado: 'Atendido por IA',
+    msgs: [
+      { from: 'in', step: 0, t: 'Hola, ¿todavía puedo postular a Administración? ¿Qué documentos necesito?' },
+      { from: 'bot', step: 1, t: 'Sí, las inscripciones siguen abiertas. Necesitas DNI, certificado de estudios y una foto. ¿Te agendo una llamada con Admisión?' },
+      { from: 'in', step: 1, t: 'Sí, mañana en la tarde por favor' },
+      { from: 'sys', step: 2, t: 'Cita creada · derivado a Admisión' },
+      { from: 'out', step: 3, t: 'Hola Valeria, soy Carla de Admisión. Te llamo mañana a las 4 p.m. y te dejo el link de preinscripción por aquí.' },
+    ],
+    resumen: 'consulta fuera de horario, cita creada y postulante en seguimiento.',
+    tip: 'Postulante en embudo',
+    flow: ['Postulante escribe', 'ARIA responde 24/7', 'Deriva a Admisión', 'Seguimiento a matrícula'],
+  },
+  {
+    id: 'retail', icon: 'i-box', t: 'Retail y comercio',
+    d: 'Stock, envíos y postventa resueltos en el mismo canal donde el cliente ya está escribiendo.',
+    photo: '020-callcenter.jpg', alt: 'Pago con tarjeta en un punto de venta',
+    canal: { icon: 'i-ig', name: 'Instagram' }, av: 'CQ', who: '@camila.qv', when: 'hace 1 min', estado: 'Con un asesor',
+    msgs: [
+      { from: 'in', step: 0, t: '¿Tienen la zapatilla del post en talla 38? ¿Envían a Arequipa?' },
+      { from: 'bot', step: 1, t: 'Sí, queda stock en 38. El envío a Arequipa demora 2 a 3 días hábiles. ¿Te separo un par?' },
+      { from: 'in', step: 1, t: 'Sí. Y quiero cambiar la talla del pedido de la semana pasada' },
+      { from: 'sys', step: 3, t: 'Pedido anterior ubicado · postventa en el mismo hilo' },
+      { from: 'out', step: 2, t: 'Listo, Camila: par separado y cambio en curso. Te llega el jueves con la guía por aquí.' },
+    ],
+    resumen: 'venta desde Instagram y cambio de talla resueltos sin cambiar de canal.',
+    tip: 'Venta + postventa',
+    flow: ['Cliente pregunta stock', 'ARIA confirma y ofrece', 'Asesor cierra la venta', 'Postventa en el mismo hilo'],
+  },
+  {
+    id: 'cobr', icon: 'i-send', t: 'Servicios y cobranzas',
+    d: 'Campañas de recordatorio y atención con evidencia completa de cada conversación.',
+    photo: '050-meeting.jpg', alt: 'Documentos y calculadora sobre un escritorio',
+    canal: { icon: 'i-msg', name: 'WhatsApp · campaña' }, av: 'CM', who: 'Carlos M.', when: '09:30', estado: 'Con un asesor',
+    msgs: [
+      { from: 'bot', step: 0, t: 'Hola Carlos, te recordamos que tu cuota vence el 30. Puedes pagar desde este enlace o responder si necesitas apoyo.' },
+      { from: 'in', step: 1, t: 'Necesito fraccionarla, ¿se puede?' },
+      { from: 'sys', step: 2, t: 'Derivado a Cobranzas · evidencia guardada: hora, canal y mensajes' },
+      { from: 'out', step: 3, t: 'Claro, Carlos. Te propongo dos cuotas: te envío el acuerdo por este mismo chat para que lo confirmes.' },
+      { from: 'in', step: 3, t: 'Perfecto, gracias' },
+    ],
+    resumen: 'recordatorio con plantilla aprobada, acuerdo de pago con trazabilidad completa.',
+    tip: 'Acuerdo con evidencia',
+    flow: ['Campaña de recordatorio', 'Cliente responde', 'Deriva a Cobranzas', 'Evidencia completa'],
+  },
 ];
+const ESC_AUTOPLAY = 11000;
 
 /* Ficha legal del producto: de aquí salen el nombre, los canales, la marca y la
    URL de sus términos. Los bloques que revisa Meta se arman con ella. */
@@ -202,6 +253,151 @@ function Bandeja() {
         </div>
       </div>
       <p className="demo-note">Ejemplo ilustrativo de la bandeja · <b>haz clic en un canal</b></p>
+    </div>
+  );
+}
+
+/* Sección «Para quién es»: elige un sector y el teléfono actúa la conversación
+   de ese escenario (escribiendo… → burbuja), el flujo de abajo se ilumina al
+   ritmo de los mensajes y una barra avanza al siguiente sector. Se pausa al
+   pasar el mouse o enfocar; solo corre cuando está en pantalla; con
+   reduced-motion no hay autoplay ni tipeo (todo se muestra de una vez). */
+function Escenarios() {
+  const rootRef = useRef(null);
+  const [act, setAct] = useState(0);
+  const [inView, setInView] = useState(false);
+  const [paused, setPaused] = useState(false);
+  const [cycle, setCycle] = useState(0);
+  const [shown, setShown] = useState(0);
+  const [typing, setTyping] = useState(null);
+  const isStatic = () => document.documentElement.classList.contains('static');
+  const esc = ESCENARIOS[act];
+
+  // solo actúa cuando la sección está en pantalla
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el) return undefined;
+    const io = new IntersectionObserver(([en]) => setInView(en.isIntersecting), { threshold: 0.25 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  // reproducción de la conversación del escenario activo
+  useEffect(() => {
+    const msgs = esc.msgs;
+    if (!inView) { setShown(0); setTyping(null); return undefined; }
+    if (isStatic()) { setShown(msgs.length); setTyping(null); return undefined; }
+    setShown(0); setTyping(null);
+    const timers = [];
+    let i = 0;
+    const step = () => {
+      if (i >= msgs.length) return;
+      const m = msgs[i];
+      if (m.from === 'sys') { i += 1; setShown(i); timers.push(setTimeout(step, 650)); return; }
+      setTyping(m.from);
+      timers.push(setTimeout(() => {
+        setTyping(null); i += 1; setShown(i);
+        timers.push(setTimeout(step, 550));
+      }, m.from === 'bot' ? 700 : 850));
+    };
+    timers.push(setTimeout(step, 450));
+    return () => timers.forEach(clearTimeout);
+  }, [esc, inView]);
+
+  // autoplay al siguiente sector
+  useEffect(() => {
+    if (!inView || paused || isStatic()) return undefined;
+    const t = setTimeout(() => setAct((a) => (a + 1) % ESCENARIOS.length), ESC_AUTOPLAY);
+    return () => clearTimeout(t);
+  }, [act, inView, paused, cycle]);
+
+  const elegir = (i) => { setAct(i); setCycle((c) => c + 1); };
+  const resume = () => { setPaused(false); setCycle((c) => c + 1); };
+  const stepOn = shown ? esc.msgs[shown - 1].step : -1;
+  const playing = inView && !paused;
+
+  return (
+    <div
+      ref={rootRef}
+      className={`esc ${playing ? 'playing' : ''}`.trim()}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={resume}
+      onFocus={() => setPaused(true)}
+      onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) resume(); }}
+    >
+      <ol className="esc-tabs rv" role="tablist" aria-label="Sectores">
+        {ESCENARIOS.map((e, i) => (
+          <li key={e.id} role="presentation">
+            <button
+              type="button"
+              role="tab"
+              id={`esc-tab-${e.id}`}
+              aria-selected={i === act}
+              aria-controls="esc-stage"
+              className={`esc-tab ${i === act ? 'on' : ''}`.trim()}
+              onClick={() => elegir(i)}
+            >
+              <span className="en mono">{`0${i + 1}`}</span>
+              <span className="ei"><Icon id={e.icon} /></span>
+              <span className="et"><b>{e.t}</b><small>{e.d}</small></span>
+              <span className="bar" aria-hidden="true">{i === act && <i key={cycle} />}</span>
+            </button>
+          </li>
+        ))}
+      </ol>
+
+      <div className="esc-stage rv d1" id="esc-stage" role="tabpanel" aria-labelledby={`esc-tab-${esc.id}`}>
+        <i className="esc-ring" aria-hidden="true" />
+        <i className="esc-dot" aria-hidden="true" />
+        <div className="esc-scene hi-enter" key={esc.id}>
+          <div className="esc-photo">
+            <Photo src={esc.photo} alt={esc.alt} sizes="(max-width: 640px) 100vw, 360px" />
+          </div>
+          <div className="esc-phone" aria-label="Conversación de ejemplo">
+            <div className="ar-who">
+              <span className="av">{esc.av}</span>
+              <span className="id"><b>{esc.who}</b><small><Icon id={esc.canal.icon} /> {esc.canal.name} · {esc.when}</small></span>
+              <span className="st">{esc.estado}</span>
+            </div>
+            <div className="ar-msgs">
+              {esc.msgs.slice(0, shown).map((m, i) => (
+                m.from === 'sys'
+                  ? <span className="esc-sys" key={i}><Icon id="i-check" />{m.t}</span>
+                  : (
+                    <div className={`ar-b ${m.from}`} key={i}>
+                      {m.from === 'bot' && <span className="bt">ARIA</span>}
+                      {m.t}
+                    </div>
+                  )
+              ))}
+              {typing && (
+                <div className={`ar-b esc-typing ${typing}`} aria-hidden="true"><i /><i /><i /></div>
+              )}
+            </div>
+            <div className="ar-foot">
+              <span className="fi"><Icon id="i-zap" /></span>
+              <span className="fx"><b>Resumen automático</b> — {esc.resumen}</span>
+              <span className="tp">{esc.tip}</span>
+            </div>
+          </div>
+        </div>
+        <ol className="esc-flow" aria-label="Qué pasa en cada momento">
+          {esc.flow.map((f, i) => (
+            <li key={f} className={`esc-fn ${i <= stepOn ? 'on' : ''} ${i === stepOn ? 'now' : ''}`.trim()}>
+              <span className="mono">{`0${i + 1}`}</span>{f}
+            </li>
+          ))}
+        </ol>
+        <p className="demo-note">Conversaciones ilustrativas · <b>haz clic en un sector</b></p>
+      </div>
+
+      {/* modelo comercial: bajo las pestañas en escritorio, al final en móvil */}
+      <div className="esc-note rv">
+        <p className="ar-modelo">
+          <b>Cómo se contrata:</b> suscripción mensual por asesor, con implementación y capacitación
+          incluidas. Sin permanencia mínima y sin licencias separadas por canal.
+        </p>
+      </div>
     </div>
   );
 }
@@ -355,19 +551,7 @@ export default function AriaV4() {
             title="Equipos que atienden mucho, por muchos lados."
             text="Si tu operación vive hoy en tres apps distintas y una planilla, ARIA reemplaza a las cuatro."
           />
-          <div className="nrows">
-            {PARA_QUIEN.map((p, i) => (
-              <div className="nrow rv" key={p.t}>
-                <span className="rn">{`0${i + 1}`}</span>
-                <h3>{p.t}</h3>
-                <p>{p.d}</p>
-              </div>
-            ))}
-          </div>
-          <p className="ar-modelo rv">
-            <b>Cómo se contrata:</b> suscripción mensual por asesor, con implementación y capacitación
-            incluidas. Sin permanencia mínima y sin licencias separadas por canal.
-          </p>
+          <Escenarios />
         </div>
       </section>
 
