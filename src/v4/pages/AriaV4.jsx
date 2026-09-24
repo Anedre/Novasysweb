@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { useV4Page } from '../hooks';
@@ -180,6 +180,66 @@ const ESC_AUTOPLAY = 11000;
 /* Ficha legal del producto: de aquí salen el nombre, los canales, la marca y la
    URL de sus términos. Los bloques que revisa Meta se arman con ella. */
 const PRODUCTO = getProductoLegal('aria');
+
+/* Viñetas de «Cómo funciona»: mini pantallas de la app que se animan cuando la
+   tarjeta entra en pantalla (.rv → .in): los permisos se encienden, la bandeja
+   asigna cada chat y el reporte dibuja sus barras. Decorativas (aria-hidden). */
+function VgConn() {
+  const filas = [['i-msg', 'WhatsApp', 'tu propio número'], ['i-ig', 'Instagram', 'mensajes directos'], ['i-send', 'Messenger', 'tu página']];
+  return (
+    <div className="vg vg-conn" aria-hidden="true">
+      <div className="vg-bar"><i className="vg-dot" /><b>Permisos de la cuenta</b><small>Meta Business</small></div>
+      <ul>
+        {filas.map(([icon, n, sub], i) => (
+          <li key={n} style={{ '--i': i }}>
+            <span className="mi"><Icon id={icon} /></span>
+            <span className="tx"><b>{n}</b><small>{sub}</small></span>
+            <span className="sw"><i /></span>
+          </li>
+        ))}
+      </ul>
+      <div className="vg-ok"><Icon id="i-check" />Acceso autorizado · revocable cuando quieras</div>
+    </div>
+  );
+}
+function VgTeam() {
+  const filas = [
+    ['i-msg', 'María C.', '¿Siguen atendiendo hoy?', 'CR', 'Carla', ''],
+    ['i-ig', '@jrodriguez', '¿Tienen la talla M?', 'IA', 'ARIA', 'bot'],
+    ['i-mail', 'Andrea S.', 'Orden de compra 4471', 'DL', 'Diego', ''],
+  ];
+  return (
+    <div className="vg vg-team" aria-hidden="true">
+      <div className="vg-bar"><i className="vg-dot" /><b>Bandeja única</b><small>3 nuevas</small></div>
+      <ul>
+        {filas.map(([icon, n, sub, av, who, cls], i) => (
+          <li key={n} style={{ '--i': i }}>
+            <span className="mi"><Icon id={icon} /></span>
+            <span className="tx"><b>{n}</b><small>{sub}</small></span>
+            <span className={`as ${cls}`.trim()}><i>{av}</i>{who}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+function VgRep() {
+  const barras = [['WA', 80], ['IG', 52], ['MS', 34], ['Correo', 22], ['Voz', 30]];
+  return (
+    <div className="vg vg-rep" aria-hidden="true">
+      <div className="vg-bar"><i className="vg-dot" /><b>Reporte semanal</b><small>por canal</small></div>
+      <div className="vg-kpis">
+        <div><small>1ª respuesta</small><b>48 s</b></div>
+        <div><small>Resueltas por IA</small><b>62 %</b></div>
+        <div><small>Conversaciones</small><b>1 240</b></div>
+      </div>
+      <div className="vg-bars">
+        {barras.map(([l, v], i) => <span key={l} style={{ '--v': `${v}%`, '--i': i }}><i /><small>{l}</small></span>)}
+      </div>
+    </div>
+  );
+}
+const VINETAS = [VgConn, VgTeam, VgRep];
 
 function Bandeja() {
   const [act, setAct] = useState(0);
@@ -491,16 +551,23 @@ export default function AriaV4() {
             title="Tres pasos. Sin proyecto de meses."
             text="Conectas tus cuentas, tu equipo atiende desde una sola pantalla y mides lo que pasó. En ese orden."
           />
-          <div className="steps ar-pasos">
-            {PASOS.map((p, i) => (
-              <div className={`step rv ${i ? `d${i}` : ''}`.trim()} key={p.n}>
-                <span className="sico-chip"><Icon id={p.icon} /></span>
-                <span className="n n-abs">{p.n}</span>
-                <h3>{p.title}</h3>
-                <p>{p.text}</p>
-              </div>
-            ))}
+          <div className="ar-steps">
+            {PASOS.map((p, i) => {
+              const Vg = VINETAS[i];
+              return (
+                <div className={`ar-step rv ${i ? `d${i}` : ''}`.trim()} key={p.n}>
+                  <div className="ar-vg"><Vg /></div>
+                  <div className="ar-sb">
+                    <span className="n">{p.n}</span>
+                    <h3>{p.title}</h3>
+                    <p>{p.text}</p>
+                  </div>
+                  {i < PASOS.length - 1 && <span className="ar-next" aria-hidden="true"><Icon id="i-arrow" /></span>}
+                </div>
+              );
+            })}
           </div>
+          <p className="demo-note">Pantallas ilustrativas</p>
 
           <div className="ar-chan rv">
             <span className="lbl">Canales que atiende</span>
@@ -521,15 +588,25 @@ export default function AriaV4() {
             title="Cuatro piezas que trabajan juntas."
             text="No son módulos que se compran aparte: vienen en la misma plataforma y comparten el historial del cliente."
           />
+          {/* las cuatro piezas cuelgan de un mismo bus: el historial del cliente */}
           <div className="ar-mods">
             {MODULOS.map((m, i) => (
-              <div className={`ar-mod rv ${i % 3 ? `d${i % 3}` : ''}`.trim()} key={m.n}>
-                <span className="mi"><Icon id={m.icon} /></span>
-                <span className="mn">{m.n}</span>
-                <h3>{m.title}</h3>
-                <p>{m.text}</p>
-                <div className="tags">{m.tags.map((t) => <span className="chip" key={t}>{t}</span>)}</div>
-              </div>
+              <Fragment key={m.n}>
+                <div className={`ar-mod rv ${i < 2 ? 'top' : 'bot'} ${i % 3 ? `d${i % 3}` : ''}`.trim()}>
+                  <span className="mi"><Icon id={m.icon} /></span>
+                  <span className="mn">{m.n}</span>
+                  <h3>{m.title}</h3>
+                  <p>{m.text}</p>
+                  <div className="tags">{m.tags.map((t) => <span className="chip" key={t}>{t}</span>)}</div>
+                </div>
+                {i === 1 && (
+                  <div className="ar-bus rv" aria-hidden="true">
+                    <i className="pk p1" /><i className="pk p2" />
+                    <span className="bi"><Icon id="i-db" /></span>
+                    <span className="bt"><b>Historial del cliente</b><small>compartido por las cuatro piezas</small></span>
+                  </div>
+                )}
+              </Fragment>
             ))}
           </div>
         </div>

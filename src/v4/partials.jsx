@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from './Icons';
 
@@ -100,18 +101,31 @@ export function AriaBand({ eyebrow = 'Producto propio de Novasys', d = '' }) {
  * carga en todas las páginas). Estilos: shell.css, prefijo .pl-.
  */
 export function BloqueDatos({ producto }) {
+  // interruptor ilustrativo: al apagarlo la señal del diagrama se corta y el
+  // producto queda «sin acceso». El acceso real se revoca desde la cuenta de
+  // Meta, como dice el texto — aquí solo se muestra que el control es del cliente.
+  const [acceso, setAcceso] = useState(true);
   return (
     <div className="pl-trust rv">
       <div className="pl-tl">
         <h3>No somos dueños de tu conversación.</h3>
-        <div className="pl-flow" aria-hidden="true">
-          <span className="fn"><b>Tus cuentas</b><small>{producto.canales}</small></span>
+        <div className={`pl-flow ${acceso ? '' : 'off'}`.trim()} aria-hidden="true">
+          <span className="fn"><span className="fi"><Icon id="i-users" /></span><b>Tus cuentas</b><small>{producto.canales}</small></span>
           <span className="fa"><i /></span>
-          <span className="fn mid"><b>{producto.nombre}</b><small>el acceso que tú autorizas</small></span>
+          <span className="fn mid">
+            {/* la banda es oscura en tema claro y clara en tema oscuro: la marca va al revés */}
+            <span className="fi"><img className="only-light" src={producto.markDark} alt="" /><img className="only-dark" src={producto.mark} alt="" /></span>
+            <b>{producto.nombre}</b><small>{acceso ? 'el acceso que tú autorizas' : 'sin acceso'}</small>
+          </span>
           <span className="fa"><i /></span>
-          <span className="fn"><b>Tu operación</b><small>solo tu empresa lo ve</small></span>
+          <span className="fn"><span className="fi"><Icon id="i-monitor" /></span><b>Tu operación</b><small>solo tu empresa lo ve</small></span>
         </div>
-        <p className="pl-rev"><Icon id="i-refresh" />Puedes revocar el acceso cuando quieras, desde tu propia cuenta de Meta.</p>
+        <div className="pl-ctl">
+          <button type="button" className="pl-sw" aria-pressed={acceso} onClick={() => setAcceso((a) => !a)}>
+            <i /><span>{acceso ? 'Acceso autorizado' : 'Acceso revocado'}</span>
+          </button>
+          <p className="pl-rev"><Icon id="i-refresh" />Puedes revocar el acceso cuando quieras, desde tu propia cuenta de Meta.</p>
+        </div>
       </div>
       <div className="pl-tr">
         <ul className="pl-items">

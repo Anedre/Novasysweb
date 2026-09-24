@@ -115,10 +115,38 @@ html.js:not(.static) .v4 .pl-flow .fa i{animation:v4flow 2.8s linear infinite}
   .v4 .pl-flow{flex-direction:column}
   .v4 .pl-flow .fa{width:1px;height:18px;align-self:center}
   .v4 .pl-flow .fa i{display:none}
+  .v4 .pl-flow.off .fa{background:repeating-linear-gradient(180deg,color-mix(in srgb,var(--red) 75%,transparent) 0 4px,transparent 4px 8px)}
 }
 
 .v4 .pl-rev{display:flex;align-items:flex-start;gap:10px;margin-top:20px;font-size:13.5px;color:var(--band-tx2)}
 .v4 .pl-rev .ic{width:16px;height:16px;color:var(--red);margin-top:2px;flex:none}
+
+/* iconos en los nodos del diagrama */
+.v4 .pl-flow .fn .fi{width:30px;height:30px;border-radius:9px;margin:0 auto 8px;display:grid;place-items:center;background:color-mix(in srgb,var(--paper) 10%,transparent);color:var(--paper)}
+.v4 .pl-flow .fn .fi .ic{width:15px;height:15px}
+.v4 .pl-flow .fn .fi img{width:18px;height:18px;object-fit:contain}
+.v4 .pl-flow .fn.mid .fi{background:color-mix(in srgb,var(--red) 22%,transparent)}
+.v4 .pl-flow .fn,.v4 .pl-flow .fa{transition:opacity .35s,border-color .35s,background .35s}
+
+/* interruptor ilustrativo «acceso autorizado / revocado»: apagado, la señal
+   se corta (conectores discontinuos en rojo, sin puntos) y el producto se apaga */
+.v4 .pl-flow.off .fa{background:repeating-linear-gradient(90deg,color-mix(in srgb,var(--red) 75%,transparent) 0 4px,transparent 4px 8px)}
+.v4 .pl-flow.off .fa i{display:none}
+.v4 .pl-flow.off .fn.mid{opacity:.55;background:transparent;border-color:color-mix(in srgb,var(--red) 80%,transparent)}
+.v4 .pl-flow.off .fn:last-child{opacity:.4}
+.v4 .pl-ctl{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin-top:20px}
+.v4 .pl-ctl .pl-rev{margin-top:0;flex:1;min-width:220px}
+.v4 .pl-sw{
+  display:inline-flex;align-items:center;gap:10px;padding:5px 12px 5px 5px;border-radius:999px;
+  border:1px solid color-mix(in srgb,var(--paper) 24%,transparent);background:transparent;color:var(--paper);
+  font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;transition:border-color .25s,color .25s;
+}
+.v4 .pl-sw i{position:relative;width:34px;height:20px;border-radius:999px;background:color-mix(in srgb,var(--paper) 22%,transparent);transition:background .3s}
+.v4 .pl-sw i::after{content:"";position:absolute;left:2px;top:2px;width:16px;height:16px;border-radius:50%;background:var(--paper);transition:translate .3s cubic-bezier(.34,1.56,.64,1)}
+.v4 .pl-sw[aria-pressed="true"] i{background:#12A150}
+.v4 .pl-sw[aria-pressed="true"] i::after{translate:14px 0}
+.v4 .pl-sw[aria-pressed="false"]{color:color-mix(in srgb,var(--red) 70%,var(--paper))}
+.v4 .pl-sw:hover{border-color:var(--paper)}
 
 .v4 .pl-legal{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
 .v4 .pl-legal a{
