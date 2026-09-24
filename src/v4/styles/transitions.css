@@ -20,3 +20,21 @@ html.js:not(.static) .v4 main.pt-go{
   animation:v4pgin .68s cubic-bezier(.2,.6,.2,1) .12s both;
 }
 @keyframes v4pgin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* ── Cortina .wp (fotos de servicios y principios del home) ─────────────
+   base.css la hacía con clip-path:inset(0 100% 0 0) sobre el propio elemento.
+   Problema: el IntersectionObserver de Chromium SÍ aplica el clip-path del
+   objetivo, así que su área visible era 0, nunca «intersectaba», nunca
+   recibía .in… y las fotos quedaban en blanco para siempre (huevo y gallina).
+   Ahora el elemento no se recorta: lo tapa un panel ::after del color de
+   fondo que se encoge hacia la derecha al entrar en pantalla — mismo efecto
+   de barrido de izquierda a derecha, y el observer lo ve con su tamaño real. */
+html.js:not(.static) .v4 .wp{clip-path:none;position:relative}
+html.js:not(.static) .v4 .wp.in{clip-path:none}
+html.js:not(.static) .v4 .wp::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:var(--paper-2);
+  transform-origin:right center;
+  transition:transform 1.1s cubic-bezier(.2,.6,.2,1);
+}
+html.js:not(.static) .v4 .wp.in::after{transform:scaleX(0)}

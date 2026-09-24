@@ -357,6 +357,7 @@ html.menu-open .v4 .top-btn{opacity:0;visibility:hidden}
   .v4 header,.v4 footer .ft-social,.v4 .top-btn,.v4 .whatsapp-widget,.v4 .m-menu,
   .v4 .pt-veil,.v4 .s-hint,.v4 .hero-grid,.v4 .mq{display:none!important}
   .v4 .rv,.v4 .wp,.v4 .collage .cl{opacity:1!important;transform:none!important;clip-path:none!important}
+  .v4 .wp::after{display:none}
   .v4 .hero .wrap,.v4 .cta .wrap{grid-template-columns:1fr}
   .v4 .cta{background:none;color:inherit;border-top:1px solid #000}
 }

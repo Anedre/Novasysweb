@@ -1,0 +1,16 @@
+/* Home v4 — ajustes editables que no viven en base.css (generado). */
+
+/* ── Ledger de casos: logo del cliente junto al nombre ────────────────────
+   Los logos vienen normalizados a 2:1 (scripts/logos.mjs), así que 64×32 los
+   encaja exactos. Van en línea con el texto (no en flex) para no alterar la
+   línea base sobre la que se alinean las cuatro columnas de la fila. En gris
+   por defecto y a color al pasar el mouse, como el resto de la fila. */
+.v4 .lg-logo{
+  display:inline-block;width:64px;height:32px;object-fit:contain;
+  vertical-align:middle;margin:-8px 14px -6px 0;
+  filter:grayscale(1);opacity:.78;
+  transition:filter .3s,opacity .3s;
+}
+.v4 .lg-row:hover .lg-logo{filter:none;opacity:1}
+@media (hover:none){.v4 .lg-logo{filter:none;opacity:.92}}
+@media (max-width:360px){.v4 .lg-logo{width:52px;height:26px;margin:-5px 10px -3px 0}}

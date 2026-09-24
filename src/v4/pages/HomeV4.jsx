@@ -4,16 +4,21 @@ import { useV4Page } from '../hooks';
 import { Icon } from '../Icons';
 import { CtaBand } from '../partials';
 import Photo from '../Photo';
+import { featuredCases } from '../../data/cases';
+import '../styles/home.css';
 
 const MARQUEE = ['001-building.jpg', '020-callcenter.jpg', '036-datacenter.jpg', '046-meeting.jpg', '057-office.jpg', '081-team.jpg', '115-tech.jpg', '060-office.jpg'];
 
+// logo normalizado de cada cliente (src/img/casos, vía cases.js) para el ledger
+const LOGO = Object.fromEntries(featuredCases.map((c) => [c.slug, c.logo]));
+
 const LEDGER = [
-  { client: 'Entel', sector: 'Telecomunicaciones', proj: 'Contact center cloud con Amazon Connect', delta: '−40%', unit: 'costos operativos' },
-  { client: 'Interbank', sector: 'Banca', proj: 'BI que centraliza datos para decisiones en tiempo real', delta: '5×', unit: 'velocidad de análisis' },
-  { client: 'Pacífico Seguros', sector: 'Seguros', proj: 'Automatización de procesos core con gestión documental', delta: '−50%', unit: 'tiempo en procesos' },
-  { client: 'Renzo Costa', sector: 'Retail', proj: 'CRM y BI integrados para la gestión comercial', delta: '+60%', unit: 'eficiencia comercial' },
-  { client: 'Americatel', sector: 'Telecomunicaciones', proj: 'Migración cloud y modernización de infraestructura', delta: '−45%', unit: 'costos de infraestructura' },
-  { client: 'Centrum PUCP', sector: 'Educación', proj: 'Plataforma analítica para educación ejecutiva', delta: '+90%', unit: 'visibilidad de KPIs' },
+  { slug: 'entel', client: 'Entel', sector: 'Telecomunicaciones', proj: 'Contact center cloud con Amazon Connect', delta: '−40%', unit: 'costos operativos' },
+  { slug: 'interbank', client: 'Interbank', sector: 'Banca', proj: 'BI que centraliza datos para decisiones en tiempo real', delta: '5×', unit: 'velocidad de análisis' },
+  { slug: 'pacifico', client: 'Pacífico Seguros', sector: 'Seguros', proj: 'Automatización de procesos core con gestión documental', delta: '−50%', unit: 'tiempo en procesos' },
+  { slug: 'renzo-costa', client: 'Renzo Costa', sector: 'Retail', proj: 'CRM y BI integrados para la gestión comercial', delta: '+60%', unit: 'eficiencia comercial' },
+  { slug: 'americatel', client: 'Americatel', sector: 'Telecomunicaciones', proj: 'Migración cloud y modernización de infraestructura', delta: '−45%', unit: 'costos de infraestructura' },
+  { slug: 'centrum', client: 'Centrum PUCP', sector: 'Educación', proj: 'Plataforma analítica para educación ejecutiva', delta: '+90%', unit: 'visibilidad de KPIs' },
 ];
 
 export default function HomeV4() {
@@ -139,7 +144,10 @@ export default function HomeV4() {
             </div>
             {LEDGER.map((r) => (
               <div className="lg-row rv" key={r.client}>
-                <span className="lg-client">{r.client}</span>
+                <span className="lg-client">
+                  {LOGO[r.slug] && <img className="lg-logo" src={LOGO[r.slug]} alt="" width="64" height="32" loading="lazy" decoding="async" />}
+                  {r.client}
+                </span>
                 <span className="lg-sector">{r.sector}</span>
                 <span className="lg-proj">{r.proj}</span>
                 <span className="lg-delta">{r.delta}<small>{r.unit}</small></span>
