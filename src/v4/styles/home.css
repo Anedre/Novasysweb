@@ -14,3 +14,102 @@
 .v4 .lg-row:hover .lg-logo{filter:none;opacity:1}
 @media (hover:none){.v4 .lg-logo{filter:none;opacity:.92}}
 @media (max-width:360px){.v4 .lg-logo{width:52px;height:26px;margin:-5px 10px -3px 0}}
+
+/* ── Método: riel de proceso ─────────────────────────────────────────────
+   Cuatro estaciones sobre un riel. Al entrar en pantalla (useV4Page añade
+   .in al .mrail) la secuencia es, por estación: nodo → tramo del riel →
+   conector → tarjeta; después una señal roja recorre el riel en bucle. El
+   último tramo es discontinuo y termina en «mejora continua»: la operación
+   no se acaba. Los estados ocultos solo existen con JS y sin reduced-motion
+   (html.js:not(.static)); sin eso, todo se ve de entrada. */
+.v4 .mrail{position:relative;--g:20px;--node:44px}
+.v4 .mr-steps{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:var(--g);list-style:none;margin:0;padding:0}
+.v4 .mr-step{position:relative;display:flex;flex-direction:column;align-items:flex-start}
+
+/* tramo del riel: del centro de este nodo al del siguiente (::before base,
+   ::after tinta que se dibuja) */
+.v4 .mr-step::before,.v4 .mr-step::after{
+  content:"";position:absolute;top:calc(var(--node)/2 - 1px);left:var(--node);right:calc(-1 * var(--g));height:2px;
+}
+.v4 .mr-step::before{background:var(--line)}
+.v4 .mr-step::after{background:var(--ink);transform-origin:left;transition:transform .6s cubic-bezier(.2,.6,.2,1) calc(var(--i) * .32s + .15s)}
+.v4 .mr-step:last-child::before{background:none;border-top:2px dashed var(--line);height:0;right:0}
+.v4 .mr-step:last-child::after{display:none}
+
+.v4 .mr-node{
+  position:relative;z-index:2;width:var(--node);height:var(--node);border-radius:50%;
+  border:2px solid var(--ink);background:var(--paper);color:var(--ink);
+  display:grid;place-items:center;font-size:12.5px;font-weight:600;letter-spacing:.06em;
+  transition:opacity .45s calc(var(--i) * .32s),transform .55s cubic-bezier(.34,1.56,.64,1) calc(var(--i) * .32s),
+    border-color .25s,color .25s,background .25s;
+}
+.v4 .mr-stub{width:2px;height:20px;margin-left:calc(var(--node)/2 - 1px);background:var(--line);transform-origin:top;transition:transform .4s ease calc(var(--i) * .32s + .1s)}
+.v4 .mr-card{
+  width:100%;flex:1;display:flex;flex-direction:column;
+  background:var(--paper);border:1px solid var(--line);border-radius:14px;
+  padding:20px 20px 18px;box-shadow:var(--sh-soft);
+  transition:opacity .6s calc(var(--i) * .32s + .2s),transform .6s cubic-bezier(.2,.6,.2,1) calc(var(--i) * .32s + .2s),
+    translate .25s,border-color .25s;
+}
+.v4 .mr-ico{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;background:color-mix(in srgb,var(--red) 9%,transparent);color:var(--red);margin-bottom:14px;transition:background .25s,color .25s}
+.v4 .mr-ico .ic{width:19px;height:19px}
+.v4 .mr-card h3{font-family:"Inter Tight",Inter,sans-serif;font-size:20px;font-weight:600;letter-spacing:-.015em;margin-bottom:8px}
+.v4 .mr-card p{color:var(--ink-2);font-size:14.5px;flex:1}
+.v4 .mr-out{margin-top:16px;padding-top:12px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:3px}
+.v4 .mr-out small{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+.v4 .mr-out b{font-size:13.5px;font-weight:600;color:var(--ink)}
+
+/* cierre del riel: icono sobre la cola discontinua + etiqueta debajo */
+.v4 .mr-loop{position:absolute;right:0;top:0;width:34px;height:var(--node);z-index:2;background:var(--paper);color:var(--ink-3);transition:opacity .5s 1.4s}
+.v4 .mr-loop .ic{position:absolute;left:50%;top:50%;translate:-50% -50%;width:18px;height:18px}
+.v4 .mr-loop span{position:absolute;right:0;top:100%;margin-top:4px;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
+
+/* señal que recorre el riel (del nodo 01 al 04) */
+.v4 .mr-packet{
+  display:none;position:absolute;z-index:3;top:calc(var(--node)/2 - 4px);left:calc(var(--node)/2 - 4px);
+  width:8px;height:8px;border-radius:50%;background:var(--red);
+  box-shadow:0 0 0 4px color-mix(in srgb,var(--red) 18%,transparent);
+}
+@keyframes v4mrPacket{
+  0%{left:var(--node);opacity:0}
+  7%{opacity:1}
+  93%{opacity:1}
+  100%{left:calc(75% + .75 * var(--g) - 8px);opacity:0}
+}
+
+/* interacción: la estación entera responde */
+@media (hover:hover){
+  .v4 .mr-step:hover .mr-node{background:var(--red);border-color:var(--red);color:#fff}
+  .v4 .mr-step:hover .mr-card{translate:0 -3px;border-color:color-mix(in srgb,var(--red) 30%,var(--line))}
+  .v4 .mr-step:hover .mr-ico{background:var(--red);color:#fff}
+}
+
+/* estados ocultos previos al reveal (solo con JS y sin reduced-motion) */
+html.js:not(.static) .v4 .mrail:not(.in) .mr-node{opacity:0;transform:scale(.5)}
+html.js:not(.static) .v4 .mrail:not(.in) .mr-step::after{transform:scaleX(0)}
+html.js:not(.static) .v4 .mrail:not(.in) .mr-stub{transform:scaleY(0)}
+html.js:not(.static) .v4 .mrail:not(.in) .mr-card{opacity:0;transform:translateY(16px)}
+html.js:not(.static) .v4 .mrail:not(.in) .mr-loop{opacity:0}
+html.js:not(.static) .v4 .mrail.in .mr-packet{display:block;animation:v4mrPacket 4.2s cubic-bezier(.45,0,.55,1) 1.3s infinite backwards}
+
+/* ≤900: riel vertical (tablet vertical, plegables abiertos y móviles) */
+@media (max-width:900px){
+  .v4 .mrail{--g:16px}
+  .v4 .mr-steps{grid-template-columns:1fr}
+  .v4 .mr-step{display:grid;grid-template-columns:var(--node) 1fr;column-gap:14px;align-items:start}
+  .v4 .mr-node{grid-column:1;grid-row:1}
+  .v4 .mr-card{grid-column:2;grid-row:1}
+  .v4 .mr-stub,.v4 .mr-loop,.v4 .mr-packet{display:none!important}
+  .v4 .mr-step::before,.v4 .mr-step::after{top:var(--node);left:calc(var(--node)/2 - 1px);right:auto;width:2px;height:auto;bottom:calc(-1 * var(--g))}
+  .v4 .mr-step::after{transform-origin:top}
+  .v4 .mr-step:last-child::before{display:none}
+  html.js:not(.static) .v4 .mrail:not(.in) .mr-step::after{transform:scaleY(0)}
+}
+@media (max-width:480px){
+  .v4 .mr-card{padding:16px 16px 14px}
+  .v4 .mr-card h3{font-size:18px}
+}
+@media print{
+  .v4 .mrail .mr-node,.v4 .mrail .mr-card,.v4 .mrail .mr-stub,.v4 .mrail .mr-loop{opacity:1!important;transform:none!important}
+  .v4 .mr-packet{display:none!important}
+}

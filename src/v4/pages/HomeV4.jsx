@@ -12,6 +12,15 @@ const MARQUEE = ['001-building.jpg', '020-callcenter.jpg', '036-datacenter.jpg',
 // logo normalizado de cada cliente (src/img/casos, vía cases.js) para el ledger
 const LOGO = Object.fromEntries(featuredCases.map((c) => [c.slug, c.logo]));
 
+// Método: cada estación del riel y lo que entrega (el copy es el de siempre;
+// el entregable solo lo hace explícito)
+const METODO = [
+  { n: '01', icon: 'i-search', title: 'Diagnóstico', text: 'Entendemos tu operación, tu stack y tus números antes de proponer nada.', out: 'Informe de diagnóstico' },
+  { n: '02', icon: 'i-doc', title: 'Propuesta', text: 'Arquitectura, alcance, hitos y costos por escrito. Sin letra chica.', out: 'Propuesta técnica y económica' },
+  { n: '03', icon: 'i-layers', title: 'Implementación', text: 'Por fases y con demos frecuentes — ves avance real desde la semana uno.', out: 'Demos por fase' },
+  { n: '04', icon: 'i-headset', title: 'Operación', text: 'SLA medibles, soporte local y mejora continua sobre lo implementado.', out: 'SLA y soporte en Lima' },
+];
+
 const LEDGER = [
   { slug: 'entel', client: 'Entel', sector: 'Telecomunicaciones', proj: 'Contact center cloud con Amazon Connect', delta: '−40%', unit: 'costos operativos' },
   { slug: 'interbank', client: 'Interbank', sector: 'Banca', proj: 'BI que centraliza datos para decisiones en tiempo real', delta: '5×', unit: 'velocidad de análisis' },
@@ -189,11 +198,28 @@ export default function HomeV4() {
             <h2>Cuatro pasos. Sin ambigüedad.</h2>
             <span className="lbl">03 — Método</span>
           </div>
-          <div className="steps">
-            <div className="step rv"><span className="n">Paso 01</span><h3>Diagnóstico</h3><p>Entendemos tu operación, tu stack y tus números antes de proponer nada.</p></div>
-            <div className="step rv d1"><span className="n">Paso 02</span><h3>Propuesta</h3><p>Arquitectura, alcance, hitos y costos por escrito. Sin letra chica.</p></div>
-            <div className="step rv d2"><span className="n">Paso 03</span><h3>Implementación</h3><p>Por fases y con demos frecuentes — ves avance real desde la semana uno.</p></div>
-            <div className="step rv d3"><span className="n">Paso 04</span><h3>Operación</h3><p>SLA medibles, soporte local y mejora continua sobre lo implementado.</p></div>
+          {/* riel de proceso: cuatro estaciones, la señal recorre el tramo y cada
+              estación dice qué entrega (estilos en styles/home.css; el reveal lo
+              dispara useV4Page al añadir .in) */}
+          <div className="mrail">
+            <ol className="mr-steps">
+              {METODO.map((s, i) => (
+                <li className="mr-step" key={s.n} style={{ '--i': i }}>
+                  <div className="mr-node mono" aria-hidden="true">{s.n}</div>
+                  <div className="mr-stub" aria-hidden="true" />
+                  <div className="mr-card">
+                    <span className="mr-ico"><Icon id={s.icon} /></span>
+                    <h3><span className="sr-only">Paso {s.n}: </span>{s.title}</h3>
+                    <p>{s.text}</p>
+                    <div className="mr-out"><small>Entregable</small><b>{s.out}</b></div>
+                  </div>
+                  {i === METODO.length - 1 && (
+                    <div className="mr-loop" aria-hidden="true"><Icon id="i-refresh" /><span>mejora continua</span></div>
+                  )}
+                </li>
+              ))}
+            </ol>
+            <i className="mr-packet" aria-hidden="true" />
           </div>
         </div>
       </section>

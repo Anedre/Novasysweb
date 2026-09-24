@@ -36,7 +36,7 @@ function animateNum(el, isStatic) {
 
 /**
  * Efectos de página v4 sobre un contenedor:
- * reveals (.rv/.wp/.collage/.met/.con-up/.archero), settle a los 2.5s,
+ * reveals (.rv/.wp/.collage/.mrail/.archero), settle a los 2.5s,
  * count-ups (.num[data-n]) y parallax de fotos anchas ([data-plx]).
  * Devuelve el ref para el elemento raíz de la página.
  */
@@ -48,7 +48,7 @@ export function useV4Page() {
     if (!rootEl) return;
     const isStatic = document.documentElement.classList.contains('static');
 
-    const els = Array.from(rootEl.querySelectorAll('.rv,.wp,.collage,.archero'));
+    const els = Array.from(rootEl.querySelectorAll('.rv,.wp,.collage,.archero,.mrail'));
     const nums = Array.from(rootEl.querySelectorAll('.num[data-n]'));
 
     if (isStatic) {
