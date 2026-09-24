@@ -45,6 +45,9 @@ amplifytools.xcconfig
 **.sample
 #amplify-do-not-edit-end
 
+# Variantes responsive de las fotos (las genera scripts/images.mjs en build/dev)
+public/v4/img/r/
+
 # Material de trabajo del rediseño v4 (no forma parte del build)
 design-lab/
 ui_kits/

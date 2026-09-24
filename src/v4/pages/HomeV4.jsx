@@ -2,7 +2,8 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { useV4Page } from '../hooks';
 import { Icon } from '../Icons';
-import { IMG, CtaBand } from '../partials';
+import { CtaBand } from '../partials';
+import Photo from '../Photo';
 
 const MARQUEE = ['001-building.jpg', '020-callcenter.jpg', '036-datacenter.jpg', '046-meeting.jpg', '057-office.jpg', '081-team.jpg', '115-tech.jpg', '060-office.jpg'];
 
@@ -39,12 +40,12 @@ export default function HomeV4() {
             </div>
           </div>
           <div className="collage" role="img" aria-label="Collage de la operación de Novasys: equipo, datacenter y clientes">
-            <div className="cl cl-a"><img src={IMG + '045-meeting.jpg'} alt="" /></div>
+            <div className="cl cl-a"><Photo src="045-meeting.jpg" alt="" loading="eager" sizes="(max-width: 900px) 100vw, 45vw" /></div>
             <div className="cl cl-b" aria-hidden="true" />
-            <div className="cl cl-c"><img src={IMG + '033-datacenter.jpg'} alt="" /></div>
-            <div className="cl cl-d" aria-hidden="true"><img src={IMG + 'novasys-isotipo.svg'} alt="" /></div>
-            <div className="cl cl-e"><img src={IMG + '074-portrait.jpg'} alt="" /></div>
-            <div className="cl cl-f"><img src={IMG + '022-callcenter.jpg'} alt="" /></div>
+            <div className="cl cl-c"><Photo src="033-datacenter.jpg" alt="" loading="eager" sizes="(max-width: 900px) 100vw, 45vw" /></div>
+            <div className="cl cl-d" aria-hidden="true"><Photo src="novasys-isotipo.svg" alt="" /></div>
+            <div className="cl cl-e"><Photo src="074-portrait.jpg" alt="" loading="eager" sizes="(max-width: 900px) 100vw, 45vw" /></div>
+            <div className="cl cl-f"><Photo src="022-callcenter.jpg" alt="" loading="eager" sizes="(max-width: 900px) 100vw, 45vw" /></div>
             <div className="cl cl-g" aria-hidden="true"><i className="ring" /></div>
             <div className="cl cl-h" aria-hidden="true" />
           </div>
@@ -83,7 +84,7 @@ export default function HomeV4() {
         <div className="wrap svc">
           <div className="svc-row rv">
             <div className="svc-num">01</div>
-            <div className="svc-ph wp"><img src={IMG + '111-tech.jpg'} alt="Desarrollo de software empresarial" loading="lazy" /></div>
+            <div className="svc-ph wp"><Photo src="111-tech.jpg" alt="Desarrollo de software empresarial" sizes="(max-width: 900px) 100vw, 190px" /></div>
             <div>
               <div className="svc-t">Software empresarial</div>
               <p className="svc-d">CRM, analítica, marketing y gestión documental sobre Oracle y ELO — y desarrollo a medida cuando ningún producto encaja. Del código al soporte.</p>
@@ -95,7 +96,7 @@ export default function HomeV4() {
           </div>
           <div className="svc-row rv">
             <div className="svc-num">02</div>
-            <div className="svc-ph wp"><img src={IMG + '019-callcenter.jpg'} alt="Contact center operando en la nube" loading="lazy" /></div>
+            <div className="svc-ph wp"><Photo src="019-callcenter.jpg" alt="Contact center operando en la nube" sizes="(max-width: 900px) 100vw, 190px" /></div>
             <div>
               <div className="svc-t">Cloud AWS</div>
               <p className="svc-d">Contact centers con IA, migraciones sin interrupciones y arquitecturas serverless — implementadas y operadas por un equipo local certificado.</p>
@@ -112,7 +113,7 @@ export default function HomeV4() {
           </div>
           <div className="svc-row rv">
             <div className="svc-num">03</div>
-            <div className="svc-ph wp"><img src={IMG + '034-datacenter.jpg'} alt="Servidores HPE en rack" loading="lazy" /></div>
+            <div className="svc-ph wp"><Photo src="034-datacenter.jpg" alt="Servidores HPE en rack" sizes="(max-width: 900px) 100vw, 190px" /></div>
             <div>
               <div className="svc-t">Infraestructura HP / HPE</div>
               <p className="svc-d">Cómputo, servidores y almacenamiento enterprise dimensionados sobre carga real — con stock en Lima y soporte presencial cuando hace falta.</p>
@@ -150,7 +151,7 @@ export default function HomeV4() {
           </div>
         </div>
         <figure className="photo-band">
-          <img src={IMG + '035-datacenter.jpg'} alt="Sala de servidores operada por Novasys" loading="lazy" data-plx />
+          <Photo src="035-datacenter.jpg" alt="Sala de servidores operada por Novasys" sizes="100vw" data-plx />
           <figcaption>Fig. 01 — Operación continua · Lima, Perú</figcaption>
           <div className="pb-chips">
             <span><i />Uptime 99.97%</span>
@@ -166,7 +167,7 @@ export default function HomeV4() {
           {[0, 1].map((k) => (
             <div className="mq-seq" aria-hidden={k === 1 || undefined} key={k}>
               {MARQUEE.map((f) => (
-                <figure key={f}><img src={IMG + f} alt="" /></figure>
+                <figure key={f}><Photo src={f} alt="" sizes="250px" /></figure>
               ))}
             </div>
           ))}
@@ -198,15 +199,15 @@ export default function HomeV4() {
           </div>
           <div className="prin">
             <div className="p rv">
-              <div className="ph wp"><img src={IMG + '113-tech.jpg'} alt="Análisis técnico con datos" loading="lazy" /></div>
+              <div className="ph wp"><Photo src="113-tech.jpg" alt="Análisis técnico con datos" sizes="(max-width: 820px) 100vw, 33vw" /></div>
               <div className="bd"><span className="lbl"><b>I</b></span><h3>Rigor</h3><p>Cada decisión técnica se defiende con datos. No vendemos magia — vendemos ingeniería.</p></div>
             </div>
             <div className="p rv d1">
-              <div className="ph wp"><img src={IMG + '047-meeting.jpg'} alt="Reunión de trabajo con el cliente" loading="lazy" /></div>
+              <div className="ph wp"><Photo src="047-meeting.jpg" alt="Reunión de trabajo con el cliente" sizes="(max-width: 820px) 100vw, 33vw" /></div>
               <div className="bd"><span className="lbl"><b>II</b></span><h3>Transparencia</h3><p>SLA visibles, roadmap compartido y costos sin sorpresas. El cliente ve lo mismo que nosotros.</p></div>
             </div>
             <div className="p rv d2">
-              <div className="ph wp"><img src={IMG + '082-team.jpg'} alt="Equipo de Novasys en Lima" loading="lazy" /></div>
+              <div className="ph wp"><Photo src="082-team.jpg" alt="Equipo de Novasys en Lima" sizes="(max-width: 820px) 100vw, 33vw" /></div>
               <div className="bd"><span className="lbl"><b>III</b></span><h3>Proximidad</h3><p>Equipo propio en Lima, en tu zona horaria y con contexto local. Sin tercerizar.</p></div>
             </div>
           </div>

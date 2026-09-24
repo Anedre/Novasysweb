@@ -3,7 +3,8 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { useV4Page } from '../hooks';
 import { Icon } from '../Icons';
-import { IMG, Shead, CtaBand, CaseCard } from '../partials';
+import { Shead, CtaBand, CaseCard } from '../partials';
+import Photo from '../Photo';
 import { getSolutionBySlug } from '../../data/solutions.jsx';
 import '../styles/detail-kit.css';
 import '../styles/sol-bi.css';
@@ -179,7 +180,7 @@ export default function BusinessIntelligenceV4() {
                 <div className="inc-it"><Icon id="i-check" />Alertas cuando un KPI sale de rango — sin mirar el panel</div>
               </div>
             </div>
-            <div className="ph"><img src={IMG + '113-tech.jpg'} alt="Analista revisando dashboards" loading="lazy" /></div>
+            <div className="ph"><Photo src="113-tech.jpg" alt="Analista revisando dashboards" /></div>
           </div>
         </div>
       </section>

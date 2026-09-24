@@ -3,7 +3,8 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { useV4Page } from '../hooks';
 import { Icon } from '../Icons';
-import { IMG, Shead, CtaBand, CaseCard } from '../partials';
+import { Shead, CtaBand, CaseCard } from '../partials';
+import Photo from '../Photo';
 import '../styles/infraestructura.css';
 import '../styles/infra-extra.css';
 
@@ -172,7 +173,7 @@ export default function InfraV4() {
             </div>
           </div>
           <figure className="foto-panel rv" style={{ margin: '26px 0 0' }}>
-            <img src={IMG + '034-datacenter.jpg'} alt="Instalación de servidores HPE en cliente" loading="lazy" />
+            <Photo src="034-datacenter.jpg" alt="Instalación de servidores HPE en cliente" sizes="100vw" />
             <figcaption className="fp-cap">Fig. HP — Instalación en cliente · Lima</figcaption>
             <div className="fp-chips">
               <span><i />Garantía 5 años</span>

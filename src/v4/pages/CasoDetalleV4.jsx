@@ -1,7 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { useV4Page } from '../hooks';
-import { IMG, CtaBand } from '../partials';
+import { CtaBand } from '../partials';
+import Photo from '../Photo';
 import { featuredCases } from '../../data/cases';
 import '../styles/detail-kit.css';
 import '../styles/caso-detalle.css';
@@ -66,7 +67,7 @@ export default function CasoDetalleV4() {
           <h1 className="rv d1">{c.title}<span style={{ color: 'var(--red)' }}>.</span></h1>
           <p className="cdo-lede rv d2">{c.description}</p>
           <figure className="cdo-band rv d2" style={{ margin: 0 }}>
-            <img src={IMG + meta.img} alt="" data-plx />
+            <Photo src={meta.img} alt="" sizes="100vw" loading="eager" data-plx />
             <span className="cap">Fig. {exp} — {c.industry}</span>
             <span className="pill"><b>{c.kpiMain.value}</b> {c.kpiMain.label}</span>
           </figure>

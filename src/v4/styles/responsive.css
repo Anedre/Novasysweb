@@ -46,6 +46,11 @@
 .v4 .hero .wrap>*,.v4 .cta .wrap>*,.v4 .ft>*,.v4 .sb-grid>*,.v4 .steps>*,
 .v4 .prin>*,.v4 .pcards>*,.v4 .ccards>*,.v4 .prods>*,.v4 .hd-logo{min-width:0}
 
+/* <Photo> envuelve el <img> en <picture> (AVIF/WebP + srcset); display:contents
+   deja al <img> como único participante del layout, así los selectores y
+   alturas existentes (`.cl img`, `.svc-ph img`…) se comportan igual */
+.v4 picture{display:contents}
+
 /* correos, direcciones y URLs parten donde haga falta en pantallas de 280px */
 .v4 .ft-meta a,.v4 .ft-meta span,.v4 .mm-meta a,.v4 .cmeta a,.v4 .cmeta span,
 .v4 .cta-side .meta a,.v4 .pl-dl dd,.v4 .ft p{overflow-wrap:anywhere}

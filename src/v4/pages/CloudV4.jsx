@@ -2,7 +2,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { useV4Page } from '../hooks';
-import { IMG, Shead, CtaBand, CaseCard, AriaBand } from '../partials';
+import { Shead, CtaBand, CaseCard, AriaBand } from '../partials';
+import Photo from '../Photo';
 import '../styles/cloud.css';
 import '../styles/cloud-extra.css';
 
@@ -132,7 +133,7 @@ function PillarStack() {
           data-pos={String((i - act + n) % n)}
           onClick={(e) => { if (i !== act) { e.preventDefault(); setAct(i); restart(); } }}
         >
-          <span className="pph"><img src={IMG + p.photo} alt="" /></span>
+          <span className="pph"><Photo src={p.photo} alt="" sizes="400px" loading="eager" /></span>
           <span className="pbd">
             <img className="aico" src={AWS + p.icon} alt="" />
             <span className="plabel">{p.label}</span>

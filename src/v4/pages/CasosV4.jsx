@@ -2,7 +2,8 @@ import { useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { useV4Page } from '../hooks';
-import { IMG, Shead, StatsBar, CtaBand } from '../partials';
+import { Shead, StatsBar, CtaBand } from '../partials';
+import Photo from '../Photo';
 import '../styles/casos.css';
 
 const SECTORES = [
@@ -36,7 +37,7 @@ export default function CasosV4() {
 
       {/* HERO — portada editorial */}
       <section className="hero-cover">
-        <img className="hc-bg" src={IMG + '022-callcenter.jpg'} alt="Operación del contact center de Entel" data-plx />
+        <Photo className="hc-bg" src="022-callcenter.jpg" sizes="100vw" loading="eager" alt="Operación del contact center de Entel" data-plx />
         <div className="hc-scrim" aria-hidden="true" />
         <div className="wrap hc-in">
           <span className="lbl rv">Expediente N.º 01 — <b>Entel · Telecomunicaciones</b></span>
@@ -80,7 +81,7 @@ export default function CasosV4() {
             {visibles.map((c, i) => (
               <div className={`ccard rv in d${i % 3 || ''}`.trim()} key={c.exp} style={{ transitionDelay: `${i * 45}ms` }}>
                 <div className="ph">
-                  <img src={IMG + c.img} alt="" loading="lazy" />
+                  <Photo src={c.img} alt="" sizes="(max-width: 700px) 100vw, 33vw" />
                   <span className="exp">{c.exp}</span>
                   <span className="pill" dangerouslySetInnerHTML={{ __html: c.pill }} />
                 </div>

@@ -3,7 +3,8 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { useV4Page } from '../hooks';
 import { Icon } from '../Icons';
-import { IMG, Shead, CtaBand, CaseCard, AriaBand } from '../partials';
+import { Shead, CtaBand, CaseCard, AriaBand } from '../partials';
+import Photo from '../Photo';
 import '../styles/soluciones.css';
 
 const MODULES = [
@@ -102,7 +103,7 @@ function Coverflow() {
           }}
           onPointerLeave={() => clearTimeout(hoverRef.current)}
         >
-          <span className="dphoto"><img src={IMG + m.photo} alt="" /></span>
+          <span className="dphoto"><Photo src={m.photo} alt="" sizes="320px" loading="eager" /></span>
           <span className="dbody">
             <span className="pi"><Icon id={m.icon} /></span>
             <span className="dnum">{m.num}</span>

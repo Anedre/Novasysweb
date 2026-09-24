@@ -3,7 +3,8 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { useV4Page } from '../hooks';
 import { Icon } from '../Icons';
-import { IMG, Shead, StatsBar, CtaBand } from '../partials';
+import { Shead, StatsBar, CtaBand } from '../partials';
+import Photo from '../Photo';
 import '../styles/nosotros.css';
 import '../styles/nosotros-extra.css';
 
@@ -34,7 +35,7 @@ function OrbitHero() {
     >
       <span className="okeep-rot">
         <span className="okeep-fix" style={{ rotate: `${-m.a}deg` }}>
-          <img src={IMG + m.f} alt="" />
+          <Photo src={m.f} alt="" sizes="90px" loading="eager" />
         </span>
       </span>
     </span>
@@ -142,10 +143,10 @@ export default function NosotrosV4() {
         <div className="wrap">
           <Shead label="03 — El equipo" title="Las personas detrás de la operación." text="Ingenieros propios — sin tercerizar — trabajando al lado de tu operación desde 2010." />
           <div className="bento">
-            <figure className="b1 rv"><img src={IMG + '097-team.jpg'} alt="Sesión de planificación con post-its" loading="lazy" /><figcaption>Diseño de solución</figcaption></figure>
-            <figure className="rv d1"><img src={IMG + '084-team.jpg'} alt="Trabajo en equipo con laptop" loading="lazy" /><figcaption>Con el cliente</figcaption></figure>
-            <figure className="rv d2"><img src={IMG + '088-team.jpg'} alt="Equipo trabajando en oficina" loading="lazy" /><figcaption>Ingeniería</figcaption></figure>
-            <figure className="b4 rv d3"><img src={IMG + '095-team.jpg'} alt="Equipo revisando una tablet" loading="lazy" /><figcaption>Un solo equipo · Lima</figcaption></figure>
+            <figure className="b1 rv"><Photo src="097-team.jpg" alt="Sesión de planificación con post-its" sizes="(max-width: 820px) 50vw, 25vw" /><figcaption>Diseño de solución</figcaption></figure>
+            <figure className="rv d1"><Photo src="084-team.jpg" alt="Trabajo en equipo con laptop" sizes="(max-width: 820px) 50vw, 25vw" /><figcaption>Con el cliente</figcaption></figure>
+            <figure className="rv d2"><Photo src="088-team.jpg" alt="Equipo trabajando en oficina" sizes="(max-width: 820px) 50vw, 25vw" /><figcaption>Ingeniería</figcaption></figure>
+            <figure className="b4 rv d3"><Photo src="095-team.jpg" alt="Equipo revisando una tablet" sizes="(max-width: 820px) 50vw, 25vw" /><figcaption>Un solo equipo · Lima</figcaption></figure>
           </div>
         </div>
       </section>
@@ -166,7 +167,7 @@ export default function NosotrosV4() {
       </section>
 
       <figure className="photo-band" style={{ marginTop: 'clamp(64px,9vw,110px)' }}>
-        <img src={IMG + '100-team.jpg'} alt="Oficina del equipo en Lima" loading="lazy" data-plx />
+        <Photo src="100-team.jpg" alt="Oficina del equipo en Lima" sizes="100vw" data-plx />
         <figcaption>Fig. 02 — El equipo, en Lima</figcaption>
         <div className="pb-chips">
           <span><i />Equipo propio</span>

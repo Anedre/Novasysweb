@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Icon } from './Icons';
 
-export const IMG = '/v4/img/';
+import Photo, { IMG } from './Photo';
+export { IMG };
 
 export function Shead({ label, title, text, id }) {
   return (
@@ -153,7 +154,7 @@ export function CaseCard({ img, exp, sector, title, text, pill, d = '', dataSect
   return (
     <div className={`ccard rv ${d}`} data-sector={dataSector}>
       <div className="ph">
-        <img src={IMG + img} alt="" loading="lazy" />
+        <Photo src={img} alt="" sizes="(max-width: 700px) 100vw, 33vw" />
         {exp && <span className="exp">{exp}</span>}
         <span className="pill" dangerouslySetInnerHTML={{ __html: pill }} />
       </div>
