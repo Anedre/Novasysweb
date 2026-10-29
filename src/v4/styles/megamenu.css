@@ -1,0 +1,328 @@
+/* Mega menú «Soluciones» (MegaSoluciones.jsx) — editable a mano.
+
+   Panel a todo el ancho que cuelga del <header>: el header (sticky) es su
+   bloque contenedor, por eso el envoltorio .mg queda estático a propósito.
+   Vive DENTRO de .hd-nav para que el tabulado siga el orden natural
+   (botón → panel → Casos…), así que las reglas del panel llevan el prefijo
+   .mg-panel: le ganan a `.v4 .hd-nav a` de base.css (padding, color y el
+   subrayado ::after de los links del nav).
+
+   El estado lo pone el JS como atributos: [data-open] en el panel y la
+   cortina, [data-on] / [data-side] en filas, vistas previas y destacados.
+   Con prefers-reduced-motion, html.static (base.css) apaga toda transición.
+
+   Bloques: 1. botón · 2. panel, cortina y header · 3. índice
+            4. vista previa · 5. destacado · 6. franja inferior
+            7. entrada escalonada · 8. responsive · 9. contraste forzado */
+
+/* ── 1. Botón ──────────────────────────────────────────────────────────── */
+.v4 .mg{position:static}
+.v4 .mg-trigger{position:relative}
+.v4 .mg-trigger::after{
+  content:"";position:absolute;left:0;right:0;bottom:-1px;height:1.5px;background:var(--red);
+  transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.2,.7,.2,1);
+}
+.v4 .mg-trigger:hover,.v4 .mg-trigger[aria-expanded="true"]{color:var(--ink)}
+.v4 .mg-trigger[aria-expanded="true"]::after{transform:scaleX(1)}
+.v4 .mg-trigger .ic{transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.v4 .mg-trigger[aria-expanded="true"] .ic{transform:rotate(180deg)}
+.v4 .mg-trigger:focus-visible{outline:2px solid var(--red);outline-offset:6px;border-radius:2px}
+
+/* ── 2. Panel, cortina y header ────────────────────────────────────────── */
+.v4 .mg-panel{
+  position:absolute;left:0;right:0;top:calc(100% + 1px);z-index:2;
+  font-size:14px;font-weight:400;line-height:1.5;color:var(--ink);
+  background:var(--paper);border-bottom:1px solid var(--line);
+  box-shadow:0 36px 60px -38px rgba(11,11,14,.34);
+  /* se despliega desde el borde del header; al cerrar se recoge más rápido */
+  clip-path:inset(0 0 100% 0);visibility:hidden;pointer-events:none;
+  transition:clip-path .3s cubic-bezier(.55,0,.75,.2),visibility 0s linear .3s;
+}
+.v4 .mg-panel[data-open]{
+  clip-path:inset(0 0 -90px 0);visibility:visible;pointer-events:auto;
+  transition:clip-path .55s cubic-bezier(.16,1,.3,1),visibility 0s;
+}
+html[data-theme="dark"] .v4 .mg-panel{box-shadow:0 36px 60px -32px rgba(0,0,0,.8)}
+.v4 .hd-nav .mg-panel a::after{content:none}
+
+/* cortina: atenúa la página (no captura clics: el cierre por clic fuera lo
+   resuelve el JS, así el primer clic en la página también llega a su destino) */
+.v4 .mg-scrim{
+  position:fixed;inset:0;z-index:48;pointer-events:none;
+  background:rgba(12,12,15,.2);opacity:0;visibility:hidden;
+  transition:opacity .3s ease,visibility 0s linear .3s;
+}
+.v4 .mg-scrim[data-open]{opacity:1;visibility:visible;transition:opacity .4s ease,visibility 0s}
+html[data-theme="dark"] .v4 .mg-scrim{background:rgba(0,0,0,.5)}
+
+/* con el panel abierto el header deja de ser translúcido: header + panel
+   se leen como una sola hoja; la barra de progreso se aparta */
+.v4 header{transition:transform .35s ease,box-shadow .3s ease,background-color .3s ease}
+.v4 header[data-mega="open"]{background:var(--paper)}
+.v4 .progress{transition:opacity .2s}
+.v4 header[data-mega="open"] .progress{opacity:0}
+
+/* ── 3. Índice de líneas ───────────────────────────────────────────────── */
+.v4 .mg-in{
+  display:grid;grid-template-columns:minmax(250px,300px) minmax(0,1fr) minmax(240px,290px);
+  padding-top:26px;padding-bottom:28px;
+}
+.v4 .mg-idx{display:flex;flex-direction:column;min-width:0;padding-right:clamp(16px,2vw,28px)}
+.v4 .mg-panel .mg-eyebrow{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3);margin:0 0 12px;padding-left:18px;
+}
+.v4 .mg-panel .mg-eyebrow b{color:var(--red);font-weight:500}
+.v4 .mg-rows{position:relative;display:flex;flex-direction:column;gap:2px}
+
+/* resaltado que se desliza entre filas (posición medida en JS) */
+.v4 .mg-hl{
+  position:absolute;left:0;right:0;top:0;height:var(--hl-h,0px);
+  transform:translateY(var(--hl-y,0px));
+  background:var(--paper-2);border-radius:10px;pointer-events:none;
+  opacity:0;transition:opacity .2s;
+}
+.v4 .mg-hl::before{
+  content:"";position:absolute;left:0;top:14px;bottom:14px;width:2px;border-radius:2px;background:var(--red);
+}
+/* solo se anima con el panel abierto: cerrado, salta sin que se vea */
+.v4 .mg-panel[data-open] .mg-hl{
+  opacity:1;
+  transition:opacity .35s ease .12s,transform .45s cubic-bezier(.22,.8,.22,1),height .45s cubic-bezier(.22,.8,.22,1);
+}
+
+.v4 .mg-panel .mg-row{
+  position:relative;z-index:1;display:grid;grid-template-columns:28px minmax(0,1fr) 16px;
+  align-items:center;column-gap:8px;padding:12px 14px 12px 18px;border-radius:10px;color:var(--ink-2);
+}
+.v4 .mg-panel .mg-row .n{
+  align-self:start;padding-top:3px;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;color:var(--ink-3);transition:color .25s;
+}
+.v4 .mg-panel .mg-row .t{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:0}
+.v4 .mg-panel .mg-row .t b{
+  font-family:"Inter Tight",Inter,sans-serif;font-size:16.5px;font-weight:600;letter-spacing:-.015em;line-height:1.25;
+  color:var(--ink-2);transition:color .25s,transform .45s cubic-bezier(.22,.8,.22,1);
+}
+.v4 .mg-panel .mg-row .t small{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:9.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-3);
+}
+.v4 .mg-panel .mg-row .ar{
+  width:15px;height:15px;color:var(--red);opacity:0;transform:translateX(-6px);
+  transition:opacity .25s,transform .45s cubic-bezier(.22,.8,.22,1);
+}
+.v4 .mg-panel .mg-row:hover .t b{color:var(--ink)}
+.v4 .mg-panel .mg-row[data-on] .n{color:var(--red)}
+.v4 .mg-panel .mg-row[data-on] .t b{color:var(--ink);transform:translateX(3px)}
+.v4 .mg-panel .mg-row[data-on] .ar{opacity:1;transform:none}
+.v4 .mg-panel .mg-row:focus-visible{outline:2px solid var(--red);outline-offset:-2px}
+/* línea de la página en la que estás: punto rojo tras el título */
+.v4 .mg-panel .mg-row[aria-current] .t b::after{
+  content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--red);
+  margin-left:8px;vertical-align:2px;
+}
+
+/* ── 4. Vista previa ───────────────────────────────────────────────────── */
+.v4 .mg-prev{display:grid;min-width:0;border-left:1px solid var(--line);padding-inline:clamp(22px,2.6vw,40px)}
+/* las cuatro vistas apiladas en la misma celda; la que entra llega desde el
+   lado de la fila elegida (arriba o abajo) y la que sale se va al opuesto.
+   La activa usa visibility:inherit, NO visible: un hijo «visible» dentro del
+   panel cerrado (hidden) volvería a ser enfocable con Tab y legible para
+   lectores de pantalla */
+.v4 .mg-pane{
+  grid-area:1/1;display:flex;flex-direction:column;min-width:0;
+  opacity:0;visibility:hidden;transform:translateY(12px);pointer-events:none;
+  transition:opacity .12s ease,transform .3s ease,visibility 0s linear .3s;
+}
+.v4 .mg-pane[data-side="before"]{transform:translateY(-12px)}
+/* la que sale se apaga antes de que entre la nueva (sin titulares encimados)
+   y deja de capturar el puntero en el acto */
+.v4 .mg-pane[data-on]{
+  opacity:1;visibility:inherit;transform:none;pointer-events:inherit;
+  transition:opacity .3s ease .09s,transform .5s cubic-bezier(.16,1,.3,1) .06s,visibility 0s;
+}
+.v4 .mg-panel .mg-k{
+  margin:0;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3);
+}
+.v4 .mg-panel .mg-k b{color:var(--red);font-weight:500}
+.v4 .mg-panel .mg-lede{
+  margin:8px 0 10px;max-width:34ch;text-wrap:balance;
+  font-family:"Inter Tight",Inter,sans-serif;font-size:clamp(19px,1.65vw,23px);font-weight:600;
+  letter-spacing:-.022em;line-height:1.18;color:var(--ink);
+}
+/* credenciales de la línea (de su hub), bajo el titular */
+.v4 .mg-facts{list-style:none;margin:0 0 16px;padding:0;display:flex;flex-wrap:wrap;gap:4px 16px}
+.v4 .mg-facts li{
+  display:flex;align-items:center;gap:7px;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:9.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-3);
+}
+.v4 .mg-facts li::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--red)}
+.v4 .mg-items{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:2px 16px}
+html.js:not(.static) .v4 .mg-pane[data-on] .mg-items>li{
+  animation:v4mgIn .45s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(var(--j,0) * 30ms + 60ms);
+}
+@keyframes v4mgIn{from{opacity:0;transform:translateY(8px)}}
+
+.v4 .mg-panel .mg-it{
+  display:grid;grid-template-columns:34px minmax(0,1fr);column-gap:12px;align-items:start;
+  padding:10px;margin-inline:-10px;border-radius:10px;color:var(--ink);transition:background .2s;
+}
+.v4 .mg-panel .mg-it .ii{
+  width:34px;height:34px;border:1px solid var(--line);border-radius:9px;background:var(--paper);
+  display:grid;place-items:center;color:var(--ink-2);transition:color .2s,border-color .2s,background .2s;
+}
+.v4 .mg-panel .mg-it .ii .ic{width:16px;height:16px}
+.v4 .mg-panel .mg-it .tx{min-width:0}
+.v4 .mg-panel .mg-it .tx b{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;line-height:1.3;color:var(--ink)}
+.v4 .mg-panel .mg-it .tx b .ic{
+  width:13px;height:13px;color:var(--red);opacity:0;transform:translateX(-5px);transition:opacity .2s,transform .3s;
+}
+.v4 .mg-panel .mg-it .tx small{display:block;margin-top:2px;font-size:12.5px;line-height:1.45;color:var(--ink-3)}
+.v4 .mg-panel .mg-it:hover{background:var(--paper-2)}
+.v4 .mg-panel .mg-it:hover .ii{color:var(--red);border-color:color-mix(in srgb,var(--red) 35%,var(--line))}
+.v4 .mg-panel .mg-it:hover .tx b .ic{opacity:1;transform:none}
+.v4 .mg-panel .mg-it:focus-visible{outline:2px solid var(--red);outline-offset:-2px}
+.v4 .mg-panel .mg-it[aria-current="page"] .tx b::before{
+  content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--red);
+}
+/* ítem de acción (cotizar): misma rejilla, se lee como botón */
+.v4 .mg-panel .mg-it.is-cta .ii{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.v4 .mg-panel .mg-it.is-cta:hover .ii{background:var(--red);border-color:var(--red);color:#fff}
+
+.v4 .mg-pf{margin-top:auto;padding-top:16px;display:flex;align-items:center}
+.v4 .mg-panel .mg-hub{
+  display:inline-flex;align-items:center;gap:7px;padding:0 0 2px;
+  font-size:13.5px;font-weight:600;color:var(--ink);border-bottom:1.5px solid var(--ink);
+  transition:color .2s,border-color .2s;
+}
+.v4 .mg-panel .mg-hub .ic{width:14px;height:14px;transition:transform .3s}
+.v4 .mg-panel .mg-hub:hover{color:var(--red);border-color:var(--red)}
+.v4 .mg-panel .mg-hub:hover .ic{transform:translateX(4px)}
+
+/* ── 5. Destacado ──────────────────────────────────────────────────────── */
+.v4 .mg-feat{display:grid;min-width:0;border-left:1px solid var(--line);padding-left:clamp(22px,2.6vw,40px)}
+.v4 .mg-panel .mg-card{
+  grid-area:1/1;align-self:start;display:flex;flex-direction:column;align-items:flex-start;
+  padding:0;color:var(--ink);
+  opacity:0;visibility:hidden;transform:translateY(12px);pointer-events:none;
+  transition:opacity .12s ease,transform .3s ease,visibility 0s linear .3s;
+}
+.v4 .mg-panel .mg-card[data-side="before"]{transform:translateY(-12px)}
+.v4 .mg-panel .mg-card[data-on]{
+  opacity:1;visibility:inherit;transform:none;pointer-events:inherit;
+  transition:opacity .34s ease .12s,transform .55s cubic-bezier(.16,1,.3,1) .1s,visibility 0s;
+}
+.v4 .mg-panel .mg-card:focus-visible{outline:2px solid var(--red);outline-offset:4px;border-radius:12px}
+.v4 .mg-panel .mg-card .sec{
+  margin-top:14px;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:9.5px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);
+}
+.v4 .mg-panel .mg-card .tt{
+  margin:5px 0 10px;text-wrap:balance;
+  font-family:"Inter Tight",Inter,sans-serif;font-size:15.5px;font-weight:600;letter-spacing:-.01em;line-height:1.3;
+}
+.v4 .mg-panel .mg-card .go{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--red)}
+.v4 .mg-panel .mg-card .go .ic{width:14px;height:14px;transition:transform .3s}
+.v4 .mg-panel .mg-card:hover .go .ic{transform:translateX(4px)}
+
+/* caso: foto en grises que toma color al pasar (como las .ccard del sitio) */
+.v4 .mg-panel .mg-case .ph{
+  position:relative;display:block;align-self:stretch;height:150px;border-radius:12px;overflow:hidden;background:var(--paper-2);
+}
+.v4 .mg-panel .mg-case .ph img{
+  width:100%;height:100%;object-fit:cover;filter:grayscale(1);transform:scale(1.07);
+  transition:filter .5s,transform .9s cubic-bezier(.16,1,.3,1);
+}
+.v4 .mg-panel .mg-case[data-on] .ph img{transform:scale(1)}
+.v4 .mg-panel .mg-case:hover .ph img{filter:grayscale(0);transform:scale(1.04)}
+.v4 .mg-panel .mg-case .pill{
+  position:absolute;left:10px;bottom:10px;border-radius:999px;padding:5px 11px;
+  background:rgba(11,11,14,.85);color:#fff;backdrop-filter:blur(4px);
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px;font-weight:500;
+}
+.v4 .mg-panel .mg-case .pill b{color:var(--coral);font-weight:700}
+
+/* producto (ARIA): tarjeta con el acento de su marca, como .aria-band */
+.v4 .mg-panel .mg-product{
+  --aria:#2C5698;--aria-2:#158A8C;
+  position:relative;overflow:hidden;padding:20px 20px 18px;
+  border:1px solid var(--line);border-radius:14px;background:var(--paper);
+}
+html[data-theme="dark"] .v4 .mg-panel .mg-product{--aria:#7FA6DE;--aria-2:#4FC6C7}
+.v4 .mg-panel .mg-product::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--aria),var(--aria-2));
+}
+.v4 .mg-panel .mg-product[data-on]{transition:opacity .34s ease .12s,transform .55s cubic-bezier(.16,1,.3,1) .1s,visibility 0s,border-color .25s}
+.v4 .mg-panel .mg-product:hover{border-color:color-mix(in srgb,var(--aria) 40%,var(--line))}
+.v4 .mg-panel .mg-product .mk{
+  width:44px;height:44px;border-radius:12px;display:grid;place-items:center;
+  background:color-mix(in srgb,var(--aria) 10%,transparent);
+}
+.v4 .mg-panel .mg-product .mk img{width:26px;height:26px;object-fit:contain}
+.v4 .mg-panel .mg-product .chs{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 16px}
+.v4 .mg-panel .mg-product .chip{border-radius:999px;padding:4px 10px;font-size:10px}
+
+/* ── 6. Franja inferior ────────────────────────────────────────────────── */
+.v4 .mg-foot{border-top:1px solid var(--line);background:var(--paper-2)}
+.v4 .mg-foot-in{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 28px;
+  padding-top:13px;padding-bottom:13px;
+}
+.v4 .mg-panel .mg-foot p{margin:0;display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;font-size:13.5px;color:var(--ink-2)}
+.v4 .mg-panel .mg-help a{display:inline-flex;align-items:center;gap:6px;padding:0;font-weight:600;color:var(--red)}
+.v4 .mg-panel .mg-help a .ic{width:14px;height:14px;transition:transform .3s}
+.v4 .mg-panel .mg-help a:hover{color:var(--red)}
+.v4 .mg-panel .mg-help a:hover .ic{transform:translateX(4px)}
+.v4 .mg-panel .mg-foot .mg-meta{gap:6px 24px}
+.v4 .mg-panel .mg-meta a{
+  display:inline-flex;align-items:center;gap:8px;padding:0;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;letter-spacing:.03em;color:var(--ink-2);
+  transition:color .2s;
+}
+.v4 .mg-panel .mg-meta a .ic{width:14px;height:14px;color:var(--red)}
+.v4 .mg-panel .mg-meta a:hover{color:var(--ink)}
+
+/* ── 7. Entrada escalonada al abrir ────────────────────────────────────── */
+/* baja desde el header (translate negativo: nada asoma por debajo del panel
+   mientras entra); --d es el retardo en ms de cada pieza */
+.v4 .mg-panel .mg-fx{opacity:0;transform:translateY(-8px);transition:opacity .15s ease,transform .2s ease}
+.v4 .mg-panel[data-open] .mg-fx{
+  opacity:1;transform:none;
+  transition:
+    opacity .4s ease calc(var(--d,0) * 1ms + 70ms),
+    transform .6s cubic-bezier(.16,1,.3,1) calc(var(--d,0) * 1ms + 70ms);
+}
+
+/* ── 8. Responsive ─────────────────────────────────────────────────────── */
+/* ≤1200: el destacado se va; índice + vista previa respiran */
+@media (max-width:1200px){
+  .v4 .mg-in{grid-template-columns:minmax(240px,290px) minmax(0,1fr)}
+  .v4 .mg-feat{display:none}
+}
+/* ≤1024 (iPad apaisado): la franja se queda solo con el teléfono */
+@media (max-width:1024px){
+  .v4 .mg-panel .mg-meta a[href^="mailto"]{display:none}
+  .v4 .mg-panel .mg-row .t b{font-size:15.5px}
+}
+/* ≤900: hay burger y menú móvil; el nav de escritorio (y el panel) no existe */
+@media (max-width:900px){
+  .v4 .mg-scrim{display:none}
+}
+/* pantallas bajas (apaisado, ventanas chicas): el panel scrollea por dentro */
+@media (max-height:620px){
+  .v4 .mg-panel{max-height:calc(100dvh - var(--hd-h) - 12px);overflow-y:auto;overscroll-behavior:contain}
+}
+@media print{
+  .v4 .mg-scrim{display:none!important}
+}
+
+/* ── 9. Contraste forzado ──────────────────────────────────────────────── */
+@media (forced-colors:active){
+  .v4 .mg-panel{border-bottom:1px solid CanvasText}
+  .v4 .mg-hl{outline:1px solid Highlight}
+  .v4 .mg-hl::before{background:Highlight}
+  .v4 .mg-prev,.v4 .mg-feat{border-left-color:CanvasText}
+}

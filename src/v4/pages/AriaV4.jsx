@@ -581,7 +581,7 @@ export default function AriaV4() {
       </section>
 
       {/* 02 — QUÉ HACE POR DENTRO */}
-      <section>
+      <section id="que-hace" style={{ scrollMarginTop: 84 }}>
         <div className="wrap">
           <Shead
             label="02 — Qué hace por dentro"
@@ -621,7 +621,7 @@ export default function AriaV4() {
       </section>
 
       {/* 04 — PARA QUIÉN ES */}
-      <section>
+      <section id="para-quien" style={{ scrollMarginTop: 84 }}>
         <div className="wrap">
           <Shead
             label="04 — Para quién es"

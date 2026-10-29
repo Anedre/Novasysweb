@@ -1,12 +1,12 @@
 /* Responsive v4 — capa transversal de adaptación por dispositivo. Editable a mano.
-   Se carga DESPUÉS de base/kit/color/shell/transitions y ANTES de los CSS por
+   Se carga DESPUÉS de base/kit/color/shell/megamenu/transitions y ANTES de los CSS por
    página (que llegan con el chunk lazy). Por eso, cuando una regla toca clases
    de página se escribe con `.v4.v4` (sube la especificidad y gana el empate).
 
    Lo que cubre, por bloques:
      0. tokens de dispositivo (alto del header, safe-areas del notch)
      1. higiene global (100dvh, safe-areas en .wrap, textos largos, min-width:0)
-     2. header + menú móvil (alturas reales, candado de scroll, tap en desplegable)
+     2. header + menú móvil (alturas reales, candado de scroll)
      3. flotantes (volver arriba) fuera del notch y ocultos con el menú abierto
      4. escalones de ancho:  ≤1180 · ≤1024 · ≤900 · ≤640 · ≤480 · ≤360 · ≤320
         (laptop chico, tablet, plegable abierto, móvil grande, móvil, compacto,
@@ -81,17 +81,8 @@
 html.menu-open{overflow:hidden}
 html.menu-open body{overflow:hidden;overscroll-behavior:none}
 
-/* desplegable «Soluciones»: en tablets con nav de escritorio (≥ 900px) el
-   hover no existe; HeaderV4 alterna .open al tocar el botón */
-.v4 .nav-item.open .drop{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0) scale(1)}
-@media (hover:none){
-  .v4 .nav-item:hover .drop,.v4 .nav-item:focus-within .drop{
-    opacity:0;visibility:hidden;transform:translateX(-50%) translateY(8px) scale(.985);
-  }
-  .v4 .nav-item.open .drop{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0) scale(1)}
-  .v4 .nav-item.open .nav-link{color:var(--ink)}
-  .v4 .nav-item.open .nav-link .ic{transform:rotate(180deg)}
-}
+/* el mega menú «Soluciones» (hover, tap y teclado) tiene su propia hoja:
+   megamenu.css */
 
 /* ── 3. Flotantes ──────────────────────────────────────────────────────── */
 .v4 .top-btn{
@@ -112,7 +103,6 @@ html.menu-open .v4 .top-btn{opacity:0;visibility:hidden}
 @media (max-width:1024px){
   .v4 .hd-nav{gap:18px;font-size:13.5px}
   .v4 .hd-cta{padding:9px 16px;font-size:13px}
-  .v4 .drop{width:min(350px,calc(100vw - 32px))}
 }
 
 /* ≤900 · tablet vertical y plegables abiertos (673–841px): ya hay burger

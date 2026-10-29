@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { Icon } from './Icons';
+import MegaSoluciones from './MegaSoluciones';
+import { LINEAS } from './navSoluciones';
 
 const LOGO_LIGHT = '/v4/img/novasys-logo.png';
 const LOGO_DARK = '/v4/img/novasys-logo-dark.png';
@@ -11,22 +13,16 @@ export default function HeaderV4() {
   const { pathname } = useLocation();
   const hdRef = useRef(null);
   const pgRef = useRef(null);
-  const solRef = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
-  // desplegable «Soluciones» abierto por tap (tablets con nav de escritorio,
-  // donde no hay hover); en desktop el CSS lo abre por :hover / :focus-within
-  const [solOpen, setSolOpen] = useState(false);
+  // mega menú «Soluciones» abierto (su estado vive en MegaSoluciones): el
+  // header no se esconde al scrollear, se vuelve opaco y cubre la página
+  const [megaOpen, setMegaOpen] = useState(false);
+  const megaOpenRef = useRef(false);
 
-  // cualquier cambio de ruta cierra ambos menús (también con atrás/adelante)
-  useEffect(() => { setMenuOpen(false); setSolOpen(false); }, [pathname]);
+  useEffect(() => { megaOpenRef.current = megaOpen; }, [megaOpen]);
 
-  // tap fuera del desplegable lo cierra
-  useEffect(() => {
-    if (!solOpen) return undefined;
-    const onDown = (e) => { if (solRef.current && !solRef.current.contains(e.target)) setSolOpen(false); };
-    document.addEventListener('pointerdown', onDown);
-    return () => document.removeEventListener('pointerdown', onDown);
-  }, [solOpen]);
+  // cualquier cambio de ruta cierra el menú móvil (también con atrás/adelante)
+  useEffect(() => { setMenuOpen(false); }, [pathname]);
 
   // hide-on-scroll + sombra + barra de progreso
   useEffect(() => {
@@ -40,7 +36,7 @@ export default function HeaderV4() {
       if (pg) pg.style.transform = `scaleX(${dH > 0 ? Math.min(1, y / dH) : 0})`;
       if (hd && !isStatic()) {
         hd.classList.toggle('hd-sc', y > 8);
-        if (y > lastY && y > 280 && !document.documentElement.classList.contains('menu-open')) {
+        if (y > lastY && y > 280 && !document.documentElement.classList.contains('menu-open') && !megaOpenRef.current) {
           hd.classList.add('hd-hidden');
         } else {
           hd.classList.remove('hd-hidden');
@@ -68,43 +64,14 @@ export default function HeaderV4() {
 
   return (
     <>
-      <header ref={hdRef}>
+      <header ref={hdRef} data-mega={megaOpen ? 'open' : undefined}>
         <div className="wrap hd">
           <Link className="hd-logo" to="/" aria-label="Novasys — inicio" onClick={close}>
             <img className="only-light" src={LOGO_LIGHT} alt="Novasys" />
             <img className="only-dark" src={LOGO_DARK} alt="Novasys" />
           </Link>
           <nav className="hd-nav" aria-label="Principal">
-            <div ref={solRef} className={solOpen ? 'nav-item open' : 'nav-item'}>
-              <button
-                className="nav-link"
-                type="button"
-                aria-haspopup="true"
-                aria-expanded={solOpen}
-                onClick={() => setSolOpen((v) => !v)}
-              >
-                Soluciones <Icon id="i-chev" />
-              </button>
-              <div className="drop">
-                <Link to="/soluciones">
-                  <span className="di"><Icon id="i-code" /></span>
-                  <span><b>Software empresarial</b><small>CRM, BI, marketing y ECM sobre Oracle y ELO — o a medida.</small></span>
-                </Link>
-                <Link to="/cloud">
-                  <span className="di"><Icon id="i-cloud" /></span>
-                  <span><b>Cloud AWS</b><small>Amazon Connect, migraciones y serverless operados desde Lima.</small></span>
-                </Link>
-                <Link to="/infraestructura">
-                  <span className="di"><Icon id="i-server" /></span>
-                  <span><b>Infraestructura HP / HPE</b><small>Cómputo, ProLiant y storage con soporte on-site.</small></span>
-                </Link>
-                <Link to="/soluciones/aria">
-                  <span className="di"><Icon id="i-msg" /></span>
-                  <span><b>ARIA — atención al cliente</b><small>WhatsApp, Instagram, Messenger, correo y llamadas en una bandeja.</small></span>
-                </Link>
-                <Link className="d-foot" to="/contacto">¿No sabes cuál necesitas? Te ayudamos a elegir <Icon id="i-arrow" /></Link>
-              </div>
-            </div>
+            <MegaSoluciones pathname={pathname} onOpenChange={setMegaOpen} />
             <NavLink to="/casos-de-exito">Casos</NavLink>
             <Link to="/#metodo">Método</Link>
             <NavLink to="/nosotros">Nosotros</NavLink>
@@ -128,13 +95,13 @@ export default function HeaderV4() {
         </div>
         <div ref={pgRef} className="progress" aria-hidden="true" />
       </header>
+      <div className="mg-scrim" data-open={megaOpen || undefined} aria-hidden="true" />
 
       <nav className="m-menu" aria-label="Menú móvil">
         <div className="mm-sub">
-          <Link to="/soluciones" onClick={close}><span className="di"><Icon id="i-code" /></span>Software empresarial</Link>
-          <Link to="/cloud" onClick={close}><span className="di"><Icon id="i-cloud" /></span>Cloud AWS</Link>
-          <Link to="/infraestructura" onClick={close}><span className="di"><Icon id="i-server" /></span>Infraestructura HP / HPE</Link>
-          <Link to="/soluciones/aria" onClick={close}><span className="di"><Icon id="i-msg" /></span>ARIA — atención al cliente</Link>
+          {LINEAS.map((l) => (
+            <Link key={l.id} to={l.to} onClick={close}><span className="di"><Icon id={l.icon} /></span>{l.title}</Link>
+          ))}
         </div>
         <Link className="mm-link" to="/casos-de-exito" onClick={close}>Casos <Icon id="i-arrow" /></Link>
         <Link className="mm-link" to="/#metodo" onClick={close}>Método <Icon id="i-arrow" /></Link>
