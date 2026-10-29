@@ -31,9 +31,14 @@ function HashScroll() {
   useEffect(() => {
     if (!hash) return;
     const id = hash.slice(1);
-    const t = setTimeout(() => {
+    // En una carga en frío (enlace directo a /legal/privacidad#cookies) la
+    // página es un chunk lazy que puede tardar: se reintenta hasta que el ancla
+    // exista, como mucho ~4 s.
+    let tries = 0;
+    let t = setTimeout(function seek() {
       const el = document.getElementById(id);
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      else if (++tries < 40) t = setTimeout(seek, 100);
     }, 120);
     return () => clearTimeout(t);
   }, [pathname, hash]);

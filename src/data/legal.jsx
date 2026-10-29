@@ -13,6 +13,9 @@
  * ⚠️ Redacción operativa preparada por el equipo técnico. Antes de publicarla
  * como definitiva, debe pasar por revisión legal de la empresa. Los datos de la
  * ficha del negocio (incluido el RUC) salen de `src/data/empresa.js`.
+ *
+ * La razón social ya termina en punto («S.A.C.»): cuando cierra una oración,
+ * ese punto hace de punto final y no se le suma otro.
  */
 import { Link } from 'react-router-dom';
 import { EMPRESA } from './empresa';
@@ -36,7 +39,7 @@ export const LEGAL_DOCS = [
     label: 'Legal — Privacidad',
     lede:
       'Qué información tratamos, con qué finalidad, dónde se guarda y cómo se pide su eliminación. Aplica al sitio novasys.com.pe y a ARIA, la plataforma de atención al cliente de ' +
-      EMPRESA.razon + '.',
+      EMPRESA.razon,
     meta:
       'Política de privacidad de Novasys del Perú S.A.C. y de ARIA: qué datos tratamos, para qué, dónde se alojan, cuánto se conservan y cómo solicitar su eliminación.',
     sections: [
@@ -345,7 +348,7 @@ export const PRODUCTOS_LEGAL = [
     canales: 'WhatsApp · Instagram · Messenger',
     notaLegal:
       'ARIA es la plataforma de atención al cliente desarrollada y operada por ' + EMPRESA.razon +
-      '. No es una marca independiente ni un producto revendido.',
+      ' No es una marca independiente ni un producto revendido.',
     mark: '/v4/aria/aria-mark.png',
     markDark: '/v4/aria/aria-mark-white.png',
     doc: {
@@ -490,7 +493,7 @@ export const PRODUCTOS_LEGAL = [
           body: (
             <p>
               El software de ARIA, su marca, su documentación y sus componentes son propiedad de{' '}
-              {EMPRESA.razon}. La contratación otorga a la empresa cliente un derecho de uso no exclusivo
+              {EMPRESA.razon} La contratación otorga a la empresa cliente un derecho de uso no exclusivo
               e intransferible mientras la suscripción esté vigente, y no supone cesión de la propiedad
               intelectual.
             </p>

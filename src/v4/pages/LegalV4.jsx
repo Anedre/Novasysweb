@@ -21,10 +21,16 @@ function useActiveSection(ids) {
   useEffect(() => {
     setActive(ids[0]);
     if (!ids.length) return undefined;
+    // Manda la última sección (en orden de documento) que está en la banda de
+    // lectura: la que la cruzó más recientemente. Se lleva el conjunto completo,
+    // no solo las entradas de cada aviso, para que al subir —cuando la de abajo
+    // sale de la banda sin que entre ninguna— el índice vuelva a la anterior.
+    const inBand = new Set();
     const io = new IntersectionObserver(
       (entries) => {
-        const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-        if (visible[0]) setActive(visible[0].target.id);
+        entries.forEach((e) => (e.isIntersecting ? inBand.add(e.target.id) : inBand.delete(e.target.id)));
+        const last = ids.filter((id) => inBand.has(id)).pop();
+        if (last) setActive(last);
       },
       { rootMargin: '-84px 0px -62% 0px', threshold: 0 },
     );
@@ -46,7 +52,7 @@ function Tabs({ current }) {
   return (
     <nav className="lg-tabs" aria-label="Documentos legales">
       {tabs.map((t) => (
-        <Link key={t.to} to={t.to} className={t.on ? 'on' : undefined}>{t.label}</Link>
+        <Link key={t.to} to={t.to} className={t.on ? 'on' : undefined} aria-current={t.on ? 'page' : undefined}>{t.label}</Link>
       ))}
     </nav>
   );
@@ -132,7 +138,7 @@ export default function LegalV4() {
       <div ref={ref} className="legal-scope">
         <Helmet>
           <title>Términos del servicio | {EMPRESA.razon}</title>
-          <meta name="description" content={`Términos del servicio de los productos de ${EMPRESA.razon}.`} />
+          <meta name="description" content={`Términos del servicio de los productos de ${EMPRESA.razon}`} />
           <meta property="og:url" content={BASE + '/legal/terminos'} />
         </Helmet>
         <TerminosIndex />
@@ -202,7 +208,7 @@ export default function LegalV4() {
             <p className="lg-foot">
               Documento vigente desde el {LEGAL_UPDATED}.{' '}
               {doc.producto
-                ? <>Aplica a {doc.producto.nombre}; la <Link to="/legal/privacidad">política de privacidad</Link> y la <Link to="/legal/eliminacion-de-datos">eliminación de datos</Link> son comunes a todos los productos de {EMPRESA.razon}. </>
+                ? <>Aplica a {doc.producto.nombre}; la <Link to="/legal/privacidad">política de privacidad</Link> y la <Link to="/legal/eliminacion-de-datos">eliminación de datos</Link> son comunes a todos los productos de {EMPRESA.razon}{/* «S.A.C.» ya cierra la oración */} </>
                 : <>Aplica a {EMPRESA.razon} y a todos sus productos. </>}
               Si necesitas una copia firmada o el acuerdo de tratamiento de datos para tu área legal,
               escríbenos a <a href={'mailto:' + EMPRESA.correo}>{EMPRESA.correo}</a>.

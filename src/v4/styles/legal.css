@@ -32,7 +32,13 @@
 .v4 section.lg-main{padding-top:clamp(40px,5vw,66px)}
 .v4 .lg-grid{display:grid;grid-template-columns:250px 1fr;gap:clamp(30px,5vw,72px);align-items:start}
 
-.v4 .lg-toc{position:sticky;top:96px}
+/* fija, pero sin pasar del alto de la pantalla: en laptops de 768px el índice
+   largo + las fichas no entraban y la del responsable quedaba inalcanzable.
+   El padding/margen negativo deja sitio al outline de foco dentro del scroll. */
+.v4 .lg-toc{
+  position:sticky;top:96px;max-height:calc(100vh - 120px);overflow-y:auto;
+  overscroll-behavior:contain;scrollbar-width:thin;padding:0 8px 8px;margin:0 -8px;
+}
 .v4 .lg-toc .lbl{display:block;margin-bottom:14px}
 .v4 .lg-toc ol{list-style:none;counter-reset:lg;border-left:1px solid var(--line);padding:0;margin:0}
 .v4 .lg-toc li{counter-increment:lg}
@@ -104,7 +110,7 @@
 .v4 .lg-prose li{position:relative;padding-left:26px;margin-bottom:10px}
 .v4 .lg-prose ul li::before{
   content:"";position:absolute;left:2px;top:.68em;
-  width:7px;height:1.5px;background:var(--red);
+  width:7px;height:2px;background:var(--red); /* alto entero: con 1.5px se pinta a 1 o 2px según la línea */
 }
 .v4 .lg-prose ol li{counter-increment:lgo}
 .v4 .lg-prose ol li::before{
@@ -121,7 +127,7 @@
 
 @media (max-width:900px){
   .v4 .lg-grid{grid-template-columns:1fr}
-  .v4 .lg-toc{position:static}
+  .v4 .lg-toc{position:static;max-height:none;overflow:visible;padding:0;margin:0}
   .v4 .lg-toc ol{
     display:flex;flex-wrap:wrap;gap:8px;border-left:0;
     border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;
