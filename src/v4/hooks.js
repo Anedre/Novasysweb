@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 
 /**
  * Marca <html> con las clases de motion del sistema v4:
@@ -42,6 +43,9 @@ function animateNum(el, isStatic) {
  */
 export function useV4Page() {
   const ref = useRef(null);
+  // Rutas que comparten componente (p. ej. /legal/:slug) no lo remontan al
+  // navegar entre ellas: se re-ejecuta por pathname para observar el DOM nuevo.
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const rootEl = ref.current;
@@ -135,7 +139,7 @@ export function useV4Page() {
         hero.removeEventListener('mouseleave', onLeave);
       }
     };
-  }, []);
+  }, [pathname]);
 
   return ref;
 }
