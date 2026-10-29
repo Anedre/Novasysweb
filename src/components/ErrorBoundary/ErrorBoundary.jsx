@@ -7,7 +7,7 @@ class ErrorBoundary extends React.Component {
     this.state = { hasError: false, error: null, errorInfo: null };
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError() {
     return { hasError: true };
   }
 
@@ -50,7 +50,7 @@ class ErrorBoundary extends React.Component {
             <p className="error-message">
               {isWebGLError 
                 ? 'Tu navegador no soporta algunas características gráficas. Intenta actualizar tu navegador o usar uno diferente como Chrome, Firefox o Edge.'
-                : 'Ha ocurrido un error inesperado. Nuestro equipo ha sido notificado.'}
+                : 'Ha ocurrido un error inesperado. Intenta recargar la página o vuelve al inicio.'}
             </p>
             
             <div className="error-actions">
@@ -69,7 +69,7 @@ class ErrorBoundary extends React.Component {
             </div>
 
             {/* Mostrar detalles solo en desarrollo */}
-            {process.env.NODE_ENV === 'development' && this.state.error && (
+            {import.meta.env.DEV && this.state.error && (
               <details className="error-details">
                 <summary>Detalles técnicos</summary>
                 <pre>{this.state.error.toString()}</pre>

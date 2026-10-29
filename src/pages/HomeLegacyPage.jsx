@@ -10,6 +10,8 @@ export default function HomeLegacyPage() {
     <>
       <Helmet>
         <title>Novasys del Perú — Ingeniería Digital que Transforma Empresas</title>
+        {/* referencia histórica: no debe competir con la home actual en buscadores */}
+        <meta name="robots" content="noindex" />
         <meta
           name="description"
           content="Más de 15 años transformando empresas con soluciones tecnológicas a medida. Partners de AWS, HP y Oracle. CRM, BI, Cloud, Infraestructura y más."

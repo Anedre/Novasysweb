@@ -52,7 +52,11 @@ export default function InfraProductV4() {
   const slug = pathname.split('/').filter(Boolean).pop();
   const d = getInfraBySlug(slug);
   const m = META[slug];
-  const [model, setModel] = useState(0);
+  // el componente no se remonta al pasar de una línea a otra: la selección
+  // guarda su línea y, en otra distinta, se vuelve al primer modelo
+  const [sel, setSel] = useState({ slug, model: 0 });
+  const model = sel.slug === slug ? sel.model : 0;
+  const setModel = (i) => setSel({ slug, model: i });
 
   if (!d || !m) return null;
   const others = Object.keys(META).filter((k) => k !== slug);

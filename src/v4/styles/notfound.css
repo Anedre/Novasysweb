@@ -27,3 +27,6 @@
 html.js:not(.static) .v4 .nf .deco-ring{animation:v4spin 60s linear infinite}
 .v4 .nf .deco-dot{position:absolute;right:180px;top:120px;width:12px;height:12px;border-radius:50%;background:var(--red);pointer-events:none}
 @media (max-width:700px){.v4 .nf .deco-ring,.v4 .nf .deco-dot{display:none}}
+
+/* errorElement del router (ErrorV4): mismo marco, titular de frase */
+.v4 .nf-err h1{font-size:clamp(40px,6.4vw,68px);letter-spacing:-.035em;line-height:1}

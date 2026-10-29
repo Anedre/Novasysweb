@@ -174,7 +174,7 @@ export default function EventosV4() {
         title={<>¿Un taller <span style={{ color: 'var(--red)' }}>para tu equipo</span>?</>}
         text="Armamos una sesión a medida sobre el tema que necesites — Amazon Connect, BI, cloud o infraestructura — con casos de tu propia industria."
         btnLabel="Solicitar un taller"
-        extraAction={<Link className="link" style={{ color: '#fff', borderColor: '#fff' }} to="/casos-de-exito">Ver casos de éxito <span className="ar">→</span></Link>}
+        extraAction={<Link className="link" style={{ color: 'var(--paper)', borderColor: 'var(--band-tx2)' }} to="/casos-de-exito">Ver casos de éxito <span className="ar">→</span></Link>}
       />
     </div>
   );

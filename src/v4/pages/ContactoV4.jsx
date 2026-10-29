@@ -58,11 +58,30 @@ function WizardHero() {
   const [sending, setSending] = useState(false);
   const [error, setError] = useState(false);
 
+  const nombreOk = nombre.trim().length > 1;
   const emailOk = email.includes('@') && email.includes('.');
   const celularOk = normalizarCelular(celular) !== '';
-  const paso2Ok = nombre.trim().length > 1 && emailOk && celularOk;
+  const paso2Ok = nombreOk && emailOk && celularOk;
+
+  // Campos que ya perdieron el foco: el aviso de cada uno aparece recién ahí,
+  // no mientras se escribe.
+  const [tocado, setTocado] = useState({});
+  const tocar = (k) => () => setTocado((t) => ({ ...t, [k]: true }));
+  const errNombre = tocado.nombre && !nombreOk;
+  const errEmail = tocado.email && !emailOk;
+  const errCelular = tocado.celular && !celularOk;
 
   const elegir = (v) => { setTipo(v); setStep(1); };
+
+  // «Continuar» no se deshabilita: un botón gris sin explicación dejaba
+  // atascado a quien escribía el celular en otro formato. Se valida al
+  // continuar (también con Enter) y se lleva el foco al campo por corregir.
+  const continuar = (e) => {
+    e.preventDefault();
+    if (paso2Ok) { setStep(2); return; }
+    setTocado({ nombre: true, email: true, celular: true });
+    document.getElementById(!nombreOk ? 'c-nombre' : !emailOk ? 'c-email' : 'c-celular')?.focus();
+  };
 
   const enviar = async (e) => {
     e.preventDefault();
@@ -174,33 +193,62 @@ function WizardHero() {
               {opcion && <span className="wpick"><Icon id={opcion.icon} />{tipo}</span>}
               <h1>{TITULOS[1]}</h1>
               <p className="wsub">{SUBS[1]}</p>
-              <div className="wfields">
-                <div className="frow">
-                  <div>
-                    <label>Nombre <b>*</b></label>
-                    <input type="text" value={nombre} placeholder="Tu nombre" onChange={(e) => setNombre(e.target.value)} />
+              <form noValidate onSubmit={continuar}>
+                <div className="wfields">
+                  <div className="frow">
+                    <div>
+                      <label htmlFor="c-nombre">Nombre <b>*</b></label>
+                      <input
+                        id="c-nombre"
+                        type="text"
+                        autoComplete="name"
+                        value={nombre}
+                        placeholder="Tu nombre"
+                        onChange={(e) => setNombre(e.target.value)}
+                        onBlur={tocar('nombre')}
+                        aria-invalid={errNombre || undefined}
+                        aria-describedby={errNombre ? 'c-nombre-err' : undefined}
+                      />
+                      {errNombre && <p className="ferr" id="c-nombre-err">Escribe tu nombre.</p>}
+                    </div>
+                    <div>
+                      <label htmlFor="c-email">Email corporativo <b>*</b></label>
+                      <input
+                        id="c-email"
+                        type="email"
+                        autoComplete="email"
+                        value={email}
+                        placeholder="nombre@empresa.com"
+                        onChange={(e) => setEmail(e.target.value)}
+                        onBlur={tocar('email')}
+                        aria-invalid={errEmail || undefined}
+                        aria-describedby={errEmail ? 'c-email-err' : undefined}
+                      />
+                      {errEmail && <p className="ferr" id="c-email-err">Revisa el correo: debe verse como nombre@empresa.com.</p>}
+                    </div>
                   </div>
                   <div>
-                    <label>Email corporativo <b>*</b></label>
-                    <input type="email" value={email} placeholder="nombre@empresa.com" onChange={(e) => setEmail(e.target.value)} />
+                    <label htmlFor="c-celular">Celular / WhatsApp <b>*</b></label>
+                    <input
+                      id="c-celular"
+                      type="tel"
+                      inputMode="tel"
+                      autoComplete="tel"
+                      value={celular}
+                      placeholder="+51 999 999 999"
+                      onChange={(e) => setCelular(e.target.value)}
+                      onBlur={tocar('celular')}
+                      aria-invalid={errCelular || undefined}
+                      aria-describedby={errCelular ? 'c-celular-err' : undefined}
+                    />
+                    {errCelular && <p className="ferr" id="c-celular-err">Revisa el número: 9 dígitos (ej. 999 999 999) o con código de país (+51…).</p>}
                   </div>
                 </div>
-                <div>
-                  <label>Celular / WhatsApp <b>*</b></label>
-                  <input
-                    type="tel"
-                    inputMode="tel"
-                    autoComplete="tel"
-                    value={celular}
-                    placeholder="+51 999 999 999"
-                    onChange={(e) => setCelular(e.target.value)}
-                  />
+                <div className="wnav">
+                  <button type="button" className="wback" onClick={() => setStep(0)}>← Cambiar necesidad</button>
+                  <button type="submit" className="btn">Continuar</button>
                 </div>
-              </div>
-              <div className="wnav">
-                <button type="button" className="wback" onClick={() => setStep(0)}>← Cambiar necesidad</button>
-                <button type="button" className="btn" disabled={!paso2Ok} onClick={() => setStep(2)}>Continuar</button>
-              </div>
+              </form>
             </div>
           ) : (
             <div className="wstep" key="s2">
@@ -210,8 +258,9 @@ function WizardHero() {
               <form onSubmit={enviar}>
                 <div className="wfields">
                   <div>
-                    <label>Tu reto</label>
+                    <label htmlFor="c-msg">Tu reto</label>
                     <textarea
+                      id="c-msg"
                       value={msg}
                       placeholder="Ej.: nuestro contact center on-premise ya no da abasto…"
                       onChange={(e) => setMsg(e.target.value)}

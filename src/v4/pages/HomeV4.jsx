@@ -179,7 +179,7 @@ export default function HomeV4() {
       </section>
 
       {/* MARQUEE FOTOGRÁFICO */}
-      <div className="mq" aria-label="Galería de operación">
+      <div className="mq" aria-hidden="true">
         <div className="mq-in">
           {[0, 1].map((k) => (
             <div className="mq-seq" aria-hidden={k === 1 || undefined} key={k}>

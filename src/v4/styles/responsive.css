@@ -144,7 +144,9 @@ html.menu-open .v4 .top-btn{opacity:0;visibility:hidden}
   .v4 .mq-seq figure{width:200px;height:130px}
   .v4 .lg-row{padding:16px 0}
   .v4 .ft{gap:26px 24px;padding-top:40px}
-  .v4 .ft-bot{padding-bottom:calc(22px + var(--safe-b))}
+  /* aire bajo la última fila: WhatsApp y «volver arriba» flotan sobre los
+     68px inferiores y tapaban los enlaces legales al final de la página */
+  .v4 .ft-bot{padding-bottom:calc(84px + var(--safe-b))}
   .v4 .top-btn{
     width:44px;height:44px;
     right:calc(16px + var(--safe-r));
@@ -240,11 +242,16 @@ html.menu-open .v4 .top-btn{opacity:0;visibility:hidden}
   .v4.v4 .oring .omed{display:none}
 }
 
+/* fichas Oracle: en tres columnas el KPI «OCI · Oracle Cloud Infrastructure»
+   (PaaS) desbordaba la tarjeta entre 361 y ~410px (iPhone de 375 y 390) */
+@media (max-width:480px){
+  .v4.v4 .tfc-kpis{grid-template-columns:1fr 1fr}
+}
+
 /* compactos ≤360: piezas que aún se apretaban */
 @media (max-width:360px){
   .v4.v4 .lg-delta small{white-space:normal}
   .v4.v4 .ifp-sibs{flex-wrap:wrap}
-  .v4.v4 .tfc-kpis{grid-template-columns:1fr 1fr}
 }
 
 /* Fold cerrado ≤320: una columna y etiquetas que pueden partir */

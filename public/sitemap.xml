@@ -72,24 +72,6 @@
   </url>
 
   <!-- ===== Partner hubs ===== -->
-  <url>
-    <loc>https://www.novasys.com.pe/soluciones/novasys</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2026-04-24</lastmod>
-  </url>
-  <url>
-    <loc>https://www.novasys.com.pe/soluciones/hp</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2026-04-24</lastmod>
-  </url>
-  <url>
-    <loc>https://www.novasys.com.pe/soluciones/amazon</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2026-04-24</lastmod>
-  </url>
 
   <!-- ===== Infraestructura HP · hub + 3 fichas dinámicas ===== -->
   <url>
@@ -135,6 +117,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <lastmod>2026-04-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.novasys.com.pe/cloud/sagemaker</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-09-24</lastmod>
   </url>
   <url>
     <loc>https://www.novasys.com.pe/cloud/migracion</loc>

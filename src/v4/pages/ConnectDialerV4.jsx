@@ -39,7 +39,7 @@ function CampaignMonitor() {
   const m = MODOS[modo];
 
   return (
-    <div className="dlr rv d2" role="img" aria-label="Monitor de campaña de marcación (ilustrativo)">
+    <div className="dlr rv d2" role="group" aria-label="Monitor de campaña de marcación (ilustrativo)">
       <div className="dlr-bar">
         <img src={AWS + 'connect.png'} alt="" />
         <span>Campaña — Cobranza temprana · líneas activas</span>

@@ -66,6 +66,9 @@ html.js:not(.static) .v4 .wstep{animation:v4wstep .5s cubic-bezier(.2,.6,.2,1)}
 }
 .v4 .wfields textarea{min-height:130px;resize:vertical}
 .v4 .wfields input:focus,.v4 .wfields textarea:focus{outline:none;border-color:var(--red)}
+/* aviso por campo (paso 2): rojo oscurecido para que el texto chico se lea */
+.v4 .wfields input[aria-invalid="true"]{border-color:var(--red)}
+.v4 .wfields .ferr{margin-top:6px;font-size:12.5px;line-height:1.4;color:color-mix(in srgb,var(--red) 80%,var(--ink))}
 .v4 .wnav{display:flex;justify-content:center;align-items:center;gap:22px;margin-top:26px}
 .v4 .wback{
   background:none;border:0;cursor:pointer;font:inherit;font-size:14px;font-weight:600;

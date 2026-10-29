@@ -35,6 +35,7 @@ function Showcase() {
   return (
     <div
       className="hi-stage rv d2"
+      role="group"
       aria-label="Líneas de producto HP / HPE"
       onMouseEnter={() => { if (timerRef.current) clearInterval(timerRef.current); }}
       onMouseLeave={restart}
@@ -48,13 +49,14 @@ function Showcase() {
       <span className="hi-chip c1"><i />{d.chips[0]}</span>
       <span className="hi-chip c2"><i />{d.chips[1]}</span>
       <span className="hi-chip c3"><i />{d.chips[2]}</span>
-      <div className="hi-thumbs" role="tablist" aria-label="Cambiar línea de producto">
+      <div className="hi-thumbs" role="group" aria-label="Cambiar línea de producto">
         {KEYS.map((k, i) => (
           <button
             key={k}
             type="button"
             className={`ht ${act === i ? 'on' : ''}`}
             aria-label={`Ver ${k}`}
+            aria-pressed={act === i}
             onClick={() => { setAct(i); restart(); }}
           >
             <img src={PRODUCTS[k].src} alt="" />
